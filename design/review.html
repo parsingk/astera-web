@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astera — Design review</title>
+<link rel="icon" href="../assets/astera-icon.png">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #dfe3ed; color: #19213b; font: 13px/1.5 system-ui, sans-serif; }
+  header { display: flex; gap: 12px; align-items: center; padding: 12px 24px; background: #fff; flex-wrap: wrap; }
+  h1 { font-size: 15px; margin: 0 20px 0 0; }
+  button, a { font: inherit; padding: 8px 12px; border: 1px solid #d6dcea; border-radius: 6px; background: #f7f8fc; color: #19213b; cursor: pointer; text-decoration: none; }
+  button[aria-pressed='true'] { background: #19213b; color: white; }
+  .stage { padding: 24px; overflow: auto; }
+  iframe { display: block; background: #0b1020; border: 0; margin-inline: auto; width: 1440px; height: 1050px; box-shadow: 0 3px 25px #19213b15; }
+  #report { padding: 12px 24px; max-height: 180px; overflow: auto; white-space: pre-wrap; margin: 0; background: #fff; border-top: 1px solid #ddd; font: 12px/1.6 monospace; }
+</style>
+<header>
+  <h1>Astera / Concept 01</h1>
+  <button data-theme="light" aria-pressed="false">Light</button>
+  <button data-theme="dark" aria-pressed="true">Dark</button>
+  <button data-width="1440" aria-pressed="true">Desktop · 1440</button>
+  <button data-width="768" aria-pressed="false">Tablet · 768</button>
+  <button data-width="390" aria-pressed="false">Mobile · 390</button>
+  <button data-width="320" aria-pressed="false">Narrow · 320</button>
+  <button id="top">Hero</button><button id="features">Features</button><button id="faq">FAQ</button><button id="footer">Footer</button>
+  <button id="inspect">Check layout</button><button id="interactions">Check interactions</button>
+  <a id="open-website" href="../">Open website</a>
+</header>
+<pre id="report" aria-live="polite">Choose a viewport to review the concept.</pre>
+<div class="stage"><iframe title="Astera website preview" src="../"></iframe></div>
+<script>
+  const frame = document.querySelector('iframe');
+  const report = document.querySelector('#report');
+  const initialTheme = new URLSearchParams(location.search).get('theme');
+  if (initialTheme === 'light' || initialTheme === 'dark') frame.src = `../?theme=${initialTheme}`;
+  function syncThemeControls() {
+    const theme = frame.contentDocument.documentElement.dataset.theme;
+    document.querySelectorAll('[data-theme]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.theme === theme)));
+    document.querySelector('#open-website').href = `../?theme=${theme}`;
+  }
+  frame.addEventListener('load', () => {
+    syncThemeControls();
+    frame.contentDocument.addEventListener('click', (event) => {
+      if (event.target.closest('.theme-toggle')) syncThemeControls();
+    });
+  });
+  document.querySelectorAll('[data-theme]').forEach((button) => {
+    button.onclick = () => {
+      if (frame.contentDocument.documentElement.dataset.theme !== button.dataset.theme) {
+        frame.contentDocument.querySelector('.theme-toggle').click();
+      }
+      syncThemeControls();
+    };
+  });
+  document.querySelectorAll('[data-width]').forEach((button) => {
+    button.onclick = () => {
+      frame.style.width = `${button.dataset.width}px`;
+      document.querySelectorAll('[data-width]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      report.textContent = `${button.dataset.width}px viewport`;
+    };
+  });
+  for (const id of ['top', 'features', 'faq', 'footer']) {
+    document.getElementById(id).onclick = () => {
+      const win = frame.contentWindow;
+      if (id === 'top') win.scrollTo({ top: 0, behavior: 'instant' });
+      else {
+        const target = frame.contentDocument.querySelector(id === 'footer' ? 'footer' : `#${id}`);
+        win.scrollTo({ top: target.offsetTop - 95, behavior: 'instant' });
+      }
+    };
+  }
+  document.querySelector('#inspect').onclick = async () => {
+    const doc = frame.contentDocument;
+    const win = frame.contentWindow;
+    await doc.fonts.ready;
+    const visible = (el) => el.getClientRects().length && win.getComputedStyle(el).visibility !== 'hidden';
+    const overflow = [...doc.querySelectorAll('main *, header *, footer *')].filter((el) => {
+      if (!visible(el) || el.closest('[aria-hidden="true"]') || el.closest('svg')) return false;
+      const r = el.getBoundingClientRect();
+      return r.left < -1 || r.right > win.innerWidth + 1;
+    }).map((el) => `${el.tagName.toLowerCase()}.${el.className}`);
+    const brokenImages = [...doc.images].filter((img) => !img.complete || !img.naturalWidth).map((img) => img.src);
+    const missingAnchors = [...doc.querySelectorAll('a[href^="#"]')].map((el) => el.getAttribute('href')).filter((href) => href !== '#' && !doc.querySelector(href));
+    report.textContent = JSON.stringify({
+      viewport: win.innerWidth,
+      theme: doc.documentElement.dataset.theme,
+      documentWidth: doc.documentElement.scrollWidth,
+      overflow,
+      brokenImages,
+      missingAnchors,
+      fonts: [...doc.fonts].map((font) => ({ family: font.family, weight: font.weight, status: font.status })),
+      h1Count: doc.querySelectorAll('h1').length,
+      english: doc.documentElement.lang === 'en',
+      menuVisible: visible(doc.querySelector('.menu-toggle'))
+    }, null, 2);
+  };
+  document.querySelector('#interactions').onclick = async () => {
+    const doc = frame.contentDocument;
+    const results = [];
+    const check = (name, passed) => results.push({ name, passed });
+    check('Terminal preview is the initial view', doc.querySelector('#product-image').src.endsWith('/hero.jpg') && doc.querySelector('[data-view="terminal"]').getAttribute('aria-pressed') === 'true');
+    doc.querySelector('[data-view="terminal"]').click();
+    check('Terminal preview switches source and pressed state', doc.querySelector('#product-image').src.endsWith('/hero.jpg') && doc.querySelector('[data-view="terminal"]').getAttribute('aria-pressed') === 'true');
+    doc.querySelector('[data-view="conversation"]').click();
+    check('Chat preview restores source', doc.querySelector('#product-image').src.endsWith('/conversation.jpg'));
+    doc.querySelector('.screenshot-button').click();
+    check('Screenshot dialog opens', doc.querySelector('dialog').open && !!doc.querySelector('#media-content img'));
+    doc.querySelector('.dialog-close').click();
+    check('Dialog closes and releases scroll lock', !doc.querySelector('dialog').open && !doc.body.classList.contains('dialog-open'));
+    for (const demo of ['jobs', 'rolling', 'schedule']) {
+      doc.querySelector(`[data-demo="${demo}"]`).click();
+      const video = doc.querySelector('video');
+      const loaded = await new Promise((resolve) => {
+        if (video.readyState >= 1) return resolve(true);
+        const timer = setTimeout(() => resolve(false), 5000);
+        video.addEventListener('loadedmetadata', () => { clearTimeout(timer); resolve(true); }, { once: true });
+        video.addEventListener('error', () => { clearTimeout(timer); resolve(false); }, { once: true });
+      });
+      check(`${demo}: playable metadata, controls, and duration`, loaded && video.controls && video.duration > 0);
+      results.push({ name: `${demo}: video duration`, seconds: video.duration });
+      if (demo === 'jobs' && loaded) {
+        video.muted = true;
+        try {
+          await video.play();
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          check('Demo playback advances', !video.paused && video.currentTime > 0);
+        } catch (error) {
+          results.push({ name: 'Demo playback', passed: false, message: error.message });
+        }
+      }
+      doc.querySelector('.dialog-close').click();
+      check(`${demo}: close stops playback`, video.paused && !doc.querySelector('#media-content video'));
+    }
+    const faq = doc.querySelector('details');
+    faq.querySelector('summary').click();
+    check('FAQ expands', faq.open);
+    faq.querySelector('summary').click();
+    check('FAQ collapses', !faq.open);
+    doc.querySelector('.menu-toggle').click();
+    check('Mobile menu opens', !doc.querySelector('#mobile-nav').hidden);
+    doc.querySelector('.menu-toggle').click();
+    check('Mobile menu closes', doc.querySelector('#mobile-nav').hidden);
+    const originalTheme = doc.documentElement.dataset.theme;
+    const nextTheme = originalTheme === 'dark' ? 'light' : 'dark';
+    doc.querySelector('header .theme-toggle').click();
+    check('Header switches theme', doc.documentElement.dataset.theme === nextTheme);
+    check('Both theme controls stay in sync', [...doc.querySelectorAll('.theme-toggle')].every((button) => button.getAttribute('aria-pressed') === String(nextTheme === 'dark')));
+    check('Theme URL follows selection', new URL(frame.contentWindow.location.href).searchParams.get('theme') === nextTheme);
+    doc.querySelector('footer .theme-toggle').click();
+    check('Footer restores original theme', doc.documentElement.dataset.theme === originalTheme);
+    check('Restored theme URL matches', new URL(frame.contentWindow.location.href).searchParams.get('theme') === originalTheme);
+    report.textContent = JSON.stringify(results, null, 2);
+    frame.contentWindow.scrollTo({ top: 0, behavior: 'instant' });
+  };
+</script>
+</html>

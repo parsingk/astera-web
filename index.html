@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Step away. Keep building. Run Claude Code and Codex in one workspace, with account rolling, scheduled sessions, and verified results.">
+  <meta name="theme-color" content="#0b1020">
+  <title>Astera — Step away. Keep building.</title>
+  <link rel="icon" href="assets/astera-icon.png" type="image/png">
+  <link rel="preload" href="assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-roll" viewBox="0 0 24 24"><path d="M20 7h-5V2M4 17h5v5M20 7a9 9 0 0 0-15-2M4 17a9 9 0 0 0 15 2"/></symbol>
+    <symbol id="i-branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="19" r="3"/><path d="M6 8v8m12-7a9 9 0 0 1-9 9"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="#" aria-label="Astera home"><img src="assets/astera-icon.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#features">Features</a><a href="#workflow">Workflow</a><a href="#faq">FAQ</a>
+        <a href="https://github.com/parsingk/Astera#documentation" target="_blank" rel="noopener noreferrer">Docs <svg class="icon small"><use href="#i-external"/></svg></a>
+      </nav>
+      <div class="nav-actions">
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="View Astera on GitHub"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">Light theme</span></button>
+        <a class="button button-small button-ink" href="#download">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="#features">Features</a><a href="#workflow">Workflow</a><a href="#faq">FAQ</a><a href="https://github.com/parsingk/Astera#documentation" target="_blank" rel="noopener noreferrer">Docs</a></nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="orbital-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="star star-one">✦</span><span class="star star-two">✦</span><span class="star star-three">✧</span></div>
+      <div class="hero-copy container">
+        <a class="release-link" href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer"><span class="release-dot"></span> Open source. Built for your next big thing. <svg class="icon small"><use href="#i-arrow"/></svg></a>
+        <h1 id="hero-title">Step away.<br>Keep building.</h1>
+        <p class="hero-description">Your agents, working together. Your ideas, moving forward.<br>One workspace for Claude Code and Codex. Even when you step away.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#download"><svg class="icon"><use href="#i-download"/></svg> Get Astera</a><button class="button button-paper" type="button" data-demo="jobs"><svg class="icon"><use href="#i-play"/></svg> Watch the demo</button></div>
+        <p class="platform-note">Windows, macOS, Linux <span aria-hidden="true">/</span> Free &amp; open source</p>
+      </div>
+
+      <div class="product-showcase container" id="preview">
+        <div class="showcase-toolbar"><div class="preview-label"><span class="live-dot"></span> One workspace. Many possibilities.</div><div class="view-switch" role="group" aria-label="Choose an app preview"><button type="button" class="view-button" data-view="conversation" aria-pressed="false">Chat view</button><button type="button" class="view-button active" data-view="terminal" aria-pressed="true">Terminal view</button></div></div>
+        <div class="product-frame"><button class="screenshot-button" type="button" aria-label="Enlarge the actual Astera app screenshot"><img id="product-image" src="assets/hero.jpg" width="1998" height="1248" alt="Actual Astera terminal view with four sessions running across Claude Code and Codex accounts." fetchpriority="high"><span class="zoom-hint"><svg class="icon small"><use href="#i-plus"/></svg> Take a closer look</span></button></div>
+        <div class="showcase-caption"><span><svg class="icon small"><use href="#i-window"/></svg> Your agents. Your space. Your way.</span><span>Captured in Astera</span></div>
+      </div>
+    </section>
+
+    <section class="agent-strip container" aria-label="Supported agents">
+      <p>The agents you already love.<br>Room to do more.</p>
+      <div class="agent-wordmark"><span class="claude-mark" aria-hidden="true">✳</span> Claude Code</div>
+      <span class="agent-join" aria-hidden="true">+</span>
+      <div class="agent-wordmark"><span class="codex-mark" aria-hidden="true">›_</span> Codex</div>
+      <span class="agent-note">Bring your own accounts.<br>Keep your familiar tools.</span>
+    </section>
+
+    <section class="features section container" id="features" aria-labelledby="features-title">
+      <div class="section-heading"><div><p class="section-kicker">A little less managing. A lot more making.</p><h2 id="features-title">You set things in motion.<br>Astera keeps them moving.</h2></div><p>Less switching windows and checking in.<br>More space for the work that matters.</p></div>
+
+      <article class="feature-wide">
+        <div class="feature-copy"><span class="feature-icon"><svg class="icon"><use href="#i-roll"/></svg></span><h3>A limit on your account.<br>Not on your momentum.</h3><p>When a session hits a usage limit, Astera picks up the same conversation on your next available account. No account left? See when work can resume.</p><button class="text-button" type="button" data-demo="rolling">See account rolling in action <svg class="icon small"><use href="#i-play"/></svg></button></div>
+        <div class="rolling-visual" aria-label="Illustration of automatic account rolling">
+          <div class="session-chip"><span class="live-dot"></span><span>Refactor the login flow</span><span class="session-vendor">Claude Code</span></div>
+          <div class="account-flow"><div class="account-card account-limited"><div class="account-avatar">A</div><strong>Account A</strong><span class="account-status">Usage limit reached</span><div class="usage-track"><i></i></div><div class="usage-label"><span>Weekly usage</span><span>100%</span></div></div><div class="flow-connector"><svg class="icon"><use href="#i-arrow"/></svg><span>Auto-switch</span></div><div class="account-card account-ready"><div class="account-avatar">B</div><strong>Account B</strong><span class="account-status"><span class="live-dot"></span> Work continues</span><div class="usage-track"><i></i></div><div class="usage-label"><span>Weekly usage</span><span>24%</span></div></div></div>
+          <div class="continuity-note"><svg class="icon small"><use href="#i-check"/></svg> A new account. The same conversation.</div>
+        </div>
+      </article>
+
+      <div class="feature-pair">
+        <article class="feature-card"><span class="feature-icon"><svg class="icon"><use href="#i-branch"/></svg></span><h3>Different agents.<br>One shared direction.</h3><p>Let Claude and Codex work side by side in isolated worktrees. Connect builds, tests, and cross-vendor reviews to define what done really means.</p><div class="job-visual" aria-label="Example of parallel tasks and completion checks"><div class="job-row"><span class="job-symbol claude-mark">✳</span><span>Build the auth module<small>Claude Code</small></span><span class="job-state"><svg class="icon small"><use href="#i-check"/></svg> Done</span></div><div class="job-row"><span class="job-symbol codex-mark">›_</span><span>Write regression tests<small>Codex</small></span><span class="job-state"><svg class="icon small"><use href="#i-check"/></svg> Done</span></div><div class="job-proof"><svg class="icon small"><use href="#i-check"/></svg><span>Checks passed. Ready for the next task.</span><span class="proof-label">Verified</span></div></div><a class="text-button" href="#workflow">Explore the workflow <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article class="feature-card"><span class="feature-icon"><svg class="icon"><use href="#i-clock"/></svg></span><h3>On your schedule.<br>In your Slack.</h3><p>Set a time for your session to start. Get a Slack notification when a turn finishes, and reply to keep the conversation going. Your desk is optional.</p><div class="schedule-visual" aria-label="Example of a scheduled session and Slack notification"><div class="schedule-time"><svg class="icon"><use href="#i-clock"/></svg><span>Scheduled session</span><strong>03:00</strong></div><div class="notification"><span class="slack-mark" aria-hidden="true">#</span><div><strong>Astera <span>APP</span></strong><p>Your scheduled turn is complete.<br>Check the update or reply to continue.</p></div><span class="notification-time">03:24</span></div></div><button class="text-button" type="button" data-demo="schedule">See scheduling in action <svg class="icon small"><use href="#i-play"/></svg></button></article>
+      </div>
+      <p class="illustration-note">Illustrative workflows. See the real app in the demos.</p>
+    </section>
+
+    <section class="workflow-section" id="workflow" aria-labelledby="workflow-title"><div class="container workflow-inner">
+      <div class="workflow-intro"><span class="constellation-mark" aria-hidden="true">✦</span><p class="section-kicker">From an idea to a checked result</p><h2 id="workflow-title">Beyond<br>“I’m done.”</h2><p>A finished message is just the beginning.<br>Let your checks decide when the work is ready.</p><a class="text-button" href="https://github.com/parsingk/Astera/blob/main/docs/jobs.md" target="_blank" rel="noopener noreferrer">Read the Jobs guide <svg class="icon small"><use href="#i-external"/></svg></a></div>
+      <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3>Define the goal. Set the bar.</h3><p>Break work into tasks. Add dependencies, tests, and review requirements.</p></div></li><li><span class="step-number">02</span><div><h3>Let the right agents get to work.</h3><p>A coordinator dispatches ready tasks to Claude and Codex, and keeps track of progress.</p></div></li><li><span class="step-number">03</span><div><h3>Check. Refine. Check again.</h3><p>Failed checks go back to the worker for repair, until the completion policy passes or the retry limit is reached.</p></div></li></ol>
+    </div></section>
+
+    <section class="workspace-section section container" aria-labelledby="workspace-title"><div class="workspace-heading"><p class="section-kicker">Everything within reach</p><h2 id="workspace-title">Stay in your flow.</h2><p>Your code, browser, and terminals. Finally in the same place.</p></div><div class="workspace-features"><article><svg class="icon"><use href="#i-window"/></svg><h3>A workspace that fits you</h3><p>Put sessions and files side by side. Split and arrange panes around the way you work.</p></article><article><svg class="icon"><use href="#i-branch"/></svg><h3>Separate branches. Clear progress.</h3><p>Give each task its own worktree. Keep changes isolated and pull request status in view.</p></article><article><svg class="icon"><use href="#i-plus"/></svg><h3>Point to what you mean</h3><p>Pick an element in Design Mode. Send your notes, its details, and a screenshot straight to a session.</p></article></div></section>
+
+    <section class="faq-section section container" id="faq" aria-labelledby="faq-title"><div><p class="section-kicker">A few things you might be wondering</p><h2 id="faq-title">Good questions.<br>Clear answers.</h2><a class="text-button" href="https://github.com/parsingk/Astera/issues" target="_blank" rel="noopener noreferrer">Ask us on GitHub <svg class="icon small"><use href="#i-external"/></svg></a></div><div class="faq-list">
+      <details><summary>What is Astera?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Astera is a desktop workspace for running and orchestrating Claude Code and Codex sessions. It brings account rolling, scheduling, git worktrees, and completion checks into one app.</p></details>
+      <details><summary>Is Astera free?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. Astera is free and open source under Apache-2.0. You bring your own Claude Code or Codex accounts. Any fees for those services are separate.</p></details>
+      <details><summary>Which platforms are supported?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Windows 10 and 11, macOS 12 or later, and Ubuntu 22.04 / Debian 12 or later. See the <a href="https://github.com/parsingk/Astera/blob/main/README.md#install" target="_blank" rel="noopener noreferrer">installation guide</a> for platform-specific steps and current release notes.</p></details>
+      <details><summary>Can I use my existing accounts?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. Connect your installed Claude Code or Codex CLI and the accounts you already use. Add multiple accounts, and Astera can resume work on the next available account for the same service when a usage limit is reached.</p></details>
+      <details><summary>Will every job finish automatically?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Completion is not guaranteed. Jobs can repeat repairs and checks within the completion policy and retry limit you set. Questions that need your judgment still wait for your answer.</p></details>
+    </div></section>
+
+    <section class="download-section container" id="download" aria-labelledby="download-title"><div class="download-orbit" aria-hidden="true"></div><img src="assets/astera-icon.png" width="64" height="64" alt=""><h2 id="download-title">Your next idea<br>can’t wait.</h2><p>Give your agents a little more room to build.</p><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-download"/></svg> Explore downloads</a><div class="download-platforms"><span>Windows</span><span>macOS</span><span>Linux</span></div><a class="install-link" href="https://github.com/parsingk/Astera/blob/main/README.md#install" target="_blank" rel="noopener noreferrer">Installation guide <svg class="icon small"><use href="#i-external"/></svg></a></section>
+  </main>
+
+  <footer class="site-footer container"><div><a class="brand" href="#"><img src="assets/astera-icon.png" width="28" height="28" alt=""><span>Astera</span></a><p>Build beyond the stars.</p></div><div class="footer-links"><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer">Changelog</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a><button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon small"><use href="#i-sun"/></svg><span>Light theme</span></button></div><p class="footer-note">Made for people who build.</p></footer>
+
+  <dialog id="media-dialog" aria-labelledby="media-title"><div class="dialog-toolbar"><h2 id="media-title">Astera demo</h2><button class="icon-button dialog-close" type="button" aria-label="Close"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="media-content"></div></dialog>
+</body>
+</html>
