@@ -1,6 +1,6 @@
 # Astera 홍보 웹사이트 — 첫 시안
 
-> 이 문서는 초기 디자인 결정과 당시 검증 결과를 기록한다. 현재 웹사이트는 [astera.run](https://astera.run/)에 배포되었으며, 최신 실행·언어·검색 설정은 [README](../README.md)를 참고한다.
+> 이 문서는 초기 디자인 결정과 당시 검증 결과를 기록한다. 현재 웹사이트는 [astera.run](https://astera.run)에 배포되었으며, 최신 실행·언어·검색 설정은 [README](../README.md)를 참고한다.
 
 2026-09-21. 루트: `D:\parsingk\astera-web`.
 

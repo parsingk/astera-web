@@ -1,6 +1,6 @@
 # Astera website
 
-Astera's promotional website at [astera.run](https://astera.run/), with dark and light themes, original product imagery, and English and Korean copy. Plain HTML, CSS, and JavaScript; no package installation or runtime build step.
+Astera's promotional website at [astera.run](https://astera.run), with dark and light themes, original product imagery, and English and Korean copy. Plain HTML, CSS, and JavaScript; no package installation or runtime build step.
 
 ## Preview
 
