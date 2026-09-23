@@ -1,0 +1,186 @@
+<!doctype html>
+<html data-static-language="ko" lang="ko" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Astera는 Claude Code와 Codex를 위한 무료 오픈소스 데스크톱 작업 공간입니다. Smart Resume, 계정 자동 전환, 예약 실행과 오케스트레이션 Jobs로 작업을 이어가세요." data-i18n-content="home.description">
+  <meta name="theme-color" content="#0b1020">
+  <title data-i18n="home.common.2">Astera — Claude Code와 Codex를 위한 데스크톱 작업 공간</title>
+  <link rel="canonical" href="https://astera.run/index.ko.html">
+  <link rel="alternate" hreflang="en" href="https://astera.run/">
+  <link rel="alternate" hreflang="ko" href="https://astera.run/index.ko.html">
+  <link rel="alternate" hreflang="x-default" href="https://astera.run/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="Astera — Claude Code와 Codex를 위한 데스크톱 작업 공간" data-i18n-content="home.common.2">
+  <meta property="og:description" content="Astera는 Claude Code와 Codex를 위한 무료 오픈소스 데스크톱 작업 공간입니다. Smart Resume, 계정 자동 전환, 예약 실행과 오케스트레이션 Jobs로 작업을 이어가세요." data-i18n-content="home.description">
+  <meta property="og:url" content="https://astera.run/index.ko.html">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Astera — Claude Code와 Codex를 위한 데스크톱 작업 공간" data-i18n-content="home.common.2">
+  <meta name="twitter:description" content="Astera는 Claude Code와 Codex를 위한 무료 오픈소스 데스크톱 작업 공간입니다. Smart Resume, 계정 자동 전환, 예약 실행과 오케스트레이션 Jobs로 작업을 이어가세요." data-i18n-content="home.description">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"SoftwareApplication","@id":"https://astera.run/#app","name":"Astera","applicationCategory":"DeveloperApplication","operatingSystem":"Windows 10/11, macOS 12+, Linux (Ubuntu 22.04+/Debian 12+)","description":"Claude Code와 Codex를 위한 무료 오픈소스 데스크톱 작업 공간. Smart Resume, 계정 자동 전환, 예약 실행과 오케스트레이션 Jobs를 제공합니다.","url":"https://astera.run/","image":"https://astera.run/assets/hero.jpg","license":"https://github.com/parsingk/Astera/blob/main/LICENSE","sameAs":"https://github.com/parsingk/Astera","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <link rel="icon" href="assets/astera-icon.png" type="image/png">
+  <link rel="preload" href="assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="locales/ko.js?v=20260923-2" defer></script>
+  <script src="language.js?v=20260923-2" defer></script>
+  <script src="main.js?v=20260923-2" defer></script>
+  <script src="downloads.js" defer></script>
+  <script src="hero.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-roll" viewBox="0 0 24 24"><path d="M20 7h-5V2M4 17h5v5M20 7a9 9 0 0 0-15-2M4 17a9 9 0 0 0 15 2"/></symbol>
+    <symbol id="i-branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="19" r="3"/><path d="M6 8v8m12-7a9 9 0 0 1-9 9"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main" data-i18n="home.common.3">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="#" aria-label="Astera home"><img src="assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="주 메뉴" data-i18n-aria-label="home.label4">
+        <a href="#features" lang="en">Features</a><a href="#workflow" lang="en">Workflow</a><a href="guide.ko.html" data-theme-link lang="en">Guide</a><a href="#faq" lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="language-toggle" type="button" lang="ko" aria-label="한국어로 보기">한국어</button>
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="GitHub에서 Astera 보기" data-i18n-aria-label="home.label9"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">Light theme</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-nav" data-i18n-aria-label="home.label11"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="모바일 메뉴" hidden data-i18n-aria-label="home.label12"><a href="#features" lang="en">Features</a><a href="#workflow" lang="en">Workflow</a><a href="guide.ko.html" data-theme-link lang="en">Guide</a><a href="#faq" lang="en">FAQ</a></nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-space" aria-hidden="true">
+        <div class="space-nebula"></div>
+        <div class="space-stars space-stars-far"></div>
+        <div class="space-stars space-stars-near"></div>
+      </div>
+      <div class="hero-copy container">
+        <a class="release-link" href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer" data-i18n="home.common.17"><span class="release-dot"></span> 다음 아이디어를 위한 오픈소스 작업 공간. <svg class="icon small"><use href="#i-arrow"/></svg></a>
+        <h1 id="hero-title" lang="en">Step away.<br>Keep building.</h1>
+        <p class="hero-description" data-i18n="home.common.19">계정 한도 너머로 맥락을 이어가고, 검증까지의 흐름을 한눈에.<br>Claude Code와 Codex가 함께 일하는 작업 공간.</p>
+        <div class="hero-actions"><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download data-i18n="home.common.20"><svg class="icon"><use href="#i-download"/></svg> Astera 다운로드</a><button class="button button-paper" type="button" data-demo="jobs" data-i18n="home.common.21"><svg class="icon"><use href="#i-play"/></svg> 데모 보기</button></div>
+        <p class="platform-note" data-i18n="home.common.22">Windows, macOS, Linux <span aria-hidden="true">/</span> 무료 오픈소스</p>
+      </div>
+
+      <div class="product-showcase container" id="preview">
+        <div class="showcase-toolbar"><div class="preview-label" data-i18n="home.common.23"><span class="live-dot"></span> 하나의 작업 공간, 더 많은 가능성.</div><div class="view-switch" role="group" aria-label="앱 미리보기 선택" data-i18n-aria-label="home.label24"><button type="button" class="view-button" data-view="conversation" aria-pressed="false" data-i18n="home.common.25">채팅 화면</button><button type="button" class="view-button active" data-view="terminal" aria-pressed="true" data-i18n="home.common.26">터미널 화면</button></div></div>
+        <div class="product-frame"><button class="screenshot-button" type="button" aria-label="실제 Astera 앱 화면 확대" data-i18n-aria-label="home.label27"><img id="product-image" src="assets/hero.jpg" width="1998" height="1248" alt="Actual Astera terminal view with four sessions running across Claude Code and Codex accounts." fetchpriority="high"><span class="zoom-hint" data-i18n="home.common.28"><svg class="icon small"><use href="#i-plus"/></svg> 크게 보기</span></button></div>
+        <div class="showcase-caption"><span data-i18n="home.common.29"><svg class="icon small"><use href="#i-window"/></svg> 나의 에이전트, 나의 공간, 나의 방식.</span><span data-i18n="home.common.30">Astera 실제 화면</span></div>
+      </div>
+    </section>
+
+    <section class="agent-strip container" aria-label="지원하는 에이전트" data-i18n-aria-label="home.label31">
+      <p data-i18n="home.common.32">익숙한 에이전트로.<br>더 많은 일을.</p>
+      <div class="agent-wordmark"><span class="claude-mark" aria-hidden="true">✳</span> Claude Code</div>
+      <span class="agent-join" aria-hidden="true">+</span>
+      <div class="agent-wordmark"><span class="codex-mark" aria-hidden="true">›_</span> Codex</div>
+      <span class="agent-note" data-i18n="home.common.33">쓰던 계정을 연결하고.<br>익숙한 도구로 이어가세요.</span>
+    </section>
+
+    <section class="features section container" id="features" aria-labelledby="features-title">
+      <div class="section-heading"><div><p class="section-kicker" data-i18n="home.features.34">길게 이어지는 작업을 위해.</p><h2 id="features-title" lang="en">You set things in motion.<br>Astera keeps them moving.</h2></div><p data-i18n="home.features.36">맥락을 이어받고, 작업 관계를 확인하고.<br>다음 단계까지 놓치지 않도록.</p></div>
+
+      <article class="feature-wide" id="smart-resume">
+        <div class="feature-copy"><span class="feature-icon"><svg class="icon"><use href="#i-roll"/></svg></span><p class="feature-name" lang="en">Smart Resume + Account rolling</p><h3 lang="en">A fresh session.<br>A clear handoff.</h3><p data-i18n="home.features.38">계정 한도로 전환이 필요할 때, Smart Resume는 최근 요청과 수정한 파일, git 상태, 마지막 대화를 체크포인트로 묶어 새 세션에 전달합니다. 다음 에이전트가 어디서 이어갈지 파악할 수 있도록요.</p><dl class="checkpoint-summary"><div><dt data-i18n="home.resume.intent">요청한 일</dt><dd data-i18n="home.resume.requests">최근 요청을 순서대로</dd></div><div><dt data-i18n="home.resume.changes">바뀐 파일</dt><dd data-i18n="home.resume.files">수정 파일과 git 상태</dd></div><div><dt data-i18n="home.resume.context">이어갈 지점</dt><dd data-i18n="home.resume.command">마지막 명령과 대화</dd></div></dl><p class="feature-footnote" data-i18n="home.resume.choice">설정에서 Smart Resume를 선택하세요. 기본 재개는 대화 기록을 이어가고, Smart Resume는 체크포인트를 받은 새 세션에서 시작합니다.</p><a class="text-button" href="guide.ko.html#smart-resume" data-theme-link data-i18n="home.resume.guide">Smart Resume 작동 방식 <svg class="icon small"><use href="#i-arrow"/></svg></a><br><button class="text-button" type="button" data-demo="rolling" data-i18n="home.features.39">계정 자동 전환 보기 <svg class="icon small"><use href="#i-play"/></svg></button></div>
+        <div class="feature-media">
+        <div class="rolling-visual" aria-label="계정 자동 전환을 설명하는 예시" data-i18n-aria-label="home.label40">
+          <div class="session-chip"><span class="live-dot"></span><span data-i18n="home.features.41">로그인 흐름 리팩터링</span><span class="session-vendor">Claude Code</span></div>
+          <div class="account-flow"><div class="account-card account-limited"><div class="account-avatar" data-i18n="home.features.42">A</div><strong data-i18n="home.features.43">계정 A</strong><span class="account-status" data-i18n="home.features.44">사용량 한도 도달</span><div class="usage-track"><i></i></div><div class="usage-label"><span data-i18n="home.features.45">주간 사용량</span><span>100%</span></div></div><div class="flow-connector"><svg class="icon"><use href="#i-arrow"/></svg><span data-i18n="home.features.46">자동 전환</span></div><div class="account-card account-ready"><div class="account-avatar" data-i18n="home.features.47">B</div><strong data-i18n="home.features.48">계정 B</strong><span class="account-status" data-i18n="home.features.49"><span class="live-dot"></span> 작업 계속</span><div class="usage-track"><i></i></div><div class="usage-label"><span data-i18n="home.features.50">주간 사용량</span><span>24%</span></div></div></div>
+          <div class="continuity-note" data-i18n="home.features.51"><svg class="icon small"><use href="#i-check"/></svg> 계정은 바뀌어도, 대화는 그대로.</div>
+        </div>
+          <figure class="demo-recording">
+            <button class="demo-preview" type="button" data-demo="rolling" aria-label="계정 자동 전환 전체 데모 보기" data-i18n-aria-label="demo.rolling.label">
+              <picture>
+                <source media="(prefers-reduced-motion: reduce)" srcset="assets/rolling-demo-still.png">
+                <img src="assets/rolling-demo.gif" width="960" height="600" alt="" loading="lazy" decoding="async">
+              </picture>
+              <span class="demo-play"><svg class="icon small"><use href="#i-play"/></svg><span data-i18n="demo.watch">전체 데모 보기</span></span>
+            </button>
+            <figcaption data-i18n="demo.rolling.caption">Astera 실제 녹화: 사용량 한도에 도달하면 계정을 바꾸고 같은 대화를 이어갑니다.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="feature-pair">
+        <article class="feature-card"><span class="feature-icon"><svg class="icon"><use href="#i-branch"/></svg></span><p class="feature-name" lang="en">Visual orchestration</p><h3 lang="en">See how the work<br>comes together.</h3><p data-i18n="home.features.53">Claude와 Codex의 협업을 의존 관계 그래프로 따라가세요. 나란히 진행할 일, 기다리는 일, 남은 검사를 한눈에 확인합니다. 작업을 열면 담당 워커와 질문, 결과까지 살펴볼 수 있습니다.</p><div class="job-visual" aria-label="병렬 작업과 완료 검증 예시" data-i18n-aria-label="home.label54"><div class="job-row"><span class="job-symbol claude-mark">✳</span><span data-i18n="home.job-implementation">인증 모듈 구현<small>Claude Code</small></span><span class="job-state" data-i18n="home.features.55"><svg class="icon small"><use href="#i-check"/></svg> 완료</span></div><div class="job-row"><span class="job-symbol codex-mark">›_</span><span data-i18n="home.job-tests">회귀 테스트 작성<small>Codex</small></span><span class="job-state" data-i18n="home.features.56"><svg class="icon small"><use href="#i-check"/></svg> 완료</span></div><div class="job-proof"><svg class="icon small"><use href="#i-check"/></svg><span data-i18n="home.features.57">검사 통과. 다음 작업을 시작할 준비 완료.</span><span class="proof-label" data-i18n="home.features.58">검증됨</span></div></div>
+          <figure class="demo-recording">
+            <button class="demo-preview" type="button" data-demo="jobs" aria-label="Jobs 전체 데모 보기" data-i18n-aria-label="demo.jobs.label">
+              <picture>
+                <source media="(prefers-reduced-motion: reduce)" srcset="assets/jobs-demo-still.png">
+                <img src="assets/jobs-demo.gif" width="960" height="600" alt="" loading="lazy" decoding="async">
+              </picture>
+              <span class="demo-play"><svg class="icon small"><use href="#i-play"/></svg><span data-i18n="demo.watch">전체 데모 보기</span></span>
+            </button>
+            <figcaption data-i18n="demo.jobs.caption">Astera 실제 녹화: 작업 의존 관계, 워커 진행 상황, 검증과 서로 다른 에이전트의 리뷰를 확인하세요.</figcaption>
+          </figure>
+          <a class="text-button" href="guide.ko.html#jobs" data-theme-link data-i18n="home.features.59">Jobs 그래프 읽는 방법 <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article class="feature-card"><span class="feature-icon"><svg class="icon"><use href="#i-clock"/></svg></span><h3 lang="en">On your schedule.<br>In your Slack.</h3><p data-i18n="home.features.61">세션이 실행될 시간을 정하세요. 응답이 끝나면 Slack 알림을 받고, 답장을 보내 대화를 이어갈 수 있습니다. 계속 책상 앞에 있을 필요는 없습니다.</p><div class="schedule-visual" aria-label="예약 세션과 Slack 알림 예시" data-i18n-aria-label="home.label62"><div class="schedule-time"><svg class="icon"><use href="#i-clock"/></svg><span data-i18n="home.features.63">예약된 세션</span><strong>03:00</strong></div><div class="notification"><span class="slack-mark" aria-hidden="true">#</span><div><strong>Astera <span data-i18n="home.features.64">앱</span></strong><p data-i18n="home.features.65">예약한 요청의 처리가 끝났습니다.<br>결과를 확인하거나 답장으로 이어가세요.</p></div><span class="notification-time">03:24</span></div></div>
+          <figure class="demo-recording">
+            <button class="demo-preview" type="button" data-demo="schedule" aria-label="스케줄 전체 데모 보기" data-i18n-aria-label="demo.schedule.label">
+              <picture>
+                <source media="(prefers-reduced-motion: reduce)" srcset="assets/schedule-demo-still.png">
+                <img src="assets/schedule-demo.gif" width="960" height="600" alt="" loading="lazy" decoding="async">
+              </picture>
+              <span class="demo-play"><svg class="icon small"><use href="#i-play"/></svg><span data-i18n="demo.watch">전체 데모 보기</span></span>
+            </button>
+            <figcaption data-i18n="demo.schedule.caption">Astera 실제 녹화: 예약한 시각이 되면 설정한 명령이 자동으로 전달됩니다.</figcaption>
+          </figure>
+          <button class="text-button" type="button" data-demo="schedule" data-i18n="home.features.66">예약 실행 보기 <svg class="icon small"><use href="#i-play"/></svg></button></article>
+      </div>
+      <p class="illustration-note" data-i18n="home.features.67">기능을 설명하는 예시입니다. 실제 앱은 데모에서 확인하세요.</p>
+    </section>
+
+    <section class="workflow-section" id="workflow" aria-labelledby="workflow-title"><div class="container workflow-inner">
+      <div class="workflow-intro"><span class="constellation-mark" aria-hidden="true">✦</span><p class="section-kicker" data-i18n="home.workflow.68">아이디어에서 검증된 결과까지</p><h2 id="workflow-title" lang="en">Beyond<br>“I’m done.”</h2><p data-i18n="home.workflow.70">코디네이터에게 목표를 맡기면 Claude와 Codex가 수행할 작업으로 나눕니다. Jobs에서 진행을 따라가고, 각 작업에 테스트와 다른 제공자의 에이전트 리뷰를 연결하세요.</p><div class="skill-invocation"><code>/astera-orchestration</code><p data-i18n="home.orchestration.prompt">Claude에게 로그인 리팩터링을 맡기고, 끝나면 Codex가 회귀 테스트를 추가하게 해 줘. 테스트 실행과 결과 리뷰까지 진행해 줘.</p></div><a class="text-button" href="guide.ko.html#orchestration" data-theme-link data-i18n="home.workflow.71">오케스트레이션 스킬 사용하기 <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3 data-i18n="home.workflow.72">목표와 완료 기준을 정하세요.</h3><p data-i18n="home.workflow.73">할 일을 작업으로 나누고, 의존 관계와 테스트, 리뷰 조건을 추가하세요.</p></div></li><li><span class="step-number">02</span><div><h3 data-i18n="home.workflow.74">맞는 에이전트에게 맡기세요.</h3><p data-i18n="home.workflow.75">코디네이터가 시작할 수 있는 작업을 Claude와 Codex에 배분하고 진행 상황을 추적합니다.</p></div></li><li><span class="step-number">03</span><div><h3 data-i18n="home.workflow.76">검사하고, 고치고, 다시 확인하세요.</h3><p data-i18n="home.workflow.77">자동 수정을 켜면 실패한 검사와 리뷰의 주요 지적을 워커에게 돌려보냅니다. 검사를 통과하거나 재시도 한도에 도달할 때까지 수정과 확인을 반복합니다.</p></div></li></ol>
+    </div></section>
+
+    <section class="host-section container" aria-labelledby="host-title">
+      <div class="host-copy"><p class="section-kicker" lang="en">Astera Host</p><h2 id="host-title" lang="en">Close the app.<br>Come back to the work.</h2><p data-i18n="home.host.body">별도의 로컬 호스트가 맡은 터미널·채팅 프로세스는 Astera를 종료해도 실행을 이어갑니다. 앱을 다시 열어 살아 있는 세션에 돌아오세요. 에이전트를 처음부터 실행할 필요가 없습니다.</p><a class="text-button" href="guide.ko.html#host" data-theme-link data-i18n="home.host.guide">유지되는 작업 알아보기 <svg class="icon small"><use href="#i-arrow"/></svg></a></div><div class="host-diagram"><div class="host-window" data-i18n="home.host.window"><svg class="icon"><use href="#i-window"/></svg><span>앱 화면<strong>종료 → 다시 열기</strong></span></div><p class="host-connector" data-i18n="home.host.reconnect">실행 중인 세션에 다시 연결</p><div class="host-process"><span class="live-dot"></span><strong lang="en">Astera Host</strong><span data-i18n="home.host.running">터미널·채팅 프로세스 실행 유지</span></div><p class="host-boundary" data-i18n="home.host.boundary">컴퓨터가 깨어 있고 호스트가 관리하는 세션에 적용됩니다. 예약·계정 자동 전환·Job 조율을 계속하려면 Astera를 켜 두세요.</p></div>
+    </section>
+
+    <section class="workspace-section section container" aria-labelledby="workspace-title"><div class="workspace-heading"><p class="section-kicker" data-i18n="home.common.78">필요한 것을 가까이에</p><h2 id="workspace-title" lang="en">Stay in your flow.</h2><p data-i18n="home.common.80">코드, 브라우저, 터미널을 한곳에서.</p></div><div class="workspace-features"><article><svg class="icon"><use href="#i-window"/></svg><h3 data-i18n="home.common.81">내 방식에 맞는 작업 공간</h3><p data-i18n="home.common.82">세션과 파일을 나란히 놓으세요. 작업 방식에 맞게 패널을 나누고 배치할 수 있습니다.</p></article><article><svg class="icon"><use href="#i-branch"/></svg><h3 data-i18n="home.common.83">독립된 브랜치, 명확한 진행 상황</h3><p data-i18n="home.common.84">작업마다 별도의 워크트리를 사용하세요. 변경 사항을 분리하고 풀 리퀘스트 상태도 함께 확인합니다.</p></article><article><svg class="icon"><use href="#i-plus"/></svg><h3 data-i18n="home.common.85">원하는 곳을 직접 가리키세요</h3><p data-i18n="home.common.86">Design Mode에서 화면 요소를 선택하세요. 메모와 요소 정보, 스크린샷을 세션으로 바로 전달합니다.</p></article></div></section>
+
+    <section class="faq-section section container" id="faq" aria-labelledby="faq-title"><div><p class="section-kicker" data-i18n="home.faq.87">궁금한 점을 모았습니다</p><h2 id="faq-title" lang="en">Good questions.<br>Clear answers.</h2><a class="text-button" href="https://github.com/parsingk/Astera/issues" target="_blank" rel="noopener noreferrer" data-i18n="home.faq.89">GitHub에서 질문하기 <svg class="icon small"><use href="#i-external"/></svg></a></div><div class="faq-list">
+      <details><summary data-i18n="home.faq.90">Astera는 어떤 앱인가요?<svg class="icon"><use href="#i-plus"/></svg></summary><p data-i18n="home.faq.91">Astera는 Claude Code와 Codex를 위한 데스크톱 작업 공간입니다. Smart Resume로 계정 사이에 맥락을 전달하고, Jobs로 협업을 시각화하며, 검사·리뷰 결과로 진행을 확인합니다. 로컬 호스트는 자신이 관리하는 세션을 앱 재시작 중에도 유지합니다.</p></details>
+      <details><summary data-i18n="home.faq.92">무료인가요?<svg class="icon"><use href="#i-plus"/></svg></summary><p data-i18n="home.faq.93">네. Astera는 Apache-2.0 라이선스의 무료 오픈소스입니다. Claude Code와 Codex는 본인의 계정으로 이용하며, 해당 서비스의 이용 요금은 별도입니다.</p></details>
+      <details><summary data-i18n="home.faq.94">어떤 운영체제를 지원하나요?<svg class="icon"><use href="#i-plus"/></svg></summary><p data-i18n="home.faq.95">Windows 10·11, macOS 12 이상, Ubuntu 22.04·Debian 12 이상을 지원합니다. 운영체제별 설치 방법과 릴리스 안내는 <a href="https://github.com/parsingk/Astera/blob/main/README.ko.md#설치" target="_blank" rel="noopener noreferrer">설치 가이드</a>에서 확인하세요.</p></details>
+      <details><summary data-i18n="home.faq.96">쓰던 계정을 연결할 수 있나요?<svg class="icon"><use href="#i-plus"/></svg></summary><p data-i18n="home.faq.97">네. 설치된 Claude Code 또는 Codex CLI와 기존 계정을 연결하세요. 계정을 여러 개 등록하면 사용량 한도에 도달했을 때 같은 서비스의 다음 사용 가능한 계정에서 작업을 이어갈 수 있습니다.</p></details>
+      <details><summary data-i18n="home.faq.98">모든 작업이 자동으로 끝나나요?<svg class="icon"><use href="#i-plus"/></svg></summary><p data-i18n="home.faq.99">완료가 보장되지는 않습니다. Jobs는 지정한 완료 조건과 재시도 한도 안에서 수정과 검사를 반복합니다. 사용자의 판단이 필요한 질문은 답변을 기다립니다.</p></details>
+    </div></section>
+
+    <section class="download-section container" id="download" aria-labelledby="download-title"><h2 id="download-title" lang="en">Your next idea<br>can’t wait.</h2><p data-i18n="home.download.101">에이전트에게 더 넓은 작업 공간을 주세요.</p><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download data-i18n="home.download.102"><svg class="icon"><use href="#i-download"/></svg> Astera 다운로드</a><div class="download-platforms"><span>Windows</span><span>macOS</span><span>Linux</span></div><a class="install-link" href="https://github.com/parsingk/Astera/blob/main/README.ko.md#설치" target="_blank" rel="noopener noreferrer" data-i18n="home.download.103" data-i18n-href="links.install">설치 가이드 <svg class="icon small"><use href="#i-external"/></svg></a></section>
+  </main>
+
+  <footer class="site-footer container"><div><a class="brand" href="#"><img src="assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p data-i18n="home.common.104">별 너머의 가능성을 만드세요.</p></div><div class="footer-links"><a href="guide.ko.html" data-theme-link data-i18n="home.common.105">사용 가이드</a><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera/blob/main/README.ko.md#문서" target="_blank" rel="noopener noreferrer" data-i18n="home.common.106" data-i18n-href="links.documentation">문서</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer" data-i18n="home.common.107">변경 내역</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a><button class="language-toggle" type="button" lang="ko" aria-label="한국어로 보기">한국어</button><button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon small"><use href="#i-sun"/></svg><span>Light theme</span></button></div><p class="footer-note" data-i18n="home.common.108">만드는 사람들을 위해.</p></footer>
+
+  <dialog id="media-dialog" aria-labelledby="media-title"><div class="dialog-toolbar"><h2 id="media-title" data-i18n="home.media-title">Astera 데모</h2><button class="icon-button dialog-close" type="button" aria-label="닫기" data-i18n-aria-label="home.label110"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="media-content"></div></dialog>
+</body>
+</html>

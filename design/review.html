@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <meta charset="utf-8">
+<meta name="robots" content="noindex,follow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Astera — Design review</title>
 <link rel="icon" href="../assets/astera-icon.png">
@@ -17,14 +18,20 @@
 </style>
 <header>
   <h1>Astera / Concept 01</h1>
+  <button data-page="home" aria-pressed="true">Home</button>
+  <button data-page="guide" aria-pressed="false">Guide</button>
   <button data-theme="light" aria-pressed="false">Light</button>
   <button data-theme="dark" aria-pressed="true">Dark</button>
+  <button data-language="ko" aria-pressed="false">한국어</button>
+  <button data-language="en" aria-pressed="true">English</button>
   <button data-width="1440" aria-pressed="true">Desktop · 1440</button>
   <button data-width="768" aria-pressed="false">Tablet · 768</button>
   <button data-width="390" aria-pressed="false">Mobile · 390</button>
   <button data-width="320" aria-pressed="false">Narrow · 320</button>
   <button id="top">Hero</button><button id="features">Features</button><button id="faq">FAQ</button><button id="footer">Footer</button>
   <button id="inspect">Check layout</button><button id="interactions">Check interactions</button>
+  <button id="contents-regression">Check Guide contents</button>
+  <button id="languages">Check languages</button>
   <a id="open-website" href="../">Open website</a>
 </header>
 <pre id="report" aria-live="polite">Choose a viewport to review the concept.</pre>
@@ -33,22 +40,46 @@
   const frame = document.querySelector('iframe');
   const report = document.querySelector('#report');
   const initialTheme = new URLSearchParams(location.search).get('theme');
-  if (initialTheme === 'light' || initialTheme === 'dark') frame.src = `../?theme=${initialTheme}`;
+  const initialPage = new URLSearchParams(location.search).get('page') === 'guide' ? 'guide.html' : '';
+  const initialLanguage = new URLSearchParams(location.search).get('lang');
+  frame.src = `../${initialPage}?theme=${initialTheme === 'light' ? 'light' : 'dark'}${['ko', 'en'].includes(initialLanguage) ? `&lang=${initialLanguage}` : ''}&_review=${Date.now()}`;
   function syncThemeControls() {
     const theme = frame.contentDocument.documentElement.dataset.theme;
     document.querySelectorAll('[data-theme]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.theme === theme)));
-    document.querySelector('#open-website').href = `../?theme=${theme}`;
+    const guide = frame.contentDocument.body.classList.contains('guide-page');
+    const language = frame.contentDocument.documentElement.lang;
+    document.querySelectorAll('[data-language]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
+    document.querySelectorAll('[data-page]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.page === (guide ? 'guide' : 'home'))));
+    document.querySelector('#open-website').href = `../${guide ? 'guide.html' : ''}?theme=${theme}&lang=${language}`;
   }
+  document.querySelectorAll('[data-page]').forEach((button) => {
+    button.onclick = () => {
+      const theme = frame.contentDocument.documentElement.dataset.theme;
+      const language = frame.contentDocument.documentElement.lang;
+      frame.src = `../${button.dataset.page === 'guide' ? 'guide.html' : ''}?theme=${theme}&lang=${language}&_review=${Date.now()}`;
+      report.textContent = 'Loading page…';
+      report.dataset.status = 'loading';
+    };
+  });
   frame.addEventListener('load', () => {
     syncThemeControls();
+    if (report.dataset.status === 'loading') report.dataset.status = 'ready';
     frame.contentDocument.addEventListener('click', (event) => {
-      if (event.target.closest('.theme-toggle')) syncThemeControls();
+      if (event.target.closest('.theme-toggle, .language-toggle')) syncThemeControls();
     });
   });
   document.querySelectorAll('[data-theme]').forEach((button) => {
     button.onclick = () => {
       if (frame.contentDocument.documentElement.dataset.theme !== button.dataset.theme) {
         frame.contentDocument.querySelector('.theme-toggle').click();
+      }
+      syncThemeControls();
+    };
+  });
+  document.querySelectorAll('[data-language]').forEach((button) => {
+    button.onclick = () => {
+      if (frame.contentDocument.documentElement.lang !== button.dataset.language) {
+        frame.contentDocument.querySelector('.language-toggle').click();
       }
       syncThemeControls();
     };
@@ -65,15 +96,21 @@
       const win = frame.contentWindow;
       if (id === 'top') win.scrollTo({ top: 0, behavior: 'instant' });
       else {
-        const target = frame.contentDocument.querySelector(id === 'footer' ? 'footer' : `#${id}`);
+        const target = frame.contentDocument.querySelector(id === 'footer' ? 'footer' : id === 'features' && frame.contentDocument.body.classList.contains('guide-page') ? '#feature-map' : `#${id}`);
         win.scrollTo({ top: target.offsetTop - 95, behavior: 'instant' });
       }
     };
   }
   document.querySelector('#inspect').onclick = async () => {
+    report.dataset.status = 'running';
     const doc = frame.contentDocument;
     const win = frame.contentWindow;
     await doc.fonts.ready;
+    // Load offscreen previews for inspection; the actual pages keep native lazy loading.
+    await Promise.all([...doc.images].map(async (img) => {
+      img.loading = 'eager';
+      try { await img.decode(); } catch { /* Report failed images below. */ }
+    }));
     const visible = (el) => el.getClientRects().length && win.getComputedStyle(el).visibility !== 'hidden';
     const overflow = [...doc.querySelectorAll('main *, header *, footer *')].filter((el) => {
       if (!visible(el) || el.closest('[aria-hidden="true"]') || el.closest('svg')) return false;
@@ -91,14 +128,43 @@
       missingAnchors,
       fonts: [...doc.fonts].map((font) => ({ family: font.family, weight: font.weight, status: font.status })),
       h1Count: doc.querySelectorAll('h1').length,
-      english: doc.documentElement.lang === 'en',
+      language: doc.documentElement.lang,
       menuVisible: visible(doc.querySelector('.menu-toggle'))
     }, null, 2);
+    report.dataset.status = 'complete';
   };
   document.querySelector('#interactions').onclick = async () => {
+    report.dataset.status = 'running';
     const doc = frame.contentDocument;
+    // Test anchor destinations without depending on animation frames in a background preview.
+    const originalScrollBehavior = doc.documentElement.style.scrollBehavior;
+    doc.documentElement.style.scrollBehavior = 'auto';
+    let receivedFrame = false;
+    const frameRequest = frame.contentWindow.requestAnimationFrame(() => { receivedFrame = true; });
     const results = [];
     const check = (name, passed) => results.push({ name, passed });
+    const hero = doc.querySelector('.hero');
+    if (hero) {
+      const win = frame.contentWindow;
+      const space = hero.querySelector('.hero-space');
+      check('Space decoration leaves controls accessible', space?.getAttribute('aria-hidden') === 'true' && win.getComputedStyle(space).pointerEvents === 'none');
+      const stars = new win.Image();
+      stars.src = new URL('assets/starfield.svg', doc.baseURI).href;
+      let starsLoaded = false;
+      try { await stars.decode(); starsLoaded = stars.naturalWidth > 0; } catch { /* Report below. */ }
+      check('Star field asset loads', starsLoaded);
+      const bounds = hero.getBoundingClientRect();
+      hero.dispatchEvent(new win.PointerEvent('pointermove', { clientX: bounds.right, clientY: bounds.top + 100, pointerType: 'mouse' }));
+      await new Promise((resolve) => {
+        const timer = setTimeout(resolve, 1500);
+        win.requestAnimationFrame(() => { clearTimeout(timer); resolve(); });
+      });
+      const motionAllowed = win.matchMedia('(hover: hover) and (pointer: fine)').matches && !win.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      check('Stars respond only when pointer motion is allowed', motionAllowed ? parseFloat(hero.style.getPropertyValue('--space-x')) > 0 : !hero.style.getPropertyValue('--space-x'));
+      results[results.length - 1].details = { motionAllowed, offset: hero.style.getPropertyValue('--space-x'), visibility: doc.visibilityState, receivedFrame };
+      hero.dispatchEvent(new win.PointerEvent('pointerleave'));
+      check('Leaving the hero resets star movement', !hero.style.getPropertyValue('--space-x') && !hero.style.getPropertyValue('--space-y'));
+    }
     check('Terminal preview is the initial view', doc.querySelector('#product-image').src.endsWith('/hero.jpg') && doc.querySelector('[data-view="terminal"]').getAttribute('aria-pressed') === 'true');
     doc.querySelector('[data-view="terminal"]').click();
     check('Terminal preview switches source and pressed state', doc.querySelector('#product-image').src.endsWith('/hero.jpg') && doc.querySelector('[data-view="terminal"]').getAttribute('aria-pressed') === 'true');
@@ -108,8 +174,10 @@
     check('Screenshot dialog opens', doc.querySelector('dialog').open && !!doc.querySelector('#media-content img'));
     doc.querySelector('.dialog-close').click();
     check('Dialog closes and releases scroll lock', !doc.querySelector('dialog').open && !doc.body.classList.contains('dialog-open'));
-    for (const demo of ['jobs', 'rolling', 'schedule']) {
-      doc.querySelector(`[data-demo="${demo}"]`).click();
+    for (const button of doc.querySelectorAll('[data-demo]')) {
+      const demo = button.dataset.demo;
+      const label = `${demo}: ${button.classList.contains('demo-preview') ? 'preview' : button.closest('.hero-actions') ? 'hero' : 'text button'}`;
+      button.click();
       const video = doc.querySelector('video');
       const loaded = await new Promise((resolve) => {
         if (video.readyState >= 1) return resolve(true);
@@ -117,22 +185,16 @@
         video.addEventListener('loadedmetadata', () => { clearTimeout(timer); resolve(true); }, { once: true });
         video.addEventListener('error', () => { clearTimeout(timer); resolve(false); }, { once: true });
       });
-      check(`${demo}: playable metadata, controls, and duration`, loaded && video.controls && video.duration > 0);
-      results.push({ name: `${demo}: video duration`, seconds: video.duration });
-      if (demo === 'jobs' && loaded) {
-        video.muted = true;
-        try {
-          await video.play();
-          await new Promise((resolve) => setTimeout(resolve, 500));
-          check('Demo playback advances', !video.paused && video.currentTime > 0);
-        } catch (error) {
-          results.push({ name: 'Demo playback', passed: false, message: error.message });
-        }
+      check(`${label}: playable metadata, controls, and duration`, loaded && video.controls && video.duration > 0);
+      results.push({ name: `${label}: video duration`, seconds: video.duration });
+      if (loaded) {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        check(`${label}: starts without a second click`, !video.paused && video.currentTime > 0);
       }
       doc.querySelector('.dialog-close').click();
-      check(`${demo}: close stops playback`, video.paused && !doc.querySelector('#media-content video'));
+      check(`${label}: close stops playback`, video.paused && !doc.querySelector('#media-content video'));
     }
-    const faq = doc.querySelector('details');
+    const faq = doc.querySelector('.faq-list details');
     faq.querySelector('summary').click();
     check('FAQ expands', faq.open);
     faq.querySelector('summary').click();
@@ -147,11 +209,153 @@
     check('Header switches theme', doc.documentElement.dataset.theme === nextTheme);
     check('Both theme controls stay in sync', [...doc.querySelectorAll('.theme-toggle')].every((button) => button.getAttribute('aria-pressed') === String(nextTheme === 'dark')));
     check('Theme URL follows selection', new URL(frame.contentWindow.location.href).searchParams.get('theme') === nextTheme);
+    check('Page links preserve selected theme', [...doc.querySelectorAll('[data-theme-link]')].every((link) => new URL(link.href).searchParams.get('theme') === nextTheme));
     doc.querySelector('footer .theme-toggle').click();
     check('Footer restores original theme', doc.documentElement.dataset.theme === originalTheme);
     check('Restored theme URL matches', new URL(frame.contentWindow.location.href).searchParams.get('theme') === originalTheme);
+    if (doc.body.classList.contains('guide-page')) {
+      const contents = doc.querySelector('.guide-contents');
+      const initiallyOpen = contents.open;
+      const compact = frame.contentWindow.matchMedia('(max-width: 900px)').matches;
+      check('Guide contents matches the viewport', contents.open === !compact);
+      contents.querySelector('summary').click();
+      check('Guide contents can be toggled', contents.open !== initiallyOpen);
+      contents.querySelector('summary').click();
+      const links = [...contents.querySelectorAll('nav a')];
+      const sections = [...doc.querySelectorAll('.guide-section')];
+      check('All guide sections appear once in the contents', links.length === sections.length && sections.every((section) => links.filter((link) => link.hash === `#${section.id}`).length === 1));
+      contents.open = true;
+      contents.querySelector('a[href="#quickstart"]').click();
+      await new Promise((resolve) => setTimeout(resolve, 700));
+      check('Guide topic link reaches the selected section', frame.contentWindow.location.hash === '#quickstart' && Math.abs(doc.querySelector('#quickstart').getBoundingClientRect().top - 125) < 10);
+      check('Compact contents closes after choosing a topic', !compact || !contents.open);
+      check('Guide highlights the section being read', contents.querySelector('[aria-current="location"]').hash === '#quickstart');
+      check('Guide is marked as the current page', new URL(doc.querySelector('.desktop-nav [aria-current="page"]').href).pathname.endsWith('/guide.html'));
+      const disclosure = doc.querySelector('.guide-disclosure');
+      disclosure.querySelector('summary').click();
+      check('Additional Job instructions expand', disclosure.open);
+      disclosure.querySelector('summary').click();
+    }
+    doc.querySelector('[data-view="terminal"]').click();
+    frame.contentWindow.cancelAnimationFrame(frameRequest);
+    results.push({ name: 'Rendering context', visibility: doc.visibilityState, receivedFrame });
     report.textContent = JSON.stringify(results, null, 2);
+    report.dataset.status = 'complete';
     frame.contentWindow.scrollTo({ top: 0, behavior: 'instant' });
+    doc.documentElement.style.scrollBehavior = originalScrollBehavior;
+  };
+  document.querySelector('#contents-regression').onclick = async () => {
+    report.dataset.status = 'running';
+    await fetch('../guide.js', { cache: 'reload' });
+    await new Promise((resolve) => {
+      frame.addEventListener('load', resolve, { once: true });
+      const url = new URL(frame.src);
+      url.searchParams.set('_review', String(Date.now()));
+      frame.src = url.href;
+    });
+    const doc = frame.contentDocument;
+    if (!doc.body.classList.contains('guide-page')) {
+      report.textContent = 'Open Guide before checking its contents.';
+      report.dataset.status = 'complete';
+      return;
+    }
+    const win = frame.contentWindow;
+    const contents = doc.querySelector('.guide-contents');
+    const results = [];
+    for (const id of ['sessions', 'jobs', 'orchestration', 'optional', 'preferences']) {
+      contents.open = true;
+      contents.querySelector(`a[href="#${id}"]`).click();
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const current = contents.querySelector('[aria-current="location"]');
+      results.push({ selected: id, highlighted: current?.hash.slice(1) ?? null,
+        top: Math.round(doc.getElementById(id).getBoundingClientRect().top), passed: current?.hash === `#${id}` });
+    }
+    doc.getElementById('jobs').scrollIntoView({ behavior: 'instant' });
+    await new Promise((resolve) => setTimeout(resolve, 700));
+    results.push({ selected: 'jobs by scrolling',
+      highlighted: contents.querySelector('[aria-current="location"]')?.hash.slice(1) ?? null,
+      passed: contents.querySelector('[aria-current="location"]')?.hash === '#jobs' });
+    report.textContent = JSON.stringify(results, null, 2);
+    report.dataset.status = 'complete';
+  };
+  document.querySelector('#languages').onclick = async () => {
+    report.dataset.status = 'running';
+    // The static preview server can leave old scripts cached while reviewing edits.
+    await Promise.all(['main.js', 'hero.js', 'language.js', 'locales/ko.js', 'styles.css', 'guide.css'].map((path) => fetch(`../${path}`, { cache: 'reload' })));
+    const results = [];
+    const check = (name, passed) => results.push({ name, passed });
+    const loadPage = (url) => new Promise((resolve) => {
+      frame.addEventListener('load', resolve, { once: true });
+      const fresh = new URL(url, location.href);
+      fresh.searchParams.set('_review', String(Date.now()));
+      frame.src = fresh.href;
+    });
+    const originalPreference = localStorage.getItem('astera-language');
+    for (const page of ['index.html', 'guide.html']) {
+      await loadPage(`../${page}?lang=ko&theme=light#${page === 'guide.html' ? 'how-it-works' : 'features'}`);
+      let doc = frame.contentDocument;
+      const introduction = doc.querySelector('.hero-description, .guide-lead');
+      check(`${page}: Korean URL translates the body copy`, doc.documentElement.lang === 'ko' && /[가-힣]/.test(introduction.textContent));
+      const largeHeadings = [...doc.querySelectorAll('main h1, main h2[id], .feature-copy > h3, .feature-card > h3')];
+      check(`${page}: large headings stay English in Korean mode`, largeHeadings.length > 0 && largeHeadings.every((heading) => heading.lang === 'en' && !/[가-힣]/.test(heading.textContent)));
+      check(`${page}: all marked copy has a Korean translation`, [...doc.querySelectorAll('[data-i18n]')].every((element) => /[가-힣]/.test(element.textContent) || /^[AB]$/.test(element.textContent)));
+      const toggle = doc.querySelector('header .language-toggle');
+      check(`${page}: language control is available`, !!toggle);
+      if (!toggle) continue;
+      const hash = frame.contentWindow.location.hash;
+      const readingSection = doc.querySelector(hash);
+      readingSection.scrollIntoView({ behavior: 'instant' });
+      const readingTop = readingSection.getBoundingClientRect().top;
+      toggle.click();
+      check(`${page}: switching restores English`, doc.documentElement.lang === 'en' && !/[가-힣]/.test(introduction.textContent));
+      check(`${page}: switching preserves theme and anchor`, doc.documentElement.dataset.theme === 'light' && frame.contentWindow.location.hash === hash);
+      check(`${page}: switching keeps the reading position`, Math.abs(readingSection.getBoundingClientRect().top - readingTop) < 2);
+      check(`${page}: language URL follows selection`, new URL(frame.contentWindow.location.href).searchParams.get('lang') === 'en');
+      doc.querySelector('footer .language-toggle').click();
+      check(`${page}: both language controls stay in sync`, doc.documentElement.lang === 'ko' && [...doc.querySelectorAll('.language-toggle')].every((button) => button.textContent === 'English'));
+      check(`${page}: page links preserve language and theme`, [...doc.querySelectorAll('[data-theme-link]')].every((link) => new URL(link.href).searchParams.get('lang') === 'ko' && new URL(link.href).searchParams.get('theme') === 'light'));
+      doc.querySelector('[data-view="conversation"]').click();
+      check(`${page}: switching previews uses Korean alt text`, /[가-힣]/.test(doc.querySelector('#product-image').alt));
+      doc.querySelector('header .theme-toggle').click();
+      check(`${page}: theme controls use Korean labels`, [...doc.querySelectorAll('.theme-toggle')].every((button) => /[가-힣]/.test(button.getAttribute('aria-label'))));
+      await loadPage(frame.contentWindow.location.href);
+      doc = frame.contentDocument;
+      check(`${page}: reload keeps language, theme, and anchor`, doc.documentElement.lang === 'ko' && doc.documentElement.dataset.theme === 'dark' && frame.contentWindow.location.hash === hash);
+      await loadPage(`../${page}`);
+      check(`${page}: saved language applies without a query`, frame.contentDocument.documentElement.lang === 'ko');
+    }
+    await loadPage('../guide.html?lang=en');
+    check('Explicit English URL overrides saved Korean', frame.contentDocument.documentElement.lang === 'en');
+    await loadPage('../guide.html?lang=fr');
+    check('Unsupported URL language uses the saved preference', frame.contentDocument.documentElement.lang === 'ko');
+    Object.defineProperty(frame.contentWindow, 'localStorage', { get() { throw new DOMException('Storage disabled', 'SecurityError'); } });
+    frame.contentDocument.querySelector('.language-toggle').click();
+    check('Language switching still works when storage is blocked', frame.contentDocument.documentElement.lang === 'en' && new URL(frame.contentWindow.location.href).searchParams.get('lang') === 'en');
+    const source = await fetch('../index.html', { cache: 'reload' }).then((response) => response.text());
+    for (const scenario of [
+      { browser: 'ko-KR', saved: null, want: 'ko' },
+      { browser: 'en-US', saved: null, want: 'en' },
+      { browser: 'ja-JP', saved: null, want: 'en' },
+      { browser: 'ko-KR', saved: 'en', want: 'en' },
+      { browser: 'en-US', saved: 'ko', want: 'ko' },
+      { browser: 'en-US', saved: 'fr', want: 'en' },
+      { browser: 'ko-KR', saved: null, blocked: true, want: 'ko' }
+    ]) {
+      if (scenario.saved === null) localStorage.removeItem('astera-language');
+      else localStorage.setItem('astera-language', scenario.saved);
+      const setup = `<base href="${new URL('../', location.href).href}"><script>Object.defineProperty(navigator, 'language', { value: '${scenario.browser}' });${scenario.blocked ? "Object.defineProperty(window, 'localStorage', { get() { throw new DOMException('Storage disabled', 'SecurityError'); } });" : ''}<\/script>`;
+      await new Promise((resolve) => {
+        frame.addEventListener('load', resolve, { once: true });
+        frame.srcdoc = source.replace('<head>', `<head>${setup}`);
+      });
+      check(`First load: ${scenario.browser}, saved ${scenario.saved}, storage ${scenario.blocked ? 'blocked' : 'available'}`, frame.contentDocument.documentElement.lang === scenario.want);
+    }
+    frame.removeAttribute('srcdoc');
+    await loadPage('../guide.html?lang=ko');
+    if (originalPreference === null) localStorage.removeItem('astera-language');
+    else localStorage.setItem('astera-language', originalPreference);
+    report.textContent = JSON.stringify(results, null, 2);
+    report.dataset.status = 'complete';
   };
 </script>
 </html>

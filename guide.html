@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn Astera step by step: start Claude Code and Codex sessions, use Smart Resume and account rolling, schedule work, and coordinate verified Jobs with the orchestration skill." data-i18n-content="guide.description">
+  <meta name="theme-color" content="#0b1020">
+  <title data-i18n="guide.common.2">Astera Guide — Sessions, Smart Resume, Jobs &amp; Orchestration</title>
+  <link rel="canonical" href="https://astera.run/guide.html">
+  <link rel="alternate" hreflang="en" href="https://astera.run/guide.html">
+  <link rel="alternate" hreflang="ko" href="https://astera.run/guide.ko.html">
+  <link rel="alternate" hreflang="x-default" href="https://astera.run/guide.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="Astera Guide — Sessions, Smart Resume, Jobs &amp; Orchestration" data-i18n-content="guide.common.2">
+  <meta property="og:description" content="Learn Astera step by step: start Claude Code and Codex sessions, use Smart Resume and account rolling, schedule work, and coordinate verified Jobs with the orchestration skill." data-i18n-content="guide.description">
+  <meta property="og:url" content="https://astera.run/guide.html">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Astera Guide — Sessions, Smart Resume, Jobs &amp; Orchestration" data-i18n-content="guide.common.2">
+  <meta name="twitter:description" content="Learn Astera step by step: start Claude Code and Codex sessions, use Smart Resume and account rolling, schedule work, and coordinate verified Jobs with the orchestration skill." data-i18n-content="guide.description">
+  <link rel="icon" href="assets/astera-icon.png" type="image/png">
+  <link rel="preload" href="assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="guide.css">
+  <script src="locales/ko.js?v=20260923-2" defer></script>
+  <script src="language.js?v=20260923-2" defer></script>
+  <script src="main.js?v=20260923-2" defer></script>
+  <script src="downloads.js" defer></script>
+  <script src="guide.js" defer></script>
+</head>
+<body class="guide-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main" data-i18n="guide.common.3">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="index.html" data-theme-link aria-label="Astera home"><img src="assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation" data-i18n-aria-label="guide.label4">
+        <a href="index.html#features" data-theme-link lang="en">Features</a><a href="index.html#workflow" data-theme-link lang="en">Workflow</a><a href="guide.html" data-theme-link aria-current="page" lang="en">Guide</a><a href="#faq" lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="language-toggle" type="button" lang="ko" aria-label="한국어로 보기">한국어</button>
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="View Astera on GitHub" data-i18n-aria-label="guide.label9"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">Light theme</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav" data-i18n-aria-label="guide.label11"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden data-i18n-aria-label="guide.label12"><a href="index.html#features" data-theme-link lang="en">Features</a><a href="index.html#workflow" data-theme-link lang="en">Workflow</a><a href="guide.html" data-theme-link aria-current="page" lang="en">Guide</a><a href="#faq" lang="en">FAQ</a></nav>
+  </header>
+
+  <div class="guide-layout container">
+    <aside class="guide-sidebar">
+      <details class="guide-contents" open>
+        <summary data-i18n="guide.common.17">In this guide <svg class="icon small"><use href="#i-plus"/></svg></summary>
+        <nav aria-label="Guide contents" data-i18n-aria-label="guide.label18">
+          <p data-i18n="guide.common.19">Start here</p>
+          <a href="#overview" aria-current="location" data-i18n="guide.common.20">Meet Astera</a>
+          <a href="#quickstart" data-i18n="guide.common.21">Your first session</a>
+          <p data-i18n="guide.common.22">Work with Astera</p>
+          <a href="#sessions" data-i18n="guide.common.23">Terminal &amp; Chat</a>
+          <a href="#accounts" data-i18n="guide.common.24">Account rolling</a>
+          <a href="#smart-resume" data-i18n="guide.resume.nav">Smart Resume</a>
+          <a href="#scheduling" data-i18n="guide.common.25">Scheduled sessions</a>
+          <a href="#slack" data-i18n="guide.common.26">Slack updates &amp; replies</a>
+          <a href="#jobs" data-i18n="guide.common.27">Jobs &amp; completion checks</a>
+          <a href="#orchestration" data-i18n="guide.orchestration.nav">The orchestration skill</a>
+          <a href="#host" data-i18n="guide.host.nav">Host &amp; session continuity</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#optional" data-i18n="guide.common.31">Optional features</a>
+          <p data-i18n="guide.common.28">Make it your workspace</p>
+          <a href="#workspace" data-i18n="guide.common.29">Files, previews &amp; worktrees</a>
+          <a href="#preferences" data-i18n="guide.common.30">Settings &amp; updates</a>
+          <a href="#faq" data-i18n="guide.common.32">Questions &amp; shortcuts</a>
+        </nav>
+      </details>
+      <a class="guide-source" href="https://github.com/parsingk/Astera#documentation" target="_blank" rel="noopener noreferrer" data-i18n="guide.common.33" data-i18n-href="links.documentation">Technical documentation <svg class="icon small"><use href="#i-external"/></svg></a>
+    </aside>
+
+    <main id="main" class="guide-content">
+      <section class="guide-intro guide-section" id="overview" aria-labelledby="guide-title">
+        <p class="guide-breadcrumb" data-i18n="guide.overview.34"><a href="index.html" data-theme-link>Astera</a><span>/</span>Guide</p>
+        <h1 id="guide-title" lang="en">Get to know Astera.</h1>
+        <p class="guide-lead" data-i18n="guide.overview.36">One place for your agents.<br>A clear path from an idea to finished work.</p>
+        <p data-i18n="guide.overview.37">Astera is a desktop workspace for Claude Code and Codex. Start with one session, carry context across account limits with Smart Resume, and coordinate larger work through a visible Jobs graph. Use the orchestration skill when you want an agent to manage the steps.</p>
+        <div class="guide-intro-actions"><a class="button button-primary" href="#quickstart" data-i18n="guide.overview.38">Start your first session <svg class="icon small"><use href="#i-arrow"/></svg></a><a class="text-button" href="#feature-map" data-i18n="guide.overview.39">Find a feature</a></div>
+        <dl class="guide-vocabulary">
+          <div><dt data-i18n="guide.overview.40">Account</dt><dd data-i18n="guide.overview.41">The Claude Code or Codex login a session uses.</dd></div>
+          <div><dt data-i18n="guide.overview.42">Session</dt><dd data-i18n="guide.overview.43">One conversation with an agent in a project folder.</dd></div>
+          <div><dt>Job</dt><dd data-i18n="guide.overview.44">A set of tasks, with agents and checks working toward one objective.</dd></div>
+        </dl>
+        <div class="feature-map" id="feature-map">
+          <h2 data-i18n="guide.overview.45">What would you like to do?</h2>
+          <a href="#sessions"><span data-i18n="guide.overview.46">Work with an agent on my project</span><span data-i18n="guide.overview.47">Sessions <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+          <a href="#accounts"><span data-i18n="guide.overview.48">Keep going when an account hits a limit</span><span data-i18n="guide.overview.49">Account rolling <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+          <a href="#smart-resume"><span data-i18n="guide.resume.find">Give the next session the context it needs</span><span>Smart Resume <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+          <a href="#scheduling"><span data-i18n="guide.overview.50">Run a prompt on a schedule</span><span data-i18n="guide.overview.51">Scheduling <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+          <a href="#jobs"><span data-i18n="guide.overview.52">Split a larger task between agents</span><span>Jobs <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+          <a href="#host"><span data-i18n="guide.host.find">Return to live sessions after an app restart</span><span>Astera Host <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+          <a href="#how-it-works"><span data-i18n="guide.overview.53">Understand what changed and why</span><span>How It Works <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="quickstart" aria-labelledby="quickstart-title">
+        <div class="guide-section-heading"><span class="guide-section-mark" aria-hidden="true">✦</span><h2 id="quickstart-title" lang="en">Your first session</h2></div>
+        <p data-i18n="guide.quickstart.55">Start with one project and one account. You can explore automation after your first conversation is running.</p>
+        <ol class="setup-steps">
+          <li><h3 data-i18n="guide.quickstart.56">Install Astera and your agent</h3><p data-i18n="guide.quickstart.57">Use the Download button to get the installer for your operating system. You also need Claude Code, the Codex CLI, or both installed and available on your PATH, so Astera can start them.</p><p class="guide-small" data-i18n="guide.quickstart.58">Astera runs your existing tools. Accounts and any usage fees for those services are separate.</p><a class="text-button" href="https://github.com/parsingk/Astera#install" target="_blank" rel="noopener noreferrer" data-i18n="guide.quickstart.59" data-i18n-href="links.install">Platform-specific installation steps <svg class="icon small"><use href="#i-external"/></svg></a></li>
+          <li><h3 data-i18n="guide.quickstart.60">Connect an account</h3><p data-i18n="guide.quickstart.61">In <strong>Accounts</strong>, use <strong>Auto-detect</strong> to find existing accounts and register the ones you want. Or choose <strong>Add account</strong> to create a separate account entry, then complete its sign-in when prompted.</p></li>
+          <li><h3 data-i18n="guide.quickstart.62">Choose your folder and session type</h3><p data-i18n="guide.quickstart.63">Open <strong>New session</strong>. Select your <strong>Project folder</strong> and <strong>Account</strong>, choose <strong>Terminal</strong> or <strong>Chat</strong>, then click <strong>Start</strong>. A folder keeps the conversation connected to the code you are working on.</p></li>
+          <li><h3 data-i18n="guide.quickstart.64">Give the agent a clear first task</h3><p data-i18n="guide.quickstart.65">Describe the result you want and how to check it. For a first look at an unfamiliar project, try:</p><blockquote class="prompt-example" data-i18n="guide.quickstart.66">Explain how this project is organized and how to run it locally. Don’t change any files yet.</blockquote><p data-i18n="guide.quickstart.67">Read the response, answer any questions, and continue in the same session.</p></li>
+        </ol>
+      </section>
+
+      <section class="guide-section" id="sessions" aria-labelledby="sessions-title">
+        <div class="guide-section-heading"><h2 id="sessions-title" lang="en">Terminal or Chat. Your choice.</h2></div>
+        <p data-i18n="guide.sessions.69">Both give you a session with your agent. Choose the interface that feels natural for the work you are doing.</p>
+        <div class="view-explanations">
+          <div><h3 data-i18n="guide.sessions.70">Terminal</h3><p data-i18n="guide.sessions.71">The familiar CLI inside Astera. Use it when you want to work directly with the agent’s terminal interface.</p></div>
+          <div><h3 data-i18n="guide.sessions.72">Chat</h3><p data-i18n="guide.sessions.73">A conversation with a message composer. Questions and approvals appear as cards; model and permission controls sit beside your message.</p></div>
+        </div>
+        <div class="guide-note" data-i18n="guide.sessions.74"><strong>Choose before you start.</strong> A session keeps the type it was created with. Set the default in <strong>Settings → General → New sessions start as</strong>, or choose a different type in New session.</div>
+        <figure class="guide-preview">
+          <div class="showcase-toolbar"><span class="preview-label" data-i18n="guide.sessions.75">Explore the actual app</span><div class="view-switch" role="group" aria-label="Choose an app preview" data-i18n-aria-label="guide.label76"><button type="button" class="view-button active" data-view="terminal" aria-pressed="true" data-i18n="guide.sessions.77">Terminal view</button><button type="button" class="view-button" data-view="conversation" aria-pressed="false" data-i18n="guide.sessions.78">Chat view</button></div></div>
+          <div class="product-frame"><button class="screenshot-button" type="button" aria-label="Enlarge the actual Astera app screenshot" data-i18n-aria-label="guide.label79"><img id="product-image" src="assets/hero.jpg" width="1998" height="1248" alt="Actual Astera terminal view with four sessions running across Claude Code and Codex accounts." loading="lazy"><span class="zoom-hint" data-i18n="guide.sessions.80"><svg class="icon small"><use href="#i-plus"/></svg> Take a closer look</span></button></div>
+          <figcaption data-i18n="guide.sessions.81">Preview both interfaces here. In the app, start a new session to use a different type.</figcaption>
+        </figure>
+        <div class="guide-feature-list">
+          <article><h3 data-i18n="guide.sessions.82">Attach context</h3><p data-i18n="guide.sessions.83">Drop a file or paste an image into Chat to include its path in your message. Describe what the agent should look for or change alongside the attachment.</p></article>
+          <article><h3 data-i18n="guide.sessions.84">Resume from history</h3><p data-i18n="guide.sessions.85">Open <strong>Accounts and history</strong> and expand your project. Click a conversation to preview it, or choose its <strong>Resume session</strong> button, select an account, and click <strong>Resume</strong> to continue working. If the folder moved, select its current location when prompted.</p></article>
+          <article><h3 data-i18n="guide.sessions.86">Find a hidden project</h3><p data-i18n="guide.sessions.87">Use <strong>Settings → History → Unhide</strong> to return a hidden project to the history list.</p></article>
+        </div>
+      </section>
+
+      <section class="guide-section" id="accounts" aria-labelledby="accounts-title">
+        <div class="guide-section-heading"><h2 id="accounts-title" lang="en">Continue on your next account</h2></div>
+        <p data-i18n="guide.accounts.89"><strong>Account rolling</strong> moves a session to another available account for the same service when it reaches a usage limit. With the standard resume strategy, the conversation continues on that account.</p>
+        <ol class="guide-instructions"><li data-i18n="guide.accounts.90">Register and sign in to the accounts you want to use.</li><li data-i18n="guide.accounts.91">In <strong>New session</strong>, choose the first account. Use <strong>+ Add account</strong> to set the next accounts in the rolling order.</li><li data-i18n="guide.accounts.92">Start the session. Astera watches for a limit and switches when another account is available.</li></ol>
+        <div class="guide-note" data-i18n="guide.accounts.93"><strong>Every account still has its own limits.</strong> If none is available, check the displayed reset time. The session’s <strong>Wait for the limit to reset, then resume automatically</strong> option controls waiting and resuming with a single account; rolling is automatic with multiple accounts.</div>
+        <p data-i18n="guide.accounts.94">When adding an account, <strong>Import settings from the default account</strong> can bring over its setup. Review the import dialog: merge and replacement rules depend on the file and provider. Imported settings apply to new sessions.</p>
+        <figure class="demo-recording">
+          <button class="demo-preview" type="button" data-demo="rolling" aria-label="Watch the full account rolling demo" data-i18n-aria-label="demo.rolling.label">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/rolling-demo-still.png">
+              <img src="assets/rolling-demo.gif" width="960" height="600" alt="" loading="lazy" decoding="async">
+            </picture>
+            <span class="demo-play"><svg class="icon small"><use href="#i-play"/></svg><span data-i18n="demo.watch">Watch full demo</span></span>
+          </button>
+          <figcaption data-i18n="demo.rolling.caption">Recorded in Astera: a usage limit triggers an account switch, and the same conversation continues.</figcaption>
+        </figure>
+        <button class="text-button guide-demo" type="button" data-demo="rolling" data-i18n="guide.accounts.95"><svg class="icon small"><use href="#i-play"/></svg> Watch account rolling</button>
+      </section>
+
+      <section class="guide-section" id="smart-resume" aria-labelledby="smart-resume-title">
+        <div class="guide-section-heading"><h2 id="smart-resume-title" lang="en">Smart Resume. Carry the context forward.</h2></div><p data-i18n="guide.resume.intro">Use Smart Resume when an account switch should give the next session a focused handoff. Standard resume continues the existing conversation. Smart Resume starts a fresh conversation with a compact checkpoint of the work so far.</p><ol class="guide-instructions"><li data-i18n="guide.resume.enable">In <strong>Settings → General → Session resume strategy</strong>, choose <strong>Smart Resume</strong>. It is off by default.</li><li data-i18n="guide.resume.accounts">Set up your <a href="#accounts">account rolling order</a>. A limit-triggered switch to an available account for the same service uses the checkpoint.</li><li data-i18n="guide.resume.follow">Continue in the session. The next agent receives the checkpoint as its first message and can inspect the working files to pick up the task.</li></ol><div class="guide-feature-list"><article><h3 data-i18n="guide.resume.intent">What you asked for</h3><p data-i18n="guide.resume.intent-body">Recent requests stay in order, alongside the tail of the exchange. The handoff includes what the session was being asked to do.</p></article><article><h3 data-i18n="guide.resume.files">What changed</h3><p data-i18n="guide.resume.files-body">The working folder, git state, touched files, and last command provide concrete starting points. The checkpoint is a compact handoff, not a complete copy of the conversation.</p></article><article><h3 data-i18n="guide.resume.jobs">Context for Job workers</h3><p data-i18n="guide.resume.jobs-body">For Job workers, available task state adds the objective, dependencies, recent reports, decisions, and validation context. The next worker can see both its task and the surrounding work.</p></article></div><div class="guide-note" data-i18n="guide.resume.fallback"><strong>If the checkpoint cannot be built, Astera uses standard resume.</strong> Smart Resume does not remove account limits, and a compact handoff can omit older details. Keep essential requirements in project files the agent can read.</div>
+      </section>
+
+      <section class="guide-section" id="scheduling" aria-labelledby="scheduling-title">
+        <div class="guide-section-heading"><h2 id="scheduling-title" lang="en">Give a session a schedule</h2></div>
+        <p data-i18n="guide.scheduling.97">Use the scheduler for recurring work, such as checking a test suite every morning or asking for a regular project update.</p>
+        <ol class="guide-instructions"><li data-i18n="guide.scheduling.98">In <strong>New session</strong>, enable <strong>Scheduler</strong>.</li><li data-i18n="guide.scheduling.99">Choose an interval, or a daily, weekly, or monthly schedule.</li><li data-i18n="guide.scheduling.100">Enter the command for a Terminal session, or the prompt for a Chat session. Start the session to activate it.</li></ol>
+        <p class="guide-small" data-i18n="guide.scheduling.101">Keep Astera running and your computer awake for scheduled work. A scheduled session sends work to one conversation. For a sequence of dependent tasks, use <a href="#jobs">Jobs</a>.</p>
+        <figure class="demo-recording">
+          <button class="demo-preview" type="button" data-demo="schedule" aria-label="Watch the full scheduling demo" data-i18n-aria-label="demo.schedule.label">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/schedule-demo-still.png">
+              <img src="assets/schedule-demo.gif" width="960" height="600" alt="" loading="lazy" decoding="async">
+            </picture>
+            <span class="demo-play"><svg class="icon small"><use href="#i-play"/></svg><span data-i18n="demo.watch">Watch full demo</span></span>
+          </button>
+          <figcaption data-i18n="demo.schedule.caption">Recorded in Astera: the scheduled command is sent automatically when its start time arrives.</figcaption>
+        </figure>
+        <button class="text-button guide-demo" type="button" data-demo="schedule" data-i18n="guide.scheduling.102"><svg class="icon small"><use href="#i-play"/></svg> Watch scheduled sessions</button>
+      </section>
+
+      <section class="guide-section" id="slack" aria-labelledby="slack-title">
+        <div class="guide-section-heading"><h2 id="slack-title" lang="en">Follow the work from Slack</h2></div>
+        <p data-i18n="guide.slack.104">Receive progress updates when a turn finishes, an account reaches a limit, or your input is needed. With bot mode configured, each session has its own thread. Reply in that thread to send a message back to the session.</p>
+        <ol class="guide-instructions"><li data-i18n="guide.slack.105">Create a Slack app and invite its bot to your notification channel.</li><li data-i18n="guide.slack.106">Enter the bot token and channel ID in Astera’s Slack settings. For replies, also configure Socket Mode, its app token, and your Slack member ID.</li><li data-i18n="guide.slack.107">Turn on <strong>Slack progress notifications</strong> for the session.</li></ol>
+        <div class="guide-note" data-i18n="guide.slack.108"><strong>Your member ID enables replies.</strong> Only the configured Slack member can send input to a session. If the member ID is empty, replies are not delivered.</div>
+        <a class="text-button guide-demo" href="https://github.com/parsingk/Astera/blob/main/docs/slack-bot-setup.md" target="_blank" rel="noopener noreferrer" data-i18n="guide.slack.109">Follow the complete Slack setup <svg class="icon small"><use href="#i-external"/></svg></a>
+      </section>
+
+      <section class="guide-section" id="jobs" aria-labelledby="jobs-title">
+        <div class="guide-section-heading"><h2 id="jobs-title" lang="en">Bring agents together with Jobs</h2><span class="guide-badge" data-i18n="guide.jobs.111">Opt-in</span></div>
+        <p data-i18n="guide.jobs.112">A Job turns an objective into a graph of tasks. Its connections show what can run in parallel and what must wait. Follow Claude and Codex workers, questions, and completion checks from the same run.</p>
+        <div class="job-example" aria-label="Example job: implement a change and write tests in parallel, then review the combined result" data-i18n-aria-label="guide.label113"><p data-i18n="guide.jobs.114">Example: update the sign-in flow</p><div><span data-i18n="guide.jobs.115">Implement the change</span><span data-i18n="guide.jobs.116">Write regression tests</span></div><span class="job-example-join" data-i18n="guide.jobs.117">Both tasks finish</span><strong data-i18n="guide.jobs.118">Run checks &amp; review the result</strong></div>
+        <div class="guide-feature-list"><article><h3 data-i18n="guide.graph.dependencies">Read the connections</h3><p data-i18n="guide.graph.dependencies-body">Dependencies determine when a task is ready. Tasks with no unfinished dependencies can run together within the concurrency setting.</p></article><article><h3 data-i18n="guide.graph.states">See why work is waiting</h3><p data-i18n="guide.graph.states-body">A task can be running, validating, reviewing, or blocked by a Gate. Open it to inspect its state, worker, and any question that needs an answer.</p></article><article><h3 data-i18n="guide.graph.proof">Follow the checks</h3><p data-i18n="guide.graph.proof-body">For a task with checks, the worker’s completion report starts validation. Dependent tasks wait for the required checks and review to pass. The timeline lets you follow the sequence.</p></article></div>
+        <ol class="guide-instructions"><li data-i18n="guide.jobs.119">Enable <strong>Agent orchestration</strong> in Settings. Use a git repository with at least one commit and a branch checked out.</li><li data-i18n="guide.jobs.120">Open <strong>Jobs → New job</strong>. Enter the <strong>Objective</strong>, choose a <strong>Coordinator account</strong>, and set <strong>Run at once</strong>.</li><li data-i18n="guide.jobs.121">Add tasks, worker accounts, and dependencies. Attach build, test, or cross-vendor review checks. Enable <strong>Auto-fix until the checks pass</strong> if you want repair attempts within the retry limit.</li><li data-i18n="guide.jobs.122">Click <strong>Run</strong>. Follow the graph, answer questions, and review the finished work. For a normal Job, click <strong>Merge</strong> when you are ready to bring it into your project.</li></ol>
+        <div class="guide-note" data-i18n="guide.jobs.123"><strong>“Done” is checked, not assumed.</strong> Failed checks can go back for repair, but a retry limit or a decision that needs you can stop progress. Normal Jobs keep changes in worktrees until you merge them.</div>
+        <details class="guide-disclosure"><summary data-i18n="guide.jobs.124">Can I ask an agent to coordinate a Job?</summary><div><p data-i18n="guide.jobs.125">Yes. The <a href="#orchestration"><code>/astera-orchestration</code> walkthrough</a> shows how to give a new coordinator session an objective, worker roles, dependencies, and checks. Its run appears in the same Jobs sidebar.</p></div></details>
+        <details class="guide-disclosure"><summary data-i18n="guide.jobs.126">How are scheduled Jobs different?</summary><div><p data-i18n="guide.jobs.127">A scheduled Job is a template that creates a separate run at each scheduled time. Missed times while the app is closed are skipped. Results are not automatically merged into your project, and completed runs clean up their worktree folders. See the <a href="https://github.com/parsingk/Astera/blob/main/docs/jobs.md" target="_blank" rel="noopener noreferrer">Job lifecycle reference</a> before setting up recurring changes.</p></div></details>
+        <figure class="demo-recording">
+          <button class="demo-preview" type="button" data-demo="jobs" aria-label="Watch the full Jobs demo" data-i18n-aria-label="demo.jobs.label">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/jobs-demo-still.png">
+              <img src="assets/jobs-demo.gif" width="960" height="600" alt="" loading="lazy" decoding="async">
+            </picture>
+            <span class="demo-play"><svg class="icon small"><use href="#i-play"/></svg><span data-i18n="demo.watch">Watch full demo</span></span>
+          </button>
+          <figcaption data-i18n="demo.jobs.caption">Recorded in Astera: follow task dependencies, worker progress, validation, and cross-vendor review.</figcaption>
+        </figure>
+        <button class="text-button guide-demo" type="button" data-demo="jobs" data-i18n="guide.jobs.128"><svg class="icon small"><use href="#i-play"/></svg> Watch a Job from start to checks</button>
+      </section>
+
+      <section class="guide-section" id="orchestration" aria-labelledby="orchestration-title">
+        <div class="guide-section-heading"><h2 id="orchestration-title" lang="en">Give the goal. Let an agent coordinate.</h2></div><p data-i18n="guide.orchestration.intro"><code>/astera-orchestration</code> gives an Astera session a way to supervise multi-step work across Claude and Codex. The coordinator creates tasks, dispatches workers, waits for reports, and brings decisions back to you. The run stays visible in Jobs.</p><ol class="guide-instructions"><li data-i18n="guide.orchestration.enable">Enable <strong>Agent orchestration</strong> in Settings, then open a <strong>new coordinator session</strong> in your project. Skills are loaded at session startup.</li><li data-i18n="guide.orchestration.ask">Describe the objective, which agent should do each part, the order, and how to check the result. Register usable accounts for the providers you request.</li><li data-i18n="guide.orchestration.watch">Open the project’s <strong>Jobs</strong> sidebar to follow the graph. Read questions and Gates when the coordinator needs a decision. Review the result before bringing changes into your project.</li></ol><blockquote class="prompt-example"><code>/astera-orchestration</code><p data-i18n="guide.orchestration.example">Refactor the sign-in flow with Claude. After that, have Codex add regression tests. Run the project’s tests and request a cross-vendor review. If checks fail, repair and check again within three attempts. Ask me when a decision is needed.</p></blockquote><div class="guide-note" data-i18n="guide.orchestration.boundary"><strong>Use it when coordination matters.</strong> Dependencies, worker reports, and completion checks make it useful for larger work. A single small task can stay in a normal session. Cross-vendor review requires a usable account from the other provider and uses its quota.</div>
+      </section>
+
+      <section class="guide-section" id="host" aria-labelledby="host-guide-title">
+        <div class="guide-section-heading"><h2 id="host-guide-title" lang="en">Astera Host. Keep the session alive.</h2></div><p data-i18n="guide.host.intro">Astera Host is a separate process on your computer that can own Terminal and Chat sessions, project terminals, and Run processes. When it owns a process, quitting the app leaves that process running. Reopening Astera reconnects to supported live sessions.</p><div class="guide-feature-list"><article><h3 data-i18n="guide.host.return">Return to the same work</h3><p data-i18n="guide.host.return-body">Reopen Astera after an ordinary quit to reconnect to a surviving session and its buffered output. This is the live agent process continuing, rather than a new conversation started from history.</p></article><article><h3 data-i18n="guide.host.stop">End sessions deliberately</h3><p data-i18n="guide.host.stop-body">Stop a session when its work should end. Where the tray menu is available, <strong>Quit and end sessions</strong> ends host-managed sessions as well as quitting the app.</p></article><article><h3 data-i18n="guide.host.automation">Keep automation running</h3><p data-i18n="guide.host.automation-body">Keep Astera running and the computer awake for scheduling, account rolling, Slack integration, and Job coordination. A surviving agent process does not mean those app services keep running after you quit.</p></article></div><div class="guide-note" data-i18n="guide.host.limits"><strong>Check the quit or update notice.</strong> Sessions started without the host can end with the app. Reconnection after a version update depends on compatibility. Host does not keep work running through computer shutdown or sleep.</div>
+      </section>
+
+      <section class="guide-section" id="how-it-works" aria-labelledby="how-it-works-title">
+        <div class="guide-section-heading"><h2 id="how-it-works-title" lang="en">Understand what changed. And why.</h2></div>
+        <p data-i18n="guide.how-it-works.131"><strong>How It Works</strong> turns a finished piece of work into a readable explanation. Keep your original request beside an overview of the change, a flow diagram, the reasons behind decisions, and the files involved.</p>
+        <ol class="guide-instructions">
+          <li data-i18n="guide.how-it-works.132">In <strong>Settings → General</strong>, enable <strong>Work unit tracking</strong> and choose an <strong>Explanation account</strong> to write the explanations.</li>
+          <li data-i18n="guide.how-it-works.133">Open a <strong>new session</strong> in a git project. Send <code>/astera-task</code> followed by a concrete objective, such as “Add Google sign-in and verify that signing out ends the session.”</li>
+          <li data-i18n="guide.how-it-works.134">Continue in that conversation. The skill tells the agent to record the start and finish of the task, even when the work takes several messages.</li>
+          <li data-i18n="guide.how-it-works.135">Open <strong>How It Works</strong> from the sidebar, or press <strong>Ctrl/Cmd + Shift + H</strong>. Select a completed record to read its explanation in a pane tab.</li>
+        </ol>
+        <div class="guide-feature-list">
+          <article><h3 data-i18n="guide.how-it-works.136">Start with the result</h3><p data-i18n="guide.how-it-works.137"><strong>What it does</strong> explains the change in plain language. <strong>What you will notice</strong> describes its effect on the product. Your original request stays below the title so you can compare the outcome with what you asked for.</p></article>
+          <article><h3 data-i18n="guide.how-it-works.138">Explore the flow</h3><p data-i18n="guide.how-it-works.139">Select a flow step that has references to see its description, reasons, and related files. <strong>Show all</strong> returns to the full explanation. Some changes have no meaningful flow or visible effect, so those sections may be absent.</p></article>
+          <article><h3 data-i18n="guide.how-it-works.140">Follow the reasoning</h3><p data-i18n="guide.how-it-works.141"><strong>Why it works this way</strong> explains decisions and their sources. <strong>Implementation</strong> groups the related files by role; click a filename to open it. In a narrow pane, use <strong>Reference</strong> to open the reference drawer.</p></article>
+        </div>
+        <div class="guide-note" data-i18n="guide.how-it-works.142"><strong>A record is an explanation, not a test result.</strong> <strong>Recorded</strong> means the write-up is available. Read the separate verification line to see what passed, failed, or was only partly checked. Normal session checks are reported by the agent; Jobs carry validation results from their Run.</div>
+        <details class="guide-disclosure"><summary data-i18n="guide.how-it-works.143">What do the record states mean?</summary><div><p data-i18n="guide.how-it-works.144"><strong>In progress</strong> is an open task. <strong>Left unfinished</strong> means recording was interrupted; read the reason. <strong>Writing up</strong> means the explanation is being generated. <strong>Recorded</strong> is ready to read. For <strong>Needs review</strong> or <strong>Could not write it up</strong>, read the reason and check the verification result before continuing.</p><p data-i18n="guide.how-it-works.145"><strong>Write it up again</strong> regenerates the explanation. It does not repair code or rerun tests.</p></div></details>
+        <details class="guide-disclosure"><summary data-i18n="guide.how-it-works.146">Why is my work missing?</summary><div><p data-i18n="guide.how-it-works.147">Enable tracking before starting a new session, choose an Explanation account, and declare the task. Earlier conversations are not imported, and work that changed no files produces no completed record. Only one task can be recorded per session at a time.</p><p data-i18n="guide.how-it-works.148">Claude Code’s <code>/goal</code> closes its record automatically; with Codex’s <code>/goal</code>, mark it <strong>Done</strong> yourself. Completed Jobs Runs are also recorded when tracking is enabled. If writing failed, resolve the stated cause and use <strong>Write it up again</strong>.</p></div></details>
+      </section>
+
+      <section class="guide-section" id="optional" aria-labelledby="optional-title">
+        <div class="guide-section-heading"><h2 id="optional-title" lang="en">A few more possibilities</h2></div>
+        <p data-i18n="guide.optional.172">These features are off by default. Turn them on when they fit the way you work.</p>
+        <div class="guide-feature-list">
+          <article><h3 data-i18n="guide.smart-resume">Smart Resume</h3><p data-i18n="guide.optional.173">Choose a checkpoint-based handoff under <strong>Settings → General → Session resume strategy</strong>. The <a href="#smart-resume">Smart Resume guide</a> explains what carries forward and when standard resume is used.</p></article>
+          <article><h3>How It Works</h3><p data-i18n="guide.optional.174">Enable <strong>Work unit tracking</strong> and choose an <strong>Explanation account</strong> to turn completed work into readable records. Follow the <a href="#how-it-works">recording and reading guide</a> for setup, flow diagrams, verification labels, and troubleshooting.</p></article>
+          <article><h3 data-i18n="guide.optional.175">Agent browser</h3><p data-i18n="guide.optional.176">Enable <strong>Agent browser</strong>, then start a new session. Ask the agent to check your local web app. It can open its own preview tab, inspect the page, and check console and network errors. It works with local development pages.</p></article>
+        </div>
+      </section>
+
+      <section class="guide-section" id="workspace" aria-labelledby="workspace-title">
+        <div class="guide-section-heading"><h2 id="workspace-title" lang="en">Keep the rest of your work close</h2></div>
+        <div class="guide-feature-list">
+          <article><h3 data-i18n="guide.workspace.150">Files &amp; split panes</h3><p data-i18n="guide.workspace.151">Open files beside the session changing them. Split right or down to compare work. The explorer shows git status and offers file actions such as rename, copy, and reveal in your file manager. Use the project terminal to run commands yourself.</p></article>
+          <article><h3 data-i18n="guide.workspace.152">Markdown preview</h3><p data-i18n="guide.workspace.153">Open a Markdown file, then press <strong>Ctrl/Cmd + Shift + V</strong> to cycle between editor, split view, and preview. In split view, the editor and preview follow each other’s scrolling.</p></article>
+          <article><h3 data-i18n="guide.workspace.154">Restore a deleted file</h3><p data-i18n="guide.workspace.155">For a deletion captured by Astera, right-click in the explorer and choose <strong>Local History…</strong>. Select the item and click <strong>Restore</strong>. If its old path is occupied, the restored copy gets another name. Snapshots are kept for up to 30 days within the project’s size budget; items over 50 MB are excluded.</p></article>
+          <article><h3 data-i18n="guide.workspace.156">Run your project</h3><p data-i18n="guide.workspace.157">Select a configuration in the Run toolbar to start a dev server, build, or test, then read its output in the Run console. Astera detects supported scripts and tasks, including npm scripts and standard Gradle/Maven tasks. Detected configurations appear in italics; edit one to save it as your own.</p></article>
+          <article><h3 data-i18n="guide.workspace.158">Worktrees &amp; pull requests</h3><p data-i18n="guide.workspace.159">Choose <strong>Start in a separate worktree</strong> when creating a session in a git repository with a commit and branch. Work on the isolated branch, then use the worktree list to review PR state. Once the branch has new commits, its create-PR action can push it and open a pull request using your existing <code>gh</code> login. Review the target branch and details in the dialog.</p></article>
+          <article><h3>Design Mode</h3><p data-i18n="guide.workspace.160">Open your web page in a tab and turn on <strong>Design Mode</strong>. Pick an element, describe what should change or ask a question, then choose <strong>Send to session</strong>. The agent receives your note, element details, and a cropped screenshot. A tab holds up to twenty notes; navigating away turns Design Mode off.</p></article>
+        </div>
+      </section>
+
+      <section class="guide-section" id="preferences" aria-labelledby="preferences-title">
+        <div class="guide-section-heading"><h2 id="preferences-title" lang="en">Make Astera feel like yours</h2></div>
+        <div class="guide-feature-list">
+          <article><h3 data-i18n="guide.preferences.162">Appearance</h3><p data-i18n="guide.preferences.163">Open <strong>Settings → Appearance</strong> to choose one of seven themes and set your terminal font separately. Theme changes update open terminals while preserving their scrollback.</p></article>
+          <article><h3 data-i18n="guide.preferences.164">Language &amp; shortcuts</h3><p data-i18n="guide.preferences.165">Under <strong>Settings → General → Language</strong>, choose English, Korean, Japanese, Spanish, or System. Open <strong>Settings → Shortcuts</strong> to inspect and remap the controls.</p></article>
+          <article><h3 data-i18n="guide.preferences.166">Desktop notifications</h3><p data-i18n="guide.preferences.167">In <strong>Settings → Notifications</strong>, choose alerts for input needed, waiting on a limit, and account switches. These help you follow a session while you are looking at another session or window.</p></article>
+          <article><h3 data-i18n="guide.preferences.168">App updates</h3><p data-i18n="guide.preferences.169">Open <strong>Settings → Info → Check for updates</strong> and follow the available download/install action. Update support depends on your platform and build. When automatic updates are unavailable, download the matching installer from <a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer">GitHub Releases</a> and follow the <a href="https://github.com/parsingk/Astera#install" target="_blank" rel="noopener noreferrer">installation notes</a>.</p></article>
+        </div>
+      </section>
+
+      <section class="guide-section" id="faq" aria-labelledby="questions-title">
+        <div class="guide-section-heading"><h2 id="questions-title" lang="en">A few useful answers</h2></div>
+        <div class="faq-list">
+          <details><summary data-i18n="guide.faq.178">Do I need both Claude Code and Codex?<svg class="icon"><use href="#i-plus"/></svg></summary><p data-i18n="guide.faq.179">No. Start with either one. Add the other when you want to work with both, including reviews across vendors.</p></details>
+          <details><summary data-i18n="guide.faq.180">Why can’t I start a session?<svg class="icon"><use href="#i-plus"/></svg></summary><p data-i18n="guide.faq.181">Check that you selected a project folder and account, and that the matching CLI is installed and can run in that folder. If you just installed it, restart Astera so it can detect it.</p></details>
+          <details><summary data-i18n="guide.faq.182">Why is a Job waiting for me?<svg class="icon"><use href="#i-plus"/></svg></summary><p data-i18n="guide.faq.183">Open the Job and read its question or Gate message. It can need a usable account, a git branch, a decision, or help after a check fails. The message explains what is blocking progress.</p></details>
+          <details><summary data-i18n="guide.faq.184">Where can I change themes and keyboard shortcuts?<svg class="icon"><use href="#i-plus"/></svg></summary><p data-i18n="guide.faq.185">Open Settings. Appearance offers seven themes and separate terminal font settings. Shortcuts lets you remap the keyboard controls. The app supports English, Korean, Japanese, and Spanish.</p></details>
+        </div>
+        <h3 class="shortcuts-title" data-i18n="guide.faq.186">Useful shortcuts</h3>
+        <p class="guide-small" data-i18n="guide.faq.187">Use Cmd on macOS and Ctrl on Windows or Linux. These are the defaults; you can remap them in Settings.</p>
+        <dl class="guide-shortcuts"><div><dt data-i18n="guide.faq.188">Explorer</dt><dd><kbd>Ctrl / Cmd</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></dd></div><div><dt>Jobs</dt><dd><kbd>Ctrl / Cmd</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd></dd></div><div><dt>How It Works</dt><dd><kbd>Ctrl / Cmd</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></dd></div><div><dt data-i18n="guide.faq.189">Markdown view</dt><dd><kbd>Ctrl / Cmd</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd></dd></div></dl>
+        <div class="guide-finish"><div><h3 data-i18n="guide.faq.190">Ready for your first session?</h3><p data-i18n="guide.faq.191">Start with a folder, an account, and an idea.</p></div><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download data-i18n="guide.faq.192">Get Astera <svg class="icon small"><use href="#i-download"/></svg></a></div>
+        <p class="guide-small guide-help" data-i18n="guide.faq.193">Still need a hand? <a href="https://github.com/parsingk/Astera/issues" target="_blank" rel="noopener noreferrer">Ask on GitHub</a> or explore the <a href="https://github.com/parsingk/Astera#documentation" target="_blank" rel="noopener noreferrer">technical documentation</a>.</p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer container"><div><a class="brand" href="index.html" data-theme-link><img src="assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p data-i18n="guide.common.194">Build beyond the stars.</p></div><div class="footer-links"><a href="index.html" data-theme-link data-i18n="guide.common.195">Home</a><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera#documentation" target="_blank" rel="noopener noreferrer" data-i18n="guide.common.196" data-i18n-href="links.documentation">Docs</a><button class="language-toggle" type="button" lang="ko" aria-label="한국어로 보기">한국어</button><button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon small"><use href="#i-sun"/></svg><span>Light theme</span></button></div><p class="footer-note" data-i18n="guide.common.197">Made for people who build.</p></footer>
+  <dialog id="media-dialog" aria-labelledby="media-title"><div class="dialog-toolbar"><h2 id="media-title" data-i18n="guide.media-title">Astera demo</h2><button class="icon-button dialog-close" type="button" aria-label="Close" data-i18n-aria-label="guide.label199"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="media-content"></div></dialog>
+</body>
+</html>

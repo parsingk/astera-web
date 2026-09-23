@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://astera.run/sitemap.xml
