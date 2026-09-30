@@ -68,6 +68,8 @@
 .guide-disclosure > div { padding-bottom: 18px; }
 .guide-disclosure p { font-size: 13px; }
 .guide-content code { overflow-wrap: anywhere; background: var(--soft); padding: 2px 5px; border-radius: 4px; color: var(--ink); font-size: .9em; }
+.guide-content .command-example code { padding: 0; background: none; font: inherit; overflow-wrap: normal; }
+.cli-step-title { margin-top: 32px; font-size: 18px; letter-spacing: -.4px; }
 .guide-feature-list { margin-top: 27px; }
 .guide-feature-list article { display: grid; grid-template-columns: 165px minmax(0, 1fr); gap: 26px; padding-block: 24px; border-top: 1px solid var(--line); }
 .guide-feature-list article:last-child { padding-bottom: 0; }

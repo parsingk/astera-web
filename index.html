@@ -33,7 +33,7 @@
     document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
   </script>
   <link rel="stylesheet" href="styles.css">
-  <script src="locales/ko.js?v=20260923-2" defer></script>
+  <script src="locales/ko.js?v=20260930-1" defer></script>
   <script src="language.js?v=20260923-2" defer></script>
   <script src="main.js?v=20260923-2" defer></script>
   <script src="downloads.js" defer></script>
@@ -166,8 +166,33 @@
       <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3 data-i18n="home.workflow.72">Define the goal. Set the bar.</h3><p data-i18n="home.workflow.73">Break work into tasks. Add dependencies, tests, and review requirements.</p></div></li><li><span class="step-number">02</span><div><h3 data-i18n="home.workflow.74">Let the right agents get to work.</h3><p data-i18n="home.workflow.75">A coordinator dispatches ready tasks to Claude and Codex, and keeps track of progress.</p></div></li><li><span class="step-number">03</span><div><h3 data-i18n="home.workflow.76">Check. Refine. Check again.</h3><p data-i18n="home.workflow.77">With auto-fix enabled, failed checks and blocking review findings return to the worker for repair, until the checks pass or the retry limit is reached.</p></div></li></ol>
     </div></section>
 
+    <section class="host-section cli-section container" id="headless-cli" aria-labelledby="cli-title">
+      <div class="host-copy">
+        <p class="section-kicker" lang="en">Headless CLI</p>
+        <h2 id="cli-title" lang="en">Your terminal.<br>The whole workflow.</h2>
+        <p data-i18n="home.cli.body">Start Claude and Codex, run Jobs, and follow checks from your shell—with the app window closed. The local Host dispatches workers, manages worktrees, and keeps configured validation, review, and account rolling moving.</p>
+        <p data-i18n="home.cli.continuity">Plan with <code>/astera-orchestration</code>, run from the terminal, then reopen Astera to see the same work in the Jobs graph. JSON output and exit codes connect it to your own scripts.</p>
+        <p class="feature-footnote" data-i18n="home.cli.install">Install the command once in <strong>Settings → CLI</strong>, then open a new shell and run <code>astera version</code>.</p>
+        <a class="text-button" href="guide.html#headless-cli" data-theme-link data-i18n="home.cli.guide">Set up the CLI <svg class="icon small"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="cli-preview">
+        <div class="cli-toolbar"><span class="live-dot" aria-hidden="true"></span><span lang="en">astera / CLI</span><span data-i18n="home.cli.example">Example commands</span></div>
+        <pre class="command-example" tabindex="0"><code><span class="command-comment" data-i18n="home.cli.start"># Start the local Host</span>
+astera host start
+
+<span class="command-comment" data-i18n="home.cli.run"># Pick a Job, then start a run</span>
+astera jobs list --human
+astera jobs run --id JOB_ID
+
+<span class="command-comment" data-i18n="home.cli.follow"># Follow the returned run ID</span>
+astera runs follow --id RUN_ID --human
+astera runs checks --id RUN_ID --human</code></pre>
+        <p class="cli-caption" data-i18n="home.cli.availability">Available in develop builds with the CLI. Replace JOB_ID and RUN_ID with your IDs. Requires a configured, awake computer and a running Host.</p>
+      </div>
+    </section>
+
     <section class="host-section container" aria-labelledby="host-title">
-      <div class="host-copy"><p class="section-kicker" lang="en">Astera Host</p><h2 id="host-title" lang="en">Close the app.<br>Come back to the work.</h2><p data-i18n="home.host.body">A separate local host keeps its Terminal and Chat processes running when Astera quits. Reopen the app to reconnect to those live sessions, without starting the agent again.</p><a class="text-button" href="guide.html#host" data-theme-link data-i18n="home.host.guide">What stays running <svg class="icon small"><use href="#i-arrow"/></svg></a></div><div class="host-diagram"><div class="host-window" data-i18n="home.host.window"><svg class="icon"><use href="#i-window"/></svg><span>App window<strong>Quit → reopen</strong></span></div><p class="host-connector" data-i18n="home.host.reconnect">Reconnect to the live session</p><div class="host-process"><span class="live-dot"></span><strong lang="en">Astera Host</strong><span data-i18n="home.host.running">Terminal &amp; Chat processes keep running</span></div><p class="host-boundary" data-i18n="home.host.boundary">For host-managed sessions on an awake computer. Keep Astera open for scheduling, account rolling, and Job coordination.</p></div>
+      <div class="host-copy"><p class="section-kicker" lang="en">Astera Host</p><h2 id="host-title" lang="en">Close the app.<br>Come back to the work.</h2><p data-i18n="home.host.body">A separate local host keeps its Terminal and Chat processes running when Astera quits. Reopen the app to reconnect to those live sessions, without starting the agent again.</p><a class="text-button" href="guide.html#host" data-theme-link data-i18n="home.host.guide">What stays running <svg class="icon small"><use href="#i-arrow"/></svg></a></div><div class="host-diagram"><div class="host-window" data-i18n="home.host.window"><svg class="icon"><use href="#i-window"/></svg><span>App window<strong>Quit → reopen</strong></span></div><p class="host-connector" data-i18n="home.host.reconnect">Reconnect to the live session</p><div class="host-process"><span class="live-dot"></span><strong lang="en">Astera Host</strong><span data-i18n="home.host.running">Terminal &amp; Chat processes keep running</span></div><p class="host-boundary" data-i18n="home.host.boundary">For host-managed sessions on an awake computer. Older builds need the app for scheduling, account rolling, and Job coordination; CLI-capable develop builds can use the Host. See the CLI guide for scheduling limits.</p></div>
     </section>
 
     <section class="workspace-section section container" aria-labelledby="workspace-title"><div class="workspace-heading"><p class="section-kicker" data-i18n="home.common.78">Everything within reach</p><h2 id="workspace-title" lang="en">Stay in your flow.</h2><p data-i18n="home.common.80">Your code, browser, and terminals. Finally in the same place.</p></div><div class="workspace-features"><article><svg class="icon"><use href="#i-window"/></svg><h3 data-i18n="home.common.81">A workspace that fits you</h3><p data-i18n="home.common.82">Put sessions and files side by side. Split and arrange panes around the way you work.</p></article><article><svg class="icon"><use href="#i-branch"/></svg><h3 data-i18n="home.common.83">Separate branches. Clear progress.</h3><p data-i18n="home.common.84">Give each task its own worktree. Keep changes isolated and pull request status in view.</p></article><article><svg class="icon"><use href="#i-plus"/></svg><h3 data-i18n="home.common.85">Point to what you mean</h3><p data-i18n="home.common.86">Pick an element in Design Mode. Send your notes, its details, and a screenshot straight to a session.</p></article></div></section>

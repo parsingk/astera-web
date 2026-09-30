@@ -232,6 +232,15 @@ h3 { font-size: 26px; line-height: 1.23; letter-spacing: -.9px; }
 .host-process strong { font-size: 15px; font-weight: 600; }
 .host-process > span:last-child { grid-column: 2; font-size: 11px; color: var(--muted); }
 .host-boundary { margin-top: 17px; color: var(--muted); font-size: 11px; line-height: 1.8; }
+.cli-section { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.cli-preview { min-width: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--paper); }
+.cli-toolbar { display: flex; align-items: center; gap: 9px; padding: 15px 22px; border-bottom: 1px solid var(--line); font-size: 11px; }
+.cli-toolbar > span:last-child { margin-left: auto; color: var(--muted); font-size: 10px; }
+.command-example { margin: 22px 0; padding: 20px 22px; max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); font: 12px/1.9 ui-monospace, SFMono-Regular, Consolas, monospace; tab-size: 2; }
+.command-example code { font: inherit; }
+.command-comment { color: var(--muted); }
+.cli-preview .command-example { margin: 0; border: 0; border-radius: 0; }
+.cli-caption { padding: 0 22px 22px; color: var(--muted); font-size: 11px; line-height: 1.8; }
 .workspace-section { border-bottom: 1px solid var(--line); }
 .workspace-heading { text-align: center; }
 .workspace-heading > p:last-child { color: var(--muted); font-size: 14px; margin-top: 19px; }

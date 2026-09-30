@@ -48,6 +48,7 @@ The design review includes Korean/English controls and **Check languages**. All 
 
 ## Included
 
+- Headless CLI overview and bilingual [CLI guide](http://127.0.0.1:5173/guide.html#headless-cli): command installation, Host capabilities, sessions, skill-planned Jobs, progress and checks, user questions, and script exit codes. Based on the app's `develop` source; availability and scheduling limits are explicit. Earlier-build Host guidance is kept with a version qualifier.
 - Responsive landing page with real Astera screenshots and original icon.
 - Product emphasis backed by the app's implementation: Smart Resume checkpoints, the Jobs dependency graph, `/astera-orchestration`, and local Host session continuity. The [positioning notes](docs/product-positioning.md) record sources and the limits of each claim.
 - A [Guide](http://127.0.0.1:5173/guide.html) covering the first session, Terminal/Chat, history, account rolling, scheduling, Slack, Jobs, How It Works, workspace tools, and settings. Includes a responsive table of contents and the existing product demos.
@@ -59,7 +60,9 @@ The design review includes Korean/English controls and **Check languages**. All 
 
 The main navigation and footer link to the Guide. Moving between the landing page and Guide keeps the selected theme and language. The design review has Home/Guide controls for checking both pages at the same viewport sizes. Smart Resume, How It Works, and Agent browser have no experimental badge; the Guide explains how to enable each feature.
 
-The latest product-emphasis update adds dedicated Smart Resume, orchestration-skill, and Host guides, and moves Optional features into the Work with Astera group. Its 38 browser language checks and static reference/translation checks passed. The full layout rerun stopped at a 30-second browser-helper timeout, so the layout and interaction results above describe the preceding iteration. Final visual captures of this content update are not yet available.
+The 2026-09-30 CLI update was checked against Astera `develop` at `fd48e939`: **Settings → CLI**, Windows user PATH registration, Terminal/Chat sessions, Chat permissions, skill installation, Job questions, and Host replacement after an incompatible update. All 29 command examples match the source's command and option definitions. Search/download checks, generated Korean pages, and 38 browser language checks passed. The 16 layout combinations checked (Home/Guide × English/Korean × dark/light × 1440/320px) had no page-wide overflow, broken images, or missing anchors; long Guide commands scroll inside their code blocks. These checks verify the website and source agreement; they do not launch agent sessions or Jobs. See the [dated source and verification notes](docs/product-positioning.md).
+
+The earlier product-emphasis update added dedicated Smart Resume, orchestration-skill, and Host guides, and moved Optional features into the Work with Astera group. Its 38 browser language checks and static reference/translation checks passed. At that stage, the full layout rerun stopped at a 30-second browser-helper timeout and final visual captures were unavailable. The dated CLI verification above records the current checks.
 
 Initial Guide validation: 30 interaction checks passed; the landing page passed 22. Both pages were checked at 1440, 768, 390, and 320px in both themes. Saved images are from earlier landing-page iterations; a Guide capture was unavailable because the agent browser did not paint within its screenshot timeout.
 

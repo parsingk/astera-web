@@ -33,7 +33,7 @@
     document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
   </script>
   <link rel="stylesheet" href="styles.css">
-  <script src="locales/ko.js?v=20260923-2" defer></script>
+  <script src="locales/ko.js?v=20260930-1" defer></script>
   <script src="language.js?v=20260923-2" defer></script>
   <script src="main.js?v=20260923-2" defer></script>
   <script src="downloads.js" defer></script>
@@ -166,8 +166,33 @@
       <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3 data-i18n="home.workflow.72">목표와 완료 기준을 정하세요.</h3><p data-i18n="home.workflow.73">할 일을 작업으로 나누고, 의존 관계와 테스트, 리뷰 조건을 추가하세요.</p></div></li><li><span class="step-number">02</span><div><h3 data-i18n="home.workflow.74">맞는 에이전트에게 맡기세요.</h3><p data-i18n="home.workflow.75">코디네이터가 시작할 수 있는 작업을 Claude와 Codex에 배분하고 진행 상황을 추적합니다.</p></div></li><li><span class="step-number">03</span><div><h3 data-i18n="home.workflow.76">검사하고, 고치고, 다시 확인하세요.</h3><p data-i18n="home.workflow.77">자동 수정을 켜면 실패한 검사와 리뷰의 주요 지적을 워커에게 돌려보냅니다. 검사를 통과하거나 재시도 한도에 도달할 때까지 수정과 확인을 반복합니다.</p></div></li></ol>
     </div></section>
 
+    <section class="host-section cli-section container" id="headless-cli" aria-labelledby="cli-title">
+      <div class="host-copy">
+        <p class="section-kicker" lang="en">Headless CLI</p>
+        <h2 id="cli-title" lang="en">Your terminal.<br>The whole workflow.</h2>
+        <p data-i18n="home.cli.body">앱 창을 닫은 채로 터미널에서 Claude와 Codex를 실행하고, Jobs와 검사 결과를 확인하세요. 로컬 Host가 워커 배분과 워크트리 관리를 맡고, 설정한 검증·리뷰·계정 자동 전환을 이어갑니다.</p>
+        <p data-i18n="home.cli.continuity"><code>/astera-orchestration</code>으로 계획하고 터미널에서 실행하세요. Astera를 다시 열면 같은 작업을 Jobs 그래프에서 볼 수 있습니다. JSON 출력과 종료 코드로 나만의 스크립트에도 연결할 수 있습니다.</p>
+        <p class="feature-footnote" data-i18n="home.cli.install"><strong>설정 → CLI</strong>에서 명령을 한 번 설치한 뒤, 새 터미널에서 <code>astera version</code>으로 확인하세요.</p>
+        <a class="text-button" href="guide.ko.html#headless-cli" data-theme-link data-i18n="home.cli.guide">CLI 설정하기 <svg class="icon small"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="cli-preview">
+        <div class="cli-toolbar"><span class="live-dot" aria-hidden="true"></span><span lang="en">astera / CLI</span><span data-i18n="home.cli.example">명령어 예시</span></div>
+        <pre class="command-example" tabindex="0"><code><span class="command-comment" data-i18n="home.cli.start"># 로컬 Host 시작</span>
+astera host start
+
+<span class="command-comment" data-i18n="home.cli.run"># Job을 선택하고 실행 시작</span>
+astera jobs list --human
+astera jobs run --id JOB_ID
+
+<span class="command-comment" data-i18n="home.cli.follow"># 반환된 실행 ID로 진행 상황 확인</span>
+astera runs follow --id RUN_ID --human
+astera runs checks --id RUN_ID --human</code></pre>
+        <p class="cli-caption" data-i18n="home.cli.availability">CLI가 포함된 develop 빌드에서 사용할 수 있습니다. JOB_ID와 RUN_ID를 실제 ID로 바꾸세요. 계정 설정을 마친 컴퓨터가 깨어 있고 Host가 실행 중이어야 합니다.</p>
+      </div>
+    </section>
+
     <section class="host-section container" aria-labelledby="host-title">
-      <div class="host-copy"><p class="section-kicker" lang="en">Astera Host</p><h2 id="host-title" lang="en">Close the app.<br>Come back to the work.</h2><p data-i18n="home.host.body">별도의 로컬 호스트가 맡은 터미널·채팅 프로세스는 Astera를 종료해도 실행을 이어갑니다. 앱을 다시 열어 살아 있는 세션에 돌아오세요. 에이전트를 처음부터 실행할 필요가 없습니다.</p><a class="text-button" href="guide.ko.html#host" data-theme-link data-i18n="home.host.guide">유지되는 작업 알아보기 <svg class="icon small"><use href="#i-arrow"/></svg></a></div><div class="host-diagram"><div class="host-window" data-i18n="home.host.window"><svg class="icon"><use href="#i-window"/></svg><span>앱 화면<strong>종료 → 다시 열기</strong></span></div><p class="host-connector" data-i18n="home.host.reconnect">실행 중인 세션에 다시 연결</p><div class="host-process"><span class="live-dot"></span><strong lang="en">Astera Host</strong><span data-i18n="home.host.running">터미널·채팅 프로세스 실행 유지</span></div><p class="host-boundary" data-i18n="home.host.boundary">컴퓨터가 깨어 있고 호스트가 관리하는 세션에 적용됩니다. 예약·계정 자동 전환·Job 조율을 계속하려면 Astera를 켜 두세요.</p></div>
+      <div class="host-copy"><p class="section-kicker" lang="en">Astera Host</p><h2 id="host-title" lang="en">Close the app.<br>Come back to the work.</h2><p data-i18n="home.host.body">별도의 로컬 호스트가 맡은 터미널·채팅 프로세스는 Astera를 종료해도 실행을 이어갑니다. 앱을 다시 열어 살아 있는 세션에 돌아오세요. 에이전트를 처음부터 실행할 필요가 없습니다.</p><a class="text-button" href="guide.ko.html#host" data-theme-link data-i18n="home.host.guide">유지되는 작업 알아보기 <svg class="icon small"><use href="#i-arrow"/></svg></a></div><div class="host-diagram"><div class="host-window" data-i18n="home.host.window"><svg class="icon"><use href="#i-window"/></svg><span>앱 화면<strong>종료 → 다시 열기</strong></span></div><p class="host-connector" data-i18n="home.host.reconnect">실행 중인 세션에 다시 연결</p><div class="host-process"><span class="live-dot"></span><strong lang="en">Astera Host</strong><span data-i18n="home.host.running">터미널·채팅 프로세스 실행 유지</span></div><p class="host-boundary" data-i18n="home.host.boundary">깨어 있는 컴퓨터의 Host 관리 세션에 적용됩니다. 이전 빌드에서는 예약·계정 전환·Job 조율에 앱이 필요하고, CLI가 포함된 develop 빌드는 Host가 맡을 수 있습니다. 예약의 유지 조건은 CLI 가이드를 확인하세요.</p></div>
     </section>
 
     <section class="workspace-section section container" aria-labelledby="workspace-title"><div class="workspace-heading"><p class="section-kicker" data-i18n="home.common.78">필요한 것을 가까이에</p><h2 id="workspace-title" lang="en">Stay in your flow.</h2><p data-i18n="home.common.80">코드, 브라우저, 터미널을 한곳에서.</p></div><div class="workspace-features"><article><svg class="icon"><use href="#i-window"/></svg><h3 data-i18n="home.common.81">내 방식에 맞는 작업 공간</h3><p data-i18n="home.common.82">세션과 파일을 나란히 놓으세요. 작업 방식에 맞게 패널을 나누고 배치할 수 있습니다.</p></article><article><svg class="icon"><use href="#i-branch"/></svg><h3 data-i18n="home.common.83">독립된 브랜치, 명확한 진행 상황</h3><p data-i18n="home.common.84">작업마다 별도의 워크트리를 사용하세요. 변경 사항을 분리하고 풀 리퀘스트 상태도 함께 확인합니다.</p></article><article><svg class="icon"><use href="#i-plus"/></svg><h3 data-i18n="home.common.85">원하는 곳을 직접 가리키세요</h3><p data-i18n="home.common.86">Design Mode에서 화면 요소를 선택하세요. 메모와 요소 정보, 스크린샷을 세션으로 바로 전달합니다.</p></article></div></section>

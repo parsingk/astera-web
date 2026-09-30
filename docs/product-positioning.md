@@ -1,8 +1,46 @@
 # Astera 기능 강조 근거
 
-조사·반영일: 2026-09-22. 로컬 앱 `D:\parsingk\astera`의 현재 코드와 문서, 공식 제품 소개를 대조했다. 로컬 앱 버전은 1.3.25이며 이 문서는 최신 공개 릴리스에 모든 변경이 들어 있다고 보증하지 않는다.
+최초 조사·반영일: 2026-09-22. 당시 로컬 앱 `D:\parsingk\astera`의 코드와 문서, 공식 제품 소개를 대조했다. 당시 로컬 앱 버전은 1.3.25였다. 아래 기록은 날짜별 구현을 설명하며, 최신 공개 릴리스에 모든 변경이 들어 있다고 보증하지 않는다.
 
-## 강조할 가치
+## 2026-09-30: 최신 develop CLI 설치·사용법 대조
+
+`git fetch origin develop` 후 로컬 `develop`과 `origin/develop`이 모두 `fd48e939f0001fbcdde9bbdddc563d2a46f05a18`임을 확인했다. 기존 Headless CLI 소개와 사용 흐름을 이 커밋의 [README](https://github.com/parsingk/Astera/blob/fd48e939f0001fbcdde9bbdddc563d2a46f05a18/README.md), [CLI 문서](https://github.com/parsingk/Astera/blob/fd48e939f0001fbcdde9bbdddc563d2a46f05a18/docs/cli.md), 소스에 맞췄다. 아래 9월 27일의 설치 메뉴와 9월 22일의 Host 범위는 당시 기록이며, 현재 안내는 이 절을 기준으로 한다.
+
+- **설치 메뉴와 PATH:** `src/renderer/src/App.tsx`의 CLI 탭과 `components/CliSettings.tsx`를 확인했다. 메인과 Guide에 **Settings → CLI**를 안내한다. Windows는 기본으로 켜진 사용자 PATH 체크박스로 설치 폴더를 등록하고 새 터미널부터 사용할 수 있다. macOS·Linux는 필요한 경우 패널의 PATH 명령을 실행한다. 한국어 버튼명은 `src/core/i18n/messages/ko.ts`와 맞췄다.
+- **세션과 사람의 응답:** `cliUsage.ts` 및 `command.ts`의 `sessions-create`, `sessions-send`, `chats-answer`, `questions-answer`를 대조했다. 세션 목록, 화면을 읽은 뒤 추가 입력하는 순서, Chat 생성과 권한 요청 처리, Job 질문의 상세 조회를 보강했다. Chat 질문은 앱에서 답하며, 일반 셸의 사용자만 CLI로 Chat 권한 요청에 답할 수 있다.
+- **스킬과 실행:** `skills list`·`skills install`은 앱과 Host 없이 계정의 스킬 상태를 확인·설치할 수 있다. 설치 후 새 세션이 필요하다. Job/Run/Session ID는 각각의 생성·실행 응답에서 가져오도록 명시했다. `jobs run`이 Run을 반환하는 처리와 `runs follow`·`runs checks`·`runs wait` 옵션도 대조했다.
+- **Host 호환성과 오류:** `src/cli/host.ts`의 `siblingHostError`와 명령 정의를 확인했다. 구형 Host 교체는 `host start --replace` 또는 업데이트한 앱을 여는 방법으로 설명하고, 해당 Host의 세션이 종료됨을 함께 알린다. 종료 코드 3/6/9와 JSON 오류 필드, 변경 명령의 응답 유실 시 재시도 전 상태 확인을 추가했다. 실제 Host 교체나 에이전트 실행은 수행하지 않았다.
+- **실행 범위:** `src/host/features.ts`, `src/host/index.ts`, CLI 문서에서 워커·워크트리·검사·리뷰·계정 전환과 Slack 인계 조건을 재확인했다. 컴퓨터가 깨어 있어야 하며 미래 예약만으로 Host가 유지되지 않는 조건도 유지한다.
+
+검증:
+
+- 수정 전후 검색 검사 7개, 다운로드 8개 시나리오와 버튼 5개 검사가 통과했다. 잘못된 설치 메뉴를 확인하는 검사는 수정 전에 실패하고 수정 후 통과했다.
+- 네 공개 페이지의 번역 키, 중복 ID, 로컬 앵커 검사 통과. Guide의 영문·한국어 명령 블록 일치와 예제 29개의 명령·옵션 정의 대조를 통과했다. `build_locales.py --check`, 번역 JavaScript 문법 검사와 `git diff --check`도 통과했다.
+- Astera Agent browser에서 언어 검사 38개 통과. 메인/Guide × 한·영 × 다크·라이트 × 1440/320px의 16가지 배치를 확인했다. 문서 전체 가로 넘침, 깨진 이미지·앵커, 최종 배치 검사 콘솔·네트워크 오류 없음. Guide 검사기의 `code` 넘침 표시는 `overflow-x: auto`인 명령 블록 내부이며 페이지 폭을 늘리지 않는다.
+- 한국어 정적 Guide의 Headless CLI 목차 이동과 화면 캡처를 확인했다. 첫 로드·언어 전환 검사에서 각각 폰트 `ERR_CACHE_MISS`, 이미지 `ERR_FAILED`가 일시 기록됐고, 이후 배치 검사에서는 두 자원 모두 정상 로드됐다. 실제 CLI 세션·Job 실행 검증은 이 문서 작업 범위에 포함하지 않았다.
+
+## 2026-09-27: develop Headless CLI 추가
+
+로컬 `develop`의 CLI 소스와 도움말, Host 구성, 실제 orchestration 명령 처리를 직접 확인했다. 확인 기준 커밋은 `c308069c6f6618801c93dfdc7f2a7eaf30c7ac57`이며, 공개 릴리스에 포함됐다는 뜻은 아니다. 아래의 2026-09-22 조사 기록은 이전 빌드의 동작을 설명하기 위해 보존한다. 특히 기존 Host 항목의 앱 실행 필요 조건은 이 CLI 지원 빌드에는 그대로 적용되지 않는다.
+
+- **사용 가치:** 앱 창 없이 터미널에서 에이전트와 Jobs를 시작하고, 검사·질문·결과를 추적한다. 앱을 다시 열면 같은 세션과 Jobs 그래프를 확인한다. 메인 `#headless-cli`와 Guide `#headless-cli`에 영·한으로 반영했다.
+- **설치:** Settings → Agents의 Command line tool에서 설치하는 `astera` 명령이다. 설치된 앱을 Node 모드로 실행하는 진입점이며 별도 npm 패키지가 아니다. Windows는 `%LOCALAPPDATA%\astera\bin`, macOS/Linux는 `~/.local/bin`; 필요한 PATH 설정은 패널 안내를 따른다.
+- **Host의 실행 범위:** `spawn`, `worktrees`, `dispatch`, `rolling` 기능을 제공하는 Host는 앱 종료 후에도 워커 실행, 워크트리, 코디네이터 없는 Job의 자동 배분·검사·리뷰·제한된 수정 재시도, 계정 전환을 처리한다. Slack도 지원 Host가 인계할 수 있다. `host status`로 실제 기능을 확인하도록 안내한다.
+- **작업 흐름:** `/astera-orchestration` 계획을 기본으로 소개하고, `jobs list` → `jobs run` → 반환된 실행 ID로 `runs follow`/`runs checks`를 설명한다. 직접 `jobs create`와 `tasks add`로 계획하는 방법은 접힌 부가 안내로 둔다. Job ID와 Run ID를 구분한다.
+- **자동화 계약:** JSON 기본 출력, `--human`, `--quiet`, `runs follow`의 NDJSON, `runs wait`의 종료 코드 0/7/8/10을 설명한다. 대기 시간 초과나 조회 중단은 Job 취소가 아니다. 계정·앱·프로젝트가 준비된 로컬 CI 실행 환경만을 예로 들고, 설치 없는 원격 실행이나 클라우드 호스팅을 약속하지 않는다.
+- **유지 조건:** 컴퓨터가 깨어 있고 Host가 살아 있어야 한다. 클라이언트와 활성 작업이 없는 Host는 약 1분 후 종료한다. 미래 예약만으로 Host가 유지되지 않으므로 예약 시작에는 앱을 켜 두도록 안내한다. 이전 빌드의 앱 실행 필요 조건도 버전을 한정해 유지했다.
+- **관련 설정:** develop은 orchestration 스킬을 항상 제공한다. 이전 빌드의 설정 토글 안내에는 버전 조건을 붙였다. 다른 선택 기능의 설정은 변경하지 않았다.
+
+확인한 소스:
+
+- 앱 `src/cli/index.ts`, `src/cli/run.ts`, `src/cli/host.ts`: CLI 진입, 출력 형식, Host 시작·상태·종료.
+- 앱 `src/core/orchestration/cliUsage.ts`, `src/core/orchestration/command.ts`: 지원 명령·옵션과 실제 세션/Job/작업/질문/대기 처리.
+- 앱 `src/host/index.ts`: `composeHostDriving`, `composeHostRolling`, `composeHostSlack` 구성과 기능 제공 조건.
+- 앱 `docs/cli.md`: 설치 경로, 버전 호환성, 예제, Host 수명, 종료 코드 및 사용 제약. 공개 참조: [develop CLI 문서](https://github.com/parsingk/Astera/blob/develop/docs/cli.md).
+
+검증: 기존 검색 검사 7개, 다운로드 8개 시나리오와 버튼 5개 검사, 한국어 정적 페이지 일치 검사, 번역 파일 문법 검사, 네 공개 페이지의 CLI 번역 키·ID·앵커·명령 블록 검사를 통과했다. 실제 CLI 작업은 실행하지 않고 명령 정의와 처리 소스를 대조했다. 이번 세션에서 연결 가능한 브라우저가 없어 화면 배치와 목차 클릭의 브라우저 검증은 남아 있다.
+
+## 2026-09-22 조사: 강조할 가치
 
 **맥락을 이어받고, 여러 에이전트의 작업 관계를 보고, 실제 검사 결과로 다음 단계에 진입하는 작업 공간.**
 
