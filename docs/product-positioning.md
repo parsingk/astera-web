@@ -2,6 +2,20 @@
 
 최초 조사·반영일: 2026-09-22. 당시 로컬 앱 `D:\parsingk\astera`의 코드와 문서, 공식 제품 소개를 대조했다. 당시 로컬 앱 버전은 1.3.25였다. 아래 기록은 날짜별 구현을 설명하며, 최신 공개 릴리스에 모든 변경이 들어 있다고 보증하지 않는다.
 
+## 2026-10-03: MCP와 Host 작업 기록 대조
+
+로컬 Astera `develop`과 로컬 `origin/develop`이 모두 `ff9b3e7841b3ca9a9c88cf89b6b5a7171bb939b0`을 가리키는 상태에서 [MCP 문서](https://github.com/parsingk/Astera/blob/ff9b3e7841b3ca9a9c88cf89b6b5a7171bb939b0/docs/mcp.md), `src/core/install/mcpRegistration.ts`, `src/core/settings/mcpAccess.ts`, `mcpSessions.ts`, `mcpGithubWrite.ts`, `src/renderer/src/components/McpSettings.tsx`와 한국어 설정 문구를 확인했다. 이번 확인에서는 원격 저장소를 새로 가져오지 않았으며 공개 릴리스 포함 여부도 확인하지 않았다.
+
+- **같은 Host:** `astera mcp serve`는 로컬 MCP 클라이언트가 실행하는 stdio 서버다. CLI와 앱이 쓰는 Host에 연결하며, MCP로 생성한 Job은 앱과 CLI에도 나타난다. 로컬 클라이언트가 연결할 때 Host가 없으면 시작한다.
+- **연결:** Settings → CLI에서 명령을 설치한 뒤 Claude Code·Codex·Cursor용 운영체제별 설정 줄을 복사한다. Claude Code와 Codex에는 등록 버튼이 있으며 기본 사용자 설정에 등록한다. Astera가 별도로 관리하는 계정은 MCP 설정을 추가로 해야 할 수 있다.
+- **범위와 권한:** Job 생성·작업 계획·Run 추적·검사 조회, 선택적 세션 제어, GitHub PR·CI·이슈, How It Works 조회·재생성 기능을 안내한다. MCP 접근 기본값은 읽기와 제어다. 세션 접근과 GitHub 쓰기는 별도의 기본 꺼짐 설정이며, GitHub 도구에는 Host 컴퓨터의 `gh` 설치와 로그인이 필요하다.
+- **HTTP:** 선택형 HTTP 연결은 기본 꺼짐이며 기본 주소는 `127.0.0.1:7871/mcp`다. 다른 기기에서 쓰려면 네트워크 허용과 Astera가 표시하는 주소 및 Bearer 토큰이 필요하다. 일반 HTTP에서는 토큰이 암호화되지 않으므로 신뢰할 수 있는 사설망에서만 사용하고 인터넷 포트 공개를 안내하지 않는다. HTTP 연결은 중지된 Host를 시작하지 않는다.
+- **바뀐 작업 기록 조건:** `docs/mcp.md`의 How It Works 설명에 따라 Host는 추적 설정과 무관하게 완료된 Jobs 실행 회차를 기록한다. 일반 세션은 추적 설정을 켠 동안 기록한다. 기존 Guide의 ‘설정 → 일반’ 경로와 ‘추적을 켜야 Jobs도 기록됨’ 문구를 현재 Settings → How It Works 및 Host 동작으로 갱신했다.
+- **웹 표현:** 기존 CLI와 Host 섹션의 스타일을 재사용해 홈 `#mcp`, Guide `#mcp`, 한국어 정적 페이지를 추가했다. 새 의존성이나 앱 화면을 가장한 이미지는 없다.
+- **메인 게시 문구:** 사용자의 메인 게시 지시에 따라 공개 페이지의 개발 브랜치 한정·구형 빌드 안내를 제거하고 기술 문서 링크는 `main`으로 연결했다. 아래 날짜별 조사 기록의 브랜치와 커밋은 확인 근거로 보존한다.
+
+검증: 수정 전 검색 검사 7개와 다운로드 라우팅 8개 시나리오·버튼 5개 검사가 통과했다. 수정 후에도 동일 검사를 실행했고, 번역 페이지 생성 일치, 네 공개 페이지의 번역 키·중복 ID·내부 앵커, 번역 JavaScript 문법과 `git diff --check`를 확인했다. 실제 MCP 연결이나 Job 실행은 이 웹 문서 작업에서 수행하지 않았다. 로컬 브라우저 화면 확인은 `astera browser js`가 `HOST_NOT_RUNNING`을 반환하고 `astera host start`가 5초 안에 응답하지 않아 진행하지 못했다.
+
 ## 2026-09-30: 최신 develop CLI 설치·사용법 대조
 
 `git fetch origin develop` 후 로컬 `develop`과 `origin/develop`이 모두 `fd48e939f0001fbcdde9bbdddc563d2a46f05a18`임을 확인했다. 기존 Headless CLI 소개와 사용 흐름을 이 커밋의 [README](https://github.com/parsingk/Astera/blob/fd48e939f0001fbcdde9bbdddc563d2a46f05a18/README.md), [CLI 문서](https://github.com/parsingk/Astera/blob/fd48e939f0001fbcdde9bbdddc563d2a46f05a18/docs/cli.md), 소스에 맞췄다. 아래 9월 27일의 설치 메뉴와 9월 22일의 Host 범위는 당시 기록이며, 현재 안내는 이 절을 기준으로 한다.
