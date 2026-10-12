@@ -48,6 +48,8 @@ The design review includes Korean/English controls and **Check languages**. All 
 
 ## Included
 
+- [Remote Runtime overview](http://127.0.0.1:5173/#remote-runtime) and bilingual [setup guide](http://127.0.0.1:5173/guide.html#remote-runtime): Settings-based pairing and revocation, remote Jobs and sessions, CLI/MCP targeting, and Host scheduling and restart conditions.
+- [Creative Hub](http://127.0.0.1:5173/guide.html#creative-hub) for Higgsfield accounts, credits, workspaces, and user-chosen switching; [media viewer](http://127.0.0.1:5173/guide.html#media-viewer) and [agent app workspace](http://127.0.0.1:5173/guide.html#agent-app) explanations. Jobs covers git changes/diffs, and Host covers recovery without the app open.
 - Headless CLI overview and bilingual [CLI guide](http://127.0.0.1:5173/guide.html#headless-cli): command installation, Host capabilities, sessions, skill-planned Jobs, progress and checks, user questions, and script exit codes. The guide explains setup, scheduling limits, and Host requirements.
 - Bilingual [MCP overview](http://127.0.0.1:5173/#mcp) and [connection guide](http://127.0.0.1:5173/guide.html#mcp): local client registration, Jobs and checks, optional session and GitHub access, How It Works records, and token-protected HTTP for other devices. The guide states the access defaults and network limits.
 - Responsive landing page with real Astera screenshots and original icon.
@@ -60,6 +62,8 @@ The design review includes Korean/English controls and **Check languages**. All 
 - Download buttons that select the latest Windows installer, macOS disk image, or Linux AppImage from the official Astera GitHub release, plus documentation links to the repository.
 
 The main navigation and footer link to the Guide. Moving between the landing page and Guide keeps the selected theme and language. The design review has Home/Guide controls for checking both pages at the same viewport sizes. Smart Resume, How It Works, and Agent browser have no experimental badge; the Guide explains how to enable each feature.
+
+The 2026-10-12 feature update was checked against local Astera `develop` at `20965bed` (v1.4.11). It adds Remote Runtime, Creative Hub, media viewing, Run diffs, Host recovery, and agent workspace/feature introductions in both languages. It qualifies the older local Host scheduling advice: enabling Remote keeps that Host running for future Jobs and questions, while the Runtime machine must remain awake. See the [dated source and verification notes](docs/product-positioning.md) for the evidence and checks.
 
 The 2026-10-03 MCP update was checked against local Astera `develop` at `ff9b3e78`: `docs/mcp.md`, MCP registration and access code, and the Settings UI. It also updates the How It Works explanation for Host-managed Jobs. See the [dated source and verification notes](docs/product-positioning.md) for its checks. The earlier 2026-09-30 CLI update was checked against `fd48e939`: **Settings → CLI**, Windows user PATH registration, Terminal/Chat sessions, Chat permissions, skill installation, Job questions, and Host replacement after an incompatible update. All 29 command examples matched the source's command and option definitions. Search/download checks, generated Korean pages, and 38 browser language checks passed. The 16 layout combinations checked (Home/Guide × English/Korean × dark/light × 1440/320px) had no page-wide overflow, broken images, or missing anchors; long Guide commands scroll inside their code blocks. Those checks did not launch agent sessions or Jobs.
 

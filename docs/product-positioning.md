@@ -2,6 +2,32 @@
 
 최초 조사·반영일: 2026-09-22. 당시 로컬 앱 `D:\parsingk\astera`의 코드와 문서, 공식 제품 소개를 대조했다. 당시 로컬 앱 버전은 1.3.25였다. 아래 기록은 날짜별 구현을 설명하며, 최신 공개 릴리스에 모든 변경이 들어 있다고 보증하지 않는다.
 
+## 2026-10-12: v1.4.11까지의 기능 보강
+
+로컬 Astera `develop`의 `20965bedfdc061f6e7021dd034bbb101900bb58b`(v1.4.11)을 기준으로, 웹의 마지막 대조 기준 `ff9b3e78` 이후 변경과 v1.4.4–v1.4.11 릴리스 노트를 확인했다. 수정 전 공개 홈·Guide의 영문·한국어 HTML 4페이지는 HTTP 200을 반환했고, 줄바꿈을 정규화한 로컬 파일과 모두 일치했다. 이 기록은 소스·웹 설명 대조이며 실제 원격 페어링, 생성 작업, Job 복구를 실행한 결과는 아니다.
+
+| 기능 | 반영 위치 | 확인 근거 |
+| --- | --- | --- |
+| Remote Runtime: 다른 컴퓨터의 Jobs·세션, 설정에서 켜기·페어링·해제, CLI/MCP, 원격 터미널 크기 | 홈·Guide `#remote-runtime`, Guide 목차와 기능 찾기, CLI/MCP 연결 안내 | 앱 `docs/remote-runtime.md`, `docs/mcp.md`, v1.4.9–v1.4.11 노트, `RemoteRuntimesSettings.tsx`, 앱 한·영 메뉴 문구 |
+| Creative Hub: Higgsfield 계정·워크스페이스·크레딧과 사용자 선택에 따른 전환 | 홈 작업 공간 소개, Guide `#creative-hub` | v1.4.4·v1.4.7 노트, `CreativeHubSettings.tsx`, `cliUsage.ts`의 Higgsfield 명령, 앱 한·영 메뉴 문구 |
+| 미디어 뷰어: 터미널·대화 첨부·탐색기·Markdown 링크, 재생 위치와 파일 재생성 | 홈 작업 공간 소개, Guide `#media-viewer` | v1.4.5·v1.4.11 노트 |
+| Run의 git 변경 파일·diff | 홈 Jobs 설명, Guide `#jobs` | v1.4.9 노트, `RunDetail.tsx`의 `ChangedFilesBlock` |
+| 앱 없이 수행하는 Host의 Job 복구 | 홈 Host 설명, Guide `#host` | v1.4.9 노트, `docs/remote-runtime.md`의 복구 조건 |
+| 에이전트 기능 안내·앱 작업 공간과 미러 | 홈 작업 공간 소개, Guide `#agent-app`과 선택 기능 설명 | v1.4.7·v1.4.8 노트, `docs/agent-workspace-isolation.md`, 앱 설정 문구 |
+
+표현의 조건:
+
+- 컨트롤러와 Runtime을 구분한다. 컨트롤러가 잠들어도 원격 작업은 계속되지만 Runtime 자체는 깨어 있어야 한다. 최초 설정에 앱이 필요하고, 재부팅·충돌 후 Host 시작에는 운영체제별 `runtime serve` 설정이 필요함을 설명한다.
+- 기존 MCP over HTTP 안내를 유지하고, 별도의 TLS·페어링 기반 Remote Runtime과 구분한다. 읽기 전용 기본값, 전체 제어 범위, 일회용 문자열과 해제 방법을 안내한다.
+- 기존 Host의 유휴 종료·예약 설명에 **Remote가 꺼진 경우**라는 조건을 추가한다. Remote가 켜져 있으면 미래 예약이나 질문만 있어도 Host가 유지된다. 이전 날짜별 조사 기록은 당시 동작의 근거로 보존하며 현재 사용법은 이번 설명을 따른다.
+- Job 복구와 실행 중인 터미널 프로세스의 생존을 구분한다. Host를 재시작하면 일반 터미널 세션은 유지되지 않는다.
+- Higgsfield 계정은 Claude·Codex 계정과 별도이며, 크레딧 부족 시 사용자가 전환할 계정을 선택한다. 앱 미러에는 운영체제별 차이와 macOS의 제약을 함께 안내한다.
+- 기존 카드·개념도·가이드 형식을 재사용했다. CSS, 동작 JavaScript, 의존성, 실제 앱 이미지·녹화는 바꾸지 않았다.
+
+검증: 수정 전후 검색 검사 7개, 다운로드 라우팅 8개 시나리오·버튼 5개 검사와 한국어 생성 페이지 일치 검사가 통과했다. Astera Agent browser의 언어 검사 38개, 홈/Guide × 한·영 × 다크·라이트 × 1440/320px 16개 조합에서 페이지 전체 가로 넘침·깨진 이미지·누락 앵커가 없었다. Guide의 긴 명령어는 기존 스크롤 가능한 코드 블록 안에서만 넘친다. 언어 검사 중 폰트 요청에 일시적인 `ERR_CACHE_MISS`가 있었고 이후 직접 페이지 확인에서는 콘솔·네트워크 오류가 없었다.
+
+네 공개 페이지의 번역 키·중복 ID·내부 앵커, Guide 19개 섹션과 목차의 순서, 한·영 명령 블록 일치, 번역 JavaScript 문법과 `git diff --check`도 통과했다. 홈에서 새 가이드로 이동하고, 한국어 Remote Runtime·Creative Hub 목차 이동과 CLI/MCP 펼침 내용을 화면 캡처로 확인했다. 공개 반영은 `main` 브랜치의 루트 파일을 사용하는 GitHub Pages 배포 경로를 따른다.
+
 ## 2026-10-03: MCP와 Host 작업 기록 대조
 
 로컬 Astera `develop`과 로컬 `origin/develop`이 모두 `ff9b3e7841b3ca9a9c88cf89b6b5a7171bb939b0`을 가리키는 상태에서 [MCP 문서](https://github.com/parsingk/Astera/blob/ff9b3e7841b3ca9a9c88cf89b6b5a7171bb939b0/docs/mcp.md), `src/core/install/mcpRegistration.ts`, `src/core/settings/mcpAccess.ts`, `mcpSessions.ts`, `mcpGithubWrite.ts`, `src/renderer/src/components/McpSettings.tsx`와 한국어 설정 문구를 확인했다. 이번 확인에서는 원격 저장소를 새로 가져오지 않았으며 공개 릴리스 포함 여부도 확인하지 않았다.
