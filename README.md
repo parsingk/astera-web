@@ -48,6 +48,8 @@ The design review includes Korean/English controls and **Check languages**. All 
 
 ## Included
 
+- Bilingual [plugin guide](http://127.0.0.1:5173/guide.html#plugins) for folder/npm installation, permissions, settings, secrets, logs, and event/notification providers; [SDK and events](http://127.0.0.1:5173/guide.html#sdk) for Node.js integrations on the local Host.
+- [Jobs from issues](http://127.0.0.1:5173/guide.html#job-sources) through the source picker, CLI, and MCP, with GitHub and plugin source requirements. [Plugin completion checks](http://127.0.0.1:5173/guide.html#completion-plugins) covers Task attachment, findings, repair, unavailable-check decisions, and Runtime installation. The workspace guide also covers terminal file/folder links.
 - [Remote Runtime overview](http://127.0.0.1:5173/#remote-runtime) and bilingual [setup guide](http://127.0.0.1:5173/guide.html#remote-runtime): Settings-based pairing and revocation, remote Jobs and sessions, CLI/MCP targeting, and Host scheduling and restart conditions.
 - [Creative Hub](http://127.0.0.1:5173/guide.html#creative-hub) for Higgsfield accounts, credits, workspaces, and user-chosen switching; [media viewer](http://127.0.0.1:5173/guide.html#media-viewer) and [agent app workspace](http://127.0.0.1:5173/guide.html#agent-app) explanations. Jobs covers git changes/diffs, and Host covers recovery without the app open.
 - Headless CLI overview and bilingual [CLI guide](http://127.0.0.1:5173/guide.html#headless-cli): command installation, Host capabilities, sessions, skill-planned Jobs, progress and checks, user questions, and script exit codes. The guide explains setup, scheduling limits, and Host requirements.
@@ -62,6 +64,10 @@ The design review includes Korean/English controls and **Check languages**. All 
 - Download buttons that select the latest Windows installer, macOS disk image, or Linux AppImage from the official Astera GitHub release, plus documentation links to the repository.
 
 The main navigation and footer link to the Guide. Moving between the landing page and Guide keeps the selected theme and language. The design review has Home/Guide controls for checking both pages at the same viewport sizes. Smart Resume, How It Works, and Agent browser have no experimental badge; the Guide explains how to enable each feature.
+
+The 2026-10-16 follow-up checks Astera v1.4.14 at `58c2893c`, matching the freshly fetched `origin/develop`. It adds finding limits/counts, event payload details, provider helpers and cancellation, notification catch-up/expiry, log limits, and the macOS manual-install action to both Guide languages. The [dated source notes](docs/product-positioning.md) distinguish these Guide updates from internal performance fixes.
+
+The 2026-10-15 Guide update was checked against local Astera `develop` at `0cb5d195`, including the plugin, SDK, source picker, and completion-check changes planned for the next main release. At the user's direction, these are documented as regular features with main-branch reference links. The implementation references and verification results are in the [dated source notes](docs/product-positioning.md).
 
 The 2026-10-12 feature update was checked against local Astera `develop` at `20965bed` (v1.4.11). It adds Remote Runtime, Creative Hub, media viewing, Run diffs, Host recovery, and agent workspace/feature introductions in both languages. It qualifies the older local Host scheduling advice: enabling Remote keeps that Host running for future Jobs and questions, while the Runtime machine must remain awake. See the [dated source and verification notes](docs/product-positioning.md) for the evidence and checks.
 

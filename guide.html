@@ -31,7 +31,7 @@
   </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="guide.css">
-  <script src="locales/ko.js?v=20261012-1" defer></script>
+  <script src="locales/ko.js?v=20261016-1" defer></script>
   <script src="language.js?v=20260923-2" defer></script>
   <script src="main.js?v=20260923-2" defer></script>
   <script src="downloads.js" defer></script>
@@ -84,9 +84,13 @@
           <a href="#scheduling" data-i18n="guide.common.25">Scheduled sessions</a>
           <a href="#slack" data-i18n="guide.common.26">Slack updates &amp; replies</a>
           <a href="#jobs" data-i18n="guide.common.27">Jobs &amp; completion checks</a>
+          <a href="#job-sources" data-i18n="guide.sources.nav">Jobs from issues</a>
+          <a href="#completion-plugins" data-i18n="guide.checks.nav">Plugin completion checks</a>
           <a href="#orchestration" data-i18n="guide.orchestration.nav">The orchestration skill</a>
           <a href="#headless-cli" lang="en">Headless CLI</a>
           <a href="#mcp" lang="en">MCP</a>
+          <a href="#plugins" data-i18n="guide.plugins.nav">Plugins</a>
+          <a href="#sdk" lang="en">SDK &amp; events</a>
           <a href="#remote-runtime" lang="en">Remote Runtime</a>
           <a href="#host" data-i18n="guide.host.nav">Host &amp; session continuity</a>
           <a href="#how-it-works">How It Works</a>
@@ -120,8 +124,12 @@
           <a href="#smart-resume"><span data-i18n="guide.resume.find">Give the next session the context it needs</span><span>Smart Resume <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#scheduling"><span data-i18n="guide.overview.50">Run a prompt on a schedule</span><span data-i18n="guide.overview.51">Scheduling <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#jobs"><span data-i18n="guide.overview.52">Split a larger task between agents</span><span>Jobs <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+          <a href="#job-sources"><span data-i18n="guide.sources.find">Turn an issue or ticket into a Job</span><span data-i18n="guide.sources.nav">Jobs from issues</span></a>
+          <a href="#completion-plugins"><span data-i18n="guide.checks.find">Add your own completion rules to a Task</span><span data-i18n="guide.checks.nav">Plugin completion checks</span></a>
           <a href="#headless-cli"><span data-i18n="guide.cli.find">Run agents and Jobs from your terminal or scripts</span><span lang="en">Headless CLI <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#mcp"><span data-i18n="guide.mcp.find">Let an MCP client manage Astera work</span><span lang="en">MCP <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+          <a href="#plugins"><span data-i18n="guide.plugins.find">Connect notifications and tools through plugins</span><span data-i18n="guide.plugins.nav">Plugins</span></a>
+          <a href="#sdk"><span data-i18n="guide.sdk.find">Build a script, bot, or dashboard on Astera</span><span lang="en">SDK &amp; events <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#remote-runtime"><span data-i18n="guide.remote.find">Run work on another computer</span><span lang="en">Remote Runtime <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#creative-hub"><span data-i18n="guide.creative.find">Choose a Higgsfield account for creative work</span><span lang="en">Creative Hub <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#host"><span data-i18n="guide.host.find">Return to live sessions after an app restart</span><span>Astera Host <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
@@ -231,6 +239,55 @@
         <button class="text-button guide-demo" type="button" data-demo="jobs" data-i18n="guide.jobs.128"><svg class="icon small"><use href="#i-play"/></svg> Watch a Job from start to checks</button>
       </section>
 
+      <section class="guide-section" id="job-sources" aria-labelledby="sources-title">
+        <div class="guide-section-heading"><h2 id="sources-title" lang="en">Start with the issue. Keep its context.</h2></div>
+        <p data-i18n="guide.sources.intro">Make a Job from an open GitHub issue or a ticket supplied by a <a href="#plugins">job-source plugin</a>. Astera carries the source material into the objective, names the Job after the ticket, and keeps a link back to it.</p>
+        <ol class="guide-instructions">
+          <li data-i18n="guide.sources.open">Select your local git project in <strong>Jobs</strong>, then click <strong>+ From a source</strong>. The repository needs a commit and a checked-out branch, just like other Jobs.</li>
+          <li data-i18n="guide.sources.pick">Choose a source, search its items, and select one to read its description and fields. <strong>More</strong> loads the next page. <strong>Job exists</strong> opens a Job already made from that item; making another is allowed.</li>
+          <li data-i18n="guide.sources.make">Choose a <strong>Coordinator account</strong> and, if wanted, enable automatic repair. Click <strong>Make the job</strong>, review the saved Job, then click <strong>Run</strong> when ready. Creating it does not start execution.</li>
+        </ol>
+        <div class="guide-feature-list">
+          <article><h3 data-i18n="guide.sources.github-title">GitHub issues</h3><p data-i18n="guide.sources.github">Install and sign in to <code>gh</code> on the Host computer. Astera reads open issues from the repository named by the project's git remote. Only issues by an owner, member, or collaborator can become Jobs. Closed issues and pull requests cannot be used; an unavailable item shows its reason.</p></article>
+          <article><h3 data-i18n="guide.sources.plugin-title">Plugin sources</h3><p data-i18n="guide.sources.plugin">Install and configure a plugin that offers <code>job-source</code>, such as the <a href="https://github.com/parsingk/Astera/tree/main/examples/plugins/linear-source" target="_blank" rel="noopener noreferrer">Linear source sample</a>. A source that needs settings or cannot run explains why. Fix its settings in <strong>Settings → Plugins</strong>, then retry.</p></article>
+        </div>
+        <details class="guide-disclosure"><summary data-i18n="guide.sources.cli-title">Create from a source with the CLI or MCP</summary><div>
+          <p data-i18n="guide.sources.cli">Use the project ID from <code>projects list</code>, your coordinator's ACCOUNT_ID, and an actual issue number in place of 12. The create command returns JOB_ID; run it separately when ready. Plugin sources use their plugin ID and ticket ID instead of <code>github</code> and the issue number.</p>
+          <pre class="command-example" tabindex="0"><code>astera projects list --human
+astera sources list --human
+astera sources items --source github --project PROJECT_ID --human
+astera sources show --source github --item 12 --project PROJECT_ID --human
+astera jobs create-from-source --source github --item 12 --project PROJECT_ID --coordinator-account ACCOUNT_ID
+astera jobs run --id JOB_ID</code></pre>
+          <p data-i18n="guide.sources.mcp">MCP clients use <code>list_job_sources</code>, <code>list_source_items</code>, <code>get_source_item</code>, and <code>create_job_from_source</code>, then <code>run_job</code>. Creation needs <strong>Read and control</strong>; GitHub sources also need <strong>Let MCP clients act on GitHub</strong>.</p>
+        </div></details>
+        <div class="guide-note" data-i18n="guide.sources.limits"><strong>Sources belong to this computer.</strong> The source picker, CLI, and MCP do not list a paired Runtime's sources. Ticket text is carried as quoted material for the agent to assess. If creation loses its reply, inspect Jobs before trying again: the Job may already exist.</div>
+      </section>
+
+      <section class="guide-section" id="completion-plugins" aria-labelledby="completion-plugins-title">
+        <div class="guide-section-heading"><h2 id="completion-plugins-title" lang="en">Check completion by your own rules.</h2></div>
+        <p data-i18n="guide.checks.intro">A <code>completion-check</code> plugin can check a Task's changes and return a summary, findings with file names and line numbers, and a report link. For example, the <a href="https://github.com/parsingk/Astera/tree/main/examples/plugins/debug-leftovers" target="_blank" rel="noopener noreferrer">debug-leftovers sample</a> finds added console logs, debuggers, TODOs, and FIXMEs.</p>
+        <ol class="guide-instructions">
+          <li data-i18n="guide.checks.install">Install and enable a trusted check plugin in <strong>Settings → Plugins</strong>. Installing it does not attach it to any Task.</li>
+          <li data-i18n="guide.checks.attach">When adding a local Task, choose its plugin checks beside the run configurations. With the CLI, use <code>plugin:PLUGIN_ID</code> in <code>--validate</code>, using the ID from <code>astera plugins list</code>. Multiple checks run in the listed order and stop at the first failure.</li>
+          <li data-i18n="guide.checks.read">After the worker reports done, open the Task's completion details for its summary, findings, and report link. With automatic repair enabled, a failed check sends those findings back to the worker within the Job's repair limit.</li>
+        </ol>
+        <pre class="command-example" tabindex="0"><code>astera plugins list --human
+astera tasks add --job JOB_ID --account ACCOUNT_ID --spec "Implement the change and verify it" --validate plugin:PLUGIN_ID
+astera runs checks --id RUN_ID --human</code></pre>
+        <p class="guide-small" data-i18n="guide.checks.commands">Add the Task before starting the Job, then use the resulting RUN_ID to read its checks. You can mix run configuration IDs and plugin IDs in one comma-separated <code>--validate</code> list. A missing, disabled, or unsuitable plugin is refused with <code>PLUGIN_CAPABILITY_MISSING</code>.</p>
+        <p data-i18n="guide.checks.findings">Astera keeps the first <strong>20 findings</strong> of a plugin check and shows how many more there are when a total is available. Open the plugin's report link, when provided, for the full report. A passed check keeps its summary and link, with no findings. Plugin authors can return the first 20 as <code>diagnostics</code> and the full count as <code>diagnosticsTotal</code>.</p>
+        <h3 class="cli-step-title" data-i18n="guide.checks.unavailable-title">When a check could not be made</h3>
+        <p data-i18n="guide.checks.unavailable">A missing token, unavailable service, or stopped plugin is a check error, rather than a finding against the code. Astera retries it once immediately. If it still cannot run, the Task waits for your answer without spending a repair attempt. Open the question and choose:</p>
+        <div class="guide-feature-list">
+          <article><h3 data-i18n="guide.checks.retry-title">Run the checks again</h3><p data-i18n="guide.checks.retry">After fixing the cause, choose <strong>Run the checks again</strong> (<code>retry</code>) to restart this Task's check list from the beginning.</p></article>
+          <article><h3 data-i18n="guide.checks.skip-title">Go on without this check</h3><p data-i18n="guide.checks.skip">Choose <strong>Go on without this check</strong> (<code>skip-check</code>) to continue this round. The record marks the check as skipped, and the remaining checks run.</p></article>
+          <article><h3 data-i18n="guide.checks.fail-title">Mark the Task failed</h3><p data-i18n="guide.checks.fail">Choose <strong>Mark the Task failed</strong> (<code>mark-failed</code>) to end the Task as failed.</p></article>
+        </div>
+        <p data-i18n="guide.checks.surfaces">In a shell, use <code>astera questions answer --id QUESTION_ID --answer retry</code>, or substitute one of the other two answers. A <code>check-unavailable</code> question accepts only those three values. MCP's <code>get_completion</code> and the SDK's <code>completion.get</code> carry the findings; plugin checks have no terminal output for <code>get_check_output</code> to read.</p>
+        <div class="guide-note" data-i18n="guide.checks.remote"><strong>Remote checks run on the Runtime.</strong> Install the plugin there. The local Task picker does not list that computer's plugin checks; add them with <code>astera --runtime RUNTIME_ID tasks add --run RUN_ID --spec "Describe the task" --validate plugin:PLUGIN_ID</code>, using that Runtime's Run and plugin IDs.</div>
+      </section>
+
       <section class="guide-section" id="orchestration" aria-labelledby="orchestration-title">
         <div class="guide-section-heading"><h2 id="orchestration-title" lang="en">Give the goal. Let an agent coordinate.</h2></div><p data-i18n="guide.orchestration.intro"><code>/astera-orchestration</code> gives an Astera session a way to supervise multi-step work across Claude and Codex. The coordinator creates tasks, dispatches workers, waits for reports, and brings decisions back to you. The run stays visible in Jobs.</p><ol class="guide-instructions"><li data-i18n="guide.orchestration.enable">Open a <strong>new coordinator session</strong> in your project so the orchestration skill is loaded at startup. Astera provides it to every session it starts.</li><li data-i18n="guide.orchestration.ask">Describe the objective, which agent should do each part, the order, and how to check the result. Register usable accounts for the providers you request.</li><li data-i18n="guide.orchestration.watch">Open the project’s <strong>Jobs</strong> sidebar to follow the graph. Read questions and Gates when the coordinator needs a decision. Review the result before bringing changes into your project.</li></ol><blockquote class="prompt-example"><code>/astera-orchestration</code><p data-i18n="guide.orchestration.example">Refactor the sign-in flow with Claude. After that, have Codex add regression tests. Run the project’s tests and request a cross-vendor review. If checks fail, repair and check again within three attempts. Ask me when a decision is needed.</p></blockquote><div class="guide-note" data-i18n="guide.orchestration.boundary"><strong>Use it when coordination matters.</strong> Dependencies, worker reports, and completion checks make it useful for larger work. A single small task can stay in a normal session. Cross-vendor review requires a usable account from the other provider and uses its quota.</div>
       </section>
@@ -335,6 +392,71 @@ astera runs wait --id RUN_ID --timeout-ms 3600000</code></pre>
         <p class="guide-small" data-i18n="guide.mcp.reference">For client configuration, every tool, access rules, and HTTP troubleshooting, read the <a href="https://github.com/parsingk/Astera/blob/main/docs/mcp.md" target="_blank" rel="noopener noreferrer">MCP reference</a>.</p>
       </section>
 
+      <section class="guide-section" id="plugins" aria-labelledby="plugins-title">
+        <div class="guide-section-heading"><h2 id="plugins-title" lang="en">Plugins. Connect Astera to your tools.</h2></div>
+        <p data-i18n="guide.plugins.intro">Plugins are programs Astera starts and stops with its Host. They can send notifications to your own services, react to events, supply tickets for Jobs, or check completed work. Each runs in its own process using Astera's bundled Node; installing a plugin does not require a separate Node.js installation.</p>
+        <ol class="guide-instructions">
+          <li data-i18n="guide.plugins.install">Open <strong>Settings → Plugins</strong>. Choose <strong>Install from a folder…</strong> for a prepared plugin folder, or <strong>Install by package name</strong> for a plugin published on npm.</li>
+          <li data-i18n="guide.plugins.approve">Review its identity, version, capabilities, and requested permissions. Uncheck permissions you do not want to grant, then approve the installation.</li>
+          <li data-i18n="guide.plugins.configure">Use the plugin's <strong>Configure</strong> button to enter required options and secrets. Saving restarts a running plugin. The list shows its state and why it cannot run; use <strong>Logs</strong> to investigate. A failed plugin needs <strong>Start again</strong> after its settings are corrected.</li>
+          <li data-i18n="guide.plugins.manage">Use <strong>Disable</strong> to keep it installed without running it, or <strong>Remove</strong> to delete it together with its settings, secrets, and logs.</li>
+        </ol>
+        <div class="guide-note" data-i18n="guide.plugins.trust"><strong>Install plugins you trust.</strong> A plugin runs as you and can access your files, network, and programs. Its permissions limit requests to Astera; they do not sandbox its access to your computer. Plugin installation and changes must be approved by you in Settings or your own shell; an Astera agent session cannot make them.</div>
+        <div class="guide-feature-list">
+          <article><h3 data-i18n="guide.plugins.notifications-title">Notifications and events</h3><p data-i18n="guide.plugins.notifications">Notification providers receive messages in your Astera language for open questions, sessions needing input, failed or completed Runs, exhausted repairs, usage limits, and account switches. The <a href="https://github.com/parsingk/Astera/tree/main/examples/plugins/discord-notifier" target="_blank" rel="noopener noreferrer">Discord notifier sample</a> shows one integration. Event plugins receive Host events in order and retry delivery after a handler fails.</p></article>
+          <article><h3 data-i18n="guide.plugins.work-title">Sources and completion checks</h3><p data-i18n="guide.plugins.work">A <code>job-source</code> provider adds tickets to <a href="#job-sources">From source</a>. A <code>completion-check</code> provider adds a check you can attach to a <a href="#completion-plugins">Task's completion policy</a>. The plugin list shows what each installed plugin offers.</p></article>
+        </div>
+        <p data-i18n="guide.plugins.delivery">Event plugins resume from their saved position after a restart or time disabled, within the Host's event retention. Removing a plugin removes its saved position. Delivery can repeat an event, so an integration should deduplicate by event ID. Notifications more than an hour old when delivery reaches them are skipped and counted in the log.</p>
+        <details class="guide-disclosure"><summary data-i18n="guide.plugins.logs-title">Why are some log lines missing?</summary><div>
+          <p data-i18n="guide.plugins.logs">To keep a noisy plugin from slowing Astera, plugin output is limited to 1,000 lines or 1,048,576 characters per second. Extra lines are omitted and counted in a Host log entry. When the plugin ends, the last 20 omitted lines are also written so a crash can retain its stack trace. Host log entries are not dropped.</p>
+        </div></details>
+        <details class="guide-disclosure"><summary data-i18n="guide.plugins.cli-title">Manage plugins from your own shell</summary><div>
+          <p data-i18n="guide.plugins.cli">After <a href="#headless-cli">installing the astera command</a>, run these in an ordinary terminal. Replace PLUGIN_PATH with the prepared plugin folder and PLUGIN_ID with its package name. The first command previews the request and installs nothing; after reviewing it, repeat with <code>--yes</code> to approve, or <code>--grant</code> for selected permissions.</p>
+          <pre class="command-example" tabindex="0"><code>astera plugins install --path "PLUGIN_PATH"
+astera plugins list --human
+astera plugins settings --id PLUGIN_ID
+astera plugins logs --id PLUGIN_ID
+astera plugins doctor --id PLUGIN_ID</code></pre>
+          <p data-i18n="guide.plugins.npm">For npm, use <code>astera plugins install --npm PACKAGE_NAME</code> to inspect a published plugin before approving it. Astera can fetch the npm tooling itself. If a company network blocks installation, follow the error's proxy or prepared-folder guidance.</p>
+        </div></details>
+        <p class="guide-small" data-i18n="guide.plugins.limits">Plugins do not keep an otherwise idle Host alive. Repeated crashes mark a plugin as failed; inspect its log before restarting it. For manifests, permissions, secret handling, packaging, and provider examples, read the <a href="https://github.com/parsingk/Astera/blob/main/docs/plugins.md" target="_blank" rel="noopener noreferrer">plugin author guide</a>.</p>
+      </section>
+
+      <section class="guide-section" id="sdk" aria-labelledby="sdk-title">
+        <div class="guide-section-heading"><h2 id="sdk-title" lang="en">SDK. Build on the same Host.</h2></div>
+        <p data-i18n="guide.sdk.intro">Use the official TypeScript client, <code>@astera-app/client</code>, to build a script, CI step, bot, or dashboard. It reaches the same Host as the app, CLI, and MCP. Jobs created through it appear in Astera and keep running after your program exits.</p>
+        <p class="guide-small" data-i18n="guide.sdk.versions">Astera 1.4.14 adds Job source metadata and plugin check results to <code>@astera-app/client</code> 0.3.0, and event, notification, job-source, and completion-check providers to <code>@astera-app/plugin-sdk</code> 0.2.0.</p>
+        <ol class="guide-instructions">
+          <li data-i18n="guide.sdk.install">Install Node.js 22 or later and Astera, and set up your agent accounts. In your integration project, install the client from npm. ESM, CommonJS, and TypeScript types are included.</li>
+          <li data-i18n="guide.sdk.host">Open Astera or run <code>astera host start</code>. The client connects to an existing Host; it does not start one itself. A script launched inside an Astera session inherits that session's profile.</li>
+          <li data-i18n="guide.sdk.try">Try a read-only call first. Save the example as <code>list-jobs.mjs</code> and run <code>node list-jobs.mjs</code>. Close the client when your script finishes.</li>
+        </ol>
+        <pre class="command-example" tabindex="0"><code>npm install @astera-app/client</code></pre>
+        <pre class="command-example" tabindex="0"><code>import { createAsteraClient } from '@astera-app/client'
+
+const astera = await createAsteraClient()
+try {
+  const { items } = await astera.jobs.list({ status: 'running' })
+  for (const job of items) console.log(job.id, job.objective)
+} finally {
+  astera.close()
+}</code></pre>
+        <div class="guide-feature-list">
+          <article><h3 data-i18n="guide.sdk.work-title">Create, follow, and inspect work</h3><p data-i18n="guide.sdk.work">Use typed calls for projects, Jobs, Runs, Tasks, questions, and completion. A Job is saved with <code>jobs.create</code>, started with <code>jobs.run</code>, and followed with <code>runs.wait</code> or <code>runs.follow</code>. Read plugin check summaries and findings with <code>completion.get</code>. Use request IDs when changing work so retries do not create duplicates.</p></article>
+          <article><h3 data-i18n="guide.sdk.events-title">Follow the public event log</h3><p data-i18n="guide.sdk.events">Read pages with <code>events.list</code> or subscribe with <code>events.subscribe</code>. The log survives Host restarts and includes Job, Run, Task, question, completion, and session events. Session events cover input needed, usage-limit waiting, and account switches; Codex Terminal input prompts are not observable by the Host.</p></article>
+          <article><h3 data-i18n="guide.sdk.resume-title">Resume your integration</h3><p data-i18n="guide.sdk.resume">Save a cursor to resume after your program restarts. Events can be delivered more than once, so deduplicate by event ID. Retention is bounded; if a subscription reports a gap, reload the current objects before continuing.</p></article>
+        </div>
+        <p data-i18n="guide.sdk.event-findings">A Job made from a ticket carries its origin in <code>source</code>. Task and completion events carry a plugin check's finding count as <code>diagnosticsTotal</code>, rather than the findings themselves. Read <code>tasks.get</code> or <code>completion.get</code> for the retained findings, and <code>externalUrl</code> for the full report when the plugin supplies one.</p>
+        <details class="guide-disclosure"><summary data-i18n="guide.sdk.providers-title">Write a plugin with the plugin SDK</summary><div>
+          <p data-i18n="guide.sdk.providers-install">In your plugin project, install the helpers below. The plugin's <code>ctx.astera</code> is a client of the Host, limited to the Astera permissions you granted it.</p>
+          <pre class="command-example" tabindex="0"><code>npm install @astera-app/plugin-sdk</code></pre>
+          <p data-i18n="guide.sdk.providers">Use <code>definePlugin</code> with <code>onEvent</code> for event handling, <code>defineNotificationProvider</code> with <code>send</code> for notifications, <code>defineJobSourceProvider</code> with <code>listItems</code>, <code>getItem</code>, and <code>buildJobContext</code> for tickets, or <code>defineCompletionCheckProvider</code> with <code>runCheck</code> for checks. Declare the matching capability in the plugin manifest.</p>
+          <p data-i18n="guide.sdk.cancellation">Pass the handler's <code>ctx.signal</code> to requests and other work that supports cancellation. It aborts when the plugin stops or Astera stops waiting for that call: after 30 seconds for events and notifications, 15 seconds for a source call, or 30 minutes for a completion check. A handler that ignores the signal can keep working alongside a retry; the signal does not forcibly end that work.</p>
+        </div></details>
+        <div class="guide-note" data-i18n="guide.sdk.limits"><strong>The SDK connects locally from Node.js.</strong> It has no browser build, HTTP mode, or paired Runtime target. For remote control, use the CLI or MCP. The client and plugin SDK have their own versions; check their changelogs alongside your Astera version when updating.</div>
+        <p class="guide-small" data-i18n="guide.sdk.reference">To write a plugin, install <code>@astera-app/plugin-sdk</code>; it provides <code>definePlugin</code> and helpers for event, notification, job-source, and completion-check providers. See the <a href="https://github.com/parsingk/Astera/blob/main/docs/sdk.md" target="_blank" rel="noopener noreferrer">SDK guide</a> for connection errors, request IDs, cancellation, events, and runnable examples, and the <a href="https://github.com/parsingk/Astera/blob/main/docs/plugins.md" target="_blank" rel="noopener noreferrer">plugin guide</a> for providers.</p>
+      </section>
+
       <section class="guide-section" id="remote-runtime" aria-labelledby="remote-guide-title">
         <div class="guide-section-heading"><h2 id="remote-guide-title" lang="en">Remote Runtime. Work on another computer.</h2></div>
         <p data-i18n="guide.remote.intro">The <strong>Runtime</strong> runs your agents and Jobs; the <strong>controller</strong> is the computer you use to manage them. Work stays on the Runtime when the controller sleeps, shuts down, or loses its connection.</p>
@@ -402,6 +524,7 @@ astera --runtime RUNTIME_ID runs follow --id RUN_ID --human</code></pre>
         <div class="guide-feature-list">
           <article><h3 data-i18n="guide.workspace.150">Files &amp; split panes</h3><p data-i18n="guide.workspace.151">Open files beside the session changing them. Split right or down to compare work. The explorer shows git status and offers file actions such as rename, copy, and reveal in your file manager. Use the project terminal to run commands yourself.</p></article>
           <article><h3 data-i18n="guide.workspace.152">Markdown preview</h3><p data-i18n="guide.workspace.153">Open a Markdown file, then press <strong>Ctrl/Cmd + Shift + V</strong> to cycle between editor, split view, and preview. In split view, the editor and preview follow each other’s scrolling.</p></article>
+          <article id="terminal-paths"><h3 data-i18n="guide.paths.title">Open paths from terminal output</h3><p data-i18n="guide.paths.body">Click a recognized file or folder path printed by an agent. A folder within the project shown in the explorer expands and becomes selected there; other folders open in your file manager. Quoted paths with spaces, paths beside Korean, Japanese, or Chinese text, and paths wrapped across terminal lines can be recognized. If a file is created after its name was printed, hover it again once the file exists to get its link.</p></article>
           <article id="media-viewer"><h3 data-i18n="guide.media.title">Images and videos</h3><p data-i18n="guide.media.body">Double-click an image or video in the explorer, or open its link in a terminal, a conversation attachment, or a Markdown preview. The media viewer tab offers playback and seeking, <strong>Open in default app</strong>, and <strong>Show in folder</strong>. Switching tabs pauses video and keeps its position. A regenerated file reloads after writing finishes and resumes where you were. Explorer renames and moves follow the tab; deleting the file closes it.</p></article>
           <article><h3 data-i18n="guide.workspace.154">Restore a deleted file</h3><p data-i18n="guide.workspace.155">For a deletion captured by Astera, right-click in the explorer and choose <strong>Local History…</strong>. Select the item and click <strong>Restore</strong>. If its old path is occupied, the restored copy gets another name. Snapshots are kept for up to 30 days within the project’s size budget; items over 50 MB are excluded.</p></article>
           <article><h3 data-i18n="guide.workspace.156">Run your project</h3><p data-i18n="guide.workspace.157">Select a configuration in the Run toolbar to start a dev server, build, or test, then read its output in the Run console. Astera detects supported scripts and tasks, including npm scripts and standard Gradle/Maven tasks. Detected configurations appear in italics; edit one to save it as your own.</p></article>
@@ -432,7 +555,7 @@ astera higgsfield use --account ACCOUNT_ID</code></pre>
           <article><h3 data-i18n="guide.preferences.162">Appearance</h3><p data-i18n="guide.preferences.163">Open <strong>Settings → Appearance</strong> to choose one of seven themes and set your terminal font separately. Theme changes update open terminals while preserving their scrollback.</p></article>
           <article><h3 data-i18n="guide.preferences.164">Language &amp; shortcuts</h3><p data-i18n="guide.preferences.165">Under <strong>Settings → General → Language</strong>, choose English, Korean, Japanese, Spanish, or System. Open <strong>Settings → Shortcuts</strong> to inspect and remap the controls.</p></article>
           <article><h3 data-i18n="guide.preferences.166">Desktop notifications</h3><p data-i18n="guide.preferences.167">In <strong>Settings → Notifications</strong>, choose alerts for input needed, waiting on a limit, and account switches. These help you follow a session while you are looking at another session or window.</p></article>
-          <article><h3 data-i18n="guide.preferences.168">App updates</h3><p data-i18n="guide.preferences.169">Open <strong>Settings → Info → Check for updates</strong> and follow the available download/install action. Update support depends on your platform and build. When automatic updates are unavailable, download the matching installer from <a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer">GitHub Releases</a> and follow the <a href="https://github.com/parsingk/Astera#install" target="_blank" rel="noopener noreferrer">installation notes</a>.</p></article>
+          <article><h3 data-i18n="guide.preferences.168">App updates</h3><p data-i18n="guide.preferences.169">Open <strong>Settings → Info → Check for updates</strong> and follow the available download/install action. Update support depends on your platform and build. When automatic updates are unavailable, download the matching installer from <a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer">GitHub Releases</a> and follow the <a href="https://github.com/parsingk/Astera#install" target="_blank" rel="noopener noreferrer">installation notes</a>.</p><p data-i18n="guide.preferences.manual">On macOS, if a downloaded update cannot install automatically, the notification offers <strong>Install by hand</strong>, matching the title bar and Settings. Use that action and follow the manual installation instructions.</p></article>
         </div>
       </section>
 
