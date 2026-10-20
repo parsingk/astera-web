@@ -48,6 +48,7 @@ The design review includes Korean/English controls and **Check languages**. All 
 
 ## Included
 
+- Bilingual [GitHub lifecycle guide](http://127.0.0.1:5173/guide.html#github-lifecycle) and [landing overview](http://127.0.0.1:5173/#github-lifecycle): opt-in Jobs that push, open or bind draft PRs, follow CI, repair code failures, rerun infrastructure failures, ask for decisions, and obtain a second agent's review. Merge-ready tracks the current PR head and can be withdrawn; the user merges. Includes Settings → GitHub, CLI/MCP/SDK access, reconvergence, and Remote Runtime conditions. The sessions guide covers automatic tab closure for agent-started sessions.
 - Bilingual [plugin guide](http://127.0.0.1:5173/guide.html#plugins) for folder/npm installation, permissions, settings, secrets, logs, and event/notification providers; [SDK and events](http://127.0.0.1:5173/guide.html#sdk) for Node.js integrations on the local Host.
 - [Jobs from issues](http://127.0.0.1:5173/guide.html#job-sources) through the source picker, CLI, and MCP, with GitHub and plugin source requirements. [Plugin completion checks](http://127.0.0.1:5173/guide.html#completion-plugins) covers Task attachment, findings, repair, unavailable-check decisions, and Runtime installation. The workspace guide also covers terminal file/folder links.
 - [Remote Runtime overview](http://127.0.0.1:5173/#remote-runtime) and bilingual [setup guide](http://127.0.0.1:5173/guide.html#remote-runtime): Settings-based pairing and revocation, remote Jobs and sessions, CLI/MCP targeting, and Host scheduling and restart conditions.
@@ -84,6 +85,8 @@ The [feature coverage review](docs/design-direction.md#기능-가이드-보강�
 The product screenshots are unchanged originals. Feature diagrams illustrate behavior; they are not screenshots. Download buttons read the latest GitHub release and link straight to the installer for the visitor’s OS. If the release cannot be checked or no matching file is available, they open the release page for manual selection. Linux defaults to the x86_64 AppImage. GitHub Pages serves the plain static files at `astera.run`.
 
 See [design direction](docs/design-direction.md) for reference research, content boundaries, and review criteria.
+
+The 2026-10-20 v1.4.15 update uses the app's release notes, README, and Jobs guide at local HEAD `ceda8763`. Search and download checks, locale generation, translation keys, anchors, Guide section order, command parity, JavaScript syntax, and whitespace checks passed. Astera's browser reported no console or network errors on all four changed pages in the final read-through. Screenshot capture timed out; the coordinator took ownership of screenshots before the local commit. No publishing or push was performed.
 
 ## Asset provenance
 

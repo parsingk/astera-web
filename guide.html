@@ -31,7 +31,7 @@
   </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="guide.css">
-  <script src="locales/ko.js?v=20261016-1" defer></script>
+  <script src="locales/ko.js?v=20261020-1" defer></script>
   <script src="language.js?v=20260923-2" defer></script>
   <script src="main.js?v=20260923-2" defer></script>
   <script src="downloads.js" defer></script>
@@ -85,6 +85,7 @@
           <a href="#slack" data-i18n="guide.common.26">Slack updates &amp; replies</a>
           <a href="#jobs" data-i18n="guide.common.27">Jobs &amp; completion checks</a>
           <a href="#job-sources" data-i18n="guide.sources.nav">Jobs from issues</a>
+          <a href="#github-lifecycle" data-i18n="guide.github.nav">Jobs through GitHub</a>
           <a href="#completion-plugins" data-i18n="guide.checks.nav">Plugin completion checks</a>
           <a href="#orchestration" data-i18n="guide.orchestration.nav">The orchestration skill</a>
           <a href="#headless-cli" lang="en">Headless CLI</a>
@@ -125,6 +126,7 @@
           <a href="#scheduling"><span data-i18n="guide.overview.50">Run a prompt on a schedule</span><span data-i18n="guide.overview.51">Scheduling <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#jobs"><span data-i18n="guide.overview.52">Split a larger task between agents</span><span>Jobs <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#job-sources"><span data-i18n="guide.sources.find">Turn an issue or ticket into a Job</span><span data-i18n="guide.sources.nav">Jobs from issues</span></a>
+          <a href="#github-lifecycle"><span data-i18n="guide.github.find">Carry the work through CI and PR review</span><span data-i18n="guide.github.nav">Jobs through GitHub</span></a>
           <a href="#completion-plugins"><span data-i18n="guide.checks.find">Add your own completion rules to a Task</span><span data-i18n="guide.checks.nav">Plugin completion checks</span></a>
           <a href="#headless-cli"><span data-i18n="guide.cli.find">Run agents and Jobs from your terminal or scripts</span><span lang="en">Headless CLI <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#mcp"><span data-i18n="guide.mcp.find">Let an MCP client manage Astera work</span><span lang="en">MCP <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
@@ -166,6 +168,7 @@
           <article><h3 data-i18n="guide.sessions.84">Resume from history</h3><p data-i18n="guide.sessions.85">Open <strong>Accounts and history</strong> and expand your project. Click a conversation to preview it, or choose its <strong>Resume session</strong> button, select an account, and click <strong>Resume</strong> to continue working. If the folder moved, select its current location when prompted.</p></article>
           <article><h3 data-i18n="guide.sessions.86">Find a hidden project</h3><p data-i18n="guide.sessions.87">Use <strong>Settings → History → Unhide</strong> to return a hidden project to the history list.</p></article>
         </div>
+        <div class="guide-note" id="agent-session-tabs" data-i18n="guide.sessions.agent-tabs"><strong>Agent-started tabs close when their session ends.</strong> Sessions opened by orchestration, Job workers, or reviewers no longer leave finished tabs behind. A session you open yourself keeps its tab.</div>
       </section>
 
       <section class="guide-section" id="accounts" aria-labelledby="accounts-title">
@@ -262,6 +265,37 @@ astera jobs run --id JOB_ID</code></pre>
           <p data-i18n="guide.sources.mcp">MCP clients use <code>list_job_sources</code>, <code>list_source_items</code>, <code>get_source_item</code>, and <code>create_job_from_source</code>, then <code>run_job</code>. Creation needs <strong>Read and control</strong>; GitHub sources also need <strong>Let MCP clients act on GitHub</strong>.</p>
         </div></details>
         <div class="guide-note" data-i18n="guide.sources.limits"><strong>Sources belong to this computer.</strong> The source picker, CLI, and MCP do not list a paired Runtime's sources. Ticket text is carried as quoted material for the agent to assess. If creation loses its reply, inspect Jobs before trying again: the Job may already exist.</div>
+      </section>
+
+      <section class="guide-section" id="github-lifecycle" aria-labelledby="github-lifecycle-title">
+        <div class="guide-section-heading"><h2 id="github-lifecycle-title" lang="en">From issue to CI-green pull request.</h2></div>
+        <p data-i18n="guide.github.intro">A Job can carry its work through a pull request, GitHub CI, repair, and a second agent’s review. Enable it for the Job you want to take through GitHub. Astera tells you when it is <strong>merge-ready</strong>; you merge it yourself on GitHub.</p>
+        <h3 class="cli-step-title" id="github-setup" data-i18n="guide.github.setup-title">Turn it on for a Job</h3>
+        <ol class="guide-instructions">
+          <li data-i18n="guide.github.enable">In <strong>Jobs → New job</strong> or <strong>+ From a source</strong>, tick <strong>Carry it through GitHub</strong>. It is off by default. Enabling it also enables automatic repair.</li>
+          <li data-i18n="guide.github.requirements">The Host checks that <code>origin</code> is a GitHub repository, <code>gh</code> is signed in, and your repository permission is WRITE, MAINTAIN, or ADMIN. If a check fails, creation is blocked with its reason.</li>
+          <li data-i18n="guide.github.settings">In <strong>Settings → GitHub</strong>, choose whether to rerun CI failures outside the code, the rerun limit (1 to 10), and the CI wait limit (10 to 1440 minutes). New Jobs copy these defaults; changing Settings does not change existing Jobs.</li>
+        </ol>
+        <h3 class="cli-step-title" id="github-flow" data-i18n="guide.github.flow-title">What happens after the Tasks finish</h3>
+        <ol class="guide-instructions">
+          <li data-i18n="guide.github.push">Astera adds a <strong>Carry to GitHub</strong> Task without a worker. It gathers the Tasks’ results on the Run’s branch, reruns local checks, and pushes. It opens a draft PR or binds an existing open PR. A Job from an issue in the same repository adds <code>Refs #N</code> to the PR body.</li>
+          <li data-i18n="guide.github.ci">It waits for CI on the head it pushed. Required branch checks decide the result, alongside any checks you selected with <code>--github-checks</code>. If neither is specified, all reported checks decide.</li>
+          <li data-i18n="guide.github.repair">For test, build, lint, or type-check failures, an agent receives the failed job’s log and repairs the Run’s branch. Local checks run again before the fix is pushed and CI is checked again, within the automatic repair budget. Network or runner failures can be rerun within the GitHub settings limit.</li>
+          <li data-i18n="guide.github.review">After CI passes, a reviewer from a different provider than the last implementer reviews the whole PR, including whether the change weakened CI. A passing review makes the Run merge-ready for that reviewed commit.</li>
+        </ol>
+        <div class="guide-note" id="github-ready" data-i18n="guide.github.ready"><strong>Merge-ready belongs to the current PR head.</strong> Local checks, required CI, and Astera review must converge on that head. A new push, changed base, failed or changed deciding checks, or a closed or merged PR withdraws the verdict and records why. If no Task has local validation configured, the GitHub block warns that repairs go to CI without local verification. Astera’s verdict is separate from GitHub’s draft, blocked, or conflicting state.</div>
+        <h3 class="cli-step-title" id="github-progress" data-i18n="guide.github.progress-title">Follow progress and answer questions</h3>
+        <p data-i18n="guide.github.progress">The Job card shows waiting for CI, repairing CI, or merge-ready. Open the Run’s <strong>GitHub</strong> section for the PR, head, checks, failure reasons, repairs, Astera review, GitHub’s own state, and when merge-ready was decided. The timeline records each step; <strong>How It Works</strong> keeps the issue, PR, and GitHub evidence.</p>
+        <p data-i18n="guide.github.questions">Astera asks when no CI appears, the wait limit is reached, someone else pushes, several PRs are open, the PR closes or merges, a failure is outside the code, or GitHub delivery cannot continue. Read the question and choose whether to wait, proceed without CI, accept the head, retry, rerun, bind a PR, or mark the Task failed. The Host handles your answer; if it is down, start it first.</p>
+        <h3 class="cli-step-title" id="github-commands" data-i18n="guide.github.commands-title">Use the CLI, MCP, or SDK</h3>
+        <p data-i18n="guide.github.commands">Add <code>--github-lifecycle</code> when creating a Job with the CLI. After the Carry to GitHub Task has ended, successfully or not, use <code>runs reconverge</code> to carry the Run through again. It refuses a closed or merged PR, or a missing Run worktree. Replace the placeholders with your account, repository path, Job ID, and Run ID.</p>
+        <pre class="command-example" tabindex="0"><code>astera jobs create --objective "Improve the sign-in flow" --cwd "REPO_PATH" --coordinator-account ACCOUNT_ID --github-lifecycle
+astera jobs run --id JOB_ID
+astera runs follow --id RUN_ID --human
+astera runs reconverge --id RUN_ID</code></pre>
+        <p data-i18n="guide.github.tools">MCP uses <code>githubLifecycle</code> on <code>create_job</code> and <code>reconverge_run</code>. Creation needs <strong>Read and control</strong> and <strong>Let MCP clients act on GitHub</strong> in Settings → CLI. Selecting additional checks is available through CLI and MCP. <code>@astera-app/client</code> 0.4.0 also reads and answers the lifecycle state.</p>
+        <div class="guide-note" id="github-runtime" data-i18n="guide.github.runtime"><strong>The Host carries it on.</strong> GitHub progress and recovery continue with the app closed and after a restart, locally or on a Remote Runtime. A full-control pairing can reconverge a remote Run; read-only pairing can inspect it. Remote Jobs use that Runtime’s GitHub defaults and its Host’s <code>gh</code> login. Create remote Jobs from an objective; issue sources stay local. Keep the Runtime computer awake.</div>
+        <p class="guide-small" data-i18n="guide.github.reference">See the <a href="https://github.com/parsingk/Astera/blob/main/docs/jobs.md#8-github까지-진행" target="_blank" rel="noopener noreferrer">GitHub lifecycle reference</a> for the full flow, questions, and recovery conditions.</p>
       </section>
 
       <section class="guide-section" id="completion-plugins" aria-labelledby="completion-plugins-title">

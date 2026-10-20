@@ -33,7 +33,7 @@
     document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
   </script>
   <link rel="stylesheet" href="styles.css">
-  <script src="locales/ko.js?v=20261012-1" defer></script>
+  <script src="locales/ko.js?v=20261020-1" defer></script>
   <script src="language.js?v=20260923-2" defer></script>
   <script src="main.js?v=20260923-2" defer></script>
   <script src="downloads.js" defer></script>
@@ -165,6 +165,22 @@
       <div class="workflow-intro"><span class="constellation-mark" aria-hidden="true">✦</span><p class="section-kicker" data-i18n="home.workflow.68">From an idea to a checked result</p><h2 id="workflow-title" lang="en">Beyond<br>“I’m done.”</h2><p data-i18n="home.workflow.70">Ask a coordinator to turn your goal into tasks for Claude and Codex. Follow the run in Jobs, with tests and cross-vendor reviews attached to the work.</p><div class="skill-invocation"><code>/astera-orchestration</code><p data-i18n="home.orchestration.prompt">Have Claude refactor sign-in, then have Codex add regression tests. Run the tests and review the result.</p></div><a class="text-button" href="guide.html#orchestration" data-theme-link data-i18n="home.workflow.71">Start with the orchestration skill <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
       <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3 data-i18n="home.workflow.72">Define the goal. Set the bar.</h3><p data-i18n="home.workflow.73">Break work into tasks. Add dependencies, tests, and review requirements.</p></div></li><li><span class="step-number">02</span><div><h3 data-i18n="home.workflow.74">Let the right agents get to work.</h3><p data-i18n="home.workflow.75">A coordinator dispatches ready tasks to Claude and Codex, and keeps track of progress.</p></div></li><li><span class="step-number">03</span><div><h3 data-i18n="home.workflow.76">Check. Refine. Check again.</h3><p data-i18n="home.workflow.77">With auto-fix enabled, failed checks and blocking review findings return to the worker for repair, until the checks pass or the retry limit is reached.</p></div></li></ol>
     </div></section>
+
+    <section class="host-section container" id="github-lifecycle" aria-labelledby="github-lifecycle-title">
+      <div class="host-copy">
+        <p class="section-kicker" lang="en">Jobs + GitHub</p>
+        <h2 id="github-lifecycle-title" lang="en">From issue to<br>CI-green pull request.</h2>
+        <p data-i18n="home.github.body">Give Astera a GitHub issue. It plans the work, runs isolated workers, and verifies the result locally. Turn on <strong>Carry it through GitHub</strong> to push the Run’s branch, open a draft pull request or bind the open one, and follow CI.</p>
+        <p data-i18n="home.github.repair">Code failures go back to an agent with the failed job’s log. Failures outside the code can be rerun within your limits. When a decision needs you, Astera asks.</p>
+        <a class="text-button" href="guide.html#github-lifecycle" data-theme-link data-i18n="home.github.guide">Carry a Job through GitHub <svg class="icon small"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="host-diagram">
+        <div class="host-window" data-i18n="home.github.checks"><svg class="icon"><use href="#i-branch"/></svg><span>One pull request head<strong>Local checks → GitHub CI → Astera review</strong></span></div>
+        <p class="host-connector" data-i18n="home.github.review">A second agent reviews the whole pull request</p>
+        <div class="host-process"><span class="live-dot"></span><strong data-i18n="home.github.ready">Merge-ready</strong><span data-i18n="home.github.merge">You choose when to merge</span></div>
+        <p class="host-boundary" data-i18n="home.github.boundary">Merge-ready applies to the current PR head only when local checks, required CI, and Astera review converge. A new push, failing check, changed base, or closed PR withdraws it. Astera never merges.</p>
+      </div>
+    </section>
 
     <section class="host-section container" id="remote-runtime" aria-labelledby="remote-title">
       <div class="host-copy">

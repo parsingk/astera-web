@@ -33,7 +33,7 @@
     document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
   </script>
   <link rel="stylesheet" href="styles.css">
-  <script src="locales/ko.js?v=20261012-1" defer></script>
+  <script src="locales/ko.js?v=20261020-1" defer></script>
   <script src="language.js?v=20260923-2" defer></script>
   <script src="main.js?v=20260923-2" defer></script>
   <script src="downloads.js" defer></script>
@@ -165,6 +165,22 @@
       <div class="workflow-intro"><span class="constellation-mark" aria-hidden="true">✦</span><p class="section-kicker" data-i18n="home.workflow.68">아이디어에서 검증된 결과까지</p><h2 id="workflow-title" lang="en">Beyond<br>“I’m done.”</h2><p data-i18n="home.workflow.70">코디네이터에게 목표를 맡기면 Claude와 Codex가 수행할 작업으로 나눕니다. Jobs에서 진행을 따라가고, 각 작업에 테스트와 다른 제공자의 에이전트 리뷰를 연결하세요.</p><div class="skill-invocation"><code>/astera-orchestration</code><p data-i18n="home.orchestration.prompt">Claude에게 로그인 리팩터링을 맡기고, 끝나면 Codex가 회귀 테스트를 추가하게 해 줘. 테스트 실행과 결과 리뷰까지 진행해 줘.</p></div><a class="text-button" href="guide.ko.html#orchestration" data-theme-link data-i18n="home.workflow.71">오케스트레이션 스킬 사용하기 <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
       <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3 data-i18n="home.workflow.72">목표와 완료 기준을 정하세요.</h3><p data-i18n="home.workflow.73">할 일을 작업으로 나누고, 의존 관계와 테스트, 리뷰 조건을 추가하세요.</p></div></li><li><span class="step-number">02</span><div><h3 data-i18n="home.workflow.74">맞는 에이전트에게 맡기세요.</h3><p data-i18n="home.workflow.75">코디네이터가 시작할 수 있는 작업을 Claude와 Codex에 배분하고 진행 상황을 추적합니다.</p></div></li><li><span class="step-number">03</span><div><h3 data-i18n="home.workflow.76">검사하고, 고치고, 다시 확인하세요.</h3><p data-i18n="home.workflow.77">자동 수정을 켜면 실패한 검사와 리뷰의 주요 지적을 워커에게 돌려보냅니다. 검사를 통과하거나 재시도 한도에 도달할 때까지 수정과 확인을 반복합니다.</p></div></li></ol>
     </div></section>
+
+    <section class="host-section container" id="github-lifecycle" aria-labelledby="github-lifecycle-title">
+      <div class="host-copy">
+        <p class="section-kicker" lang="en">Jobs + GitHub</p>
+        <h2 id="github-lifecycle-title" lang="en">From issue to<br>CI-green pull request.</h2>
+        <p data-i18n="home.github.body">Astera에 GitHub 이슈를 맡기세요. 작업을 계획하고 격리된 워커를 실행하며 결과를 로컬에서 검증합니다. <strong>GitHub 까지 진행</strong>을 켜면 Run의 브랜치를 푸시하고 초안 풀 리퀘스트를 열거나 기존 PR에 연결한 뒤 CI를 따라갑니다.</p>
+        <p data-i18n="home.github.repair">코드 문제는 실패한 작업의 로그와 함께 에이전트에게 돌려보냅니다. 코드 밖의 실패는 정한 한도 내에서 다시 실행할 수 있습니다. 사용자 판단이 필요하면 Astera가 질문합니다.</p>
+        <a class="text-button" href="guide.ko.html#github-lifecycle" data-theme-link data-i18n="home.github.guide">Job을 GitHub까지 진행하기 <svg class="icon small"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="host-diagram">
+        <div class="host-window" data-i18n="home.github.checks"><svg class="icon"><use href="#i-branch"/></svg><span>같은 PR의 현재 커밋<strong>로컬 검사 → GitHub CI → Astera 리뷰</strong></span></div>
+        <p class="host-connector" data-i18n="home.github.review">두 번째 에이전트가 풀 리퀘스트 전체를 검토</p>
+        <div class="host-process"><span class="live-dot"></span><strong data-i18n="home.github.ready">병합 준비 완료</strong><span data-i18n="home.github.merge">병합 시점은 사용자가 선택</span></div>
+        <p class="host-boundary" data-i18n="home.github.boundary">로컬 검사, 필수 CI, Astera 리뷰가 현재 PR 커밋에서 수렴해야 병합 준비 완료입니다. 새 푸시, 검사 실패, 기준 브랜치 변경, PR 닫힘이 생기면 판정을 거둡니다. Astera는 병합하지 않습니다.</p>
+      </div>
+    </section>
 
     <section class="host-section container" id="remote-runtime" aria-labelledby="remote-title">
       <div class="host-copy">
