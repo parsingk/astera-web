@@ -33,7 +33,7 @@
     document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
   </script>
   <link rel="stylesheet" href="styles.css">
-  <script src="locales/ko.js?v=20261020-1" defer></script>
+  <script src="locales/ko.js?v=20261102-1" defer></script>
   <script src="language.js?v=20260923-2" defer></script>
   <script src="main.js?v=20260923-2" defer></script>
   <script src="downloads.js" defer></script>
@@ -166,6 +166,18 @@
       <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3 data-i18n="home.workflow.72">Define the goal. Set the bar.</h3><p data-i18n="home.workflow.73">Break work into tasks. Add dependencies, tests, and review requirements.</p></div></li><li><span class="step-number">02</span><div><h3 data-i18n="home.workflow.74">Let the right agents get to work.</h3><p data-i18n="home.workflow.75">A coordinator dispatches ready tasks to Claude and Codex, and keeps track of progress.</p></div></li><li><span class="step-number">03</span><div><h3 data-i18n="home.workflow.76">Check. Refine. Check again.</h3><p data-i18n="home.workflow.77">With auto-fix enabled, failed checks and blocking review findings return to the worker for repair, until the checks pass or the retry limit is reached.</p></div></li></ol>
     </div></section>
 
+    <section class="workspace-section section container" id="agent-control" aria-labelledby="control-title">
+      <div class="workspace-heading"><p class="section-kicker" lang="en">Astera 1.5.0</p><h2 id="control-title" lang="en">Set up once.<br>Stay in control.</h2><p data-i18n="home.control.intro">Share the tools. Choose how agents run. See what needs attention.</p></div>
+      <div class="workspace-features">
+        <article><svg class="icon"><use href="#i-plus"/></svg><h3 lang="en">MCP &amp; Skills</h3><p data-i18n="home.control.shared">Add tools once for your accounts. Share a local MCP server across sessions in one project, or give each session its own when state must stay separate.</p><a class="text-button" href="guide.html#mcp-skills" data-theme-link data-i18n="home.control.guide">Explore the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-roll"/></svg><h3 lang="en">Agent profiles</h3><p data-i18n="home.control.profiles">Keep account order, MCP choices, and permission checks under one name. Pick it for a session, Job, or Task and keep it through account rolling.</p><a class="text-button" href="guide.html#agent-profiles" data-theme-link data-i18n="home.control.guide">Explore the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-check"/></svg><h3 lang="en">Observe &amp; Enforce</h3><p data-i18n="home.control.security">Record tool calls in Audit Logs and choose when to block denied calls. Keep selected credentials out of new sessions and completion checks.</p><a class="text-button" href="guide.html#security-access" data-theme-link data-i18n="home.control.guide">Explore the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-window"/></svg><h3 lang="en">Sandbox</h3><p data-i18n="home.control.sandbox">Choose a profile’s sandbox for folder and credential restrictions. Check platform coverage: Claude on Windows protects file tools only, with an unrestricted shell.</p><a class="text-button" href="guide.html#sandbox" data-theme-link data-i18n="home.control.guide">Explore the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-branch"/></svg><h3 lang="en">Findings</h3><p data-i18n="home.control.findings">See unused tools, broken profiles, Runtime setup differences, and unusual token use. Each finding points to an action; you decide what to change.</p><a class="text-button" href="guide.html#findings" data-theme-link data-i18n="home.control.guide">Explore the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-clock"/></svg><h3 lang="en">Run token totals</h3><p data-i18n="home.control.tokens">Read Run and Task token totals beside their changes and checks, then open the Run’s recorded tool calls in Audit Logs.</p><a class="text-button" href="guide.html#jobs" data-theme-link data-i18n="home.control.guide">Explore the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+      </div>
+    </section>
+
     <section class="host-section container" id="github-lifecycle" aria-labelledby="github-lifecycle-title">
       <div class="host-copy">
         <p class="section-kicker" lang="en">Jobs + GitHub</p>
@@ -188,6 +200,7 @@
         <h2 id="remote-title" lang="en">Close your laptop.<br>Keep the work running.</h2>
         <p data-i18n="home.remote.body">Run Claude, Codex, and Jobs on another computer. Your laptop controls the work; the Runtime keeps the agents, worktrees, and checks running when your laptop sleeps or disconnects.</p>
         <p data-i18n="home.remote.connection">Pair over your own LAN, VPN, or Tailscale with an encrypted connection. Choose the Runtime in Astera, or reach it through the CLI and MCP. No Astera relay or cloud service is required.</p>
+        <p data-i18n="home.remote.management">Compare a Runtime’s setup and expected extensions from Details. Unpairing a controller pauses the Jobs it scheduled; a person on the Runtime decides when to resume.</p>
         <a class="text-button" href="guide.html#remote-runtime" data-theme-link data-i18n="home.remote.guide">Set up a Remote Runtime <svg class="icon small"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="host-diagram">

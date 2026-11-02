@@ -33,7 +33,7 @@
     document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
   </script>
   <link rel="stylesheet" href="styles.css">
-  <script src="locales/ko.js?v=20261020-1" defer></script>
+  <script src="locales/ko.js?v=20261102-1" defer></script>
   <script src="language.js?v=20260923-2" defer></script>
   <script src="main.js?v=20260923-2" defer></script>
   <script src="downloads.js" defer></script>
@@ -166,6 +166,18 @@
       <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3 data-i18n="home.workflow.72">목표와 완료 기준을 정하세요.</h3><p data-i18n="home.workflow.73">할 일을 작업으로 나누고, 의존 관계와 테스트, 리뷰 조건을 추가하세요.</p></div></li><li><span class="step-number">02</span><div><h3 data-i18n="home.workflow.74">맞는 에이전트에게 맡기세요.</h3><p data-i18n="home.workflow.75">코디네이터가 시작할 수 있는 작업을 Claude와 Codex에 배분하고 진행 상황을 추적합니다.</p></div></li><li><span class="step-number">03</span><div><h3 data-i18n="home.workflow.76">검사하고, 고치고, 다시 확인하세요.</h3><p data-i18n="home.workflow.77">자동 수정을 켜면 실패한 검사와 리뷰의 주요 지적을 워커에게 돌려보냅니다. 검사를 통과하거나 재시도 한도에 도달할 때까지 수정과 확인을 반복합니다.</p></div></li></ol>
     </div></section>
 
+    <section class="workspace-section section container" id="agent-control" aria-labelledby="control-title">
+      <div class="workspace-heading"><p class="section-kicker" lang="en">Astera 1.5.0</p><h2 id="control-title" lang="en">Set up once.<br>Stay in control.</h2><p data-i18n="home.control.intro">도구를 공유하고 실행 방식을 정하고, 확인할 항목을 놓치지 마세요.</p></div>
+      <div class="workspace-features">
+        <article><svg class="icon"><use href="#i-plus"/></svg><h3 lang="en">MCP &amp; Skills</h3><p data-i18n="home.control.shared">도구를 한 번 등록해 여러 계정에서 쓰세요. 한 프로젝트의 세션들이 로컬 MCP 서버를 공유하거나 상태를 분리할 때 세션별로 실행할 수 있습니다.</p><a class="text-button" href="guide.ko.html#mcp-skills" data-theme-link data-i18n="home.control.guide">가이드 살펴보기 <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-roll"/></svg><h3 lang="en">Agent profiles</h3><p data-i18n="home.control.profiles">계정 순서·MCP 선택·권한 확인을 이름 하나로 묶으세요. 세션·Job·Task에서 고르고 계정 전환 뒤에도 같은 프로필로 이어갑니다.</p><a class="text-button" href="guide.ko.html#agent-profiles" data-theme-link data-i18n="home.control.guide">가이드 살펴보기 <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-check"/></svg><h3 lang="en">Observe &amp; Enforce</h3><p data-i18n="home.control.security">Audit Logs에 도구 호출을 기록하고 거부된 호출을 차단할지 정하세요. 선택한 자격 증명은 새 세션과 완료 검사에 전달하지 않습니다.</p><a class="text-button" href="guide.ko.html#security-access" data-theme-link data-i18n="home.control.guide">가이드 살펴보기 <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-window"/></svg><h3 lang="en">Sandbox</h3><p data-i18n="home.control.sandbox">프로필의 Sandbox로 폴더·자격 증명 접근을 제한하세요. 플랫폼별 범위를 확인해야 하며 Windows의 Claude는 파일 도구만 보호하고 셸은 제한하지 않습니다.</p><a class="text-button" href="guide.ko.html#sandbox" data-theme-link data-i18n="home.control.guide">가이드 살펴보기 <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-branch"/></svg><h3 lang="en">Findings</h3><p data-i18n="home.control.findings">미사용 도구·잘못된 프로필·Runtime 설정 차이·평소와 다른 토큰 사용을 확인하세요. Findings가 조치할 곳을 안내하고 변경은 사용자가 결정합니다.</p><a class="text-button" href="guide.ko.html#findings" data-theme-link data-i18n="home.control.guide">가이드 살펴보기 <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+        <article><svg class="icon"><use href="#i-clock"/></svg><h3 lang="en">Run token totals</h3><p data-i18n="home.control.tokens">Run·Task의 토큰 합계를 변경·검사 결과와 함께 읽고 Audit Logs에서 해당 Run의 도구 호출 기록을 확인하세요.</p><a class="text-button" href="guide.ko.html#jobs" data-theme-link data-i18n="home.control.guide">가이드 살펴보기 <svg class="icon small"><use href="#i-arrow"/></svg></a></article>
+      </div>
+    </section>
+
     <section class="host-section container" id="github-lifecycle" aria-labelledby="github-lifecycle-title">
       <div class="host-copy">
         <p class="section-kicker" lang="en">Jobs + GitHub</p>
@@ -188,6 +200,7 @@
         <h2 id="remote-title" lang="en">Close your laptop.<br>Keep the work running.</h2>
         <p data-i18n="home.remote.body">Claude·Codex 세션과 Jobs를 다른 컴퓨터에서 실행하세요. 노트북으로 작업을 제어하고, 노트북이 잠들거나 연결이 끊겨도 Runtime 컴퓨터에서 에이전트·워크트리·검사가 계속 실행됩니다.</p>
         <p data-i18n="home.remote.connection">자신의 LAN·VPN·Tailscale에서 암호화된 연결로 페어링하세요. Astera에서 Runtime을 선택하거나 CLI·MCP로 연결할 수 있습니다. Astera 중계 서버나 클라우드 서비스는 필요하지 않습니다.</p>
+        <p data-i18n="home.remote.management">상세 화면에서 Runtime 설정과 기대한 확장을 비교하세요. 컨트롤러를 해제하면 해당 컨트롤러가 만든 예약 Job이 멈추고 Runtime의 사용자가 다시 시작할지 결정합니다.</p>
         <a class="text-button" href="guide.ko.html#remote-runtime" data-theme-link data-i18n="home.remote.guide">Remote Runtime 설정하기 <svg class="icon small"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="host-diagram">

@@ -2,6 +2,29 @@
 
 최초 조사·반영일: 2026-09-22. 당시 로컬 앱 `D:\parsingk\astera`의 코드와 문서, 공식 제품 소개를 대조했다. 당시 로컬 앱 버전은 1.3.25였다. 아래 기록은 날짜별 구현을 설명하며, 최신 공개 릴리스에 모든 변경이 들어 있다고 보증하지 않는다.
 
+## 2026-11-02: v1.4.16부터 v1.5.0까지
+
+사용자의 1.5.0 릴리스 준비 요청에 따라 웹의 기존 v1.4.15 반영 이후를 대조했다. 근거는 로컬 Astera `main` HEAD `231e23f7`의 `docs/release-notes/v1.4.16.md`, `docs/release-notes/v1.5.0.md`, `docs/cli.md`, `docs/remote-runtime.md`, `src/core/orchestration/cliUsage.ts`, `src/core/i18n/messages/en.ts`·`ko.ts`, `src/cli/mcp/tools.ts`, `packages/client/src/namespaces.ts`와 두 SDK의 버전이다. 원격 릴리스 게시 여부는 확인하지 않았고 앱 소스는 수정하지 않았다.
+
+| 추가·변경 기능 | 반영 위치와 조건 |
+| --- | --- |
+| MCP 서버·스킬·명령·에이전트 공유, 사본 동기화와 충돌, 프로젝트별 Gateway와 세션별 실행 | 홈 `#agent-control`, Guide `#mcp-skills`. 비밀 값 비표시, 새 세션 적용, Codex 제공자 제약, `ext list`·`ext sync`와 기본 스킬 명령의 차이 |
+| 에이전트 프로필, 계정 순서·MCP 제외·권한 선택, 히스토리·계정 전환, CLI/MCP/SDK | Guide `#agent-profiles`. Job과 Task 상속, 별도 코디네이터 계정, 사용자만 프로필 변경, client 0.5.0 |
+| Observe·Audit Logs·Policies·Enforce, Credentials, 토큰 합계 | Guide `#security-access`, `#jobs`. 기본 꺼짐, 보관·기록 범위, 최소 CLI 버전, 실행 중 Enforce 유지, 사용자 전용 감사 이력, 자격 증명 숨김의 한계 |
+| Sandbox 세션과 검사·리뷰, Windows 계정 준비와 기본 설정 수정 | Guide `#sandbox`. 기본 꺼짐, 네트워크 허용, Windows Claude의 파일 도구 보호만 제공, Docker 검사 불가, 플랫폼별 완료 표시 |
+| Findings, 미사용·중복·실패·과다 사용과 보관 | Guide `#findings`. 30·90일 조건, Observe 필요, 자동 수정 없음, 에이전트의 무시 금지, 보관 프로필의 예약 Job 대기 |
+| Runtime 설정 보고서·기대 확장 비교, 컨트롤러 종류·버전·에이전트 규칙, 해제 시 예약 Job 정지 | 홈·Guide `#remote-runtime`. 사용자 전용 보고서, 이름·상태·개수만 전달, 마지막 보고서 시각과 5분 갱신, 원격 자동 동기화 없음, 양쪽 업데이트 |
+| 탭 스크롤·한국어 입력·외부 입력 전달, Codex 대화 식별·프로세스 종료·설정 링크·워크트리 정리 | Guide `#sessions`, `#preferences`. 1.5.0 릴리스 노트 연결 |
+| 제공자 설정 병합·주석 유지, 앱 점검 종료 시 자식 프로세스 정리 | Guide `#accounts`, `#optional`. macOS·Linux의 부모 프로세스 생존 조건 명시 |
+
+영문 원본과 한국어 카탈로그를 편집하고 한국어 정적 페이지를 다시 생성했다. 기존 CSS·상호작용 스크립트·이미지·녹화와 다운로드의 최신 릴리스 조회 방식을 유지한다. 기존 날짜별 조사 내용은 당시 검증 근거로 보존한다.
+
+독립 문구 검토에서 Linux의 OS 저장소 보호, 원격 변경 거부의 강제 범위, Observe 30일 이력의 적용 대상을 보완했다. Linux Codex의 파일 경로 기반 세션 버스와 추상 소켓을 구분하고, 원격 CLI·MCP의 세션 확인은 토큰 직접 사용 등으로 우회할 수 있음을 명시했다. 30일 Observe 조건은 미사용 도구·과도한 프로필 권한에 한정하고 실패·토큰 급증의 별도 기록과 구분한다.
+
+검증: 수정 전후 검색 검사 7개와 다운로드 라우팅 8개 시나리오·버튼 5개 통과. 한국어 정적 페이지 일치, 번역 JavaScript 문법, 공개 4페이지의 번역 키·중복 ID·내부 앵커, Guide 29개 절의 목차 순서, 한·영 Guide 명령 블록 일치와 `git diff --check`를 확인했다. 새 명령 예제는 `cliUsage.ts`와 대조했으며, 실제 세션·Job·보안 설정·원격 페어링을 실행하지 않았다.
+
+Astera 브라우저는 한국어 정적 Guide를 열고 새 MCP & Skills 목차로 이동했다. 콘솔 오류는 없었지만 Public Sans SemiBold 요청 1건에서 `ERR_CACHE_MISS`가 발생했다. 스크린샷은 `screenshot: the page did not paint within 5 s — the window may be minimised`로 실패했다. 도구 지침에 따라 다른 브라우저나 화면 도구로 우회하지 않았으며 이번 변경의 시각·반응형 검증은 미확인이다. 푸시·배포는 수행하지 않았다.
+
 ## 2026-10-20: v1.4.15 GitHub 진행과 세션 탭
 
 앱의 `docs/release-notes/v1.4.15.md`, `README.md`의 GitHub lifecycle convergence, `docs/jobs.md` 8절을 기준으로 대조했다. 로컬 앱 HEAD는 `ceda87637951f6a66458c47d2964d55b7d67733f`이며 원격 fetch나 배포는 하지 않았다. 이전 웹 업데이트 `ee54554`처럼 영문 HTML과 `locales/ko.js`를 함께 편집하고 한국어 정적 페이지를 생성한다.

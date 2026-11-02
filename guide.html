@@ -31,7 +31,7 @@
   </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="guide.css">
-  <script src="locales/ko.js?v=20261020-1" defer></script>
+  <script src="locales/ko.js?v=20261102-1" defer></script>
   <script src="language.js?v=20260923-2" defer></script>
   <script src="main.js?v=20260923-2" defer></script>
   <script src="downloads.js" defer></script>
@@ -80,6 +80,11 @@
           <p data-i18n="guide.common.22">Work with Astera</p>
           <a href="#sessions" data-i18n="guide.common.23">Terminal &amp; Chat</a>
           <a href="#accounts" data-i18n="guide.common.24">Account rolling</a>
+          <a href="#mcp-skills" data-i18n="guide.shared.nav">MCP &amp; Skills</a>
+          <a href="#agent-profiles" data-i18n="guide.profiles.nav">Agent profiles</a>
+          <a href="#security-access" data-i18n="guide.security.nav">Security &amp; Access</a>
+          <a href="#sandbox" data-i18n="guide.sandbox.nav">Sandbox</a>
+          <a href="#findings" data-i18n="guide.findings.nav">Findings</a>
           <a href="#smart-resume" data-i18n="guide.resume.nav">Smart Resume</a>
           <a href="#scheduling" data-i18n="guide.common.25">Scheduled sessions</a>
           <a href="#slack" data-i18n="guide.common.26">Slack updates &amp; replies</a>
@@ -122,6 +127,11 @@
           <h2 data-i18n="guide.overview.45">What would you like to do?</h2>
           <a href="#sessions"><span data-i18n="guide.overview.46">Work with an agent on my project</span><span data-i18n="guide.overview.47">Sessions <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#accounts"><span data-i18n="guide.overview.48">Keep going when an account hits a limit</span><span data-i18n="guide.overview.49">Account rolling <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+          <a href="#mcp-skills"><span data-i18n="guide.shared.find">Share tools across accounts</span><span data-i18n="guide.shared.nav">MCP &amp; Skills</span></a>
+          <a href="#agent-profiles"><span data-i18n="guide.profiles.find">Reuse accounts, tools, and permissions</span><span data-i18n="guide.profiles.nav">Agent profiles</span></a>
+          <a href="#security-access"><span data-i18n="guide.security.find">Record tool calls and control access</span><span data-i18n="guide.security.nav">Security &amp; Access</span></a>
+          <a href="#sandbox"><span data-i18n="guide.sandbox.find">Run a session with folder restrictions</span><span data-i18n="guide.sandbox.nav">Sandbox</span></a>
+          <a href="#findings"><span data-i18n="guide.findings.find">Find setup and usage needing attention</span><span data-i18n="guide.findings.nav">Findings</span></a>
           <a href="#smart-resume"><span data-i18n="guide.resume.find">Give the next session the context it needs</span><span>Smart Resume <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#scheduling"><span data-i18n="guide.overview.50">Run a prompt on a schedule</span><span data-i18n="guide.overview.51">Scheduling <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
           <a href="#jobs"><span data-i18n="guide.overview.52">Split a larger task between agents</span><span>Jobs <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
@@ -168,6 +178,7 @@
           <article><h3 data-i18n="guide.sessions.84">Resume from history</h3><p data-i18n="guide.sessions.85">Open <strong>Accounts and history</strong> and expand your project. Click a conversation to preview it, or choose its <strong>Resume session</strong> button, select an account, and click <strong>Resume</strong> to continue working. If the folder moved, select its current location when prompted.</p></article>
           <article><h3 data-i18n="guide.sessions.86">Find a hidden project</h3><p data-i18n="guide.sessions.87">Use <strong>Settings → History → Unhide</strong> to return a hidden project to the history list.</p></article>
         </div>
+        <p data-i18n="guide.sessions.tabs">Tabs shrink until about half a name remains, then scroll, including with the mouse wheel. Korean terminal input no longer doubles or loses words while the app is busy. Text sent from the CLI, browser pane, or Slack waits until the session has drawn it before Enter is sent.</p>
         <div class="guide-note" id="agent-session-tabs" data-i18n="guide.sessions.agent-tabs"><strong>Agent-started tabs close when their session ends.</strong> Sessions opened by orchestration, Job workers, or reviewers no longer leave finished tabs behind. A session you open yourself keeps its tab.</div>
       </section>
 
@@ -176,7 +187,7 @@
         <p data-i18n="guide.accounts.89"><strong>Account rolling</strong> moves a session to another available account for the same service when it reaches a usage limit. With the standard resume strategy, the conversation continues on that account.</p>
         <ol class="guide-instructions"><li data-i18n="guide.accounts.90">Register and sign in to the accounts you want to use.</li><li data-i18n="guide.accounts.91">In <strong>New session</strong>, choose the first account. Use <strong>+ Add account</strong> to set the next accounts in the rolling order.</li><li data-i18n="guide.accounts.92">Start the session. Astera watches for a limit and switches when another account is available.</li></ol>
         <div class="guide-note" data-i18n="guide.accounts.93"><strong>Every account still has its own limits.</strong> If none is available, check the displayed reset time. The session’s <strong>Wait for the limit to reset, then resume automatically</strong> option controls waiting and resuming with a single account; rolling is automatic with multiple accounts.</div>
-        <p data-i18n="guide.accounts.94">When adding an account, <strong>Import settings from the default account</strong> can bring over its setup. Review the import dialog: merge and replacement rules depend on the file and provider. Imported settings apply to new sessions.</p>
+        <p data-i18n="guide.accounts.94">When adding an account, <strong>Import settings from the default account</strong> brings over its setup. Codex settings merge into <code>config.toml</code>, preserving comments and unrelated entries. Once items are registered in <a href="#mcp-skills">MCP &amp; Skills</a>, that screen manages them instead of copying them again. Changes apply to new sessions.</p>
         <figure class="demo-recording">
           <button class="demo-preview" type="button" data-demo="rolling" aria-label="Watch the full account rolling demo" data-i18n-aria-label="demo.rolling.label">
             <picture>
@@ -188,6 +199,56 @@
           <figcaption data-i18n="demo.rolling.caption">Recorded in Astera: a usage limit triggers an account switch, and the same conversation continues.</figcaption>
         </figure>
         <button class="text-button guide-demo" type="button" data-demo="rolling" data-i18n="guide.accounts.95"><svg class="icon small"><use href="#i-play"/></svg> Watch account rolling</button>
+      </section>
+
+      <section class="guide-section" id="mcp-skills" aria-labelledby="mcp-skills-title">
+        <div class="guide-section-heading"><h2 id="mcp-skills-title" lang="en">MCP &amp; Skills. Set up once, share across accounts.</h2></div>
+        <p data-i18n="guide.shared.intro">In <strong>Settings → MCP &amp; Skills</strong>, click <strong>Add</strong>, choose an account, and select its MCP servers, skills, commands, and agents to share. New sessions get them across accounts, rolled sessions included. Provider support still applies: Codex has no slash commands or subagents.</p>
+        <p data-i18n="guide.shared.copies">File copies are kept in step across accounts. A removed managed copy is restored; an edited copy is backed up before restoring. An account’s own different copy stays until you choose <strong>Replace with shared version</strong>. Expand an item to inspect its status, turn it off, or remove it.</p>
+        <p data-i18n="guide.shared.gateway">A shared local MCP server runs once per project folder through the Host’s Gateway, stops after five idle minutes, and restarts when needed after a crash. Tick <strong>Run per session</strong> when sessions need separate state. Browser servers such as Playwright and chrome-devtools use that mode by default, with a browser profile per session.</p>
+        <div class="guide-note" data-i18n="guide.shared.secrets"><strong>Values stay out of the list.</strong> MCP environment values move to an owner-only store; Settings and the CLI show names, never values. The Gateway issues a token per session. Start a new session to receive changed tools.</div>
+        <pre class="command-example" tabindex="0"><code>astera ext list
+astera ext sync</code></pre>
+        <p data-i18n="guide.shared.cli">These work with the app and Host closed: <code>ext list</code> inspects shared entries; <code>ext sync</code> synchronizes file copies. Astera’s bundled skills use the separate <code>skills list</code> and <code>skills install</code> commands. Sharing tools with sessions is separate from <a href="#mcp">connecting a client to Astera over MCP</a>.</p>
+      </section>
+
+      <section class="guide-section" id="agent-profiles" aria-labelledby="agent-profiles-title">
+        <div class="guide-section-heading"><h2 id="agent-profiles-title" lang="en">Agent profiles. Name the way you work.</h2></div>
+        <p data-i18n="guide.profiles.intro">Open <strong>Settings → Agent profiles → New profile</strong>. Name it, add accounts from one provider in rolling order, choose which shared MCP servers to leave out, and select permission checks: follow the app setting, always ask, or run without checks. Skills and commands stay shared across profiles.</p>
+        <p data-i18n="guide.profiles.choose">Pick the profile in <strong>New session</strong>, when creating a Job, or when adding a Task. Tasks follow their Job’s profile unless you choose another; the coordinator account is selected separately. Rolling keeps the profile, and History’s resume dialog remembers and names the conversation’s profile.</p>
+        <pre class="command-example" tabindex="0"><code>astera agent-profiles list
+astera agent-profiles show --id PROFILE_ID</code></pre>
+        <p data-i18n="guide.profiles.tools">Use an ID or name from the list. Your own shell can also create, update, archive, and restore profiles. MCP reads <code>list_agent_profiles</code> and selects <code>agentProfileId</code> when creating work. Client SDK 0.5.0 adds <code>agentProfiles.list</code> and <code>agentProfiles.get</code>. Agents cannot edit profiles. Agents, MCP clients, and plugins may use a profile without permission checks only while the app allows that mode.</p>
+      </section>
+
+      <section class="guide-section" id="security-access" aria-labelledby="security-access-title">
+        <div class="guide-section-heading"><h2 id="security-access-title" lang="en">Security &amp; Access. See what agents do.</h2></div>
+        <p data-i18n="guide.security.observe">In <strong>Settings → Security &amp; Access</strong>, <strong>Record agent tool calls</strong> starts Off. Choose <strong>Observe</strong> and start new sessions to record calls without blocking them. <strong>Audit Logs</strong> lists calls by day; <strong>Policies</strong> holds ordered Rules showing what would be allowed or denied. The coverage table explains what each provider and session type can see.</p>
+        <p data-i18n="guide.security.records">Records keep the action, a short target, read/write effects, and the name of a login folder touched. They never keep full commands, output, or file contents, and are retained for 30 days within size limits. Run detail links to that Run’s Audit Logs.</p>
+        <p data-i18n="guide.security.enforce">Choose <strong>Enforce</strong> to stop calls the Rules deny and record them as blocked. Review what the last seven days would have hit before enabling it. It adds about 0.1 seconds per call and needs Claude Code 2.1.306+ or Codex 0.160.0+; a session that cannot be protected does not start. Enforce always protects Astera’s settings folder and settings-changing commands.</p>
+        <div class="guide-note" data-i18n="guide.security.running"><strong>Restart to change a running session’s enforcement.</strong> Turning Enforce off leaves existing Enforce sessions blocking and logging blocked calls until they end. Rules inspect tool calls; an agent running as you can still change settings through a script. Use the separate <a href="#sandbox">sandbox</a> controls for process restrictions.</div>
+        <p data-i18n="guide.security.credentials">Under <strong>Credentials</strong>, shared MCP keys appear automatically. Add environment variable names or CLI login presets (gh, AWS, Google Cloud, npm, Docker, kubectl) for every project or chosen projects. New sessions and completion checks do not receive hidden credentials; check results name hidden variables. Astera’s GitHub and Gateway credential uses appear in Audit Logs. Hiding does not prevent programs running as you from reading login files or OS stores.</p>
+        <pre class="command-example" tabindex="0"><code>astera policies show
+astera audit list --run RUN_ID
+astera credentials list
+astera credentials doctor</code></pre>
+        <p data-i18n="guide.security.cli">Use an actual RUN_ID, or omit <code>--run RUN_ID</code> for all calls. These commands need a running Host. Audit history is for a person; agents can read policy and credential descriptions but cannot read audit history or change their own protection. Edit Credentials in the app.</p>
+      </section>
+
+      <section class="guide-section" id="sandbox" aria-labelledby="sandbox-title">
+        <div class="guide-section-heading"><h2 id="sandbox-title" lang="en">Sandbox. Keep work within its folder.</h2></div>
+        <p data-i18n="guide.sandbox.enable">In an <a href="#agent-profiles">agent profile</a>, enable <strong>Run in the sandbox</strong>, off by default, then start a new Terminal or Chat session. Codex needs 0.160.0+. On Windows each Codex account needs a one-time <strong>Set up</strong>, which shows an administrator prompt. If its <code>config.toml</code> still makes the elevated sandbox the default, Settings and sandboxed starts name the account and offer to remove that setting.</p>
+        <p data-i18n="guide.sandbox.coverage">Codex, and Claude Code on macOS and Linux, use their own sandboxes to limit writes to work and temporary folders and restrict access to login folders and OS secret stores. The network stays available. <strong>Claude Code has no sandbox on Windows:</strong> only its file tools are kept out of login folders; its shell stays unrestricted. Codex on Linux blocks file-path session buses, not abstract sockets; Claude’s OS-store coverage was measured on its sandbox runtime. Read <strong>What the sandbox blocks</strong> in Security &amp; Access for platform coverage.</p>
+        <p data-i18n="guide.sandbox.delegation">A marked sandboxed session cannot hand work to sessions, Jobs, or Tasks outside the sandbox, call the Host directly, or write Astera’s profile or installed code. Its agent browser has an empty page store of its own. A warning identifies a work folder containing your home folder or a Claude shell that cannot run on Ubuntu.</p>
+        <div class="guide-note" data-i18n="guide.sandbox.checks"><strong>Checks and reviews have platform limits too.</strong> Sandboxed Tasks use sandbox protection for command checks and reviewers where available. Docker checks ask for your decision because they cannot run inside it. Claude on Windows can report checks outside the sandbox and reviews with file-tool protection only. Read completion details and unavailable-check questions.</div>
+      </section>
+
+      <section class="guide-section" id="findings" aria-labelledby="findings-title">
+        <div class="guide-section-heading"><h2 id="findings-title" lang="en">Findings. See what needs attention.</h2></div>
+        <p data-i18n="guide.findings.intro">Open <strong>Settings → Security &amp; Access → Findings</strong> for unused or duplicate profiles, removed accounts or servers still referenced, repeated failures, unused tools or credentials, access broader than recorded use, partly covered Rules, long-unreached Runtimes, and unusually costly Runs. Each finding explains where to act. Nothing changes automatically; <strong>Ignore</strong> sets it aside.</p>
+        <p data-i18n="guide.findings.history">Unused profiles need 90 days. Unused MCP servers, skills, commands, agents, and over-broad profile findings need 30 days of Observe history; failure and token-spike findings use separate records and do not wait for Observe. An unreadable source is identified rather than treated as clean. Profiles show open findings. Archiving records when and why; scheduled Jobs using that profile wait until it is restored, while work already holding it continues.</p>
+        <pre class="command-example" tabindex="0"><code>astera agent-profiles audit</code></pre>
+        <p data-i18n="guide.findings.cli">The CLI reads the same findings from a running Host. Agents may read them but cannot ignore them. Expected extensions missing or different on a <a href="#remote-runtime">Remote Runtime</a>, and an older Astera there, also appear with the snapshot time.</p>
       </section>
 
       <section class="guide-section" id="smart-resume" aria-labelledby="smart-resume-title">
@@ -225,6 +286,7 @@
         <p data-i18n="guide.jobs.112">A Job turns an objective into a graph of tasks. Its connections show what can run in parallel and what must wait. Follow Claude and Codex workers, questions, and completion checks from the same run.</p>
         <div class="job-example" aria-label="Example job: implement a change and write tests in parallel, then review the combined result" data-i18n-aria-label="guide.label113"><p data-i18n="guide.jobs.114">Example: update the sign-in flow</p><div><span data-i18n="guide.jobs.115">Implement the change</span><span data-i18n="guide.jobs.116">Write regression tests</span></div><span class="job-example-join" data-i18n="guide.jobs.117">Both tasks finish</span><strong data-i18n="guide.jobs.118">Run checks &amp; review the result</strong></div>
         <div class="guide-feature-list"><article><h3 data-i18n="guide.graph.dependencies">Read the connections</h3><p data-i18n="guide.graph.dependencies-body">Dependencies determine when a task is ready. Tasks with no unfinished dependencies can run together within the concurrency setting.</p></article><article><h3 data-i18n="guide.graph.states">See why work is waiting</h3><p data-i18n="guide.graph.states-body">A task can be running, validating, reviewing, or blocked by a Gate. Open it to inspect its state, worker, and any question that needs an answer.</p></article><article><h3 data-i18n="guide.graph.proof">Follow the checks</h3><p data-i18n="guide.graph.proof-body">For a task with checks, the worker’s completion report starts validation. Dependent tasks wait for the required checks and review to pass. The timeline lets you follow the sequence.</p></article><article><h3 data-i18n="guide.jobs.diff-title">Inspect the actual changes</h3><p data-i18n="guide.jobs.diff">Open a Run’s detail to see changed files read from git beside the workers’ reports, then select a file to open its diff. This works for local and remote Runs, including after a Run’s worktree has been merged away.</p></article></div>
+        <p data-i18n="guide.jobs.tokens">Run detail and each Task show token totals read from Claude and Codex session records. Use the Audit Logs link to inspect recorded tool calls after enabling <a href="#security-access">Observe</a>.</p>
         <ol class="guide-instructions"><li data-i18n="guide.jobs.119">Use a git repository with at least one commit and a branch checked out.</li><li data-i18n="guide.jobs.120">Open <strong>Jobs → New job</strong>. Enter the <strong>Objective</strong>, choose a <strong>Coordinator account</strong>, and set <strong>Run at once</strong>.</li><li data-i18n="guide.jobs.121">Add tasks, worker accounts, and dependencies. Attach build, test, or cross-vendor review checks. Enable <strong>Auto-fix until the checks pass</strong> if you want repair attempts within the retry limit.</li><li data-i18n="guide.jobs.122">Click <strong>Run</strong>. Follow the graph, answer questions, and review the finished work. For a normal Job, click <strong>Merge</strong> when you are ready to bring it into your project.</li></ol>
         <div class="guide-note" data-i18n="guide.jobs.123"><strong>“Done” is checked, not assumed.</strong> Failed checks can go back for repair, but a retry limit or a decision that needs you can stop progress. Normal Jobs keep changes in worktrees until you merge them.</div>
         <details class="guide-disclosure"><summary data-i18n="guide.jobs.124">Can I ask an agent to coordinate a Job?</summary><div><p data-i18n="guide.jobs.125">Yes. The <a href="#orchestration"><code>/astera-orchestration</code> walkthrough</a> shows how to give a new coordinator session an objective, worker roles, dependencies, and checks. Its run appears in the same Jobs sidebar.</p></div></details>
@@ -459,7 +521,7 @@ astera plugins doctor --id PLUGIN_ID</code></pre>
       <section class="guide-section" id="sdk" aria-labelledby="sdk-title">
         <div class="guide-section-heading"><h2 id="sdk-title" lang="en">SDK. Build on the same Host.</h2></div>
         <p data-i18n="guide.sdk.intro">Use the official TypeScript client, <code>@astera-app/client</code>, to build a script, CI step, bot, or dashboard. It reaches the same Host as the app, CLI, and MCP. Jobs created through it appear in Astera and keep running after your program exits.</p>
-        <p class="guide-small" data-i18n="guide.sdk.versions">Astera 1.4.14 adds Job source metadata and plugin check results to <code>@astera-app/client</code> 0.3.0, and event, notification, job-source, and completion-check providers to <code>@astera-app/plugin-sdk</code> 0.2.0.</p>
+        <p class="guide-small" data-i18n="guide.sdk.versions">Astera 1.5.0 includes <code>@astera-app/client</code> 0.5.0 with profile reads and profile selection for Jobs and Tasks, alongside source metadata, plugin check results, and GitHub lifecycle support. <code>@astera-app/plugin-sdk</code> 0.2.0 provides event, notification, job-source, and completion-check helpers.</p>
         <ol class="guide-instructions">
           <li data-i18n="guide.sdk.install">Install Node.js 22 or later and Astera, and set up your agent accounts. In your integration project, install the client from npm. ESM, CommonJS, and TypeScript types are included.</li>
           <li data-i18n="guide.sdk.host">Open Astera or run <code>astera host start</code>. The client connects to an existing Host; it does not start one itself. A script launched inside an Astera session inherits that session's profile.</li>
@@ -503,8 +565,15 @@ try {
         <div class="guide-feature-list">
           <article><h3 data-i18n="guide.remote.sessions-title">Keep a remote session open</h3><p data-i18n="guide.remote.sessions">Closing a Terminal or Chat tab leaves its session running on the Runtime. Account rolling moves the tab to the continued session. A terminal shown on both computers fits the window of whoever typed last; the other view scales down to show it whole.</p></article>
           <article><h3 data-i18n="guide.remote.offline-title">Read connection status</h3><p data-i18n="guide.remote.offline">An offline Runtime shows its last known state marked as out of date. Disconnection does not mean a Job failed. Reconnect to read current progress. Job notifications use the Runtime computer’s Slack settings.</p></article>
-          <article><h3 data-i18n="guide.remote.revoke-title">Turn off or unpair</h3><p data-i18n="guide.remote.revoke">Turning Remote off in <strong>This computer</strong> keeps existing pairings and invalidates unused pairing strings. Use <strong>Unpair</strong> beside a controller on the Runtime to revoke its access, even while Remote is off.</p></article>
+          <article><h3 data-i18n="guide.remote.revoke-title">Turn off or unpair</h3><p data-i18n="guide.remote.revoke">Turning Remote off in <strong>This computer</strong> keeps pairings and invalidates unused strings. <strong>Unpair</strong> revokes access even while Remote is off, pauses the scheduled Jobs that controller created, and reports the count. Only a person on the Runtime can resume them. Older scheduled Jobs without a recorded creator are counted separately for you to inspect.</p></article>
         </div>
+        <p data-i18n="guide.remote.details">In <strong>Settings → Remote Runtimes → Details</strong>, see its Astera version, OS, profiles, policy, sandbox, extensions, credential names, and finding counts. Reports contain names, states, and counts only, never values, paths, commands, or Rule text. Only a person in the app or their own shell can read them; agents and MCP clients cannot.</p>
+        <p data-i18n="guide.remote.expect">Tick which local extensions you expect there. Comparison shows missing, different, off, secret missing, or same; differences and an older Astera become Findings. Reports are read when opening Runtime settings or Findings, at most once every five minutes, or immediately with <strong>Refresh</strong>. Offline views retain the last report and its time. Install or fix extensions on the Runtime itself; comparison never synchronizes them.</p>
+        <pre class="command-example" tabindex="0"><code>astera runtimes ping --id RUNTIME_ID
+astera runtimes get --id RUNTIME_ID
+astera ext list
+astera runtimes expect --id RUNTIME_ID --add EXTENSION_ID</code></pre>
+        <p data-i18n="guide.remote.governance">Run these in your own shell with IDs from the lists; <code>expect --remove EXTENSION_ID</code> clears an expectation. Agents cannot edit expectations. Runtime settings show each controller’s surface (app, CLI, MCP) and version. Agents meet the Runtime’s agent rules. The CLI and MCP let sandboxed sessions read work but refuse remote changes. These session checks can be bypassed by clearing the environment or using a pairing token directly; revoke a pairing to stop a controller you no longer trust. Update both computers: older Runtimes cannot report, and an older CLI counts as an agent.</p>
         <details class="guide-disclosure"><summary data-i18n="guide.remote.cli-title">Use the CLI or MCP</summary><div>
           <p data-i18n="guide.remote.cli">With the <a href="#headless-cli">astera command installed</a> on the controller, pair using standard input. Paste the string after the first command, then end input with Ctrl+D, or Ctrl+Z then Enter on Windows. Replace RUNTIME_ID with an ID or name from the list, and RUN_ID with a Run on that Runtime.</p>
           <pre class="command-example" tabindex="0"><code>astera runtimes add --pair -
@@ -550,6 +619,7 @@ astera --runtime RUNTIME_ID runs follow --id RUN_ID --human</code></pre>
           <article><h3 data-i18n="guide.optional.175">Agent browser</h3><p data-i18n="guide.optional.176">Enable <strong>Agent browser</strong>, then start a new session. Ask the agent to check your local web app. It can open its own preview tab, inspect the page, and check console and network errors. It works with local development pages.</p></article>
           <article id="agent-app"><h3 data-i18n="guide.app.title">Agent app workspace</h3><p data-i18n="guide.app.body">Enable <strong>Agent app workspace</strong> in Settings, then ask a new session to run and check your project’s desktop app. The <code>/astera-app</code> skill lets the agent inspect, interact with, and capture it. A mirror tab shows the app and follows the tab’s size. Windows uses a hidden desktop; Linux uses a virtual display. On macOS it runs in the background, with limits on native dialogs and input. See <a href="https://github.com/parsingk/Astera/blob/main/docs/agent-workspace-isolation.md" target="_blank" rel="noopener noreferrer">platform requirements</a>.</p></article>
         </div>
+        <p data-i18n="guide.app.cleanup">Closing an app in the agent workspace also ends the background programs it started. Windows tracks them in one process job; macOS and Linux can find detached children while their original parent is still running.</p>
         <p class="guide-small" data-i18n="guide.app.briefing">New Claude and Codex sessions receive a short introduction to the Astera features you have enabled. App and browser skills can be used when the agent needs to check the project, without you naming each skill. Codex accounts with their own <code>developer_instructions</code> keep those instructions; Astera does not replace them with its introduction.</p>
       </section>
 
@@ -591,6 +661,7 @@ astera higgsfield use --account ACCOUNT_ID</code></pre>
           <article><h3 data-i18n="guide.preferences.166">Desktop notifications</h3><p data-i18n="guide.preferences.167">In <strong>Settings → Notifications</strong>, choose alerts for input needed, waiting on a limit, and account switches. These help you follow a session while you are looking at another session or window.</p></article>
           <article><h3 data-i18n="guide.preferences.168">App updates</h3><p data-i18n="guide.preferences.169">Open <strong>Settings → Info → Check for updates</strong> and follow the available download/install action. Update support depends on your platform and build. When automatic updates are unavailable, download the matching installer from <a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer">GitHub Releases</a> and follow the <a href="https://github.com/parsingk/Astera#install" target="_blank" rel="noopener noreferrer">installation notes</a>.</p><p data-i18n="guide.preferences.manual">On macOS, if a downloaded update cannot install automatically, the notification offers <strong>Install by hand</strong>, matching the title bar and Settings. Use that action and follow the manual installation instructions.</p></article>
         </div>
+        <p data-i18n="guide.preferences.fixes">Version 1.5.0 also keeps Codex sessions attached to their own conversations, avoids ending a reused Windows process ID when closing a terminal, preserves linked <code>config.toml</code> files, and removes worktrees containing read-only files from sandboxed sessions. See the <a href="https://github.com/parsingk/Astera/blob/main/docs/release-notes/v1.5.0.md" target="_blank" rel="noopener noreferrer">1.5.0 release notes</a> for the full list.</p>
       </section>
 
       <section class="guide-section" id="faq" aria-labelledby="questions-title">
