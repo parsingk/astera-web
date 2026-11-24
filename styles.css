@@ -280,6 +280,10 @@ h3 { font-size: 26px; line-height: 1.23; letter-spacing: -.9px; }
 .language-toggle:hover { color: var(--ink); background: var(--soft); }
 :root[lang='ko'] body { font-family: 'Public Sans', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; word-break: keep-all; overflow-wrap: break-word; }
 :root[lang='ko'] h2:not([lang='en']), :root[lang='ko'] h3:not([lang='en']) { letter-spacing: -.04em; line-height: 1.3; }
+.footer-groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; width: 100%; padding-top: 26px; border-top: 1px solid var(--line); }
+.footer-group-title { color: var(--ink); font-size: 11px; font-weight: 600; }
+.footer-groups a { display: block; margin-top: 10px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.footer-groups a:hover { color: var(--accent); }
 .footer-note { width: 100%; color: var(--muted); font-size: 9px; padding-top: 20px; border-top: 1px solid var(--line); }
 
 dialog { width: min(1240px, calc(100% - 40px)); max-height: calc(100dvh - 48px); border: 1px solid var(--line); border-radius: 12px; padding: 0; background: var(--paper); color: var(--ink); box-shadow: 0 30px 100px #0006; }
@@ -418,6 +422,7 @@ dialog::backdrop { background: #0b132aca; backdrop-filter: blur(5px); }
 }
 
 @media (max-width: 600px) {
+  .footer-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   .nav-shell { gap: 12px; }
   .nav-actions { gap: 5px; }
   .nav-actions .icon-button { width: 34px; flex-shrink: 0; }

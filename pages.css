@@ -37,12 +37,9 @@
 .page-related h2 { font-size: 16px; letter-spacing: -.3px; }
 .language-link { display: inline-flex; align-items: center; min-height: 36px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--muted); font-size: 11px; white-space: nowrap; }
 .language-link:hover { color: var(--ink); background: var(--soft); }
-.footer-groups { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 28px; margin-left: auto; width: min(100%, 760px); }
-.footer-group-title { color: var(--ink); font-size: 11px; font-weight: 600; }
-.footer-groups a { display: block; margin-top: 10px; color: var(--muted); font-size: 11px; line-height: 1.5; }
-.footer-groups a:hover { color: var(--accent); }
+.search-page .footer-groups { grid-template-columns: repeat(6, minmax(0, 1fr)); margin-left: auto; width: min(100%, 760px); padding-top: 0; border-top: 0; }
 @media (max-width: 1000px) {
-  .footer-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-left: 0; width: 100%; }
+  .search-page .footer-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-left: 0; width: 100%; }
 }
 @media (max-width: 600px) {
   .page-intro { padding-top: 30px; }
@@ -51,5 +48,5 @@
   .page-article .guide-section h2 { font-size: 23px; }
   .page-article .guide-section > ul, .page-article .guide-section > ol { font-size: 13px; }
   .page-cta { margin-top: 40px; }
-  .footer-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .search-page .footer-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

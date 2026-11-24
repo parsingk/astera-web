@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-static-language="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Run several Claude Code sessions in Astera, a free, open-source desktop workspace. Keep accounts apart, continue after limits, and check results.">
+  <meta name="theme-color" content="#0b1020">
+  <title>Claude Code Desktop Workspace – Astera</title>
+  <link rel="canonical" href="https://astera.run/claude-code/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="Claude Code Desktop Workspace – Astera">
+  <meta property="og:description" content="Run several Claude Code sessions in Astera, a free, open-source desktop workspace. Keep accounts apart, continue after limits, and check results.">
+  <meta property="og:url" content="https://astera.run/claude-code/">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:image:alt" content="Astera logo with the tagline “Build beyond the stars” on a starry background">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Claude Code Desktop Workspace – Astera">
+  <meta name="twitter:description" content="Run several Claude Code sessions in Astera, a free, open-source desktop workspace. Keep accounts apart, continue after limits, and check results.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://astera.run/claude-code/#webpage","url":"https://astera.run/claude-code/","name":"Claude Code Desktop Workspace – Astera","description":"Run several Claude Code sessions in Astera, a free, open-source desktop workspace. Keep accounts apart, continue after limits, and check results.","inLanguage":"en","isPartOf":{"@id":"https://astera.run/#website"},"about":{"@id":"https://astera.run/#app"},"dateModified":"2026-11-25","breadcrumb":{"@id":"https://astera.run/claude-code/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://astera.run/claude-code/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Astera","item":"https://astera.run/"},{"@type":"ListItem","position":2,"name":"Claude Code"}]}]}</script>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/guide.css">
+  <link rel="stylesheet" href="/pages.css?v=20261125-2">
+  <script src="/language.js?v=20261125-2" defer></script>
+  <script src="/main.js?v=20261125-2" defer></script>
+  <script src="/downloads.js" defer></script>
+</head>
+<body class="guide-page search-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" data-theme-link aria-label="Astera home"><img src="/assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/#features" data-theme-link lang="en">Features</a><a href="/#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.html" data-theme-link lang="en">Guide</a><a href="/#faq" data-theme-link lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="View Astera on GitHub"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">Light theme</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="/#features" data-theme-link lang="en">Features</a><a href="/#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.html" data-theme-link lang="en">Guide</a><a href="/#faq" data-theme-link lang="en">FAQ</a></nav>
+  </header>
+
+  <main id="main" class="container page-main">
+    <article class="page-article">
+      <header class="guide-intro guide-section page-intro">
+        <p class="guide-breadcrumb"><a href="/" data-theme-link>Astera</a><span>/</span>Claude Code</p>
+        <h1>A desktop workspace for Claude Code.</h1>
+        <p class="guide-lead">Astera runs the Claude Code CLI you already use, in terminal or chat panes beside your files, worktrees, and checks.</p>
+      </header>
+<section class="guide-section" id="why">
+        <h2>When one terminal is not enough</h2>
+        <p>Claude Code is a command-line agent. Once you run it on several projects or tasks at the same time, the work spreads across terminal windows, and each window has its own context, sign-in, and usage limit. Astera puts those sessions in one desktop window, keeps every account in its own configuration folder, and keeps a record of what each session changed.</p>
+        <figure>
+          <img src="/assets/hero.jpg" width="1998" height="1248" alt="Actual Astera terminal view with four sessions running across Claude Code and Codex accounts." loading="lazy" decoding="async">
+          <figcaption>Astera with four sessions in a 2×2 grid: three Claude Code sessions on two Claude accounts, and one Codex session.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="what-you-get">
+        <h2>What Astera adds around Claude Code</h2>
+        <h3>Several sessions, side by side</h3>
+        <p>Open a session for each task and arrange them in split panes. A session is either a <strong>Terminal</strong>, with Claude Code’s own interface, or a <strong>Chat</strong>, where questions and approvals arrive as cards and the model and permission mode sit beside the message box. A session keeps the type it was created with. <a href="/guide.html#sessions" data-theme-link>Terminal and Chat in the guide</a></p>
+        <h3>Accounts kept apart, tools shared</h3>
+        <p>Each Claude account runs with its own <code>CLAUDE_CONFIG_DIR</code>, so sign-ins and settings do not mix. In <strong>Settings → MCP &amp; Skills</strong> you pick MCP servers, skills, commands, agents, and Claude Code plugins once, and new sessions on every account get them. <a href="/guide.html#mcp-skills" data-theme-link>Share tools across accounts</a></p>
+        <h3>Work that continues after a usage limit</h3>
+        <p>When a session reaches a usage limit, Astera reads the reset time from the transcript. With one account, the session can wait and resume when the limit resets. If you have registered more than one account that you are entitled to use, account rolling can continue the session on the next one; every account keeps its own limits. <a href="/features/smart-resume/" data-theme-link>Smart Resume</a> can give the next session a compact checkpoint instead of the whole conversation. <a href="/guides/claude-code-usage-limit/" data-theme-link>Working with Claude Code usage limits</a></p>
+        <h3>Sessions that outlive the window</h3>
+        <p>A separate local process, Astera Host, can own Terminal and Chat sessions, so quitting the app leaves them running. Reopen Astera to reconnect to the live session. Keep the computer awake while work runs. <a href="/guide.html#host" data-theme-link>What stays running</a></p>
+        <h3>Results that are checked</h3>
+        <p>For larger work, a Job splits an objective into tasks for Claude Code and Codex workers, runs your build and test checks, and can ask the other provider’s model to review the result before the work counts as done. <a href="/features/agent-orchestration/" data-theme-link>Agent orchestration with Jobs</a></p>
+      </section>
+
+      <section class="guide-section" id="get-started">
+        <h2>Get started</h2>
+        <ol class="setup-steps">
+          <li><h3>Install Claude Code</h3><p>Install the Claude Code CLI so the <code>claude</code> command is on your PATH. Astera starts that command; it does not include Claude Code.</p></li>
+          <li><h3>Install Astera</h3><p>Download the installer for your operating system. macOS builds are not notarized yet, so the first launch needs the quarantine flag cleared, and Windows SmartScreen may warn on first run. <a href="https://github.com/parsingk/Astera/blob/main/README.md#install" target="_blank" rel="noopener noreferrer">Installation steps</a></p></li>
+          <li><h3>Add your account</h3><p>In <strong>Accounts</strong>, use <strong>Auto-detect</strong> to find accounts you already use, or choose <strong>Add account</strong> and finish Claude Code’s sign-in when prompted.</p></li>
+          <li><h3>Start a session</h3><p>Open <strong>New session</strong>, choose the project folder and account, pick Terminal or Chat, and click <strong>Start</strong>. Describe the result you want and how to check it. <a href="/guide.html#quickstart" data-theme-link>Your first session</a></p></li>
+        </ol>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements and limits</h2>
+        <ul>
+          <li>Windows 10 or 11, macOS 12 or later, or Ubuntu 22.04 / Debian 12 or later. Astera is a desktop app; you can follow sessions and reply from Slack on your phone.</li>
+          <li>Claude Code installed and signed in. Astera is free and open source (Apache-2.0). Claude usage counts against your own Claude plan or is billed to your API account.</li>
+          <li>Your plan’s limits still apply. Anthropic counts Claude Code and Claude chat toward the same usage limits. <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan" target="_blank" rel="noopener noreferrer">Anthropic: Claude Code with your plan</a></li>
+          <li>Astera starts the <code>claude</code> command installed on your computer, signed in with your own account, so Anthropic’s terms for Claude Code apply as they do in a terminal. <a href="https://code.claude.com/docs/en/legal-and-compliance" target="_blank" rel="noopener noreferrer">Claude Code legal and compliance</a></li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Is Astera the Claude desktop app? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Claude Desktop is Anthropic’s chat app. Astera is an independent, open-source workspace that runs the Claude Code CLI. It is not made by or affiliated with Anthropic.</p></details>
+          <details><summary>Does Astera change how Claude Code works? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Astera starts Claude Code in the project folder you choose, with that account’s own configuration folder. In a Terminal session you use Claude Code’s own interface. In a Chat session, Astera shows Claude Code’s questions and approvals as cards.</p></details>
+          <details><summary>Can I use Codex in the same window? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. Codex sessions run beside Claude Code sessions, and a Job can give tasks to both. <a href="/codex/" data-theme-link>Codex in Astera</a></p></details>
+          <details><summary>What does it cost? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Astera is free. Model usage counts against your Claude plan or is billed to your API account, just as it would in a terminal.</p></details>
+        </div>
+      </section>
+
+      <div class="guide-finish page-cta">
+        <div><h2>Try Astera on your own project.</h2><p>Astera is free and open source (Apache-2.0). It runs the Claude Code and Codex CLIs you already use, so model usage stays on your own Anthropic or OpenAI plan.</p><p class="page-platforms">Windows 10/11 · macOS 12+ · Ubuntu 22.04+ / Debian 12+</p></div>
+        <div class="page-cta-actions"><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download><svg class="icon"><use href="#i-download"/></svg> Download Astera</a><a class="text-button" href="/guide.html" data-theme-link>Read the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <nav class="feature-map page-related" aria-labelledby="related-title">
+        <h2 id="related-title">Keep reading</h2>
+        <a href="/codex/" data-theme-link><span>Codex</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/features/agent-orchestration/" data-theme-link><span>Agent orchestration</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/features/smart-resume/" data-theme-link><span>Smart Resume</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/guides/claude-code-usage-limit/" data-theme-link><span>Claude Code usage limits</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div><a class="brand" href="/" data-theme-link><img src="/assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p>Build beyond the stars.</p></div>
+    <nav class="footer-groups" aria-label="Astera">
+      <div><p class="footer-group-title">Product</p><a href="/" data-theme-link>Home</a><a href="/guide.html" data-theme-link>Guide</a><a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download>Download</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer">Changelog</a></div>
+      <div><p class="footer-group-title">Providers</p><a href="/claude-code/" data-theme-link>Claude Code</a><a href="/codex/" data-theme-link>Codex</a></div>
+      <div><p class="footer-group-title">Features</p><a href="/features/agent-orchestration/" data-theme-link>Agent orchestration</a><a href="/features/smart-resume/" data-theme-link>Smart Resume</a><a href="/features/github-ci/" data-theme-link>GitHub issue to pull request</a></div>
+      <div><p class="footer-group-title">Guides</p><a href="/guides/claude-code-usage-limit/" data-theme-link>Claude Code usage limits</a></div>
+      <div><p class="footer-group-title">Compare</p><a href="/alternatives/orca/" data-theme-link>Astera vs Orca</a><a href="/alternatives/paseo/" data-theme-link>Astera vs Paseo</a></div>
+      <div><p class="footer-group-title">Project</p><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera#documentation" target="_blank" rel="noopener noreferrer">Docs</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a></div>
+    </nav>
+    <p class="footer-note">Astera is an independent open-source project. It is not made by or affiliated with Anthropic or OpenAI. Made for people who build.</p>
+  </footer>
+</body>
+</html>

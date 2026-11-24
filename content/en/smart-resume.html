@@ -1,0 +1,53 @@
+      <section class="guide-section" id="two-ways">
+        <h2>Two ways to pick the work back up</h2>
+        <p>When a usage limit moves a session to another account, the next session has to know what was going on. Replaying a long conversation carries everything, including the parts that no longer matter. Smart Resume starts the next session fresh and gives it a compact checkpoint instead.</p>
+        <div class="page-table-wrap" role="region" aria-labelledby="resume-table-caption" tabindex="0">
+          <table class="page-table">
+            <caption id="resume-table-caption">Standard resume is the default. Choose between them in Settings → Agents → Session resume strategy.</caption>
+            <thead><tr><th scope="col"></th><th scope="col">Standard resume</th><th scope="col">Smart Resume</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">The next session gets</th><td>The existing conversation, continued through the CLI’s own resume</td><td>A new conversation whose first message is a checkpoint of the work so far</td></tr>
+              <tr><th scope="row">Good for</th><td>Short conversations where every detail still matters</td><td>Long sessions where a focused handoff is more useful than the full history</td></tr>
+              <tr><th scope="row">Trade-off</th><td>Carries the whole conversation into the next session</td><td>A compact handoff can leave out older details</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="guide-section" id="checkpoint">
+        <h2>What the checkpoint carries</h2>
+        <ul>
+          <li>The working folder and its git state.</li>
+          <li>The conversation’s recent requests, in order, and the tail of the exchange.</li>
+          <li>The files the session touched and the last command it ran.</li>
+          <li>For Job workers, the task’s objective, dependencies, recent reports, decisions, and validation context, so the next worker sees both its task and the work around it.</li>
+        </ul>
+        <p>Secrets are redacted on the way in. The next agent can then open the working files itself to pick up the task.</p>
+      </section>
+
+      <section class="guide-section" id="when-it-runs">
+        <h2>When it runs</h2>
+        <p>Smart Resume is off by default. When it is on, it is used when a usage limit switches a session to another available account of the same service, in the rolling order you set for that session. If a checkpoint cannot be built, Astera falls back to the standard resume, so turning it on never leaves a switch worse off than before.</p>
+        <ol class="setup-steps">
+          <li><h3>Turn it on</h3><p>In <strong>Settings → Agents → Session resume strategy</strong>, choose <strong>Smart Resume</strong>.</p></li>
+          <li><h3>Set the rolling order</h3><p>In <strong>New session</strong>, choose the first account, then use <strong>+ Add account</strong> for the next ones. Add only accounts you are entitled to use.</p></li>
+          <li><h3>Keep working</h3><p>When a limit triggers a switch, the next session receives the checkpoint as its first message. <a href="/guide.html#smart-resume">Smart Resume in the guide</a></p></li>
+        </ol>
+      </section>
+
+      <section class="guide-section" id="limits">
+        <h2>What it does not do</h2>
+        <ul>
+          <li>It does not remove or raise any account’s usage limit. Every account keeps its own limits.</li>
+          <li>It is a handoff, not a copy of the conversation. Keep requirements the agent must not lose in project files it can read, such as <code>CLAUDE.md</code> or <code>AGENTS.md</code>.</li>
+          <li>It does not apply when there is no other account to switch to. A session on a single account can instead wait for the limit to reset and resume. <a href="/guides/claude-code-usage-limit/">Working with usage limits</a></li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Is this the same as <code>claude --resume</code>? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. <code>claude --continue</code> and <code>claude --resume</code> reopen an earlier conversation, and Codex has <code>codex resume</code> for the same purpose. Astera’s standard resume uses the CLI’s own resume. Smart Resume starts a new conversation and hands it a checkpoint instead. <a href="https://code.claude.com/docs/en/common-workflows#resume-previous-conversations" target="_blank" rel="noopener noreferrer">Claude Code: resume previous conversations</a></p></details>
+          <details><summary>Are secrets copied into the checkpoint? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Secrets are redacted while the checkpoint is built. The checkpoint still describes your files and commands, so treat it like the rest of your project history.</p></details>
+        </div>
+      </section>

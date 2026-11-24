@@ -1,0 +1,53 @@
+      <section class="guide-section" id="what-it-is">
+        <h2>The Codex CLI, with room around it</h2>
+        <p>Astera starts the <code>codex</code> command installed on your computer and gives each session a pane in one desktop window, next to your Claude Code sessions, files, and worktrees. You keep using Codex the way it works in a terminal; Astera adds accounts, shared tools, checks, and a record of what changed.</p>
+        <p class="guide-note">Astera is not OpenAI’s Codex app. It is an independent open-source project and is not made by or affiliated with OpenAI.</p>
+        <figure>
+          <img src="/assets/conversation.jpg" width="1920" height="1044" alt="Actual Astera conversation view with four Claude Code and Codex sessions next to the account and project sidebar." loading="lazy" decoding="async">
+          <figcaption>Four sessions read as chat threads: three Claude Code and one Codex, each pane with its own message box, model, and reasoning effort.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="what-you-get">
+        <h2>What you can do with Codex in Astera</h2>
+        <h3>Terminal or Chat sessions</h3>
+        <p>Run Codex in its own terminal interface, or as a Chat where questions and approvals arrive as cards. A session keeps the type it was created with. <a href="/guide.html#sessions">Terminal and Chat in the guide</a></p>
+        <h3>Several Codex accounts, kept apart</h3>
+        <p>Each Codex account runs with its own <code>CODEX_HOME</code>. When you add an account, <strong>Import settings from the default account</strong> merges Codex settings into its <code>config.toml</code> and keeps comments and unrelated entries.</p>
+        <h3>Shared MCP servers, skills, and plugins</h3>
+        <p>Choose MCP servers and skills once in <strong>Settings → MCP &amp; Skills</strong>, and new sessions on every account get them. Provider support still applies: Codex has no slash commands or subagents. Shared Claude Code plugins are also installed into every Codex account; agents are left out, and commands become skills named <code>&lt;plugin&gt;:source-command-&lt;name&gt;</code>. <a href="/guide.html#mcp-skills">MCP &amp; Skills in the guide</a></p>
+        <h3>A sandbox that keeps work in its folder</h3>
+        <p>Turn on <strong>Run in the sandbox</strong> in an agent profile to use Codex’s own sandbox, which limits writes to the work and temporary folders and blocks login files. It needs Codex 0.160.0 or later; on Windows, each Codex account needs a one-time <strong>Set up</strong> with an administrator prompt. The network stays available. <a href="/guide.html#sandbox">Sandbox in the guide</a></p>
+        <h3>Codex and Claude Code on the same work</h3>
+        <p>A Job can give some tasks to Codex and others to Claude Code, then ask the other provider’s model to review each result. A cross-vendor review uses that provider’s quota. <a href="/features/agent-orchestration/">Agent orchestration with Jobs</a></p>
+        <h3>Continue after a usage limit</h3>
+        <p>When a Codex session reaches its limit, Astera can wait for the reset and resume it, or continue on another Codex account you have registered and are entitled to use. Every account keeps its own limits. <a href="/features/smart-resume/">Smart Resume</a> can hand the next session a compact checkpoint.</p>
+      </section>
+
+      <section class="guide-section" id="get-started">
+        <h2>Get started</h2>
+        <ol class="setup-steps">
+          <li><h3>Install the Codex CLI</h3><p>Install Codex so the <code>codex</code> command is on your PATH. Astera starts that command; it does not include Codex.</p></li>
+          <li><h3>Install Astera</h3><p>Download the installer for your operating system. <a href="https://github.com/parsingk/Astera/blob/main/README.md#install" target="_blank" rel="noopener noreferrer">Installation steps</a></p></li>
+          <li><h3>Add your Codex account</h3><p>In <strong>Accounts</strong>, use <strong>Auto-detect</strong> or <strong>Add account</strong>, and finish Codex’s sign-in when prompted.</p></li>
+          <li><h3>Start a session</h3><p>Open <strong>New session</strong>, choose the project folder and the Codex account, pick Terminal or Chat, and click <strong>Start</strong>. <a href="/guide.html#quickstart">Your first session</a></p></li>
+        </ol>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements and limits</h2>
+        <ul>
+          <li>Windows 10 or 11, macOS 12 or later, or Ubuntu 22.04 / Debian 12 or later.</li>
+          <li>The Codex CLI installed and signed in. The sandbox needs Codex 0.160.0 or later.</li>
+          <li>Astera is free and open source (Apache-2.0). Codex usage counts against your own OpenAI plan, where local messages and cloud chats share the plan’s usage allowance. In a Codex CLI session, <code>/status</code> shows your remaining limits. <a href="https://developers.openai.com/codex/pricing" target="_blank" rel="noopener noreferrer">OpenAI: Codex pricing and limits</a></li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Is Astera OpenAI’s Codex app? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Astera is an independent open-source workspace that runs the Codex CLI. It is not made by or affiliated with OpenAI.</p></details>
+          <details><summary>Can Codex review Claude Code’s work? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. In a Job, a task that asks for a review is normally reviewed by the other provider’s model, so Codex can review work Claude Code did, and the other way round. You need a usable account for the reviewing provider.</p></details>
+          <details><summary>Do Codex and Claude Code share an account? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Each account in Astera belongs to one provider. Account rolling only moves a session to another account of the same provider.</p></details>
+        </div>
+      </section>

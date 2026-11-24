@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "content" / "pages.json"
 SITE = "https://astera.run"
-ASSET_VERSION = "20261125-1"
+ASSET_VERSION = "20261125-2"
 
 ICONS = """  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>

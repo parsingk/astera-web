@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" data-static-language="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Split coding work into a task graph for Claude Code and Codex workers. Astera runs your checks and a cross-vendor review before work counts as done.">
+  <meta name="theme-color" content="#0b1020">
+  <title>AI Coding Agent Orchestration with Jobs – Astera</title>
+  <link rel="canonical" href="https://astera.run/features/agent-orchestration/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="AI Coding Agent Orchestration with Jobs – Astera">
+  <meta property="og:description" content="Split coding work into a task graph for Claude Code and Codex workers. Astera runs your checks and a cross-vendor review before work counts as done.">
+  <meta property="og:url" content="https://astera.run/features/agent-orchestration/">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:image:alt" content="Astera logo with the tagline “Build beyond the stars” on a starry background">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Coding Agent Orchestration with Jobs – Astera">
+  <meta name="twitter:description" content="Split coding work into a task graph for Claude Code and Codex workers. Astera runs your checks and a cross-vendor review before work counts as done.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://astera.run/features/agent-orchestration/#webpage","url":"https://astera.run/features/agent-orchestration/","name":"AI Coding Agent Orchestration with Jobs – Astera","description":"Split coding work into a task graph for Claude Code and Codex workers. Astera runs your checks and a cross-vendor review before work counts as done.","inLanguage":"en","isPartOf":{"@id":"https://astera.run/#website"},"about":{"@id":"https://astera.run/#app"},"dateModified":"2026-11-25","breadcrumb":{"@id":"https://astera.run/features/agent-orchestration/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://astera.run/features/agent-orchestration/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Astera","item":"https://astera.run/"},{"@type":"ListItem","position":2,"name":"Agent orchestration"}]}]}</script>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/guide.css">
+  <link rel="stylesheet" href="/pages.css?v=20261125-2">
+  <script src="/language.js?v=20261125-2" defer></script>
+  <script src="/main.js?v=20261125-2" defer></script>
+  <script src="/downloads.js" defer></script>
+</head>
+<body class="guide-page search-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" data-theme-link aria-label="Astera home"><img src="/assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/#features" data-theme-link lang="en">Features</a><a href="/#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.html" data-theme-link lang="en">Guide</a><a href="/#faq" data-theme-link lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="View Astera on GitHub"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">Light theme</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="/#features" data-theme-link lang="en">Features</a><a href="/#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.html" data-theme-link lang="en">Guide</a><a href="/#faq" data-theme-link lang="en">FAQ</a></nav>
+  </header>
+
+  <main id="main" class="container page-main">
+    <article class="page-article">
+      <header class="guide-intro guide-section page-intro">
+        <p class="guide-breadcrumb"><a href="/" data-theme-link>Astera</a><span>/</span>Features</p>
+        <h1>Coordinate coding agents. Check the result.</h1>
+        <p class="guide-lead">A Job turns one objective into dependent tasks for Claude Code and Codex, then keeps the work moving until its checks pass or it needs you.</p>
+      </header>
+<section class="guide-section" id="what-a-job-does">
+        <h2>From one objective to checked work</h2>
+        <p>Running several coding agents is easy; knowing when their combined work is actually done is not. In Astera, a <strong>Job</strong> turns an objective into a graph of tasks. Connections show what can run in parallel and what has to wait. Claude Code and Codex workers take the tasks, and a task with checks is done only when its build, tests, and review pass.</p>
+        <figure>
+          <img src="/assets/jobs-demo-still.png" width="960" height="600" alt="Astera’s Jobs view: in an Implement OAuth Login job, Analyze Auth has finished, Implement OAuth and Add Tests run in parallel, and Verify OAuth Login waits for both, above a timeline of worker events." loading="lazy" decoding="async">
+          <figcaption>A frame from the Jobs demo recording: the task graph above the Run’s timeline.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="example">
+        <h2>An example</h2>
+        <p>Open a new session, type <code>/astera-orchestration</code>, and describe the work. A coordinator agent creates the tasks, dispatches workers, waits for their reports, and brings decisions back to you. The Run stays visible in Jobs.</p>
+        <p class="prompt-example">Refactor the sign-in flow with Claude. After that, have Codex add regression tests. Run the project’s tests and request a cross-vendor review. If checks fail, repair and check again within three attempts. Ask me when a decision is needed.</p>
+        <p>You can also build the same Job yourself in <strong>Jobs → New job</strong>: enter the objective, add tasks and their dependencies, choose worker accounts, and attach checks. <a href="/guide.html#jobs" data-theme-link>Jobs in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="how-it-works">
+        <h2>How a Job keeps moving</h2>
+        <h3>Dependencies decide what runs</h3>
+        <p>A task is ready when nothing it depends on is unfinished. Ready tasks run together, up to the concurrency setting.</p>
+        <h3>Checks decide when a task is done</h3>
+        <p>A worker’s completion report starts validation: build, test, and review checks you attached. With <strong>Auto-fix until the checks pass</strong>, failed builds and tests and blocking review findings go back to the worker for repair and are checked again, until the checks pass or the retry limit is reached. The loop survives account rolling, pauses, and app restarts.</p>
+        <h3>Another model reviews the work</h3>
+        <p>A review is normally done by the other provider’s model, so Codex reviews Claude Code’s work and the other way round. You can choose an external reviewer instead: Gemini CLI, Copilot CLI, OpenCode, or another agent that speaks ACP. It is asked only to read, and Astera stops the review if it changes a file. <a href="/guide.html#reviewers" data-theme-link>External reviewers</a></p>
+        <h3>Questions come to you</h3>
+        <p>When a worker or the coordinator needs a decision, the task shows a question or a Gate. Open it to see the state, the worker, and what is being asked.</p>
+        <h3>You see the actual changes</h3>
+        <p>Run detail lists the changed files read from git beside the workers’ reports; select a file to see its diff. A normal Job keeps its changes in worktrees until you click <strong>Merge</strong>. When the Run ends, a report card summarizes each task’s checks and reviews, and the same summary can go to the pull request and Slack. <a href="/guide.html#run-report" data-theme-link>The Run report</a></p>
+      </section>
+
+      <section class="guide-section" id="ways-to-start">
+        <h2>Start a Job from anywhere</h2>
+        <ul>
+          <li>The Jobs screen, or a coordinator session with <code>/astera-orchestration</code>.</li>
+          <li>A GitHub issue or a ticket from a job-source plugin, with the source text carried into the objective. <a href="/features/github-ci/" data-theme-link>From issue to pull request</a></li>
+          <li>The <code>astera</code> command, an MCP client, or the SDK. The command answers with JSON by default and has one meaning per exit code.</li>
+        </ul>
+        <pre class="command-example"><code>astera jobs create --objective "Improve the sign-in flow" --cwd "REPO_PATH" --coordinator-account ACCOUNT_ID
+astera jobs run --id JOB_ID
+astera runs follow --id RUN_ID --human</code></pre>
+        <p class="guide-small">Replace the capitalized values with your repository path and the IDs the commands return. <a href="/guide.html#headless-cli" data-theme-link>Headless CLI in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements and limits</h2>
+        <ul>
+          <li>A git repository with at least one commit and a checked-out branch.</li>
+          <li>A usable account for every provider you ask for. A cross-vendor review uses the reviewing provider’s quota.</li>
+          <li>“Done” is checked, not assumed, but it is not guaranteed: a retry limit or a decision that needs you can stop progress.</li>
+          <li>A separate local process, Astera Host, coordinates Jobs and runs checks and reviews even with the app closed. Keep the computer awake while work runs.</li>
+          <li>Astera does not merge on its own. You merge a normal Job with <strong>Merge</strong>, or merge the pull request yourself on GitHub.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>When should I use a Job instead of a single session? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Use a Job when coordination matters: several tasks with an order, workers from different providers, or checks that must pass before the work counts as done. A single small task can stay in a normal session.</p></details>
+          <details><summary>Can a Job run on a schedule? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. A scheduled Job creates a separate Run at each scheduled time. Times missed while the Host is down are skipped, and results are not merged automatically.</p></details>
+          <details><summary>Can it run on another computer? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. With Remote Runtime, agents and Jobs run on another computer you pair over your LAN, VPN, or Tailscale, and the work continues while the computer you use to manage them sleeps. <a href="/guide.html#remote-runtime" data-theme-link>Remote Runtime in the guide</a></p></details>
+        </div>
+      </section>
+
+      <div class="guide-finish page-cta">
+        <div><h2>Try Astera on your own project.</h2><p>Astera is free and open source (Apache-2.0). It runs the Claude Code and Codex CLIs you already use, so model usage stays on your own Anthropic or OpenAI plan.</p><p class="page-platforms">Windows 10/11 · macOS 12+ · Ubuntu 22.04+ / Debian 12+</p></div>
+        <div class="page-cta-actions"><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download><svg class="icon"><use href="#i-download"/></svg> Download Astera</a><a class="text-button" href="/guide.html" data-theme-link>Read the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <nav class="feature-map page-related" aria-labelledby="related-title">
+        <h2 id="related-title">Keep reading</h2>
+        <a href="/features/github-ci/" data-theme-link><span>GitHub issue to pull request</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/features/smart-resume/" data-theme-link><span>Smart Resume</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/claude-code/" data-theme-link><span>Claude Code</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/codex/" data-theme-link><span>Codex</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div><a class="brand" href="/" data-theme-link><img src="/assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p>Build beyond the stars.</p></div>
+    <nav class="footer-groups" aria-label="Astera">
+      <div><p class="footer-group-title">Product</p><a href="/" data-theme-link>Home</a><a href="/guide.html" data-theme-link>Guide</a><a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download>Download</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer">Changelog</a></div>
+      <div><p class="footer-group-title">Providers</p><a href="/claude-code/" data-theme-link>Claude Code</a><a href="/codex/" data-theme-link>Codex</a></div>
+      <div><p class="footer-group-title">Features</p><a href="/features/agent-orchestration/" data-theme-link>Agent orchestration</a><a href="/features/smart-resume/" data-theme-link>Smart Resume</a><a href="/features/github-ci/" data-theme-link>GitHub issue to pull request</a></div>
+      <div><p class="footer-group-title">Guides</p><a href="/guides/claude-code-usage-limit/" data-theme-link>Claude Code usage limits</a></div>
+      <div><p class="footer-group-title">Compare</p><a href="/alternatives/orca/" data-theme-link>Astera vs Orca</a><a href="/alternatives/paseo/" data-theme-link>Astera vs Paseo</a></div>
+      <div><p class="footer-group-title">Project</p><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera#documentation" target="_blank" rel="noopener noreferrer">Docs</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a></div>
+    </nav>
+    <p class="footer-note">Astera is an independent open-source project. It is not made by or affiliated with Anthropic or OpenAI. Made for people who build.</p>
+  </footer>
+</body>
+</html>

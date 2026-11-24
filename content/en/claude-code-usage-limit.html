@@ -1,0 +1,66 @@
+      <section class="guide-section" id="how-limits-work">
+        <h2>How Claude Code’s limits work</h2>
+        <p>On a Claude subscription, Claude Code does not have a separate allowance. According to Anthropic’s help center, your use of Claude chat, Claude Code, and Claude Desktop all counts toward the same usage limit. Paid plans have two kinds of limits:</p>
+        <ul>
+          <li><strong>A session limit</strong> that starts with your first message and resets five hours later.</li>
+          <li><strong>A weekly limit</strong> that resets at a fixed time each week assigned to your account.</li>
+        </ul>
+        <p>Plans differ. Anthropic does not publish message counts, because usage varies with message length, attached files, conversation length, and the model or feature you use. Check the current rules for your plan in <a href="https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work" target="_blank" rel="noopener noreferrer">How do usage and length limits work?</a> and <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan" target="_blank" rel="noopener noreferrer">Use Claude Code with your plan</a>.</p>
+        <h3>A usage limit is not an API rate limit</h3>
+        <p>A plan’s usage limit resets at a time Claude Code shows you. An API rate limit is different: it applies to API keys and cloud providers, is measured per minute, and returns a <code>429</code> error. Claude Code’s messages tell them apart, for example <code>You've hit your session limit · resets 3:45pm</code> for a plan limit, and <code>Request rejected (429)</code> for an API key’s rate limit. <a href="https://code.claude.com/docs/en/errors" target="_blank" rel="noopener noreferrer">Claude Code error reference</a></p>
+      </section>
+
+      <section class="guide-section" id="check">
+        <h2>Check how much you have left</h2>
+        <ul>
+          <li>In Claude Code, run <code>/usage</code> to see plan usage limits and activity.</li>
+          <li>On the web, open <strong>Settings → Usage</strong> to see the current session and your next weekly reset.</li>
+          <li>Claude Code warns before the limit, for example <code>You've used 85% of your session limit · resets 3:45pm</code>.</li>
+        </ul>
+        <p class="guide-note">If an <code>ANTHROPIC_API_KEY</code> environment variable is set, Claude Code uses that key instead of your subscription and you are billed for API usage. Check it before assuming a limit message is about your plan.</p>
+      </section>
+
+      <section class="guide-section" id="save">
+        <h2>Save the work before the limit arrives</h2>
+        <p>A limit stops new requests, not the files already on disk. A few habits make any way of resuming easier:</p>
+        <ul>
+          <li>Keep the requirements the agent must follow in project files such as <code>CLAUDE.md</code>, not only in the conversation.</li>
+          <li>Ask the agent to commit or summarize progress at natural stopping points, so the next session can read where things stand.</li>
+          <li>Split large work into tasks with clear checks, so a restart begins from a known state.</li>
+          <li>When the warning appears, ask for a short handoff note: what is done, what is next, and how to verify it.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="options">
+        <h2>Your options when the limit is reached</h2>
+        <p>Anthropic lists these options. Each is described on its own help pages:</p>
+        <ul>
+          <li><strong>Wait for the reset.</strong> Recent versions of Claude Code can wait in the open session and continue on their own after the limit resets; this is on by default for interactive sessions signed in with a Claude subscription. <a href="https://code.claude.com/docs/en/interactive-mode#wait-for-a-usage-limit-to-reset" target="_blank" rel="noopener noreferrer">Wait for a usage limit to reset</a></li>
+          <li><strong>Use usage credits.</strong> Requests continue on pay-as-you-go credits billed at API rates. <a href="https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans" target="_blank" rel="noopener noreferrer">Manage usage credits</a></li>
+          <li><strong>Upgrade your plan</strong>, or <strong>use a Claude Console account</strong> with API billing for intensive work.</li>
+        </ul>
+        <p>Inside Claude Code, <code>/rate-limit-options</code> shows the ways to keep working that apply to you.</p>
+      </section>
+
+      <section class="guide-section" id="astera">
+        <h2>Where Astera helps</h2>
+        <p>Astera does not raise, pool, or bypass any plan’s limit. It helps you keep the work in order around a limit:</p>
+        <h3>Wait and resume, even with the app closed</h3>
+        <p>Astera detects a limit from the session’s transcript and works out the reset time. With a single account, the session option <strong>Wait for the limit to reset, then resume automatically</strong> resumes it when the limit resets. Astera Host can keep the session running after you quit the app; keep the computer awake. <a href="/guide.html#accounts">Account rolling in the guide</a></p>
+        <h3>Know when it happens</h3>
+        <p>Slack notifications can tell you when a limit is hit or a turn finishes, and you can reply into the session from Slack. <a href="/guide.html#slack">Slack updates and replies</a></p>
+        <h3>Hand the next session a checkpoint</h3>
+        <p><a href="/features/smart-resume/">Smart Resume</a> can start the next session with a compact summary of the requests, changed files, and last command, instead of replaying a long conversation.</p>
+        <h3>Accounts you are entitled to use</h3>
+        <p>If you have more than one account that is yours to use for this work, account rolling can continue a session on the next one. Every account keeps its own limits. Follow each provider’s terms: Anthropic’s <a href="https://www.anthropic.com/legal/aup" target="_blank" rel="noopener noreferrer">Usage Policy</a> prohibits creating multiple accounts to circumvent its guardrails or restrictions, and its <a href="https://code.claude.com/docs/en/legal-and-compliance" target="_blank" rel="noopener noreferrer">Claude Code terms</a> say that advertised plan limits assume ordinary, individual usage.</p>
+      </section>
+
+      <section class="guide-section" id="codex">
+        <h2>Codex has limits too</h2>
+        <p>Codex on a ChatGPT plan has its own allowance: local messages and cloud chats share it, and weekly limits may also apply. In a Codex CLI session, <code>/status</code> shows what remains. <a href="https://developers.openai.com/codex/pricing" target="_blank" rel="noopener noreferrer">OpenAI: Codex pricing and limits</a> · <a href="/codex/">Codex in Astera</a></p>
+      </section>
+
+      <section class="guide-section" id="verification">
+        <h2>About this guide</h2>
+        <p class="guide-small">Provider details were checked on 2026-11-25 against the Anthropic and OpenAI pages linked above, and Astera’s behavior against Astera 1.5.5. We did not trigger a real usage limit for this page. Providers change plans and limits; their pages are the authority.</p>
+      </section>

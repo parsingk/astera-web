@@ -1,0 +1,52 @@
+      <section class="guide-section" id="why">
+        <h2>When one terminal is not enough</h2>
+        <p>Claude Code is a command-line agent. Once you run it on several projects or tasks at the same time, the work spreads across terminal windows, and each window has its own context, sign-in, and usage limit. Astera puts those sessions in one desktop window, keeps every account in its own configuration folder, and keeps a record of what each session changed.</p>
+        <figure>
+          <img src="/assets/hero.jpg" width="1998" height="1248" alt="Actual Astera terminal view with four sessions running across Claude Code and Codex accounts." loading="lazy" decoding="async">
+          <figcaption>Astera with four sessions in a 2×2 grid: three Claude Code sessions on two Claude accounts, and one Codex session.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="what-you-get">
+        <h2>What Astera adds around Claude Code</h2>
+        <h3>Several sessions, side by side</h3>
+        <p>Open a session for each task and arrange them in split panes. A session is either a <strong>Terminal</strong>, with Claude Code’s own interface, or a <strong>Chat</strong>, where questions and approvals arrive as cards and the model and permission mode sit beside the message box. A session keeps the type it was created with. <a href="/guide.html#sessions">Terminal and Chat in the guide</a></p>
+        <h3>Accounts kept apart, tools shared</h3>
+        <p>Each Claude account runs with its own <code>CLAUDE_CONFIG_DIR</code>, so sign-ins and settings do not mix. In <strong>Settings → MCP &amp; Skills</strong> you pick MCP servers, skills, commands, agents, and Claude Code plugins once, and new sessions on every account get them. <a href="/guide.html#mcp-skills">Share tools across accounts</a></p>
+        <h3>Work that continues after a usage limit</h3>
+        <p>When a session reaches a usage limit, Astera reads the reset time from the transcript. With one account, the session can wait and resume when the limit resets. If you have registered more than one account that you are entitled to use, account rolling can continue the session on the next one; every account keeps its own limits. <a href="/features/smart-resume/">Smart Resume</a> can give the next session a compact checkpoint instead of the whole conversation. <a href="/guides/claude-code-usage-limit/">Working with Claude Code usage limits</a></p>
+        <h3>Sessions that outlive the window</h3>
+        <p>A separate local process, Astera Host, can own Terminal and Chat sessions, so quitting the app leaves them running. Reopen Astera to reconnect to the live session. Keep the computer awake while work runs. <a href="/guide.html#host">What stays running</a></p>
+        <h3>Results that are checked</h3>
+        <p>For larger work, a Job splits an objective into tasks for Claude Code and Codex workers, runs your build and test checks, and can ask the other provider’s model to review the result before the work counts as done. <a href="/features/agent-orchestration/">Agent orchestration with Jobs</a></p>
+      </section>
+
+      <section class="guide-section" id="get-started">
+        <h2>Get started</h2>
+        <ol class="setup-steps">
+          <li><h3>Install Claude Code</h3><p>Install the Claude Code CLI so the <code>claude</code> command is on your PATH. Astera starts that command; it does not include Claude Code.</p></li>
+          <li><h3>Install Astera</h3><p>Download the installer for your operating system. macOS builds are not notarized yet, so the first launch needs the quarantine flag cleared, and Windows SmartScreen may warn on first run. <a href="https://github.com/parsingk/Astera/blob/main/README.md#install" target="_blank" rel="noopener noreferrer">Installation steps</a></p></li>
+          <li><h3>Add your account</h3><p>In <strong>Accounts</strong>, use <strong>Auto-detect</strong> to find accounts you already use, or choose <strong>Add account</strong> and finish Claude Code’s sign-in when prompted.</p></li>
+          <li><h3>Start a session</h3><p>Open <strong>New session</strong>, choose the project folder and account, pick Terminal or Chat, and click <strong>Start</strong>. Describe the result you want and how to check it. <a href="/guide.html#quickstart">Your first session</a></p></li>
+        </ol>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements and limits</h2>
+        <ul>
+          <li>Windows 10 or 11, macOS 12 or later, or Ubuntu 22.04 / Debian 12 or later. Astera is a desktop app; you can follow sessions and reply from Slack on your phone.</li>
+          <li>Claude Code installed and signed in. Astera is free and open source (Apache-2.0). Claude usage counts against your own Claude plan or is billed to your API account.</li>
+          <li>Your plan’s limits still apply. Anthropic counts Claude Code and Claude chat toward the same usage limits. <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan" target="_blank" rel="noopener noreferrer">Anthropic: Claude Code with your plan</a></li>
+          <li>Astera starts the <code>claude</code> command installed on your computer, signed in with your own account, so Anthropic’s terms for Claude Code apply as they do in a terminal. <a href="https://code.claude.com/docs/en/legal-and-compliance" target="_blank" rel="noopener noreferrer">Claude Code legal and compliance</a></li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Is Astera the Claude desktop app? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Claude Desktop is Anthropic’s chat app. Astera is an independent, open-source workspace that runs the Claude Code CLI. It is not made by or affiliated with Anthropic.</p></details>
+          <details><summary>Does Astera change how Claude Code works? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Astera starts Claude Code in the project folder you choose, with that account’s own configuration folder. In a Terminal session you use Claude Code’s own interface. In a Chat session, Astera shows Claude Code’s questions and approvals as cards.</p></details>
+          <details><summary>Can I use Codex in the same window? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. Codex sessions run beside Claude Code sessions, and a Job can give tasks to both. <a href="/codex/">Codex in Astera</a></p></details>
+          <details><summary>What does it cost? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Astera is free. Model usage counts against your Claude plan or is billed to your API account, just as it would in a terminal.</p></details>
+        </div>
+      </section>

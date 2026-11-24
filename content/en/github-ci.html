@@ -1,0 +1,47 @@
+      <section class="guide-section" id="flow">
+        <h2>Carry the work all the way to a pull request</h2>
+        <p>An agent finishing its edits is only the middle of the job. The change still needs a pull request, a CI run, fixes for whatever CI finds, and a review. When you turn on <strong>Carry it through GitHub</strong> for a Job, Astera takes the Run through those steps and tells you when the pull request is ready to merge. You merge it yourself on GitHub.</p>
+        <ol class="setup-steps">
+          <li><h3>Start from an issue or an objective</h3><p>In Jobs, click <strong>+ From a source</strong> and pick an open GitHub issue, or write an objective in <strong>New job</strong>. A Job made from an issue carries the issue text into its objective and keeps a link back to it.</p></li>
+          <li><h3>Workers do the tasks</h3><p>Claude Code and Codex workers take the Job’s tasks, with your local build and test checks.</p></li>
+          <li><h3>Astera opens the pull request</h3><p>After the tasks finish, Astera gathers their results on the Run’s branch, runs the local checks again, pushes, and opens a draft pull request, or binds an existing open one. A Job from an issue in the same repository adds <code>Refs #N</code> to the pull request body.</p></li>
+          <li><h3>CI runs, and failures get repaired</h3><p>Astera waits for CI on the commit it pushed. For a test, build, lint, or type-check failure, an agent receives the failed job’s log and repairs the branch; local checks run again before the fix is pushed. Network or runner failures can be rerun.</p></li>
+          <li><h3>A second model reviews the whole pull request</h3><p>After CI passes, a reviewer from a different provider than the last implementer reviews the pull request, including whether the change weakened CI. If you chose an external reviewer, that agent reviews instead.</p></li>
+          <li><h3>You merge</h3><p>A passing review makes the Run merge-ready for that reviewed commit. Astera does not merge it.</p></li>
+        </ol>
+      </section>
+
+      <section class="guide-section" id="merge-ready">
+        <h2>Merge-ready belongs to the current head</h2>
+        <p>Local checks, required CI, and Astera’s review must all pass on the same pull request head. A new push, a changed base branch, a failed or changed deciding check, or a closed or merged pull request withdraws the verdict and records why. Required branch checks decide the CI result, together with any checks you selected; if neither is set, every reported check decides.</p>
+        <p>Astera’s verdict is separate from GitHub’s own draft, blocked, or conflicting state. If no task has local validation configured, the Run warns that repairs go to CI without being checked locally first.</p>
+      </section>
+
+      <section class="guide-section" id="questions-during-run">
+        <h2>When Astera needs you</h2>
+        <p>Astera asks instead of guessing when no CI appears, the wait limit is reached, someone else pushes, several pull requests are open, the pull request closes or merges, a failure is outside the code, or GitHub delivery cannot continue. You can choose to wait, proceed without CI, accept the head, retry, rerun, bind a pull request, or mark the task failed. <a href="/guide.html#github-lifecycle">The full flow in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="setup">
+        <h2>Requirements</h2>
+        <ul>
+          <li>The project’s <code>origin</code> is a GitHub repository, <code>gh</code> is signed in on the computer that runs the Job, and your permission on the repository is WRITE, MAINTAIN, or ADMIN. Astera borrows the <code>gh</code> login; it stores no token.</li>
+          <li>Only open issues written by an owner, member, or collaborator can become Jobs. Closed issues and pull requests cannot.</li>
+          <li><strong>Carry it through GitHub</strong> is off by default and turns on automatic repair. Defaults for CI reruns (1 to 10), the CI wait limit (10 to 1440 minutes), and a summary comment on the pull request live in <strong>Settings → GitHub</strong>.</li>
+          <li>Repair and review use your agents’ accounts and quota.</li>
+        </ul>
+        <p>From a terminal, add <code>--github-lifecycle</code> when you create a Job:</p>
+        <pre class="command-example"><code>astera jobs create --objective "Improve the sign-in flow" --cwd "REPO_PATH" --coordinator-account ACCOUNT_ID --github-lifecycle
+astera jobs run --id JOB_ID
+astera runs follow --id RUN_ID --human</code></pre>
+        <p class="guide-small">Replace the capitalized values with your repository path and the IDs the commands return. GitHub progress continues with the app closed, because Astera Host carries it.</p>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Will Astera merge the pull request? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Astera tells you when the current head is merge-ready. Merging stays your decision.</p></details>
+          <details><summary>Does it work with GitLab or other hosts? <svg class="icon"><use href="#i-plus"/></svg></summary><p>This flow is for GitHub repositories, through the <code>gh</code> command. Tickets from other trackers can start a Job through a job-source plugin, such as the Linear sample.</p></details>
+          <details><summary>What if CI fails for reasons outside the code? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Network and runner failures can be rerun up to the limit in Settings → GitHub. For other failures outside the code, Astera asks you what to do.</p></details>
+        </div>
+      </section>

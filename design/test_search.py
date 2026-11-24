@@ -111,13 +111,14 @@ class SearchVisibilityTests(unittest.TestCase):
                 self.assertIn("macOS", app["operatingSystem"])
                 self.assertIn("Linux", app["operatingSystem"])
 
-    def test_sitemap_lists_only_the_four_public_language_pages(self):
+    def test_sitemap_lists_the_four_public_language_pages(self):
+        # The search pages built by tools/build_pages.py are listed too; tools/validate_seo.py checks those.
         sitemap = ROOT / "sitemap.xml"
         self.assertTrue(sitemap.is_file())
         tree = ElementTree.parse(sitemap)
         namespace = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
         urls = {item.text for item in tree.iter(namespace + "loc")}
-        self.assertEqual(urls, set(PAGES.values()))
+        self.assertLessEqual(set(PAGES.values()), urls)
 
     def test_every_search_and_ai_crawler_can_fetch_public_pages(self):
         robots = RobotFileParser()
@@ -140,7 +141,8 @@ class SearchVisibilityTests(unittest.TestCase):
                 url = urlsplit(resource)
                 if url.scheme or url.netloc or not url.path:
                     continue
-                path = ROOT / (url.path.lstrip("/") or "index.html")
+                relative = url.path.lstrip("/")
+                path = ROOT / (relative + "index.html" if relative.endswith("/") or not relative else relative)
                 with self.subTest(page=filename, resource=resource):
                     self.assertTrue(path.is_file(), f"Missing local resource: {resource}")
 
