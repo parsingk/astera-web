@@ -2,6 +2,22 @@
 
 최초 조사·반영일: 2026-09-22. 당시 로컬 앱 `D:\parsingk\astera`의 코드와 문서, 공식 제품 소개를 대조했다. 당시 로컬 앱 버전은 1.3.25였다. 아래 기록은 날짜별 구현을 설명하며, 최신 공개 릴리스에 모든 변경이 들어 있다고 보증하지 않는다.
 
+## 2026-11-24: v1.5.1부터 v1.5.5까지
+
+웹에 v1.5.0까지 반영한 뒤 Astera에 추가된 기능을 가이드와 대조했다. 근거는 로컬 Astera `develop` HEAD `1a8ec227`(v1.5.5, `origin/main`에 포함됨)의 `docs/release-notes/v1.5.1.md`~`v1.5.5.md`, `docs/jobs.md`, `docs/cli.md`, `docs/usage-guide.md`, `src/core/i18n/messages/en.ts`·`ko.ts`다. 화면 라벨은 영어·한국어 카탈로그에서 그대로 가져왔다. 앱 소스는 수정하지 않았다.
+
+| 추가·변경 기능 | 반영 위치와 조건 |
+| --- | --- |
+| Claude Code 플러그인 공유, Codex 계정 설치와 변환, 업데이트 확인, 설정 가져오기의 플러그인 선택 유지 | Guide `#mcp-skills`(`#shared-plugins`). Astera 밖의 `claude`에는 적용 안 됨, Codex 세션 종료 후 적용, 업데이트는 사용자가 누를 때만, 공유할 수 없는 플러그인 조건 |
+| Run 결과 보고 카드, PR 댓글, Slack 게시 | Guide `#jobs`(`#run-report`), `#github-lifecycle`, `#slack`. 두 게시 모두 기본 켜짐, 1.5.3 이전 Job은 댓글 없음, 이전 Run에는 카드 없음 |
+| 외부 검토자(Gemini CLI·Copilot CLI·OpenCode·ACP 에이전트) | 새 Guide `#reviewers`. 앱 전체에 하나, 읽기 전용 요청과 그 한계, 상대 모델로 대체하지 않음, Sandbox 작업은 넘기지 않음, `review-logs` 14일 보관 |
+| Windows Claude Code 셸의 Codex Sandbox 사용, 로그인 파일 차단 | Guide `#sandbox`(`#sandbox-windows-claude`), 홈 Sandbox 카드. Git Bash와 Windows Sandbox를 설정한 Codex 계정 필요, 명령당 1~2초 지연, PowerShell 도구 꺼짐과 `.claude`·`.mcp.json` 읽기 전용 |
+| Kubernetes 매니페스트 비교·적용·삭제, 클러스터 보기, 로그·셸·포트 포워딩 | 새 Guide `#kubernetes`. kubectl 필요, 모든 변경 전 서버 dry run 확인, kubeconfig 비변경, 127.0.0.1 전용 포워딩과 수동 재연결, Helm 미지원 |
+| 복사한 파일을 경로로 붙여넣기, 하단 터미널 Ctrl+C 복사 | Guide `#workspace`(`#paste-paths`) |
+| 패널 크기 조절, 터미널 하이퍼링크, `localhost` 링크, 드롭다운, 스크린샷 폴더 신뢰 질문, git index 잠금, 단수 표현, 일본어·스페인어 보완 | Guide `#preferences`. 버전별 릴리스 노트 폴더 연결 |
+
+이전 문구 가운데 사실과 달라진 것도 고쳤다. Windows Claude Code의 셸이 제한되지 않는다는 Sandbox 설명(Guide `#sandbox`와 홈 카드)과 MCP & Skills의 영어 버튼 이름(`Use the shared version`)이다. 홈 화면의 작업 공간 카드는 3열 6개 구성이라 Kubernetes 카드는 추가하지 않았다. 기존 날짜별 기록은 당시 근거로 그대로 둔다.
+
 ## 2026-11-02: v1.4.16부터 v1.5.0까지
 
 사용자의 1.5.0 릴리스 준비 요청에 따라 웹의 기존 v1.4.15 반영 이후를 대조했다. 근거는 로컬 Astera `main` HEAD `231e23f7`의 `docs/release-notes/v1.4.16.md`, `docs/release-notes/v1.5.0.md`, `docs/cli.md`, `docs/remote-runtime.md`, `src/core/orchestration/cliUsage.ts`, `src/core/i18n/messages/en.ts`·`ko.ts`, `src/cli/mcp/tools.ts`, `packages/client/src/namespaces.ts`와 두 SDK의 버전이다. 원격 릴리스 게시 여부는 확인하지 않았고 앱 소스는 수정하지 않았다.
