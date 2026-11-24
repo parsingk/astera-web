@@ -40,9 +40,21 @@ python tools/build_locales.py
 python tools/build_locales.py --check
 ```
 
-The generated pages keep the same interactive design. Their language switch links back to the English page; the English pages still choose the browser language on a first visit. Canonical URLs, `hreflang`, and the sitemap connect the four public pages. `robots.txt` allows all search and AI crawlers to fetch them. The design review is excluded from indexing. Search engines determine whether and when to index the site.
+The generated pages keep the same interactive design. Their language switch links back to the English page; the English pages still choose the browser language on a first visit. Canonical URLs, `hreflang`, and the sitemap connect the public pages; `tools/build_pages.py` writes the sitemap (see Search pages below). `robots.txt` allows all search and AI crawlers to fetch them. The design review is excluded from indexing. Search engines determine whether and when to index the site.
 
 Run `python -m unittest discover -s design -p 'test_search.py' -v` to check these search signals, alongside the download-routing test above.
+
+## Search pages
+
+Search landing pages (for example `/claude-code/`) and `404.html` are generated from `content/pages.json` and the page bodies in `content/<locale>/`. The same script writes `sitemap.xml` from that registry, using each page's `lastContentModified` date, so change that date only when a page's content changes. After editing the registry or a page body:
+
+```powershell
+python tools/build_pages.py
+python tools/build_pages.py --check
+python tools/validate_seo.py
+```
+
+`validate_seo.py` reads the files GitHub Pages publishes and checks titles, descriptions, canonical URLs, reciprocal `hreflang`, Open Graph images and alt text, JSON-LD, the sitemap, `robots.txt`, the 404 page, image sizes, and every internal link and anchor. GitHub Pages builds this repository with Jekyll; `_config.yml` keeps `README.md`, `docs/`, `tools/`, `content/`, and the test scripts off the public site. The audit and operating notes are in [docs/seo/](docs/seo/).
 
 The design review includes Korean/English controls and **Check languages**. All 38 language checks passed, covering language selection, translated copy, English display headings, navigation, and storage restrictions. The bilingual layout review passed all 32 combinations (two pages × two languages × two themes × four widths); the interaction review passed 26 home / 30 Guide checks per language, including the hero's pointer response and reset. Earlier Korean captures, before the English-only header and inline GIFs: [home](design/ko-desktop.png), [Guide](design/ko-guide.png).
 

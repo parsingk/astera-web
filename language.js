@@ -1,10 +1,12 @@
 const siteI18n = (() => {
   const supported = (value) => value === 'ko' || value === 'en';
   const requested = new URLSearchParams(location.search).get('lang');
-  const staticKorean = document.documentElement.dataset.staticLanguage === 'ko';
+  // Pages written in one language (generated Korean pages, search pages) never switch in place.
+  const staticLanguage = document.documentElement.dataset.staticLanguage;
+  const staticKorean = staticLanguage === 'ko';
   let saved;
   try { saved = localStorage.getItem('astera-language'); } catch { /* Storage can be disabled. */ }
-  let language = staticKorean ? 'ko' : supported(requested) ? requested : supported(saved) ? saved :
+  let language = supported(staticLanguage) ? staticLanguage : supported(requested) ? requested : supported(saved) ? saved :
     /^ko(?:-|$)/i.test(navigator.language) ? 'ko' : 'en';
 
   const copy = [];

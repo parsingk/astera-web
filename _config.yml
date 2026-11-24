@@ -1,0 +1,11 @@
+# GitHub Pages builds this repository with Jekyll. The site's pages are plain HTML
+# without front matter, so Jekyll copies them unchanged. Without this list it also
+# turns repository notes (docs/*.md) into public, indexable pages.
+exclude:
+  - README.md
+  - docs/
+  - tools/
+  - content/
+  - design/test_search.py
+  - design/downloads.test.cjs
+  - design/__pycache__/

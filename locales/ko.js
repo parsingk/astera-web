@@ -3,6 +3,7 @@ const koreanMessages = {
   "guide.smart-resume": "스마트 재개",
   "links.install": "https://github.com/parsingk/Astera/blob/main/README.ko.md#설치",
   "links.documentation": "https://github.com/parsingk/Astera/blob/main/README.ko.md#문서",
+  "site.social-alt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
   "home.description": "Astera는 Claude Code와 Codex를 위한 무료 오픈소스 데스크톱 작업 공간입니다. Smart Resume, 계정 자동 전환, 예약 실행과 오케스트레이션 Jobs로 작업을 이어가세요.",
   "home.common.2": "Astera — Claude Code와 Codex를 위한 데스크톱 작업 공간",
   "home.common.3": "본문으로 건너뛰기",

@@ -1,0 +1,62 @@
+{
+  "pages": [
+    {
+      "id": "home",
+      "kind": "existing",
+      "locale": "en",
+      "path": "/",
+      "status": "published",
+      "translationGroup": "home",
+      "navLabel": "Home",
+      "lastContentModified": "2026-11-24"
+    },
+    {
+      "id": "guide",
+      "kind": "existing",
+      "locale": "en",
+      "path": "/guide.html",
+      "status": "published",
+      "translationGroup": "guide",
+      "navLabel": "Guide",
+      "lastContentModified": "2026-11-24"
+    },
+    {
+      "id": "home-ko",
+      "kind": "existing",
+      "locale": "ko",
+      "path": "/index.ko.html",
+      "status": "published",
+      "translationGroup": "home",
+      "navLabel": "홈",
+      "lastContentModified": "2026-11-24"
+    },
+    {
+      "id": "guide-ko",
+      "kind": "existing",
+      "locale": "ko",
+      "path": "/guide.ko.html",
+      "status": "published",
+      "translationGroup": "guide",
+      "navLabel": "사용 가이드",
+      "lastContentModified": "2026-11-24"
+    },
+    {
+      "id": "not-found",
+      "kind": "error",
+      "locale": "en",
+      "path": "/404.html",
+      "status": "published",
+      "indexable": false,
+      "translationGroup": "not-found",
+      "navLabel": "Page not found",
+      "section": "404",
+      "title": "Page not found — Astera",
+      "description": "This page could not be found. Go to the Astera home page or guide.",
+      "h1": "Page not found.",
+      "body": "content/en/404.html",
+      "cta": false,
+      "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
+      "lastContentModified": "2026-11-25"
+    }
+  ]
+}

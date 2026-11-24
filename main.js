@@ -67,7 +67,8 @@ document.querySelectorAll('[data-demo]').forEach((button) => {
   });
 });
 
-document.querySelector('.screenshot-button').addEventListener('click', () => {
+// Search and help pages share the header and theme controls but have no product preview or media dialog.
+document.querySelector('.screenshot-button')?.addEventListener('click', () => {
   const image = document.createElement('img');
   image.src = productImage.src;
   image.alt = productImage.alt;
@@ -82,14 +83,14 @@ function closeMedia() {
   dialog.close();
 }
 
-document.querySelector('.dialog-close').addEventListener('click', closeMedia);
-dialog.addEventListener('click', (event) => {
+document.querySelector('.dialog-close')?.addEventListener('click', closeMedia);
+dialog?.addEventListener('click', (event) => {
   if (event.target !== dialog) return;
   const bounds = dialog.getBoundingClientRect();
   if (event.clientX < bounds.left || event.clientX > bounds.right ||
       event.clientY < bounds.top || event.clientY > bounds.bottom) closeMedia();
 });
-dialog.addEventListener('cancel', (event) => {
+dialog?.addEventListener('cancel', (event) => {
   event.preventDefault();
   closeMedia();
 });
@@ -135,7 +136,7 @@ function setTheme(dark) {
 }
 
 function updateInterfaceLanguage() {
-  productImage.alt = views[document.querySelector('[data-view].active').dataset.view].alt();
+  if (productImage) productImage.alt = views[document.querySelector('[data-view].active').dataset.view].alt();
   menuToggle.setAttribute('aria-label', mobileNav.hidden ? siteI18n.text('Open menu', '메뉴 열기') : siteI18n.text('Close menu', '메뉴 닫기'));
   document.querySelectorAll('.brand[aria-label]').forEach((link) => {
     link.setAttribute('aria-label', siteI18n.text('Astera home', 'Astera 홈'));
