@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko" data-static-language="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Claude Code의 5시간·주간 한도가 어떻게 적용되는지, 남은 사용량을 어떻게 확인하는지, 초기화 뒤 작업을 어떻게 이어 가는지 정리했습니다.">
+  <meta name="theme-color" content="#0b1020">
+  <title>Claude Code 사용량 한도: 작업 저장과 재개 – Astera</title>
+  <link rel="canonical" href="https://astera.run/ko/guides/claude-code-usage-limit/">
+  <link rel="alternate" hreflang="en" href="https://astera.run/guides/claude-code-usage-limit/">
+  <link rel="alternate" hreflang="ko" href="https://astera.run/ko/guides/claude-code-usage-limit/">
+  <link rel="alternate" hreflang="x-default" href="https://astera.run/guides/claude-code-usage-limit/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="Claude Code 사용량 한도: 작업 저장과 재개 – Astera">
+  <meta property="og:description" content="Claude Code의 5시간·주간 한도가 어떻게 적용되는지, 남은 사용량을 어떻게 확인하는지, 초기화 뒤 작업을 어떻게 이어 가는지 정리했습니다.">
+  <meta property="og:url" content="https://astera.run/ko/guides/claude-code-usage-limit/">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:image:alt" content="별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Claude Code 사용량 한도: 작업 저장과 재개 – Astera">
+  <meta name="twitter:description" content="Claude Code의 5시간·주간 한도가 어떻게 적용되는지, 남은 사용량을 어떻게 확인하는지, 초기화 뒤 작업을 어떻게 이어 가는지 정리했습니다.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://astera.run/ko/guides/claude-code-usage-limit/#webpage","url":"https://astera.run/ko/guides/claude-code-usage-limit/","name":"Claude Code 사용량 한도: 작업 저장과 재개 – Astera","description":"Claude Code의 5시간·주간 한도가 어떻게 적용되는지, 남은 사용량을 어떻게 확인하는지, 초기화 뒤 작업을 어떻게 이어 가는지 정리했습니다.","inLanguage":"ko","isPartOf":{"@id":"https://astera.run/#website"},"about":{"@id":"https://astera.run/#app"},"dateModified":"2026-11-25","breadcrumb":{"@id":"https://astera.run/ko/guides/claude-code-usage-limit/#breadcrumb"},"headline":"Claude Code 사용량 한도: 작업을 남기고 이어 가기."},{"@type":"BreadcrumbList","@id":"https://astera.run/ko/guides/claude-code-usage-limit/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Astera","item":"https://astera.run/index.ko.html"},{"@type":"ListItem","position":2,"name":"Claude Code 사용량 한도"}]}]}</script>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/guide.css">
+  <link rel="stylesheet" href="/pages.css?v=20261125-3">
+  <script src="/language.js?v=20261125-3" defer></script>
+  <script src="/main.js?v=20261125-3" defer></script>
+  <script src="/downloads.js" defer></script>
+</head>
+<body class="guide-page search-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/index.ko.html" data-theme-link aria-label="Astera home"><img src="/assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="주 메뉴">
+        <a href="/index.ko.html#features" data-theme-link lang="en">Features</a><a href="/index.ko.html#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.ko.html" data-theme-link lang="en">Guide</a><a href="/index.ko.html#faq" data-theme-link lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="language-link" href="/guides/claude-code-usage-limit/" data-theme-link hreflang="en" lang="en" title="View in English">English</a>
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="GitHub에서 Astera 보기"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="라이트 테마로 전환" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">라이트 테마</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="모바일 메뉴" hidden><a href="/index.ko.html#features" data-theme-link lang="en">Features</a><a href="/index.ko.html#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.ko.html" data-theme-link lang="en">Guide</a><a href="/index.ko.html#faq" data-theme-link lang="en">FAQ</a></nav>
+  </header>
+
+  <main id="main" class="container page-main">
+    <article class="page-article">
+      <header class="guide-intro guide-section page-intro">
+        <p class="guide-breadcrumb"><a href="/index.ko.html" data-theme-link>Astera</a><span>/</span>실전 가이드</p>
+        <h1>Claude Code 사용량 한도: 작업을 남기고 이어 가기.</h1>
+        <p class="guide-lead">한도가 무엇인지, 다가오는 한도를 어떻게 알아채는지, 하던 작업을 잃지 않고 어떻게 다시 시작하는지 설명합니다.</p>
+      </header>
+<section class="guide-section" id="how-limits-work">
+        <h2>Claude Code 한도는 이렇게 적용됩니다</h2>
+        <p>Claude 구독으로 쓰는 Claude Code에는 따로 떼어 둔 사용량이 없습니다. Anthropic 도움말에 따르면 Claude 채팅, Claude Code, Claude Desktop 사용량은 모두 같은 한도로 계산됩니다. 유료 요금제에는 한도가 두 가지 있습니다.</p>
+        <ul>
+          <li><strong>세션 한도</strong>: 첫 메시지를 보낸 때부터 시작해 5시간 뒤에 초기화됩니다.</li>
+          <li><strong>주간 한도</strong>: 계정마다 정해진 시각에 매주 초기화됩니다.</li>
+        </ul>
+        <p>요금제마다 규칙이 다릅니다. 사용량은 메시지 길이, 첨부 파일, 대화 길이, 쓰는 모델이나 기능에 따라 달라지기 때문에 Anthropic은 메시지 수를 공개하지 않습니다. 내 요금제의 현재 규칙은 <a href="https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work" target="_blank" rel="noopener noreferrer">사용량과 길이 한도 안내</a>와 <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan" target="_blank" rel="noopener noreferrer">요금제로 Claude Code 사용하기</a>에서 확인하세요.</p>
+        <h3>사용량 한도와 API 속도 제한은 다릅니다</h3>
+        <p>요금제의 사용량 한도는 Claude Code가 알려 주는 시각에 초기화됩니다. API 속도 제한은 다릅니다. API 키와 클라우드 제공자에 적용되고 분 단위로 계산하며 <code>429</code> 오류를 돌려줍니다. Claude Code 메시지로 둘을 구분할 수 있습니다. 요금제 한도는 <code>You've hit your session limit · resets 3:45pm</code>처럼, API 키의 속도 제한은 <code>Request rejected (429)</code>처럼 표시됩니다. <a href="https://code.claude.com/docs/en/errors" target="_blank" rel="noopener noreferrer">Claude Code 오류 안내</a></p>
+      </section>
+
+      <section class="guide-section" id="check">
+        <h2>남은 사용량 확인하기</h2>
+        <ul>
+          <li>Claude Code에서 <code>/usage</code>를 실행하면 요금제 한도와 사용 현황을 볼 수 있습니다.</li>
+          <li>웹에서는 <strong>Settings → Usage</strong>에서 현재 세션 사용량과 다음 주간 초기화 시각을 확인합니다.</li>
+          <li>Claude Code는 한도에 닿기 전에 <code>You've used 85% of your session limit · resets 3:45pm</code>처럼 미리 알려 줍니다.</li>
+        </ul>
+        <p class="guide-note"><code>ANTHROPIC_API_KEY</code> 환경 변수가 설정돼 있으면 Claude Code는 구독 대신 그 키를 쓰고 API 사용량으로 요금이 청구됩니다. 한도 메시지가 요금제 이야기라고 단정하기 전에 먼저 확인하세요.</p>
+      </section>
+
+      <section class="guide-section" id="save">
+        <h2>한도가 오기 전에 작업 남겨 두기</h2>
+        <p>한도가 막는 것은 새 요청이지, 이미 디스크에 있는 파일이 아닙니다. 몇 가지 습관만 들여도 어떤 방식으로든 다시 시작하기 쉬워집니다.</p>
+        <ul>
+          <li>에이전트가 따라야 할 요구 사항은 대화에만 두지 말고 <code>CLAUDE.md</code> 같은 프로젝트 파일에 적어 두세요.</li>
+          <li>일이 한 단락 끝날 때마다 에이전트에게 커밋하거나 진행 상황을 요약하게 하세요. 다음 세션이 어디까지 왔는지 읽을 수 있습니다.</li>
+          <li>큰 작업은 확인 방법이 분명한 작은 작업으로 나누세요. 다시 시작할 때 알려진 상태에서 출발할 수 있습니다.</li>
+          <li>경고가 뜨면 짧은 인계 메모를 부탁하세요. 끝난 일, 다음 할 일, 확인 방법이면 충분합니다.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="options">
+        <h2>한도에 닿았을 때 고를 수 있는 방법</h2>
+        <p>Anthropic은 아래 방법을 안내합니다. 자세한 내용은 각 도움말을 보세요.</p>
+        <ul>
+          <li><strong>초기화 기다리기.</strong> 최신 Claude Code는 열린 세션에서 기다렸다가 한도가 풀리면 스스로 작업을 이어 갑니다. Claude 구독으로 로그인한 대화형 세션에서는 기본으로 켜져 있습니다. <a href="https://code.claude.com/docs/en/interactive-mode#wait-for-a-usage-limit-to-reset" target="_blank" rel="noopener noreferrer">사용량 한도 초기화 기다리기</a></li>
+          <li><strong>사용 크레딧 쓰기.</strong> API 요금으로 청구되는 종량제 크레딧으로 요청을 계속합니다. <a href="https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans" target="_blank" rel="noopener noreferrer">사용 크레딧 관리</a></li>
+          <li><strong>요금제 올리기</strong>, 또는 집중 작업에는 API 요금을 쓰는 <strong>Claude Console 계정 사용하기</strong>.</li>
+        </ul>
+        <p>Claude Code에서 <code>/rate-limit-options</code>를 실행하면 지금 쓸 수 있는 방법을 보여 줍니다.</p>
+      </section>
+
+      <section class="guide-section" id="astera">
+        <h2>Astera가 돕는 부분</h2>
+        <p>Astera는 어떤 요금제의 한도도 늘리거나, 합치거나, 우회하지 않습니다. 한도 전후로 작업이 흐트러지지 않게 돕습니다.</p>
+        <h3>앱을 닫아도 기다렸다가 재개</h3>
+        <p>Astera는 세션 기록에서 한도 도달을 감지하고 초기화 시각을 계산합니다. 계정이 하나일 때 세션의 <strong>한도 도달 시 리셋까지 대기 후 자동 재개</strong> 옵션을 켜 두면, 한도가 풀릴 때 세션을 재개합니다. 앱을 종료해도 Astera Host가 세션을 계속 실행할 수 있으니 컴퓨터가 잠들지 않게만 해 두세요. <a href="/guide.ko.html#accounts" data-theme-link>가이드: 계정 자동 전환</a></p>
+        <h3>한도에 닿으면 알림</h3>
+        <p>Slack 알림으로 한도에 닿았거나 턴이 끝났을 때 소식을 받고 Slack에서 세션에 답할 수 있습니다. <a href="/guide.ko.html#slack" data-theme-link>Slack 알림과 답장</a></p>
+        <h3>다음 세션에 체크포인트 넘기기</h3>
+        <p><a href="/ko/features/smart-resume/" data-theme-link>Smart Resume</a>은 긴 대화를 다시 불러오는 대신 요청, 바뀐 파일, 마지막 명령을 간결하게 정리해 다음 세션을 시작합니다.</p>
+        <h3>본인이 쓸 권한이 있는 계정만</h3>
+        <p>이 작업에 쓸 수 있는 본인 계정이 두 개 이상이라면 계정 전환으로 다음 계정에서 세션을 이어 갈 수 있습니다. 한도는 계정마다 따로 적용됩니다. 제공사의 약관을 지켜 주세요. Anthropic <a href="https://www.anthropic.com/legal/aup" target="_blank" rel="noopener noreferrer">이용 정책</a>은 보호 장치나 제한을 피하려고 계정을 여러 개 만드는 행위를 금지합니다. <a href="https://code.claude.com/docs/en/legal-and-compliance" target="_blank" rel="noopener noreferrer">Claude Code 약관</a>은 요금제에 안내된 한도가 일반적인 개인 사용을 전제로 한다고 밝힙니다.</p>
+      </section>
+
+      <section class="guide-section" id="codex">
+        <h2>Codex에도 한도가 있습니다</h2>
+        <p>ChatGPT 요금제로 쓰는 Codex에는 별도의 사용량이 있습니다. 로컬 메시지와 클라우드 대화가 이를 함께 쓰고 주간 한도가 붙을 수도 있습니다. Codex CLI 세션에서 <code>/status</code>를 입력하면 남은 양이 보입니다. <a href="https://developers.openai.com/codex/pricing" target="_blank" rel="noopener noreferrer">OpenAI: Codex 요금과 한도</a> · <a href="/ko/codex/" data-theme-link>Astera에서 Codex 쓰기</a></p>
+      </section>
+
+      <section class="guide-section" id="verification">
+        <h2>이 가이드에 대해</h2>
+        <p class="guide-small">제공사 관련 내용은 2026-11-25에 위에 링크한 Anthropic과 OpenAI 페이지로, Astera 동작은 Astera 1.5.5로 확인했습니다. 이 페이지를 위해 실제로 사용량 한도에 닿아 보지는 않았습니다. 요금제와 한도는 바뀔 수 있으니 제공사 페이지를 기준으로 삼으세요.</p>
+      </section>
+
+      <div class="guide-finish page-cta">
+        <div><h2>내 프로젝트에서 Astera를 써 보세요.</h2><p>Astera는 Apache-2.0 라이선스의 무료 오픈소스입니다. 지금 쓰는 Claude Code와 Codex CLI를 그대로 실행하므로 모델 사용량은 본인의 Anthropic 또는 OpenAI 요금제에서 차감됩니다.</p><p class="page-platforms">Windows 10/11 · macOS 12+ · Ubuntu 22.04+ / Debian 12+</p></div>
+        <div class="page-cta-actions"><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download><svg class="icon"><use href="#i-download"/></svg> Astera 다운로드</a><a class="text-button" href="/guide.ko.html" data-theme-link>가이드 읽기 <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <nav class="feature-map page-related" aria-labelledby="related-title">
+        <h2 id="related-title">함께 읽기</h2>
+        <a href="/ko/features/smart-resume/" data-theme-link><span>Smart Resume</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/claude-code/" data-theme-link><span>Claude Code</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/codex/" data-theme-link><span>Codex</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div><a class="brand" href="/index.ko.html" data-theme-link><img src="/assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p>별 너머의 가능성을 만드세요.</p></div>
+    <nav class="footer-groups" aria-label="Astera">
+      <div><p class="footer-group-title">제품</p><a href="/index.ko.html" data-theme-link>홈</a><a href="/guide.ko.html" data-theme-link>사용 가이드</a><a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download>다운로드</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer">변경 내역</a></div>
+      <div><p class="footer-group-title">지원 에이전트</p><a href="/ko/claude-code/" data-theme-link>Claude Code</a><a href="/ko/codex/" data-theme-link>Codex</a></div>
+      <div><p class="footer-group-title">기능</p><a href="/ko/features/agent-orchestration/" data-theme-link>에이전트 오케스트레이션</a><a href="/ko/features/smart-resume/" data-theme-link>Smart Resume</a><a href="/ko/features/github-ci/" data-theme-link>GitHub 이슈에서 PR까지</a></div>
+      <div><p class="footer-group-title">실전 가이드</p><a href="/ko/guides/claude-code-usage-limit/" data-theme-link>Claude Code 사용량 한도</a></div>
+      <div><p class="footer-group-title">비교</p><a href="/ko/alternatives/orca/" data-theme-link>Astera와 Orca 비교</a><a href="/ko/alternatives/paseo/" data-theme-link>Astera와 Paseo 비교</a></div>
+      <div><p class="footer-group-title">프로젝트</p><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera/blob/main/README.ko.md#문서" target="_blank" rel="noopener noreferrer">문서</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a></div>
+    </nav>
+    <p class="footer-note">Astera는 Anthropic이나 OpenAI가 만들거나 제휴한 제품이 아닌 독립 오픈소스 프로젝트입니다. 만드는 사람들을 위해.</p>
+  </footer>
+</body>
+</html>

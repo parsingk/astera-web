@@ -1,0 +1,62 @@
+      <section class="guide-section" id="what-a-job-does">
+        <h2>목표 하나에서 검증된 결과까지</h2>
+        <p>코딩 에이전트 여러 개를 돌리기는 쉽습니다. 여러 에이전트가 한 일이 정말 끝났는지 알기는 어렵습니다. Astera의 <strong>Job</strong>은 목표 하나를 작업 그래프로 나눕니다. 연결선을 보면 무엇이 동시에 돌 수 있고 무엇이 기다려야 하는지 알 수 있습니다. Claude Code와 Codex 워커가 작업을 맡고 검사가 붙은 작업은 빌드·테스트·리뷰를 통과해야 끝납니다.</p>
+        <figure>
+          <img src="/assets/jobs-demo-still.png" width="960" height="600" alt="Astera Jobs 화면. Implement OAuth Login Job에서 Analyze Auth는 끝났고 Implement OAuth와 Add Tests가 동시에 실행 중이며 Verify OAuth Login은 두 작업을 기다립니다. 아래에는 워커 이벤트 타임라인이 있습니다." loading="lazy" decoding="async">
+          <figcaption>Jobs 데모 영상의 한 장면. 작업 그래프 아래에 Run 타임라인이 보입니다.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="example">
+        <h2>예시</h2>
+        <p>새 세션을 열고 <code>/astera-orchestration</code>을 입력한 뒤 할 일을 적으세요. 코디네이터 에이전트가 작업을 만들고 워커에게 나눠 주고 보고를 기다렸다가, 판단이 필요한 일을 사용자에게 가져옵니다. 진행 상황은 Jobs에 계속 보입니다.</p>
+        <p class="prompt-example">Claude로 로그인 흐름을 리팩터링해 줘. 그다음 Codex가 회귀 테스트를 추가하게 해 줘. 프로젝트 테스트를 실행하고 다른 제공자의 리뷰를 요청해. 검사에 실패하면 세 번까지 고치고 다시 확인해. 결정이 필요하면 나에게 물어봐.</p>
+        <p>같은 Job을 <strong>Jobs → 새 작업</strong>에서 직접 만들 수도 있습니다. 목표를 입력하고 작업과 의존 관계를 추가하고 워커 계정을 고르고 검사를 연결하세요. <a href="/guide.ko.html#jobs">가이드: Jobs</a></p>
+      </section>
+
+      <section class="guide-section" id="how-it-works">
+        <h2>Job이 계속 진행되는 방식</h2>
+        <h3>의존 관계가 실행 순서를 정합니다</h3>
+        <p>앞선 작업이 모두 끝난 작업부터 준비 상태가 됩니다. 준비된 작업은 동시 실행 수 안에서 함께 실행됩니다.</p>
+        <h3>검사가 완료를 판단합니다</h3>
+        <p>워커가 완료를 보고하면 연결해 둔 빌드·테스트·리뷰 검사가 시작됩니다. <strong>통과할 때까지 자동 수정</strong>을 켜면 실패한 빌드와 테스트, 막는 리뷰 지적이 워커에게 돌아가 수정되고 다시 검사를 받습니다. 검사를 통과하거나 재시도 한도에 닿을 때까지 반복하며 계정 전환이나 일시 중지, 앱 재시작이 있어도 이어집니다.</p>
+        <h3>다른 모델이 작업을 리뷰합니다</h3>
+        <p>리뷰는 보통 다른 제공자의 모델이 맡습니다. Claude Code가 한 일은 Codex가, Codex가 한 일은 Claude Code가 리뷰하는 식입니다. 대신 외부 검토자를 고를 수도 있습니다. Gemini CLI, Copilot CLI, OpenCode, 또는 ACP를 쓰는 다른 에이전트입니다. 외부 검토자에게는 읽기만 요청합니다. 파일을 바꾸면 Astera가 리뷰를 멈춥니다. <a href="/guide.ko.html#reviewers">외부 검토자</a></p>
+        <h3>판단이 필요한 일은 사용자에게 옵니다</h3>
+        <p>워커나 코디네이터가 결정을 기다리면 작업에 질문이나 Gate가 표시됩니다. 열어 보면 상태, 맡은 워커, 무엇을 묻는지 확인할 수 있습니다.</p>
+        <h3>실제 변경을 확인할 수 있습니다</h3>
+        <p>Run 상세 화면은 워커 보고 옆에 git에서 읽은 변경 파일을 보여 주고 파일을 고르면 diff가 열립니다. 일반 Job의 변경은 <strong>병합</strong>을 누르기 전까지 워크트리에 남습니다. Run이 끝나면 결과 보고 카드가 작업별 검사와 리뷰 결과를 정리하고, 같은 요약을 PR과 Slack에도 올릴 수 있습니다. <a href="/guide.ko.html#run-report">Run 결과 보고</a></p>
+      </section>
+
+      <section class="guide-section" id="ways-to-start">
+        <h2>어디서든 Job 시작하기</h2>
+        <ul>
+          <li>Jobs 화면, 또는 <code>/astera-orchestration</code>을 쓰는 코디네이터 세션.</li>
+          <li>GitHub 이슈나 Job 소스 플러그인이 가져온 티켓. 원문이 목표에 함께 담깁니다. <a href="/ko/features/github-ci/">이슈에서 PR까지</a></li>
+          <li><code>astera</code> 명령, MCP 클라이언트, SDK. 명령은 기본으로 JSON을 출력하고 종료 코드마다 뜻이 하나씩 정해져 있습니다.</li>
+        </ul>
+        <pre class="command-example"><code>astera jobs create --objective "Improve the sign-in flow" --cwd "REPO_PATH" --coordinator-account ACCOUNT_ID
+astera jobs run --id JOB_ID
+astera runs follow --id RUN_ID --human</code></pre>
+        <p class="guide-small">대문자 값은 저장소 경로와 명령이 돌려준 ID로 바꾸세요. <a href="/guide.ko.html#headless-cli">가이드: Headless CLI</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>요구 사항과 한계</h2>
+        <ul>
+          <li>커밋이 하나 이상 있고 브랜치를 체크아웃한 git 저장소가 필요합니다.</li>
+          <li>요청하는 제공자마다 쓸 수 있는 계정이 있어야 합니다. 교차 리뷰는 리뷰하는 제공자의 사용량을 씁니다.</li>
+          <li>완료는 짐작하지 않고 검사로 확인하지만 완료를 보장하지는 않습니다. 재시도 한도에 닿거나 사용자 판단이 필요하면 진행이 멈출 수 있습니다.</li>
+          <li>별도의 로컬 프로세스인 Astera Host가 앱을 닫아도 Job을 조율하고 검사와 리뷰를 실행합니다. 작업이 도는 동안에는 컴퓨터가 잠들지 않게 하세요.</li>
+          <li>Astera는 스스로 병합하지 않습니다. 일반 Job은 <strong>병합</strong>을 눌러 반영하고 PR은 GitHub에서 직접 병합합니다.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details><summary>세션 하나 대신 Job을 써야 할 때는 언제인가요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>순서가 있는 작업 여러 개, 서로 다른 제공자의 워커, 통과해야 완료로 볼 검사처럼 조율이 중요할 때 Job을 쓰세요. 작은 작업 하나는 일반 세션으로 충분합니다.</p></details>
+          <details><summary>Job을 예약해서 실행할 수 있나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>네. 예약 Job은 정해진 시간마다 별도의 Run을 만듭니다. Host가 꺼져 있던 동안 놓친 시간은 건너뛰고 결과는 자동으로 병합하지 않습니다.</p></details>
+          <details><summary>다른 컴퓨터에서 실행할 수 있나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>네. Remote Runtime을 쓰면 LAN, VPN, Tailscale로 연결한 다른 컴퓨터에서 에이전트와 Job이 실행됩니다. 관리하는 컴퓨터가 잠들어도 작업이 계속됩니다. <a href="/guide.ko.html#remote-runtime">가이드: Remote Runtime</a></p></details>
+        </div>
+      </section>

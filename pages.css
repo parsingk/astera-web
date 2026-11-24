@@ -41,6 +41,9 @@
 @media (max-width: 1000px) {
   .search-page .footer-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-left: 0; width: 100%; }
 }
+@media (max-width: 380px) {
+  .language-link { padding-inline: 6px; font-size: 10px; }
+}
 @media (max-width: 600px) {
   .page-intro { padding-top: 30px; }
   .page-intro h1 { font-size: 36px; }

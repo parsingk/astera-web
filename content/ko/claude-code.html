@@ -1,0 +1,52 @@
+      <section class="guide-section" id="why">
+        <h2>터미널 하나로 부족해질 때</h2>
+        <p>Claude Code는 명령줄에서 일하는 에이전트입니다. 여러 프로젝트나 작업에서 동시에 돌리기 시작하면 작업이 터미널 창 여러 개로 흩어지고 창마다 맥락과 로그인과 사용량 한도가 따로 있습니다. Astera는 이 세션들을 데스크톱 창 하나에 모으고 계정마다 설정 폴더를 따로 두며 세션마다 무엇을 바꿨는지 기록으로 남깁니다.</p>
+        <figure>
+          <img src="/assets/hero.jpg" width="1998" height="1248" alt="Claude Code와 Codex 계정으로 세션 네 개를 실행 중인 실제 Astera 터미널 화면." loading="lazy" decoding="async">
+          <figcaption>2×2로 배치한 세션 네 개. Claude 계정 두 개로 실행한 Claude Code 세션 세 개와 Codex 세션 하나입니다.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="what-you-get">
+        <h2>Astera가 Claude Code에 더하는 것</h2>
+        <h3>여러 세션을 나란히</h3>
+        <p>작업마다 세션을 열고 분할 창으로 배치하세요. 세션은 Claude Code 고유 화면을 그대로 쓰는 <strong>터미널</strong>, 또는 질문과 승인이 카드로 오고 모델과 권한 모드를 입력창 옆에서 고르는 <strong>대화</strong> 중 하나입니다. 세션 종류는 만들 때 정한 대로 유지됩니다. <a href="/guide.ko.html#sessions">가이드: 터미널과 대화</a></p>
+        <h3>계정은 따로, 도구는 함께</h3>
+        <p>Claude 계정마다 별도의 <code>CLAUDE_CONFIG_DIR</code>로 실행하므로 로그인과 설정이 섞이지 않습니다. <strong>설정 → MCP &amp; Skills</strong>에서 MCP 서버, 스킬, 명령, 에이전트, Claude Code 플러그인을 한 번만 고르면 모든 계정의 새 세션에 적용됩니다. <a href="/guide.ko.html#mcp-skills">계정 간 도구 공유</a></p>
+        <h3>사용량 한도 뒤에도 이어지는 작업</h3>
+        <p>세션이 사용량 한도에 닿으면 Astera가 대화 기록에서 초기화 시각을 읽습니다. 계정이 하나라면 한도가 풀릴 때까지 기다렸다가 세션을 재개할 수 있습니다. 본인이 쓸 권한이 있는 계정을 두 개 이상 등록했다면 계정 전환으로 다음 계정에서 세션을 이어 갈 수 있습니다. 한도는 계정마다 따로 적용됩니다. <a href="/ko/features/smart-resume/">Smart Resume</a>을 쓰면 대화 전체 대신 간결한 체크포인트를 다음 세션에 넘깁니다. <a href="/ko/guides/claude-code-usage-limit/">Claude Code 사용량 한도 다루기</a></p>
+        <h3>창을 닫아도 남는 세션</h3>
+        <p>별도의 로컬 프로세스인 Astera Host가 터미널·대화 세션을 맡을 수 있어서 앱을 종료해도 세션은 계속 실행됩니다. Astera를 다시 열면 실행 중인 세션에 다시 연결합니다. 작업이 도는 동안에는 컴퓨터가 잠들지 않게 하세요. <a href="/guide.ko.html#host">계속 실행되는 것</a></p>
+        <h3>검증을 거친 결과</h3>
+        <p>큰 작업이라면 Job이 목표를 Claude Code와 Codex 워커가 맡을 작업으로 나누고 빌드·테스트 검사를 실행할 수 있습니다. 작업을 완료로 보기 전에 다른 제공자의 모델에게 결과 리뷰를 맡길 수도 있습니다. <a href="/ko/features/agent-orchestration/">Jobs로 하는 에이전트 오케스트레이션</a></p>
+      </section>
+
+      <section class="guide-section" id="get-started">
+        <h2>시작하기</h2>
+        <ol class="setup-steps">
+          <li><h3>Claude Code 설치</h3><p><code>claude</code> 명령을 PATH에서 실행할 수 있게 Claude Code CLI를 설치하세요. Astera는 이 명령을 실행할 뿐 Claude Code를 포함하지 않습니다.</p></li>
+          <li><h3>Astera 설치</h3><p>운영체제에 맞는 설치 파일을 내려받으세요. macOS 빌드는 아직 공증을 받지 않아 처음 실행할 때 격리 속성을 지워야 하고 Windows에서는 첫 실행 때 SmartScreen 경고가 뜰 수 있습니다. <a href="https://github.com/parsingk/Astera/blob/main/README.ko.md#설치" target="_blank" rel="noopener noreferrer">설치 방법</a></p></li>
+          <li><h3>계정 추가</h3><p><strong>계정</strong>에서 <strong>자동 감지</strong>로 이미 쓰는 계정을 찾거나, <strong>계정 추가</strong>를 누르고 안내에 따라 Claude Code 로그인을 마치세요.</p></li>
+          <li><h3>세션 시작</h3><p><strong>새 세션</strong>을 열고 프로젝트 폴더와 계정을 고른 뒤 터미널이나 대화를 선택하고 <strong>시작</strong>을 누르세요. 원하는 결과와 확인 방법을 함께 적어 주세요. <a href="/guide.ko.html#quickstart">첫 세션 시작하기</a></p></li>
+        </ol>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>요구 사항과 한계</h2>
+        <ul>
+          <li>Windows 10·11, macOS 12 이상, Ubuntu 22.04·Debian 12 이상. Astera는 데스크톱 앱이며 휴대폰에서는 Slack으로 세션을 확인하고 답할 수 있습니다.</li>
+          <li>Claude Code를 설치하고 로그인해야 합니다. Astera는 Apache-2.0 라이선스의 무료 오픈소스입니다. Claude 사용량은 본인의 Claude 요금제에서 차감되거나 API 계정으로 청구됩니다.</li>
+          <li>요금제 한도는 그대로 적용됩니다. Anthropic은 Claude Code와 Claude 채팅 사용량을 같은 한도로 계산합니다. <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan" target="_blank" rel="noopener noreferrer">Anthropic: 요금제로 Claude Code 사용하기</a></li>
+          <li>Astera는 컴퓨터에 설치된 <code>claude</code> 명령을 본인 계정으로 로그인한 상태로 실행합니다. 따라서 터미널에서 쓸 때와 똑같이 Anthropic의 Claude Code 약관이 적용됩니다. <a href="https://code.claude.com/docs/en/legal-and-compliance" target="_blank" rel="noopener noreferrer">Claude Code 법률·규정 준수</a></li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details><summary>Astera가 Claude 데스크톱 앱인가요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>아닙니다. Claude Desktop은 Anthropic의 채팅 앱입니다. Astera는 Claude Code CLI를 실행하는 독립 오픈소스 작업 공간이며 Anthropic이 만들거나 제휴한 제품이 아닙니다.</p></details>
+          <details><summary>Astera를 쓰면 Claude Code 동작이 달라지나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Astera는 고른 프로젝트 폴더에서 해당 계정의 설정 폴더로 Claude Code를 실행합니다. 터미널 세션에서는 Claude Code 고유 화면을 그대로 쓰고 대화 세션에서는 Claude Code의 질문과 승인을 카드로 보여 줍니다.</p></details>
+          <details><summary>같은 창에서 Codex도 쓸 수 있나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>네. Codex 세션을 Claude Code 세션 옆에서 실행할 수 있고 Job 하나에서 두 에이전트에게 작업을 나눠 줄 수도 있습니다. <a href="/ko/codex/">Astera에서 Codex 쓰기</a></p></details>
+          <details><summary>비용이 드나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Astera는 무료입니다. 모델 사용량은 터미널에서 쓸 때와 마찬가지로 Claude 요금제에서 차감되거나 API 계정으로 청구됩니다.</p></details>
+        </div>
+      </section>

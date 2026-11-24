@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko" data-static-language="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Smart Resume은 대화 전체를 다시 불러오는 대신, 지금까지의 작업을 담은 간결한 체크포인트를 다음 세션에 넘깁니다.">
+  <meta name="theme-color" content="#0b1020">
+  <title>Smart Resume으로 코딩 에이전트 작업 이어 가기 – Astera</title>
+  <link rel="canonical" href="https://astera.run/ko/features/smart-resume/">
+  <link rel="alternate" hreflang="en" href="https://astera.run/features/smart-resume/">
+  <link rel="alternate" hreflang="ko" href="https://astera.run/ko/features/smart-resume/">
+  <link rel="alternate" hreflang="x-default" href="https://astera.run/features/smart-resume/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="Smart Resume으로 코딩 에이전트 작업 이어 가기 – Astera">
+  <meta property="og:description" content="Smart Resume은 대화 전체를 다시 불러오는 대신, 지금까지의 작업을 담은 간결한 체크포인트를 다음 세션에 넘깁니다.">
+  <meta property="og:url" content="https://astera.run/ko/features/smart-resume/">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:image:alt" content="별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Smart Resume으로 코딩 에이전트 작업 이어 가기 – Astera">
+  <meta name="twitter:description" content="Smart Resume은 대화 전체를 다시 불러오는 대신, 지금까지의 작업을 담은 간결한 체크포인트를 다음 세션에 넘깁니다.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://astera.run/ko/features/smart-resume/#webpage","url":"https://astera.run/ko/features/smart-resume/","name":"Smart Resume으로 코딩 에이전트 작업 이어 가기 – Astera","description":"Smart Resume은 대화 전체를 다시 불러오는 대신, 지금까지의 작업을 담은 간결한 체크포인트를 다음 세션에 넘깁니다.","inLanguage":"ko","isPartOf":{"@id":"https://astera.run/#website"},"about":{"@id":"https://astera.run/#app"},"dateModified":"2026-11-25","breadcrumb":{"@id":"https://astera.run/ko/features/smart-resume/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://astera.run/ko/features/smart-resume/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Astera","item":"https://astera.run/index.ko.html"},{"@type":"ListItem","position":2,"name":"Smart Resume"}]}]}</script>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/guide.css">
+  <link rel="stylesheet" href="/pages.css?v=20261125-3">
+  <script src="/language.js?v=20261125-3" defer></script>
+  <script src="/main.js?v=20261125-3" defer></script>
+  <script src="/downloads.js" defer></script>
+</head>
+<body class="guide-page search-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/index.ko.html" data-theme-link aria-label="Astera home"><img src="/assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="주 메뉴">
+        <a href="/index.ko.html#features" data-theme-link lang="en">Features</a><a href="/index.ko.html#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.ko.html" data-theme-link lang="en">Guide</a><a href="/index.ko.html#faq" data-theme-link lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="language-link" href="/features/smart-resume/" data-theme-link hreflang="en" lang="en" title="View in English">English</a>
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="GitHub에서 Astera 보기"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="라이트 테마로 전환" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">라이트 테마</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="모바일 메뉴" hidden><a href="/index.ko.html#features" data-theme-link lang="en">Features</a><a href="/index.ko.html#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.ko.html" data-theme-link lang="en">Guide</a><a href="/index.ko.html#faq" data-theme-link lang="en">FAQ</a></nav>
+  </header>
+
+  <main id="main" class="container page-main">
+    <article class="page-article">
+      <header class="guide-intro guide-section page-intro">
+        <p class="guide-breadcrumb"><a href="/index.ko.html" data-theme-link>Astera</a><span>/</span>기능</p>
+        <h1>대화 전체가 아니라 작업을 이어 가세요.</h1>
+        <p class="guide-lead">사용량 한도로 세션이 다른 계정으로 옮겨 가면, Smart Resume은 새 세션을 열고 무엇을 요청했는지, 무엇이 바뀌었는지, 어디서 멈췄는지 담은 체크포인트를 건넵니다.</p>
+      </header>
+<section class="guide-section" id="two-ways">
+        <h2>작업을 다시 잇는 두 가지 방법</h2>
+        <p>사용량 한도 때문에 세션이 다른 계정으로 옮겨 가면, 다음 세션은 지금까지 무슨 일이 있었는지 알아야 합니다. 긴 대화를 그대로 다시 불러오면 이제는 필요 없는 부분까지 함께 따라옵니다. Smart Resume은 다음 세션을 새로 시작하고 대신 간결한 체크포인트를 건넵니다.</p>
+        <div class="page-table-wrap" role="region" aria-labelledby="resume-table-caption" tabindex="0">
+          <table class="page-table">
+            <caption id="resume-table-caption">기본값은 일반 재개입니다. 설정 → 에이전트 → 세션 재개 방식에서 고르세요.</caption>
+            <thead><tr><th scope="col"></th><th scope="col">일반 재개</th><th scope="col">Smart Resume</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">다음 세션이 받는 것</th><td>CLI 자체 재개 기능으로 이어 가는 기존 대화</td><td>지금까지의 작업을 담은 체크포인트를 첫 메시지로 받는 새 대화</td></tr>
+              <tr><th scope="row">어울리는 경우</th><td>모든 세부 사항이 아직 중요한 짧은 대화</td><td>전체 기록보다 핵심만 추린 인계가 더 쓸모 있는 긴 세션</td></tr>
+              <tr><th scope="row">감수할 점</th><td>대화 전체가 다음 세션으로 넘어갑니다</td><td>간결하게 추리다 보니 오래된 세부 사항이 빠질 수 있습니다</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="guide-section" id="checkpoint">
+        <h2>체크포인트에 담기는 것</h2>
+        <ul>
+          <li>작업 폴더와 git 상태.</li>
+          <li>대화에서 최근에 한 요청을 순서대로, 그리고 마지막 대화 부분.</li>
+          <li>세션이 건드린 파일과 마지막으로 실행한 명령.</li>
+          <li>Job 워커라면 작업의 목표, 의존 관계, 최근 보고, 결정 사항, 검증 맥락. 다음 워커는 자기 작업과 주변 작업을 함께 봅니다.</li>
+        </ul>
+        <p>비밀 값은 체크포인트를 만들 때 가려집니다. 다음 에이전트는 작업 파일을 직접 열어 보며 이어서 일할 수 있습니다.</p>
+      </section>
+
+      <section class="guide-section" id="when-it-runs">
+        <h2>언제 동작하나요</h2>
+        <p>Smart Resume은 기본으로 꺼져 있습니다. 켜 두면, 사용량 한도로 세션이 같은 서비스의 다른 사용 가능한 계정으로 전환될 때 동작합니다. 전환 순서는 세션마다 정한 순서를 따릅니다. 체크포인트를 만들 수 없으면 일반 재개로 돌아가므로, 켜 둔다고 해서 전환이 전보다 나빠지지는 않습니다.</p>
+        <ol class="setup-steps">
+          <li><h3>켜기</h3><p><strong>설정 → 에이전트 → 세션 재개 방식</strong>에서 <strong>스마트 재개</strong>를 고르세요.</p></li>
+          <li><h3>전환 순서 정하기</h3><p><strong>새 세션</strong>에서 첫 계정을 고른 뒤 <strong>+ 계정 추가</strong>로 다음 계정을 정하세요. 본인이 쓸 권한이 있는 계정만 추가하세요.</p></li>
+          <li><h3>계속 작업하기</h3><p>한도로 전환이 일어나면 다음 세션이 체크포인트를 첫 메시지로 받습니다. <a href="/guide.ko.html#smart-resume" data-theme-link>가이드: 스마트 재개</a></p></li>
+        </ol>
+      </section>
+
+      <section class="guide-section" id="limits">
+        <h2>Smart Resume이 하지 않는 일</h2>
+        <ul>
+          <li>어느 계정의 사용량 한도도 없애거나 늘리지 않습니다. 한도는 계정마다 따로 적용됩니다.</li>
+          <li>대화를 복사하지 않고 인계합니다. 에이전트가 절대 놓치면 안 되는 요구 사항은 <code>CLAUDE.md</code>나 <code>AGENTS.md</code>처럼 에이전트가 읽을 수 있는 프로젝트 파일에 적어 두세요.</li>
+          <li>전환할 다른 계정이 없으면 동작하지 않습니다. 계정이 하나뿐인 세션은 대신 한도가 풀릴 때까지 기다렸다가 재개할 수 있습니다. <a href="/ko/guides/claude-code-usage-limit/" data-theme-link>사용량 한도 다루기</a></li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details><summary><code>claude --resume</code>과 같은 기능인가요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>아닙니다. <code>claude --continue</code>와 <code>claude --resume</code>은 이전 대화를 다시 엽니다. Codex에는 같은 용도의 <code>codex resume</code>이 있습니다. Astera의 일반 재개는 이 CLI 자체 재개 기능을 씁니다. Smart Resume은 새 대화를 시작하고 체크포인트를 건넵니다. <a href="https://code.claude.com/docs/en/common-workflows#resume-previous-conversations" target="_blank" rel="noopener noreferrer">Claude Code: 이전 대화 재개</a></p></details>
+          <details><summary>체크포인트에 비밀 값이 복사되나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>체크포인트를 만들 때 비밀 값은 가려집니다. 다만 체크포인트는 파일과 명령을 설명하므로, 다른 프로젝트 기록과 똑같이 다뤄 주세요.</p></details>
+        </div>
+      </section>
+
+      <div class="guide-finish page-cta">
+        <div><h2>내 프로젝트에서 Astera를 써 보세요.</h2><p>Astera는 Apache-2.0 라이선스의 무료 오픈소스입니다. 지금 쓰는 Claude Code와 Codex CLI를 그대로 실행하므로 모델 사용량은 본인의 Anthropic 또는 OpenAI 요금제에서 차감됩니다.</p><p class="page-platforms">Windows 10/11 · macOS 12+ · Ubuntu 22.04+ / Debian 12+</p></div>
+        <div class="page-cta-actions"><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download><svg class="icon"><use href="#i-download"/></svg> Astera 다운로드</a><a class="text-button" href="/guide.ko.html" data-theme-link>가이드 읽기 <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <nav class="feature-map page-related" aria-labelledby="related-title">
+        <h2 id="related-title">함께 읽기</h2>
+        <a href="/ko/guides/claude-code-usage-limit/" data-theme-link><span>Claude Code 사용량 한도</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/features/agent-orchestration/" data-theme-link><span>에이전트 오케스트레이션</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/claude-code/" data-theme-link><span>Claude Code</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/codex/" data-theme-link><span>Codex</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div><a class="brand" href="/index.ko.html" data-theme-link><img src="/assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p>별 너머의 가능성을 만드세요.</p></div>
+    <nav class="footer-groups" aria-label="Astera">
+      <div><p class="footer-group-title">제품</p><a href="/index.ko.html" data-theme-link>홈</a><a href="/guide.ko.html" data-theme-link>사용 가이드</a><a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download>다운로드</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer">변경 내역</a></div>
+      <div><p class="footer-group-title">지원 에이전트</p><a href="/ko/claude-code/" data-theme-link>Claude Code</a><a href="/ko/codex/" data-theme-link>Codex</a></div>
+      <div><p class="footer-group-title">기능</p><a href="/ko/features/agent-orchestration/" data-theme-link>에이전트 오케스트레이션</a><a href="/ko/features/smart-resume/" data-theme-link>Smart Resume</a><a href="/ko/features/github-ci/" data-theme-link>GitHub 이슈에서 PR까지</a></div>
+      <div><p class="footer-group-title">실전 가이드</p><a href="/ko/guides/claude-code-usage-limit/" data-theme-link>Claude Code 사용량 한도</a></div>
+      <div><p class="footer-group-title">비교</p><a href="/ko/alternatives/orca/" data-theme-link>Astera와 Orca 비교</a><a href="/ko/alternatives/paseo/" data-theme-link>Astera와 Paseo 비교</a></div>
+      <div><p class="footer-group-title">프로젝트</p><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera/blob/main/README.ko.md#문서" target="_blank" rel="noopener noreferrer">문서</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a></div>
+    </nav>
+    <p class="footer-note">Astera는 Anthropic이나 OpenAI가 만들거나 제휴한 제품이 아닌 독립 오픈소스 프로젝트입니다. 만드는 사람들을 위해.</p>
+  </footer>
+</body>
+</html>

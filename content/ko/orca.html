@@ -1,0 +1,55 @@
+      <section class="guide-section" id="summary">
+        <h2>두 오픈소스 에이전트 작업 공간</h2>
+        <p>Astera와 <a href="https://orca.dev" target="_blank" rel="noopener noreferrer">Orca</a>는 둘 다 코딩 에이전트를 git 워크트리에서 나란히 실행하는 무료 오픈소스 데스크톱 앱입니다. Orca는 아주 많은 에이전트를 지원하고 모바일 컴패니언, 원격 서버, 다른 도구에서 메시지로 부르는 봇을 갖췄습니다. Astera는 Claude Code와 Codex에 집중합니다. 사용량 한도와 앱 재시작을 지나서도 작업을 이어 갑니다. 검사와 다른 모델의 리뷰를 통과해야 작업을 완료로 봅니다.</p>
+        <p class="guide-note">Astera는 Orca나 Stably AI와 제휴하지 않았습니다. 벤치마크를 하지 않았으므로 속도나 품질은 비교하지 않습니다. Orca에 대한 내용은 2026-11-25에 Orca 공식 웹사이트, 문서, 저장소에서만 확인했습니다. “문서에 없음”은 그곳에서 찾지 못했다는 뜻이지 기능이 없다는 뜻이 아닙니다.</p>
+      </section>
+
+      <section class="guide-section" id="comparison">
+        <h2>나란히 비교</h2>
+        <div class="page-table-wrap" role="region" aria-labelledby="orca-table-caption" tabindex="0">
+          <table class="page-table">
+            <caption id="orca-table-caption">2026-11-25 확인: Astera 1.5.5, Orca 1.4.273. 표시: 확인됨, 조건부, 문서에 없음, 미지원(명시적 근거).</caption>
+            <thead><tr><th scope="col"></th><th scope="col">Astera</th><th scope="col">Orca</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">라이선스</th><td>Apache-2.0<span class="evidence">확인됨</span></td><td>MIT<span class="evidence">확인됨</span></td></tr>
+              <tr><th scope="row">가격과 계정</th><td>무료. Astera 계정이나 호스팅 서비스가 없습니다.<span class="evidence">확인됨</span></td><td>무료이며 로컬 사용에는 계정이 필요 없습니다. Orca Relay와 Orca Cloud를 거치는 봇에는 Orca 계정이 필요하고 이 서비스의 가격은 공개돼 있지 않습니다.<span class="evidence limited">조건부</span></td></tr>
+              <tr><th scope="row">데스크톱 플랫폼</th><td>Windows 10·11, macOS 12 이상, Ubuntu 22.04·Debian 12 이상<span class="evidence">확인됨</span></td><td>macOS 13.4 이상, Windows, Linux(AppImage, .deb, .rpm)<span class="evidence">확인됨</span></td></tr>
+              <tr><th scope="row">휴대폰과 브라우저</th><td>모바일·웹 클라이언트는 없습니다. Slack 알림과 답장을 지원합니다.<span class="evidence">확인됨</span></td><td>iOS·Android 컴패니언(베타). Remote Orca Server와 연결하면 브라우저 클라이언트를 쓸 수 있습니다.<span class="evidence limited">조건부</span></td></tr>
+              <tr><th scope="row">에이전트</th><td>세션과 작업은 Claude Code와 Codex. 리뷰는 Gemini CLI, Copilot CLI, OpenCode, ACP 에이전트도 가능합니다.<span class="evidence">확인됨</span></td><td>모든 CLI 에이전트, 약 40개 기본 구성. Claude Code와 Codex는 더 깊이 통합<span class="evidence">확인됨</span></td></tr>
+              <tr><th scope="row">병렬 작업과 워크트리</th><td>분할 창의 여러 세션, 작업별 워크트리, 워크트리에서 도는 Job 워커<span class="evidence">확인됨</span></td><td>에이전트를 나란히 실행, 작업마다 워크트리<span class="evidence">확인됨</span></td></tr>
+              <tr><th scope="row">작업 지속</th><td>앱을 종료해도 Astera Host가 세션을 유지하고 끊긴 Job 워커와 검사를 복구합니다. Host가 재시작하면 실행 중인 터미널은 끝납니다. 사용량 한도에서는 대기, 계정 전환, Smart Resume을 지원합니다.<span class="evidence">확인됨</span></td><td>백그라운드 데몬이 앱 종료나 충돌 뒤에도 에이전트를 유지하고 다시 연결합니다. 재부팅하면 실행 중인 에이전트는 끝납니다. 최대 절전은 실험 기능입니다.<span class="evidence">확인됨</span></td></tr>
+              <tr><th scope="row">검사, CI, 리뷰</th><td>빌드·테스트·교차 리뷰 검사가 작업 완료를 판정하고 자동으로 수정합니다. GitHub 흐름: 초안 PR, CI, 수정, 리뷰, 병합 준비 완료. 자동 병합은 없고 GitHub만 지원합니다.<span class="evidence">확인됨</span></td><td>에이전트에게 보내는 diff 주석, 로그가 붙은 GitHub Actions 실패 표시, “Fix broken checks”, 자동 병합, stacked PR. GitHub, GitLab, Bitbucket, Azure DevOps, Gitea 지원<span class="evidence">확인됨</span></td></tr>
+              <tr><th scope="row">원격 작업</th><td>LAN, VPN, Tailscale로 연결한 다른 컴퓨터의 Remote Runtime. 고정 TLS와 컨트롤러별로 취소할 수 있는 토큰을 쓰며 릴레이는 없습니다.<span class="evidence">확인됨</span></td><td>휴대폰은 LAN, Tailscale, Orca Relay(계정 필요)로 연결. Remote Orca Server(베타), SSH 워크트리, 직접 쓰는 제공자의 실험적 클라우드 VM<span class="evidence limited">조건부</span></td></tr>
+              <tr><th scope="row">확장</th><td>MCP 서버, 스킬, Claude Code 플러그인 공유. Astera 플러그인, MCP 서버, SDK, <code>astera</code> CLI<span class="evidence">확인됨</span></td><td>기본으로 켜진 플러그인 시스템과 카탈로그, git 마켓플레이스. MCP 서버, Orca 스킬<span class="evidence">확인됨</span></td></tr>
+              <tr><th scope="row">운영 비용</th><td>본인의 에이전트 요금제와 컴퓨터 외에는 없습니다<span class="evidence">확인됨</span></td><td>로컬 사용에는 서버가 필요 없습니다. 호스팅되는 Relay와 Orca Cloud 비용은 문서에 없습니다.<span class="evidence limited">조건부</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="guide-section" id="choose">
+        <h2>어떤 쪽이 내 작업에 맞을까요</h2>
+        <h3>Orca가 더 맞을 수 있는 경우</h3>
+        <ul>
+          <li>Claude Code와 Codex보다 여러 가지 에이전트 CLI를 두루 씁니다.</li>
+          <li>휴대폰으로 에이전트를 확인하거나, 원격 서버나 클라우드 VM에서 돌리고 싶습니다.</li>
+          <li>자동 병합이나 stacked PR 같은 PR 도구가 필요하거나, GitLab, Bitbucket, Azure DevOps, Gitea를 씁니다.</li>
+          <li>Slack, Linear, GitHub에서 봇으로 에이전트를 시작하고 싶습니다.</li>
+        </ul>
+        <h3>Astera가 더 맞을 수 있는 경우</h3>
+        <ul>
+          <li>주로 Claude Code와 Codex를 쓰고 작업을 완료로 보기 전에 서로의 작업을 리뷰하게 하고 싶습니다.</li>
+          <li>사용량 한도를 지나서도 작업이 이어지길 원합니다. 초기화 대기, 본인이 쓸 권한이 있는 다른 계정으로 전환, <a href="/ko/features/smart-resume/">Smart Resume</a>.</li>
+          <li>앱을 닫아도 Job, 검사, 리뷰가 계속 돌고 터미널이나 MCP 클라이언트, SDK로 이를 다루고 싶습니다. <a href="/ko/features/agent-orchestration/">에이전트 오케스트레이션</a></li>
+          <li>계정도 호스팅 서비스도 전혀 없는 데스크톱 도구를 원합니다.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="sources">
+        <h2>출처</h2>
+        <ul>
+          <li>Orca: <a href="https://orca.dev/docs" target="_blank" rel="noopener noreferrer">문서</a>, <a href="https://orca.dev/docs/install" target="_blank" rel="noopener noreferrer">설치</a>, <a href="https://orca.dev/docs/mobile" target="_blank" rel="noopener noreferrer">모바일</a>, <a href="https://orca.dev/docs/agents/supported" target="_blank" rel="noopener noreferrer">지원 에이전트</a>, <a href="https://orca.dev/docs/model/session-restore" target="_blank" rel="noopener noreferrer">세션 복원</a>, <a href="https://orca.dev/docs/review/github" target="_blank" rel="noopener noreferrer">GitHub 리뷰</a>, <a href="https://orca.dev/docs/remote-servers" target="_blank" rel="noopener noreferrer">원격 서버</a>, <a href="https://github.com/stablyai/orca" target="_blank" rel="noopener noreferrer">저장소와 라이선스</a>. 1.4.273 릴리스, 2026-11-24.</li>
+          <li>Astera: <a href="/guide.ko.html">사용 가이드</a>와 <a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">저장소</a>. 1.5.5 릴리스, 2026-11-24.</li>
+        </ul>
+        <p class="guide-small">이 페이지는 30~60일마다, 그리고 두 제품의 플랫폼·가격·주요 기능이 바뀔 때 다시 확인합니다. 바뀐 내용을 발견했다면 <a href="https://github.com/parsingk/Astera/issues" target="_blank" rel="noopener noreferrer">GitHub에 알려 주세요</a>.</p>
+      </section>

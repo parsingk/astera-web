@@ -1,0 +1,53 @@
+      <section class="guide-section" id="what-it-is">
+        <h2>Codex CLI에 작업 공간을 더하세요</h2>
+        <p>Astera는 컴퓨터에 설치된 <code>codex</code> 명령을 실행하고 세션마다 데스크톱 창 안에 자리를 줍니다. 그 옆에 Claude Code 세션, 파일, 워크트리가 함께 놓입니다. Codex는 터미널에서 쓰던 방식 그대로 쓰고 Astera는 계정 관리, 도구 공유, 검사, 변경 기록을 더합니다.</p>
+        <p class="guide-note">Astera는 OpenAI의 Codex 앱이 아닙니다. OpenAI가 만들거나 제휴한 제품이 아닌 독립 오픈소스 프로젝트입니다.</p>
+        <figure>
+          <img src="/assets/conversation.jpg" width="1920" height="1044" alt="계정·프로젝트 사이드바 옆에 Claude Code와 Codex 세션 네 개가 열린 실제 Astera 채팅 화면." loading="lazy" decoding="async">
+          <figcaption>대화 형식으로 본 세션 네 개. Claude Code 세 개와 Codex 하나이며 창마다 입력창과 모델, 추론 강도를 따로 고릅니다.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="what-you-get">
+        <h2>Astera에서 Codex로 할 수 있는 일</h2>
+        <h3>터미널 또는 대화 세션</h3>
+        <p>Codex 고유의 터미널 화면으로 실행하거나, 질문과 승인이 카드로 오는 대화로 실행하세요. 세션 종류는 만들 때 정한 대로 유지됩니다. <a href="/guide.ko.html#sessions">가이드: 터미널과 대화</a></p>
+        <h3>Codex 계정 여러 개를 따로</h3>
+        <p>Codex 계정마다 별도의 <code>CODEX_HOME</code>으로 실행합니다. 계정을 추가할 때 <strong>기본 계정에서 설정 가져오기</strong>를 쓰면 Codex 설정을 그 계정의 <code>config.toml</code>에 합치고 주석과 관련 없는 항목은 그대로 둡니다.</p>
+        <h3>MCP 서버, 스킬, 플러그인 공유</h3>
+        <p><strong>설정 → MCP &amp; Skills</strong>에서 MCP 서버와 스킬을 한 번 고르면 모든 계정의 새 세션에 적용됩니다. 제공자별 지원 범위는 그대로여서 Codex에는 슬래시 명령과 하위 에이전트가 없습니다. 공유한 Claude Code 플러그인은 모든 Codex 계정에도 설치됩니다. 이때 에이전트는 빠지고 명령은 <code>&lt;plugin&gt;:source-command-&lt;name&gt;</code> 이름의 스킬이 됩니다. <a href="/guide.ko.html#mcp-skills">가이드: MCP &amp; Skills</a></p>
+        <h3>작업을 폴더 안에 두는 Sandbox</h3>
+        <p>에이전트 프로필에서 <strong>Sandbox에서 실행</strong>을 켜면 Codex 자체 Sandbox를 씁니다. 작업 폴더와 임시 폴더 밖에는 쓰지 못하게 하고 로그인 파일을 막습니다. Codex 0.160.0 이상이 필요하며 Windows에서는 Codex 계정마다 관리자 권한 요청이 뜨는 <strong>설정하기</strong>를 한 번 실행해야 합니다. 네트워크는 그대로 쓸 수 있습니다. <a href="/guide.ko.html#sandbox">가이드: Sandbox</a></p>
+        <h3>같은 작업에 Codex와 Claude Code를 함께</h3>
+        <p>Job 하나에서 어떤 작업은 Codex에게, 어떤 작업은 Claude Code에게 맡기고 각 결과를 다른 제공자의 모델에게 리뷰하게 할 수 있습니다. 교차 리뷰는 리뷰하는 제공자의 사용량을 씁니다. <a href="/ko/features/agent-orchestration/">Jobs로 하는 에이전트 오케스트레이션</a></p>
+        <h3>사용량 한도 뒤에도 이어 가기</h3>
+        <p>Codex 세션이 한도에 닿으면 Astera는 초기화를 기다렸다가 재개하거나, 등록해 둔 다른 Codex 계정 중 본인이 쓸 권한이 있는 계정에서 이어 갈 수 있습니다. 한도는 계정마다 따로 적용됩니다. <a href="/ko/features/smart-resume/">Smart Resume</a>을 쓰면 다음 세션에 간결한 체크포인트를 넘깁니다.</p>
+      </section>
+
+      <section class="guide-section" id="get-started">
+        <h2>시작하기</h2>
+        <ol class="setup-steps">
+          <li><h3>Codex CLI 설치</h3><p><code>codex</code> 명령을 PATH에서 실행할 수 있게 Codex를 설치하세요. Astera는 이 명령을 실행할 뿐 Codex를 포함하지 않습니다.</p></li>
+          <li><h3>Astera 설치</h3><p>운영체제에 맞는 설치 파일을 내려받으세요. <a href="https://github.com/parsingk/Astera/blob/main/README.ko.md#설치" target="_blank" rel="noopener noreferrer">설치 방법</a></p></li>
+          <li><h3>Codex 계정 추가</h3><p><strong>계정</strong>에서 <strong>자동 감지</strong>나 <strong>계정 추가</strong>를 쓰고 안내에 따라 Codex 로그인을 마치세요.</p></li>
+          <li><h3>세션 시작</h3><p><strong>새 세션</strong>을 열고 프로젝트 폴더와 Codex 계정을 고른 뒤 터미널이나 대화를 선택하고 <strong>시작</strong>을 누르세요. <a href="/guide.ko.html#quickstart">첫 세션 시작하기</a></p></li>
+        </ol>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>요구 사항과 한계</h2>
+        <ul>
+          <li>Windows 10·11, macOS 12 이상, Ubuntu 22.04·Debian 12 이상.</li>
+          <li>Codex CLI를 설치하고 로그인해야 합니다. Sandbox는 Codex 0.160.0 이상이 필요합니다.</li>
+          <li>Astera는 Apache-2.0 라이선스의 무료 오픈소스입니다. Codex 사용량은 본인의 OpenAI 요금제에서 차감되며 로컬 메시지와 클라우드 대화가 요금제 사용량을 함께 씁니다. Codex CLI 세션에서 <code>/status</code>를 입력하면 남은 한도를 볼 수 있습니다. <a href="https://developers.openai.com/codex/pricing" target="_blank" rel="noopener noreferrer">OpenAI: Codex 요금과 한도</a></li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details><summary>Astera가 OpenAI의 Codex 앱인가요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>아닙니다. Astera는 Codex CLI를 실행하는 독립 오픈소스 작업 공간이며 OpenAI가 만들거나 제휴한 제품이 아닙니다.</p></details>
+          <details><summary>Codex가 Claude Code의 작업을 리뷰할 수 있나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>네. Job에서 리뷰를 요청한 작업은 보통 다른 제공자의 모델이 리뷰합니다. 그래서 Claude Code가 한 작업을 Codex가 리뷰하고 반대로도 할 수 있습니다. 리뷰할 제공자의 계정이 있어야 합니다.</p></details>
+          <details><summary>Codex와 Claude Code가 계정을 함께 쓰나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>아닙니다. Astera의 계정은 한 제공자에 속합니다. 계정 전환도 같은 제공자의 다른 계정으로만 세션을 옮깁니다.</p></details>
+        </div>
+      </section>

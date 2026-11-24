@@ -34,7 +34,8 @@ const siteI18n = (() => {
     });
     document.querySelectorAll('[data-theme-link]').forEach((link) => {
       const url = new URL(link.href);
-      url.searchParams.set('lang', language);
+      // A link to another language's page (it has hreflang) keeps that language.
+      url.searchParams.set('lang', link.hreflang || language);
       link.href = url.href;
     });
   }

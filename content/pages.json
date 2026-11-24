@@ -457,6 +457,398 @@
           "checkedAt": "2026-11-25"
         }
       ]
+    },
+    {
+      "id": "claude-code-ko",
+      "kind": "provider",
+      "locale": "ko",
+      "path": "/ko/claude-code/",
+      "status": "published",
+      "translationGroup": "claude-code",
+      "navLabel": "Claude Code",
+      "section": "Claude Code",
+      "title": "Claude Code 데스크톱 작업 공간 – Astera",
+      "description": "무료 오픈소스 데스크톱 앱 Astera에서 Claude Code 세션 여러 개를 나란히 실행하세요. 계정을 분리하고 한도 뒤에도 작업을 이어 가고 결과를 검증합니다.",
+      "h1": "Claude Code를 위한 데스크톱 작업 공간.",
+      "lead": "Astera는 지금 쓰는 Claude Code CLI를 터미널이나 대화 창으로 실행하고 그 옆에 파일·워크트리·검사를 함께 둡니다.",
+      "body": "content/ko/claude-code.html",
+      "related": [
+        "codex",
+        "agent-orchestration",
+        "smart-resume",
+        "claude-code-usage-limit"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://github.com/parsingk/Astera#what-it-does",
+          "claim": "Sessions, accounts with CLAUDE_CONFIG_DIR, Host, Jobs",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#sessions",
+          "claim": "Terminal and Chat sessions",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan",
+          "claim": "Claude Code and Claude share limits",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "codex-ko",
+      "kind": "provider",
+      "locale": "ko",
+      "path": "/ko/codex/",
+      "status": "published",
+      "translationGroup": "codex",
+      "navLabel": "Codex",
+      "section": "Codex",
+      "title": "Codex 데스크톱 작업 공간 – Astera",
+      "description": "무료 오픈소스 데스크톱 앱 Astera에서 Codex CLI 세션을 실행하세요. 계정 여러 개를 쓰고 MCP와 스킬을 공유하고 Claude Code와 함께 일하게 할 수 있습니다.",
+      "h1": "Codex CLI를 위한 데스크톱 작업 공간.",
+      "lead": "Astera는 지금 쓰는 Codex CLI를 Claude Code 옆에서 실행합니다. 도구를 공유하고 계정이 바뀌어도 작업을 잇고 결과를 검증합니다.",
+      "body": "content/ko/codex.html",
+      "related": [
+        "claude-code",
+        "agent-orchestration",
+        "github-ci",
+        "smart-resume"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#mcp-skills",
+          "claim": "Codex has no slash commands or subagents; shared plugins in Codex",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#sandbox",
+          "claim": "Codex 0.160.0+, Windows set up",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://developers.openai.com/codex/pricing",
+          "claim": "Shared plan allowance, /status",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "agent-orchestration-ko",
+      "kind": "feature",
+      "locale": "ko",
+      "path": "/ko/features/agent-orchestration/",
+      "status": "published",
+      "translationGroup": "agent-orchestration",
+      "navLabel": "에이전트 오케스트레이션",
+      "section": "기능",
+      "title": "AI 코딩 에이전트 오케스트레이션, Jobs – Astera",
+      "description": "코딩 작업을 Claude Code와 Codex 워커가 맡을 작업 그래프로 나누세요. Astera는 검사와 다른 제공자의 리뷰를 통과해야 완료로 봅니다.",
+      "h1": "코딩 에이전트를 함께 움직이고 결과를 검증하세요.",
+      "lead": "Job은 목표 하나를 Claude Code와 Codex가 맡을 작업으로 나누고 검사를 통과하거나 사용자의 판단이 필요할 때까지 작업을 계속 진행합니다.",
+      "body": "content/ko/agent-orchestration.html",
+      "related": [
+        "github-ci",
+        "smart-resume",
+        "claude-code",
+        "codex"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#jobs",
+          "claim": "Jobs, checks, Merge",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#orchestration",
+          "claim": "/astera-orchestration",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#reviewers",
+          "claim": "External reviewers",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera#what-it-does",
+          "claim": "Completion convergence survives rolling and restarts",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "smart-resume-ko",
+      "kind": "feature",
+      "locale": "ko",
+      "path": "/ko/features/smart-resume/",
+      "status": "published",
+      "translationGroup": "smart-resume",
+      "navLabel": "Smart Resume",
+      "section": "기능",
+      "title": "Smart Resume으로 코딩 에이전트 작업 이어 가기 – Astera",
+      "description": "Smart Resume은 대화 전체를 다시 불러오는 대신, 지금까지의 작업을 담은 간결한 체크포인트를 다음 세션에 넘깁니다.",
+      "h1": "대화 전체가 아니라 작업을 이어 가세요.",
+      "lead": "사용량 한도로 세션이 다른 계정으로 옮겨 가면, Smart Resume은 새 세션을 열고 무엇을 요청했는지, 무엇이 바뀌었는지, 어디서 멈췄는지 담은 체크포인트를 건넵니다.",
+      "body": "content/ko/smart-resume.html",
+      "related": [
+        "claude-code-usage-limit",
+        "agent-orchestration",
+        "claude-code",
+        "codex"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://github.com/parsingk/Astera#what-it-does",
+          "claim": "Checkpoint contents, fallback to ordinary resume",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#smart-resume",
+          "claim": "Limits of the handoff",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/src/renderer/src/App.tsx",
+          "claim": "Session resume strategy is on the Agents settings tab",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "github-ci-ko",
+      "kind": "feature",
+      "locale": "ko",
+      "path": "/ko/features/github-ci/",
+      "status": "published",
+      "translationGroup": "github-ci",
+      "navLabel": "GitHub 이슈에서 PR까지",
+      "section": "기능",
+      "title": "GitHub 이슈에서 CI 검증 PR까지 – Astera",
+      "description": "코딩 에이전트의 작업을 GitHub 이슈에서 초안 PR, CI, 수정, 다른 모델의 리뷰까지 이어 갑니다. 병합할 준비가 되면 Astera가 알려 줍니다.",
+      "h1": "GitHub 이슈에서 CI를 통과한 PR까지.",
+      "lead": "Astera는 Job을 PR, GitHub CI, 수정, 리뷰까지 진행하고 현재 head를 병합할 준비가 되면 알려 줍니다. 병합은 직접 합니다.",
+      "body": "content/ko/github-ci.html",
+      "related": [
+        "agent-orchestration",
+        "codex",
+        "claude-code"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#github-lifecycle",
+          "claim": "Lifecycle, requirements, questions, CLI",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#job-sources",
+          "claim": "Issue sources",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/docs/jobs.md",
+          "claim": "GitHub lifecycle reference",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "claude-code-usage-limit-ko",
+      "kind": "guide",
+      "locale": "ko",
+      "path": "/ko/guides/claude-code-usage-limit/",
+      "status": "published",
+      "translationGroup": "claude-code-usage-limit",
+      "navLabel": "Claude Code 사용량 한도",
+      "section": "실전 가이드",
+      "title": "Claude Code 사용량 한도: 작업 저장과 재개 – Astera",
+      "description": "Claude Code의 5시간·주간 한도가 어떻게 적용되는지, 남은 사용량을 어떻게 확인하는지, 초기화 뒤 작업을 어떻게 이어 가는지 정리했습니다.",
+      "h1": "Claude Code 사용량 한도: 작업을 남기고 이어 가기.",
+      "lead": "한도가 무엇인지, 다가오는 한도를 어떻게 알아채는지, 하던 작업을 잃지 않고 어떻게 다시 시작하는지 설명합니다.",
+      "body": "content/ko/claude-code-usage-limit.html",
+      "related": [
+        "smart-resume",
+        "claude-code",
+        "codex"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work",
+          "claim": "Five-hour session and weekly limits, shared across products",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-max-or-ultra-plan",
+          "claim": "Options at the limit, API key precedence",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/errors",
+          "claim": "Limit and 429 messages",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/interactive-mode#wait-for-a-usage-limit-to-reset",
+          "claim": "Automatic wait and continue",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/commands",
+          "claim": "/usage, /rate-limit-options",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.anthropic.com/legal/aup",
+          "claim": "Multiple accounts to circumvent restrictions",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/legal-and-compliance",
+          "claim": "Limits assume ordinary individual usage",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "orca-ko",
+      "kind": "comparison",
+      "locale": "ko",
+      "path": "/ko/alternatives/orca/",
+      "status": "published",
+      "translationGroup": "orca",
+      "navLabel": "Astera와 Orca 비교",
+      "section": "비교",
+      "title": "Astera와 Orca 비교: 오픈소스 코딩 작업 공간",
+      "description": "오픈소스 데스크톱 코딩 에이전트 작업 공간 Astera와 Orca를 플랫폼, 에이전트, 작업 지속, CI와 리뷰, 원격 사용, 비용으로 비교합니다.",
+      "h1": "Astera와 Orca 비교",
+      "lead": "둘 다 코딩 에이전트를 나란히 실행하는 오픈소스 데스크톱 작업 공간입니다. 무게를 두는 곳이 다릅니다.",
+      "body": "content/ko/orca.html",
+      "related": [
+        "paseo",
+        "agent-orchestration",
+        "github-ci"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://github.com/stablyai/orca",
+          "claim": "License MIT, release 1.4.273",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://orca.dev/docs/install",
+          "claim": "Platforms",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://orca.dev/docs/mobile",
+          "claim": "Mobile beta, Relay account",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://orca.dev/docs/agents/supported",
+          "claim": "Agents",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://orca.dev/docs/model/session-restore",
+          "claim": "Daemon continuity",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://orca.dev/docs/review/github",
+          "claim": "PR and CI features",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://orca.dev/docs/remote-servers",
+          "claim": "Remote servers beta",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "paseo-ko",
+      "kind": "comparison",
+      "locale": "ko",
+      "path": "/ko/alternatives/paseo/",
+      "status": "published",
+      "translationGroup": "paseo",
+      "navLabel": "Astera와 Paseo 비교",
+      "section": "비교",
+      "title": "Astera와 Paseo 비교: 코딩 에이전트 작업 공간",
+      "description": "Claude Code, Codex 등 코딩 에이전트를 실행하는 Astera와 Paseo를 플랫폼, 휴대폰·원격 사용, 작업 지속, 검사, 비용으로 비교합니다.",
+      "h1": "Astera와 Paseo 비교",
+      "lead": "Paseo는 에이전트를 모든 기기로 가져갑니다. Astera는 데스크톱에 머물며 작업을 계속 이어 가고 결과를 검증하는 데 집중합니다.",
+      "body": "content/ko/paseo.html",
+      "related": [
+        "orca",
+        "agent-orchestration",
+        "smart-resume"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://github.com/getpaseo/paseo",
+          "claim": "License, changelog, release 0.17.4",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://paseo.sh/download",
+          "claim": "Platforms",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://paseo.sh/docs/supported-providers",
+          "claim": "Agents and ACP",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://paseo.sh/docs/security",
+          "claim": "Relay",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://paseo.sh/hub",
+          "claim": "Hub plans",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://paseo.sh/docs/workspaces",
+          "claim": "Worktrees",
+          "checkedAt": "2026-11-25"
+        }
+      ]
     }
   ]
 }

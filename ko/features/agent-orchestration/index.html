@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko" data-static-language="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="코딩 작업을 Claude Code와 Codex 워커가 맡을 작업 그래프로 나누세요. Astera는 검사와 다른 제공자의 리뷰를 통과해야 완료로 봅니다.">
+  <meta name="theme-color" content="#0b1020">
+  <title>AI 코딩 에이전트 오케스트레이션, Jobs – Astera</title>
+  <link rel="canonical" href="https://astera.run/ko/features/agent-orchestration/">
+  <link rel="alternate" hreflang="en" href="https://astera.run/features/agent-orchestration/">
+  <link rel="alternate" hreflang="ko" href="https://astera.run/ko/features/agent-orchestration/">
+  <link rel="alternate" hreflang="x-default" href="https://astera.run/features/agent-orchestration/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="AI 코딩 에이전트 오케스트레이션, Jobs – Astera">
+  <meta property="og:description" content="코딩 작업을 Claude Code와 Codex 워커가 맡을 작업 그래프로 나누세요. Astera는 검사와 다른 제공자의 리뷰를 통과해야 완료로 봅니다.">
+  <meta property="og:url" content="https://astera.run/ko/features/agent-orchestration/">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:image:alt" content="별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 코딩 에이전트 오케스트레이션, Jobs – Astera">
+  <meta name="twitter:description" content="코딩 작업을 Claude Code와 Codex 워커가 맡을 작업 그래프로 나누세요. Astera는 검사와 다른 제공자의 리뷰를 통과해야 완료로 봅니다.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://astera.run/ko/features/agent-orchestration/#webpage","url":"https://astera.run/ko/features/agent-orchestration/","name":"AI 코딩 에이전트 오케스트레이션, Jobs – Astera","description":"코딩 작업을 Claude Code와 Codex 워커가 맡을 작업 그래프로 나누세요. Astera는 검사와 다른 제공자의 리뷰를 통과해야 완료로 봅니다.","inLanguage":"ko","isPartOf":{"@id":"https://astera.run/#website"},"about":{"@id":"https://astera.run/#app"},"dateModified":"2026-11-25","breadcrumb":{"@id":"https://astera.run/ko/features/agent-orchestration/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://astera.run/ko/features/agent-orchestration/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Astera","item":"https://astera.run/index.ko.html"},{"@type":"ListItem","position":2,"name":"에이전트 오케스트레이션"}]}]}</script>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/guide.css">
+  <link rel="stylesheet" href="/pages.css?v=20261125-3">
+  <script src="/language.js?v=20261125-3" defer></script>
+  <script src="/main.js?v=20261125-3" defer></script>
+  <script src="/downloads.js" defer></script>
+</head>
+<body class="guide-page search-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/index.ko.html" data-theme-link aria-label="Astera home"><img src="/assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="주 메뉴">
+        <a href="/index.ko.html#features" data-theme-link lang="en">Features</a><a href="/index.ko.html#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.ko.html" data-theme-link lang="en">Guide</a><a href="/index.ko.html#faq" data-theme-link lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="language-link" href="/features/agent-orchestration/" data-theme-link hreflang="en" lang="en" title="View in English">English</a>
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="GitHub에서 Astera 보기"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="라이트 테마로 전환" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">라이트 테마</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="모바일 메뉴" hidden><a href="/index.ko.html#features" data-theme-link lang="en">Features</a><a href="/index.ko.html#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.ko.html" data-theme-link lang="en">Guide</a><a href="/index.ko.html#faq" data-theme-link lang="en">FAQ</a></nav>
+  </header>
+
+  <main id="main" class="container page-main">
+    <article class="page-article">
+      <header class="guide-intro guide-section page-intro">
+        <p class="guide-breadcrumb"><a href="/index.ko.html" data-theme-link>Astera</a><span>/</span>기능</p>
+        <h1>코딩 에이전트를 함께 움직이고 결과를 검증하세요.</h1>
+        <p class="guide-lead">Job은 목표 하나를 Claude Code와 Codex가 맡을 작업으로 나누고 검사를 통과하거나 사용자의 판단이 필요할 때까지 작업을 계속 진행합니다.</p>
+      </header>
+<section class="guide-section" id="what-a-job-does">
+        <h2>목표 하나에서 검증된 결과까지</h2>
+        <p>코딩 에이전트 여러 개를 돌리기는 쉽습니다. 여러 에이전트가 한 일이 정말 끝났는지 알기는 어렵습니다. Astera의 <strong>Job</strong>은 목표 하나를 작업 그래프로 나눕니다. 연결선을 보면 무엇이 동시에 돌 수 있고 무엇이 기다려야 하는지 알 수 있습니다. Claude Code와 Codex 워커가 작업을 맡고 검사가 붙은 작업은 빌드·테스트·리뷰를 통과해야 끝납니다.</p>
+        <figure>
+          <img src="/assets/jobs-demo-still.png" width="960" height="600" alt="Astera Jobs 화면. Implement OAuth Login Job에서 Analyze Auth는 끝났고 Implement OAuth와 Add Tests가 동시에 실행 중이며 Verify OAuth Login은 두 작업을 기다립니다. 아래에는 워커 이벤트 타임라인이 있습니다." loading="lazy" decoding="async">
+          <figcaption>Jobs 데모 영상의 한 장면. 작업 그래프 아래에 Run 타임라인이 보입니다.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="example">
+        <h2>예시</h2>
+        <p>새 세션을 열고 <code>/astera-orchestration</code>을 입력한 뒤 할 일을 적으세요. 코디네이터 에이전트가 작업을 만들고 워커에게 나눠 주고 보고를 기다렸다가, 판단이 필요한 일을 사용자에게 가져옵니다. 진행 상황은 Jobs에 계속 보입니다.</p>
+        <p class="prompt-example">Claude로 로그인 흐름을 리팩터링해 줘. 그다음 Codex가 회귀 테스트를 추가하게 해 줘. 프로젝트 테스트를 실행하고 다른 제공자의 리뷰를 요청해. 검사에 실패하면 세 번까지 고치고 다시 확인해. 결정이 필요하면 나에게 물어봐.</p>
+        <p>같은 Job을 <strong>Jobs → 새 작업</strong>에서 직접 만들 수도 있습니다. 목표를 입력하고 작업과 의존 관계를 추가하고 워커 계정을 고르고 검사를 연결하세요. <a href="/guide.ko.html#jobs" data-theme-link>가이드: Jobs</a></p>
+      </section>
+
+      <section class="guide-section" id="how-it-works">
+        <h2>Job이 계속 진행되는 방식</h2>
+        <h3>의존 관계가 실행 순서를 정합니다</h3>
+        <p>앞선 작업이 모두 끝난 작업부터 준비 상태가 됩니다. 준비된 작업은 동시 실행 수 안에서 함께 실행됩니다.</p>
+        <h3>검사가 완료를 판단합니다</h3>
+        <p>워커가 완료를 보고하면 연결해 둔 빌드·테스트·리뷰 검사가 시작됩니다. <strong>통과할 때까지 자동 수정</strong>을 켜면 실패한 빌드와 테스트, 막는 리뷰 지적이 워커에게 돌아가 수정되고 다시 검사를 받습니다. 검사를 통과하거나 재시도 한도에 닿을 때까지 반복하며 계정 전환이나 일시 중지, 앱 재시작이 있어도 이어집니다.</p>
+        <h3>다른 모델이 작업을 리뷰합니다</h3>
+        <p>리뷰는 보통 다른 제공자의 모델이 맡습니다. Claude Code가 한 일은 Codex가, Codex가 한 일은 Claude Code가 리뷰하는 식입니다. 대신 외부 검토자를 고를 수도 있습니다. Gemini CLI, Copilot CLI, OpenCode, 또는 ACP를 쓰는 다른 에이전트입니다. 외부 검토자에게는 읽기만 요청합니다. 파일을 바꾸면 Astera가 리뷰를 멈춥니다. <a href="/guide.ko.html#reviewers" data-theme-link>외부 검토자</a></p>
+        <h3>판단이 필요한 일은 사용자에게 옵니다</h3>
+        <p>워커나 코디네이터가 결정을 기다리면 작업에 질문이나 Gate가 표시됩니다. 열어 보면 상태, 맡은 워커, 무엇을 묻는지 확인할 수 있습니다.</p>
+        <h3>실제 변경을 확인할 수 있습니다</h3>
+        <p>Run 상세 화면은 워커 보고 옆에 git에서 읽은 변경 파일을 보여 주고 파일을 고르면 diff가 열립니다. 일반 Job의 변경은 <strong>병합</strong>을 누르기 전까지 워크트리에 남습니다. Run이 끝나면 결과 보고 카드가 작업별 검사와 리뷰 결과를 정리하고, 같은 요약을 PR과 Slack에도 올릴 수 있습니다. <a href="/guide.ko.html#run-report" data-theme-link>Run 결과 보고</a></p>
+      </section>
+
+      <section class="guide-section" id="ways-to-start">
+        <h2>어디서든 Job 시작하기</h2>
+        <ul>
+          <li>Jobs 화면, 또는 <code>/astera-orchestration</code>을 쓰는 코디네이터 세션.</li>
+          <li>GitHub 이슈나 Job 소스 플러그인이 가져온 티켓. 원문이 목표에 함께 담깁니다. <a href="/ko/features/github-ci/" data-theme-link>이슈에서 PR까지</a></li>
+          <li><code>astera</code> 명령, MCP 클라이언트, SDK. 명령은 기본으로 JSON을 출력하고 종료 코드마다 뜻이 하나씩 정해져 있습니다.</li>
+        </ul>
+        <pre class="command-example"><code>astera jobs create --objective "Improve the sign-in flow" --cwd "REPO_PATH" --coordinator-account ACCOUNT_ID
+astera jobs run --id JOB_ID
+astera runs follow --id RUN_ID --human</code></pre>
+        <p class="guide-small">대문자 값은 저장소 경로와 명령이 돌려준 ID로 바꾸세요. <a href="/guide.ko.html#headless-cli" data-theme-link>가이드: Headless CLI</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>요구 사항과 한계</h2>
+        <ul>
+          <li>커밋이 하나 이상 있고 브랜치를 체크아웃한 git 저장소가 필요합니다.</li>
+          <li>요청하는 제공자마다 쓸 수 있는 계정이 있어야 합니다. 교차 리뷰는 리뷰하는 제공자의 사용량을 씁니다.</li>
+          <li>완료는 짐작하지 않고 검사로 확인하지만 완료를 보장하지는 않습니다. 재시도 한도에 닿거나 사용자 판단이 필요하면 진행이 멈출 수 있습니다.</li>
+          <li>별도의 로컬 프로세스인 Astera Host가 앱을 닫아도 Job을 조율하고 검사와 리뷰를 실행합니다. 작업이 도는 동안에는 컴퓨터가 잠들지 않게 하세요.</li>
+          <li>Astera는 스스로 병합하지 않습니다. 일반 Job은 <strong>병합</strong>을 눌러 반영하고 PR은 GitHub에서 직접 병합합니다.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details><summary>세션 하나 대신 Job을 써야 할 때는 언제인가요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>순서가 있는 작업 여러 개, 서로 다른 제공자의 워커, 통과해야 완료로 볼 검사처럼 조율이 중요할 때 Job을 쓰세요. 작은 작업 하나는 일반 세션으로 충분합니다.</p></details>
+          <details><summary>Job을 예약해서 실행할 수 있나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>네. 예약 Job은 정해진 시간마다 별도의 Run을 만듭니다. Host가 꺼져 있던 동안 놓친 시간은 건너뛰고 결과는 자동으로 병합하지 않습니다.</p></details>
+          <details><summary>다른 컴퓨터에서 실행할 수 있나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>네. Remote Runtime을 쓰면 LAN, VPN, Tailscale로 연결한 다른 컴퓨터에서 에이전트와 Job이 실행됩니다. 관리하는 컴퓨터가 잠들어도 작업이 계속됩니다. <a href="/guide.ko.html#remote-runtime" data-theme-link>가이드: Remote Runtime</a></p></details>
+        </div>
+      </section>
+
+      <div class="guide-finish page-cta">
+        <div><h2>내 프로젝트에서 Astera를 써 보세요.</h2><p>Astera는 Apache-2.0 라이선스의 무료 오픈소스입니다. 지금 쓰는 Claude Code와 Codex CLI를 그대로 실행하므로 모델 사용량은 본인의 Anthropic 또는 OpenAI 요금제에서 차감됩니다.</p><p class="page-platforms">Windows 10/11 · macOS 12+ · Ubuntu 22.04+ / Debian 12+</p></div>
+        <div class="page-cta-actions"><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download><svg class="icon"><use href="#i-download"/></svg> Astera 다운로드</a><a class="text-button" href="/guide.ko.html" data-theme-link>가이드 읽기 <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <nav class="feature-map page-related" aria-labelledby="related-title">
+        <h2 id="related-title">함께 읽기</h2>
+        <a href="/ko/features/github-ci/" data-theme-link><span>GitHub 이슈에서 PR까지</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/features/smart-resume/" data-theme-link><span>Smart Resume</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/claude-code/" data-theme-link><span>Claude Code</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/codex/" data-theme-link><span>Codex</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div><a class="brand" href="/index.ko.html" data-theme-link><img src="/assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p>별 너머의 가능성을 만드세요.</p></div>
+    <nav class="footer-groups" aria-label="Astera">
+      <div><p class="footer-group-title">제품</p><a href="/index.ko.html" data-theme-link>홈</a><a href="/guide.ko.html" data-theme-link>사용 가이드</a><a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download>다운로드</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer">변경 내역</a></div>
+      <div><p class="footer-group-title">지원 에이전트</p><a href="/ko/claude-code/" data-theme-link>Claude Code</a><a href="/ko/codex/" data-theme-link>Codex</a></div>
+      <div><p class="footer-group-title">기능</p><a href="/ko/features/agent-orchestration/" data-theme-link>에이전트 오케스트레이션</a><a href="/ko/features/smart-resume/" data-theme-link>Smart Resume</a><a href="/ko/features/github-ci/" data-theme-link>GitHub 이슈에서 PR까지</a></div>
+      <div><p class="footer-group-title">실전 가이드</p><a href="/ko/guides/claude-code-usage-limit/" data-theme-link>Claude Code 사용량 한도</a></div>
+      <div><p class="footer-group-title">비교</p><a href="/ko/alternatives/orca/" data-theme-link>Astera와 Orca 비교</a><a href="/ko/alternatives/paseo/" data-theme-link>Astera와 Paseo 비교</a></div>
+      <div><p class="footer-group-title">프로젝트</p><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera/blob/main/README.ko.md#문서" target="_blank" rel="noopener noreferrer">문서</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a></div>
+    </nav>
+    <p class="footer-note">Astera는 Anthropic이나 OpenAI가 만들거나 제휴한 제품이 아닌 독립 오픈소스 프로젝트입니다. 만드는 사람들을 위해.</p>
+  </footer>
+</body>
+</html>
