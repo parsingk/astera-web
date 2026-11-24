@@ -1,0 +1,93 @@
+      <section class="guide-section" id="what-it-does">
+        <h2>Agents without a window</h2>
+        <p>The <code>astera</code> command starts Claude Code and Codex sessions, creates and runs Jobs, follows their checks, and answers their questions from any shell. While the Astera Host is running, workers, worktrees, configured checks, reviews, and account rolling continue with the app closed. Reopen Astera later to see the same work in its tabs and Jobs view.</p>
+        <figure>
+          <img src="/assets/jobs-demo-still.png" width="960" height="600" alt="Astera’s Jobs view: a task graph where Analyze Auth has finished, Implement OAuth and Add Tests run in parallel, and Verify OAuth Login waits for both, above a timeline of worker events." loading="lazy" decoding="async">
+          <figcaption>A frame from the Jobs demo recording. Jobs and Runs started with the <code>astera</code> command appear in this same view.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="uses">
+        <h2>What you can do from a shell</h2>
+        <h3>Start an agent session without opening the app</h3>
+        <p>Choose an account, a working folder, and a prompt. Read a session before sending it more: terminal input goes to whatever is on its screen, including a permission prompt. Add <code>--roll-accounts</code> with other accounts of the same provider to continue on them at a usage limit.</p>
+        <pre class="command-example"><code>astera sessions create --account ACCOUNT_ID --cwd "REPO_PATH" --kind terminal --prompt "Inspect the project and summarize its test setup."
+astera sessions read --id SESSION_ID --human
+astera sessions send --id SESSION_ID --text "Run the existing tests and report the results."</code></pre>
+        <h3>Keep permission prompts in your hands</h3>
+        <p>For a Chat session, <code>--unattended hold</code>, the default, leaves permission prompts open for you. <code>deny-after-60s</code> denies prompts nobody answers within a minute. Answer with <code>astera chats answer</code> and <code>--allow</code> or <code>--deny</code> from your own shell; an agent session cannot grant permission.</p>
+        <h3>Run a Job and wait for it</h3>
+        <p><code>jobs run</code> starts a Run. <code>runs follow</code> streams its progress, and Ctrl+C stops watching without cancelling the work. In a script, <code>runs wait</code> blocks until the Run ends or needs you. <a href="/features/agent-orchestration/">Agent orchestration</a></p>
+        <h3>Answer a Job’s questions</h3>
+        <p>When a Run needs a decision, list its open questions, read one, and answer it from the shell.</p>
+        <pre class="command-example"><code>astera questions list --run RUN_ID --status open --human
+astera questions answer --id QUESTION_ID --answer "Use the existing authentication library."</code></pre>
+        <h3>Work on another computer</h3>
+        <p>Put <code>--runtime RUNTIME_ID</code> before a command to run it on a paired computer. <a href="/features/remote-runtime/">Remote Runtime</a></p>
+      </section>
+
+      <section class="guide-section" id="scripts">
+        <h2>Made for scripts</h2>
+        <p>Most commands print JSON by default: <code>"ok": true</code> with the result under <code>data</code>, or <code>"ok": false</code> with <code>error.code</code>, <code>error.details</code>, and <code>error.nextSteps</code>. Add <code>--human</code> for readable output or <code>--quiet</code> for IDs only. <code>runs follow</code> prints one JSON event per line. Each exit code has one meaning.</p>
+        <div class="page-table-wrap" role="region" aria-labelledby="exit-codes-caption" tabindex="0">
+          <table class="page-table">
+            <caption id="exit-codes-caption">Exit codes in Astera 1.5.5, from the <a href="https://github.com/parsingk/Astera/blob/main/docs/cli.md#exit-codes" target="_blank" rel="noopener noreferrer">CLI reference</a>.</caption>
+            <thead><tr><th scope="col">Code</th><th scope="col">Meaning</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">0</th><td>Success. For <code>runs wait</code>, the Run finished well.</td></tr>
+              <tr><th scope="row">1</th><td>A failure that none of the other codes describes.</td></tr>
+              <tr><th scope="row">2</th><td>Invalid arguments.</td></tr>
+              <tr><th scope="row">3</th><td>The Host could not be reached.</td></tr>
+              <tr><th scope="row">4</th><td>No such ID.</td></tr>
+              <tr><th scope="row">5</th><td>Refused for this caller.</td></tr>
+              <tr><th scope="row">6</th><td>Refused because of the current state, such as a Job that is already running.</td></tr>
+              <tr><th scope="row">7</th><td>A deadline passed, or the Host is running but not answering. A timed-out <code>runs wait</code> does not cancel the Run.</td></tr>
+              <tr><th scope="row">8</th><td>A wait stopped before the work ended: a question is open, the Run is paused, or every worker is waiting for a usage limit to reset.</td></tr>
+              <tr><th scope="row">9</th><td>The command is not in the running build, usually a CLI and Host from different versions.</td></tr>
+              <tr><th scope="row">10</th><td>A wait ended with the Job or Run in failure.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A script can start a Run and act on how the wait ends:</p>
+        <pre class="command-example"><code>astera runs wait --id "$RUN_ID" --timeout-ms 3600000
+case $? in
+  0) echo "Run finished" ;;
+  8) astera questions list --run "$RUN_ID" --status open --human ;;
+  10) astera runs checks --id "$RUN_ID" --human ;;
+  *) echo "Inspect the run before retrying" ;;
+esac</code></pre>
+        <p class="guide-small">An example for a POSIX shell. A command that changes work and exits with 7 may have lost its answer; follow its <code>error.nextSteps</code> before retrying. <a href="https://github.com/parsingk/Astera/blob/main/docs/cli.md" target="_blank" rel="noopener noreferrer">CLI reference</a></p>
+      </section>
+
+      <section class="guide-section" id="set-up">
+        <h2>Set up the command</h2>
+        <ol class="setup-steps">
+          <li><h3>Install Astera and add accounts</h3><p>Install Astera, add your accounts, and sign in. Install the Claude Code or Codex CLI you will use.</p></li>
+          <li><h3>Install the astera command</h3><p>Open <strong>Settings → CLI → Command line tool (astera)</strong> and click <strong>Install the astera command</strong>. On Windows, leave <strong>Add this folder to my user PATH</strong> checked. On macOS and Linux the command goes in <code>~/.local/bin</code>; if needed, run the PATH line the panel shows. Open a new terminal afterwards.</p></li>
+          <li><h3>Start the Host and check it</h3><p>In <code>host status</code>, <code>data.features</code> lists what this Host can do: <code>spawn</code> for workers, <code>worktrees</code>, <code>dispatch</code> for automatic Job execution and checks, and <code>rolling</code> for account switching.</p></li>
+        </ol>
+        <pre class="command-example"><code>astera version
+astera host start
+astera host status
+astera accounts list --human</code></pre>
+        <p class="guide-small">Use an ID from the account list for ACCOUNT_ID and your project’s absolute path for REPO_PATH. Take SESSION_ID, JOB_ID, and RUN_ID from <code>data.id</code> in the result that created them. <a href="/guide.html#headless-cli">Headless CLI in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements and limits</h2>
+        <ul>
+          <li>You need the app once, to install the command, add accounts, and sign in. After that the commands work with the app closed.</li>
+          <li>The computer doing the work must stay awake. With Remote off, an idle Host exits after about a minute with no clients or active work, and a future scheduled Job alone does not keep it running. <code>host start</code> is safe to repeat.</li>
+          <li>After an update, <code>astera version</code> shows the CLI and Host versions. Exit 9 from <code>host start</code> means an older Host is still running: finish its work, then use <code>astera host start --replace</code>, which ends the sessions that Host holds.</li>
+          <li>Model usage counts against the accounts you choose, the same as in the app.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Can I call it from CI? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes, on a local runner you set up yourself: a computer with Astera installed, accounts signed in, and the Host able to start. Use <code>runs wait</code> and branch on its exit code.</p></details>
+          <details><summary>Does Ctrl+C stop the Run I am following? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Ctrl+C stops <code>runs follow</code> from watching; the work continues. Use <code>astera runs stop --id RUN_ID</code> to stop the Run.</p></details>
+          <details><summary>Can an agent use the command? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Sessions that Astera starts already have it, and <code>/astera-orchestration</code> uses it to plan Jobs. Some decisions stay with a person: an agent session cannot approve Chat permission prompts.</p></details>
+        </div>
+      </section>

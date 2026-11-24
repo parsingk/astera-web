@@ -1,0 +1,63 @@
+      <section class="guide-section" id="what-it-does">
+        <h2>MCP in two directions</h2>
+        <p>Astera works with MCP both ways. It shares the MCP servers, skills, and plugins you set up with every Claude Code and Codex session it starts, across all your accounts. It is also an MCP server itself, so a Claude Code, Codex, or Cursor client can create Jobs, follow Runs, and read their checks.</p>
+      </section>
+
+      <section class="guide-section" id="share">
+        <h2>Share MCP servers across accounts</h2>
+        <p>In <strong>Settings → MCP &amp; Skills</strong>, click <strong>Add</strong>, choose an account, and select the MCP servers, skills, commands, and agents to share. New sessions on every account get them, including a session that moves to another account at a usage limit. Each provider’s limits still apply: Codex has no slash commands or subagents.</p>
+        <h3>One server per project, or one per session</h3>
+        <p>A shared local MCP server runs once per project folder through the Host’s Gateway. It stops after five idle minutes and restarts when needed after a crash. Tick <strong>Run per session</strong> when sessions need separate state. Browser servers such as Playwright and chrome-devtools run per session by default, each with its own browser profile.</p>
+        <h3>Values stay out of sight</h3>
+        <p>MCP environment values move to a store only your user can read. Settings and the CLI show their names, never the values. The Gateway gives each session its own token. Start a new session to pick up changed tools.</p>
+        <h3>Copies kept in step</h3>
+        <p>Astera keeps file copies the same across accounts. A removed managed copy is restored, and an edited one is backed up before it is restored. An account’s own, different copy stays until you choose <strong>Use the shared version</strong>.</p>
+        <h3>Claude Code plugins too</h3>
+        <p>The Plugins group on the same tab shares Claude Code plugins. Astera installs one copy of each and loads it into every Claude session it starts, so every account runs the same version. A newer version only marks the row; nothing changes until you click <strong>Update</strong>. <a href="/guide.html#mcp-skills">MCP &amp; Skills in the guide</a></p>
+        <pre class="command-example"><code>astera ext list
+astera ext sync</code></pre>
+        <p class="guide-small"><code>ext list</code> shows the shared entries and <code>ext sync</code> brings file copies in step. Both work with the app and Host closed.</p>
+      </section>
+
+      <section class="guide-section" id="server">
+        <h2>Let an agent drive Astera</h2>
+        <p>Astera’s MCP server gives a connected client the same local Host as the app and the CLI. A Job created over MCP appears in Astera and the CLI, and keeps running if the client disconnects. <code>create_job</code> saves a Job, <code>run_job</code> starts it, <code>wait_for_run</code> follows its progress, and <code>get_completion</code> reads the checks of a Task.</p>
+        <h3>Connect a client</h3>
+        <p>Install the <code>astera</code> command in <strong>Settings → CLI</strong>. The same panel shows the line for your operating system and client; Claude Code and Codex also get a <strong>Register</strong> button. To add it by hand:</p>
+        <pre class="command-example"><code>claude mcp add astera -- astera mcp serve
+codex mcp add astera -- astera mcp serve</code></pre>
+        <p>Or in a project’s <code>.mcp.json</code>:</p>
+        <pre class="command-example"><code>{
+  "mcpServers": {
+    "astera": { "command": "astera", "args": ["mcp", "serve"] }
+  }
+}</code></pre>
+        <p class="guide-small">On Windows, Claude Code needs <code>claude mcp add astera -- cmd /c astera mcp serve</code>. Registration goes to each client’s default user configuration, so an Astera account with its own configuration folder may need its own entry. Run <code>astera mcp status</code> to check readiness. <a href="https://github.com/parsingk/Astera/blob/main/docs/mcp.md" target="_blank" rel="noopener noreferrer">MCP reference</a></p>
+        <h3>Choose what a client may do</h3>
+        <ul>
+          <li><strong>MCP access</strong>: Read only lets a client inspect work; Read and control, the default, also lets it create and run Jobs; Off refuses every tool. Access is checked on every call.</li>
+          <li><strong>Let MCP clients see and use sessions</strong>, off by default, exposes Astera’s sessions, including your own. Sessions a client starts follow <strong>Run agents without permission checks</strong>, which is on by default.</li>
+          <li><strong>Let MCP clients act on GitHub</strong>, off by default, allows creating pull requests, rerunning CI, and starting Jobs from trusted issues. Reading pull requests, CI checks, and issues needs <code>gh</code> signed in on the Host computer.</li>
+        </ul>
+        <h3>Local by default</h3>
+        <p><code>astera mcp serve</code> talks over stdio and opens no network port. If no Host is running, a local client starts one when it connects. <strong>MCP over HTTP</strong> in Settings → CLI is off by default. It is plain HTTP with a bearer token as its only check, so use it only on a trusted private network, preferably over an encrypted link such as Tailscale, and never expose the port to the internet. To control another computer, <a href="/features/remote-runtime/">Remote Runtime</a> is the encrypted path.</p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements and limits</h2>
+        <ul>
+          <li>Shared servers, skills, and plugins reach sessions that Astera starts. A <code>claude</code> started outside Astera does not get shared plugins.</li>
+          <li>A session gets changed tools only when it starts.</li>
+          <li>A plugin that needs settings values, comes from a marketplace address holding a password or key, or was not installed from a marketplace cannot be shared. Astera says why.</li>
+          <li>Clients reach the Host through the installed <code>astera</code> command. The app window does not need to be open.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Is sharing MCP servers the same as connecting a client to Astera? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Sharing gives your sessions the same tools. Connecting a client to Astera’s MCP server lets that client manage Jobs. You can use either one alone.</p></details>
+          <details><summary>Do I need the Astera window open? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. MCP clients use the installed <code>astera</code> command to reach the Host, and a local client starts the Host if it is not running.</p></details>
+          <details><summary>Can a client on another computer use it? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Pair the two computers with Remote Runtime. The client then uses Astera’s MCP server on its own computer and passes <code>runtimeId</code> to a supported tool. MCP over HTTP also accepts other devices, but only as plain HTTP on a trusted network.</p></details>
+        </div>
+      </section>

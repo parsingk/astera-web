@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "content" / "pages.json"
 SITE = "https://astera.run"
-ASSET_VERSION = "20261125-3"
+ASSET_VERSION = "20261125-5"
 
 ICONS = """  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
@@ -141,13 +141,26 @@ def localized(group, locale, pages):
     return (exact or [page for page in members if page["locale"] == "en"] or [None])[0]
 
 
+def parent_hub(page, pages):
+    """The published hub in the page's locale whose path contains the page's path."""
+    return next((hub for hub in published(pages)
+                 if hub["kind"] == "hub" and hub["locale"] == page["locale"]
+                 and hub is not page and page["path"].startswith(hub["path"])), None)
+
+
+def hub_children(hub, pages):
+    return [page for page in published(pages)
+            if page["locale"] == hub["locale"] and page["kind"] != "hub"
+            and page["path"].startswith(hub["path"]) and page["path"] != hub["path"]]
+
+
 def theme_links(fragment):
     """Internal links keep the selected theme, the same way the existing pages do."""
     return re.sub(r'<a href="(/[^"]*)"(?![^>]*data-theme-link)', r'<a href="\1" data-theme-link', fragment)
 
 
-def json_ld(page, url):
-    kind = "TechArticle" if page["kind"] in ("guide", "comparison") else "WebPage"
+def json_ld(page, url, pages):
+    kind = {"guide": "TechArticle", "comparison": "TechArticle", "hub": "CollectionPage"}.get(page["kind"], "WebPage")
     document = {
         "@type": kind,
         "@id": url + "#webpage",
@@ -162,13 +175,16 @@ def json_ld(page, url):
     }
     if kind == "TechArticle":
         document["headline"] = page["h1"]
+    trail = [{"name": "Astera", "item": SITE + UI[page["locale"]]["home"]}]
+    hub = parent_hub(page, pages)
+    if hub:
+        trail.append({"name": hub["navLabel"], "item": SITE + hub["path"]})
+    trail.append({"name": page["navLabel"]})
     breadcrumb = {
         "@type": "BreadcrumbList",
         "@id": url + "#breadcrumb",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Astera", "item": SITE + UI[page["locale"]]["home"]},
-            {"@type": "ListItem", "position": 2, "name": page["navLabel"]},
-        ],
+        "itemListElement": [{"@type": "ListItem", "position": position, **step}
+                            for position, step in enumerate(trail, start=1)],
     }
     data = {"@context": "https://schema.org", "@graph": [document, breadcrumb]}
     return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
@@ -215,7 +231,7 @@ def head(page, pages):
         f'<meta name="twitter:description" content="{esc(page["description"])}">',
     ]
     if indexable:
-        lines.append(f'<script type="application/ld+json">{json_ld(page, url)}</script>')
+        lines.append(f'<script type="application/ld+json">{json_ld(page, url, pages)}</script>')
     lines += [
         '<link rel="icon" href="/favicon.ico" sizes="48x48">',
         '<link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">',
@@ -270,7 +286,8 @@ def link_to(target, locale):
     """A link to another page, marked when the reader's language is unavailable."""
     suffix = UI[locale]["english_only"] if target["locale"] != locale else ""
     language = f' hreflang="{target["locale"]}"' if target["locale"] != locale else ""
-    return f'<a href="{target["path"]}" data-theme-link{language}>{esc(target["navLabel"])}{suffix}</a>'
+    label = target.get("footerLabel", target["navLabel"])
+    return f'<a href="{target["path"]}" data-theme-link{language}>{esc(label)}{suffix}</a>'
 
 
 def related(page, pages):
@@ -287,6 +304,16 @@ def related(page, pages):
                      f'<span>{ui["read"]} <svg class="icon small"><use href="#i-arrow"/></svg></span></a>')
     return (f'\n      <nav class="feature-map page-related" aria-labelledby="related-title">\n'
             f'        <h2 id="related-title">{ui["related"]}</h2>\n        ' + "\n        ".join(links) + "\n      </nav>")
+
+
+def hub_list(hub, pages):
+    ui = UI[hub["locale"]]
+    links = [f'<a href="{child["path"]}" data-theme-link><span><strong>{esc(child["navLabel"])}</strong>'
+             f'<small>{esc(child["description"])}</small></span>'
+             f'<span>{ui["read"]} <svg class="icon small"><use href="#i-arrow"/></svg></span></a>'
+             for child in hub_children(hub, pages)]
+    return (f'      <nav class="feature-map hub-list" aria-labelledby="hub-list-title">\n'
+            f'        <h2 id="hub-list-title">{esc(hub["footerLabel"])}</h2>\n        ' + "\n        ".join(links) + "\n      </nav>\n")
 
 
 def call_to_action(page):
@@ -310,7 +337,7 @@ def footer(page, pages):
     groups.append(("product", product))
     for group in FOOTER_GROUPS:
         members = []
-        for item in pages:
+        for item in sorted(pages, key=lambda item: item["kind"] == "hub"):
             if item.get("footerGroup") != group or item["locale"] != "en" or item["status"] != "published":
                 continue
             members.append(link_to(localized(item["translationGroup"], page["locale"], pages), page["locale"]))
@@ -335,8 +362,13 @@ def footer(page, pages):
 def render(page, pages):
     ui = UI[page["locale"]]
     body = theme_links((ROOT / page["body"]).read_text(encoding="utf-8").strip())
+    if page["kind"] == "hub":
+        body = hub_list(page, pages) + "\n      " + body
+    hub = parent_hub(page, pages)
+    section = (f'<a href="{hub["path"]}" data-theme-link>{esc(page["section"])}</a>' if hub
+               else esc(page["section"]))
     breadcrumb = (f'<p class="guide-breadcrumb"><a href="{ui["home"]}" data-theme-link>Astera</a>'
-                  f'<span>/</span>{esc(page["section"])}</p>')
+                  f'<span>/</span>{section}</p>')
     lead = f'\n        <p class="guide-lead">{page["lead"]}</p>' if page.get("lead") else ""
     return f"""<!doctype html>
 <html lang="{page["locale"]}" data-static-language="{page["locale"]}">

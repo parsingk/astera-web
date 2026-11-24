@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" data-static-language="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="See what Claude Code and Codex agents do with audit logs, block calls with Rules, keep credentials out of sessions, and run agents in a sandbox, with each platform’s limits.">
+  <meta name="theme-color" content="#0b1020">
+  <title>Coding Agent Audit Logs, Rules, and Sandbox – Astera</title>
+  <link rel="canonical" href="https://astera.run/features/agent-security/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="Coding Agent Audit Logs, Rules, and Sandbox – Astera">
+  <meta property="og:description" content="See what Claude Code and Codex agents do with audit logs, block calls with Rules, keep credentials out of sessions, and run agents in a sandbox, with each platform’s limits.">
+  <meta property="og:url" content="https://astera.run/features/agent-security/">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:image:alt" content="Astera logo with the tagline “Build beyond the stars” on a starry background">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Coding Agent Audit Logs, Rules, and Sandbox – Astera">
+  <meta name="twitter:description" content="See what Claude Code and Codex agents do with audit logs, block calls with Rules, keep credentials out of sessions, and run agents in a sandbox, with each platform’s limits.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://astera.run/features/agent-security/#webpage","url":"https://astera.run/features/agent-security/","name":"Coding Agent Audit Logs, Rules, and Sandbox – Astera","description":"See what Claude Code and Codex agents do with audit logs, block calls with Rules, keep credentials out of sessions, and run agents in a sandbox, with each platform’s limits.","inLanguage":"en","isPartOf":{"@id":"https://astera.run/#website"},"about":{"@id":"https://astera.run/#app"},"dateModified":"2026-11-25","breadcrumb":{"@id":"https://astera.run/features/agent-security/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://astera.run/features/agent-security/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Astera","item":"https://astera.run/"},{"@type":"ListItem","position":2,"name":"Features","item":"https://astera.run/features/"},{"@type":"ListItem","position":3,"name":"Audit logs and sandbox"}]}]}</script>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/guide.css">
+  <link rel="stylesheet" href="/pages.css?v=20261125-5">
+  <script src="/language.js?v=20261125-5" defer></script>
+  <script src="/main.js?v=20261125-5" defer></script>
+  <script src="/downloads.js" defer></script>
+</head>
+<body class="guide-page search-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" data-theme-link aria-label="Astera home"><img src="/assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/#features" data-theme-link lang="en">Features</a><a href="/#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.html" data-theme-link lang="en">Guide</a><a href="/#faq" data-theme-link lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="View Astera on GitHub"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">Light theme</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="/#features" data-theme-link lang="en">Features</a><a href="/#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.html" data-theme-link lang="en">Guide</a><a href="/#faq" data-theme-link lang="en">FAQ</a></nav>
+  </header>
+
+  <main id="main" class="container page-main">
+    <article class="page-article">
+      <header class="guide-intro guide-section page-intro">
+        <p class="guide-breadcrumb"><a href="/" data-theme-link>Astera</a><span>/</span><a href="/features/" data-theme-link>Features</a></p>
+        <h1>See and limit what your agents do.</h1>
+        <p class="guide-lead">Record agent tool calls, block the ones your Rules deny, hide credentials from new sessions, and keep agents inside their folders with a sandbox.</p>
+      </header>
+<section class="guide-section" id="what-it-does">
+        <h2>What agents did, and what they may do</h2>
+        <p>A coding agent runs with your user account. Astera gives you four controls for that, all under <strong>Settings → Security &amp; Access</strong> and agent profiles: <strong>Audit Logs</strong> record tool calls, <strong>Rules</strong> block the calls you deny, <strong>Credentials</strong> keep secrets out of new sessions, and the <strong>sandbox</strong> keeps a session’s writes inside its work folders. <strong>Findings</strong> point out access that goes beyond what the records show is used. Recording and the sandbox both start off.</p>
+      </section>
+
+      <section class="guide-section" id="observe">
+        <h2>Start by watching: Observe</h2>
+        <p>Set <strong>Record agent tool calls</strong> to <strong>Observe</strong> and start new sessions. Calls are recorded and nothing is blocked. Audit Logs lists them by day, and Policies shows which of your ordered Rules would allow or deny each one. A coverage table explains what each provider and session type can see.</p>
+        <p>A record keeps the action, a short target, whether it read or wrote, and the name of any login folder it touched. It never keeps full commands, output, or file contents. Records are kept for 30 days within size limits, and Run detail links to that Run’s Audit Logs.</p>
+      </section>
+
+      <section class="guide-section" id="enforce">
+        <h2>Then block: Enforce</h2>
+        <p><strong>Enforce</strong> stops the calls your Rules deny and records them as blocked. Before turning it on, review what the last seven days of calls would have hit. Enforce adds about 0.1 seconds per call and needs Claude Code 2.1.306+ or Codex 0.160.0+. A session that cannot be protected does not start. Enforce always protects Astera’s settings folder and the commands that change settings.</p>
+        <p class="guide-note">Rules inspect tool calls. An agent running as you can still change settings through a script, so use the sandbox to restrict the process itself. A running session keeps its enforcement until it restarts.</p>
+      </section>
+
+      <section class="guide-section" id="credentials">
+        <h2>Keep credentials out of sessions</h2>
+        <p>Under <strong>Credentials</strong>, shared MCP keys appear on their own. Add environment variable names or CLI login presets (gh, AWS, Google Cloud, npm, Docker, kubectl) for every project or for chosen ones. New sessions and completion checks do not receive the hidden credentials, and check results name the variables that were hidden. Astera’s own GitHub and Gateway credential uses appear in Audit Logs.</p>
+        <p class="guide-note">Hiding a variable does not stop a program running as you from reading login files or OS secret stores.</p>
+      </section>
+
+      <section class="guide-section" id="sandbox">
+        <h2>Keep work in its folder: the sandbox</h2>
+        <p>In an agent profile, turn on <strong>Run in the sandbox</strong> and start a new Terminal or Chat session. Sandboxes limit writes to the work and temporary folders and restrict access to login folders and OS secret stores. The network stays available. Every sandbox Astera starts also denies the agents’ own login files, Claude Code’s <code>.credentials.json</code> and Codex’s <code>auth.json</code>.</p>
+        <div class="page-table-wrap" role="region" aria-labelledby="sandbox-caption" tabindex="0">
+          <table class="page-table">
+            <caption id="sandbox-caption">Sandbox coverage in Astera 1.5.5. Settings → Security &amp; Access → What the sandbox blocks lists the details for each platform.</caption>
+            <thead><tr><th scope="col">Agent and platform</th><th scope="col">What runs the sandbox</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Codex on Windows, macOS, and Linux</th><td>Codex’s own sandbox. Needs Codex 0.160.0+. On Windows, each Codex account needs a one-time Set up with an administrator prompt. On Linux it blocks file-path session buses, not abstract sockets.</td></tr>
+              <tr><th scope="row">Claude Code on macOS and Linux</th><td>Claude Code’s own sandbox.</td></tr>
+              <tr><th scope="row">Claude Code on Windows</th><td>Claude Code has no sandbox of its own on Windows. With Git Bash and a Codex account whose Windows sandbox is set up, its shell commands run in Codex’s sandbox under the same rules, one to two seconds slower each. Without that, only its file tools are kept out of login folders, and the session says so.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A sandboxed session cannot hand work to sessions, Jobs, or Tasks outside the sandbox, call the Host directly, or write Astera’s profile or installed code. Sandboxed Tasks run their command checks and reviewers under sandbox protection where it is available; Docker checks cannot run inside it, so they ask you first. <a href="/guide.html#sandbox" data-theme-link>Sandbox in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="findings">
+        <h2>Findings: access you do not use</h2>
+        <p><strong>Settings → Security &amp; Access → Findings</strong> lists unused or duplicate profiles, removed accounts or servers still referenced, repeated failures, unused tools or credentials, access broader than recorded use, partly covered Rules, Runtimes not reached for a long time, and unusually costly Runs. Each finding says where to act, and nothing changes on its own. Unused tools and over-broad profiles need 30 days of Observe history.</p>
+        <pre class="command-example"><code>astera policies show
+astera audit list --run RUN_ID
+astera credentials list
+astera credentials doctor
+astera agent-profiles audit</code></pre>
+        <p class="guide-small">These commands need a running Host. Leave out <code>--run RUN_ID</code> to list every call. Audit history is for a person: agents can read the policy and credential descriptions, but not audit history, and they cannot change their own protection. <a href="/guide.html#security-access" data-theme-link>Security &amp; Access in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements and limits</h2>
+        <ul>
+          <li>Observe, Enforce, and the sandbox apply to sessions started after you change them.</li>
+          <li>Enforce needs Claude Code 2.1.306+ or Codex 0.160.0+. The Codex sandbox needs Codex 0.160.0+.</li>
+          <li>Each control covers a different layer, and none of them stops everything: Rules see tool calls, hidden credentials do not protect login files, and the sandbox leaves the network open.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Can an agent turn off its own protection? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Not through its tool calls: Enforce always protects Astera’s settings, and agents cannot change their own protection. A script run as you is outside what Rules see. A sandboxed session cannot write Astera’s profile or installed code.</p></details>
+          <details><summary>Does the sandbox block the network? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. The network stays available. The sandbox limits where the agent can write and keeps it away from login folders and OS secret stores.</p></details>
+          <details><summary>What do audit records contain? <svg class="icon"><use href="#i-plus"/></svg></summary><p>The action, a short target, read or write effects, and the name of any login folder touched. Never full commands, output, or file contents. They are kept for 30 days.</p></details>
+        </div>
+      </section>
+
+      <div class="guide-finish page-cta">
+        <div><h2>Try Astera on your own project.</h2><p>Astera is free and open source (Apache-2.0). It runs the Claude Code and Codex CLIs you already use, so model usage stays on your own Anthropic or OpenAI plan.</p><p class="page-platforms">Windows 10/11 · macOS 12+ · Ubuntu 22.04+ / Debian 12+</p></div>
+        <div class="page-cta-actions"><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download><svg class="icon"><use href="#i-download"/></svg> Download Astera</a><a class="text-button" href="/guide.html" data-theme-link>Read the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <nav class="feature-map page-related" aria-labelledby="related-title">
+        <h2 id="related-title">Keep reading</h2>
+        <a href="/features/mcp/" data-theme-link><span>MCP</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/features/remote-runtime/" data-theme-link><span>Remote Runtime</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/codex/" data-theme-link><span>Codex</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/claude-code/" data-theme-link><span>Claude Code</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div><a class="brand" href="/" data-theme-link><img src="/assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p>Build beyond the stars.</p></div>
+    <nav class="footer-groups" aria-label="Astera">
+      <div><p class="footer-group-title">Product</p><a href="/" data-theme-link>Home</a><a href="/guide.html" data-theme-link>Guide</a><a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download>Download</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer">Changelog</a></div>
+      <div><p class="footer-group-title">Providers</p><a href="/claude-code/" data-theme-link>Claude Code</a><a href="/codex/" data-theme-link>Codex</a></div>
+      <div><p class="footer-group-title">Features</p><a href="/features/agent-orchestration/" data-theme-link>Agent orchestration</a><a href="/features/smart-resume/" data-theme-link>Smart Resume</a><a href="/features/github-ci/" data-theme-link>GitHub issue to pull request</a><a href="/features/headless-cli/" data-theme-link>Headless CLI</a><a href="/features/mcp/" data-theme-link>MCP</a><a href="/features/remote-runtime/" data-theme-link>Remote Runtime</a><a href="/features/agent-security/" data-theme-link>Audit logs and sandbox</a><a href="/features/" data-theme-link>All features</a></div>
+      <div><p class="footer-group-title">Guides</p><a href="/guides/claude-code-usage-limit/" data-theme-link>Claude Code usage limits</a></div>
+      <div><p class="footer-group-title">Compare</p><a href="/alternatives/orca/" data-theme-link>Astera vs Orca</a><a href="/alternatives/paseo/" data-theme-link>Astera vs Paseo</a><a href="/alternatives/conductor/" data-theme-link>Astera vs Conductor</a><a href="/alternatives/paradev/" data-theme-link>Astera vs Paradev (Superset)</a><a href="/alternatives/" data-theme-link>All comparisons</a></div>
+      <div><p class="footer-group-title">Project</p><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera#documentation" target="_blank" rel="noopener noreferrer">Docs</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a></div>
+    </nav>
+    <p class="footer-note">Astera is an independent open-source project. It is not made by or affiliated with Anthropic or OpenAI. Made for people who build.</p>
+  </footer>
+</body>
+</html>

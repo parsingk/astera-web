@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" data-static-language="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Start Claude Code and Codex sessions and Jobs from any shell or script with the astera command: JSON output, one meaning per exit code, and work that continues with the app closed.">
+  <meta name="theme-color" content="#0b1020">
+  <title>Headless CLI for Claude Code and Codex Agents – Astera</title>
+  <link rel="canonical" href="https://astera.run/features/headless-cli/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="Headless CLI for Claude Code and Codex Agents – Astera">
+  <meta property="og:description" content="Start Claude Code and Codex sessions and Jobs from any shell or script with the astera command: JSON output, one meaning per exit code, and work that continues with the app closed.">
+  <meta property="og:url" content="https://astera.run/features/headless-cli/">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:image:alt" content="Astera logo with the tagline “Build beyond the stars” on a starry background">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Headless CLI for Claude Code and Codex Agents – Astera">
+  <meta name="twitter:description" content="Start Claude Code and Codex sessions and Jobs from any shell or script with the astera command: JSON output, one meaning per exit code, and work that continues with the app closed.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://astera.run/features/headless-cli/#webpage","url":"https://astera.run/features/headless-cli/","name":"Headless CLI for Claude Code and Codex Agents – Astera","description":"Start Claude Code and Codex sessions and Jobs from any shell or script with the astera command: JSON output, one meaning per exit code, and work that continues with the app closed.","inLanguage":"en","isPartOf":{"@id":"https://astera.run/#website"},"about":{"@id":"https://astera.run/#app"},"dateModified":"2026-11-25","breadcrumb":{"@id":"https://astera.run/features/headless-cli/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://astera.run/features/headless-cli/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Astera","item":"https://astera.run/"},{"@type":"ListItem","position":2,"name":"Features","item":"https://astera.run/features/"},{"@type":"ListItem","position":3,"name":"Headless CLI"}]}]}</script>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/guide.css">
+  <link rel="stylesheet" href="/pages.css?v=20261125-5">
+  <script src="/language.js?v=20261125-5" defer></script>
+  <script src="/main.js?v=20261125-5" defer></script>
+  <script src="/downloads.js" defer></script>
+</head>
+<body class="guide-page search-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" data-theme-link aria-label="Astera home"><img src="/assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/#features" data-theme-link lang="en">Features</a><a href="/#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.html" data-theme-link lang="en">Guide</a><a href="/#faq" data-theme-link lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="View Astera on GitHub"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">Light theme</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="/#features" data-theme-link lang="en">Features</a><a href="/#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.html" data-theme-link lang="en">Guide</a><a href="/#faq" data-theme-link lang="en">FAQ</a></nav>
+  </header>
+
+  <main id="main" class="container page-main">
+    <article class="page-article">
+      <header class="guide-intro guide-section page-intro">
+        <p class="guide-breadcrumb"><a href="/" data-theme-link>Astera</a><span>/</span><a href="/features/" data-theme-link>Features</a></p>
+        <h1>Run your agents from any shell.</h1>
+        <p class="guide-lead">The astera command starts sessions and Jobs, follows them, and answers their questions from a terminal, a script, or a local CI runner, with no window open.</p>
+      </header>
+<section class="guide-section" id="what-it-does">
+        <h2>Agents without a window</h2>
+        <p>The <code>astera</code> command starts Claude Code and Codex sessions, creates and runs Jobs, follows their checks, and answers their questions from any shell. While the Astera Host is running, workers, worktrees, configured checks, reviews, and account rolling continue with the app closed. Reopen Astera later to see the same work in its tabs and Jobs view.</p>
+        <figure>
+          <img src="/assets/jobs-demo-still.png" width="960" height="600" alt="Astera’s Jobs view: a task graph where Analyze Auth has finished, Implement OAuth and Add Tests run in parallel, and Verify OAuth Login waits for both, above a timeline of worker events." loading="lazy" decoding="async">
+          <figcaption>A frame from the Jobs demo recording. Jobs and Runs started with the <code>astera</code> command appear in this same view.</figcaption>
+        </figure>
+      </section>
+
+      <section class="guide-section" id="uses">
+        <h2>What you can do from a shell</h2>
+        <h3>Start an agent session without opening the app</h3>
+        <p>Choose an account, a working folder, and a prompt. Read a session before sending it more: terminal input goes to whatever is on its screen, including a permission prompt. Add <code>--roll-accounts</code> with other accounts of the same provider to continue on them at a usage limit.</p>
+        <pre class="command-example"><code>astera sessions create --account ACCOUNT_ID --cwd "REPO_PATH" --kind terminal --prompt "Inspect the project and summarize its test setup."
+astera sessions read --id SESSION_ID --human
+astera sessions send --id SESSION_ID --text "Run the existing tests and report the results."</code></pre>
+        <h3>Keep permission prompts in your hands</h3>
+        <p>For a Chat session, <code>--unattended hold</code>, the default, leaves permission prompts open for you. <code>deny-after-60s</code> denies prompts nobody answers within a minute. Answer with <code>astera chats answer</code> and <code>--allow</code> or <code>--deny</code> from your own shell; an agent session cannot grant permission.</p>
+        <h3>Run a Job and wait for it</h3>
+        <p><code>jobs run</code> starts a Run. <code>runs follow</code> streams its progress, and Ctrl+C stops watching without cancelling the work. In a script, <code>runs wait</code> blocks until the Run ends or needs you. <a href="/features/agent-orchestration/" data-theme-link>Agent orchestration</a></p>
+        <h3>Answer a Job’s questions</h3>
+        <p>When a Run needs a decision, list its open questions, read one, and answer it from the shell.</p>
+        <pre class="command-example"><code>astera questions list --run RUN_ID --status open --human
+astera questions answer --id QUESTION_ID --answer "Use the existing authentication library."</code></pre>
+        <h3>Work on another computer</h3>
+        <p>Put <code>--runtime RUNTIME_ID</code> before a command to run it on a paired computer. <a href="/features/remote-runtime/" data-theme-link>Remote Runtime</a></p>
+      </section>
+
+      <section class="guide-section" id="scripts">
+        <h2>Made for scripts</h2>
+        <p>Most commands print JSON by default: <code>"ok": true</code> with the result under <code>data</code>, or <code>"ok": false</code> with <code>error.code</code>, <code>error.details</code>, and <code>error.nextSteps</code>. Add <code>--human</code> for readable output or <code>--quiet</code> for IDs only. <code>runs follow</code> prints one JSON event per line. Each exit code has one meaning.</p>
+        <div class="page-table-wrap" role="region" aria-labelledby="exit-codes-caption" tabindex="0">
+          <table class="page-table">
+            <caption id="exit-codes-caption">Exit codes in Astera 1.5.5, from the <a href="https://github.com/parsingk/Astera/blob/main/docs/cli.md#exit-codes" target="_blank" rel="noopener noreferrer">CLI reference</a>.</caption>
+            <thead><tr><th scope="col">Code</th><th scope="col">Meaning</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">0</th><td>Success. For <code>runs wait</code>, the Run finished well.</td></tr>
+              <tr><th scope="row">1</th><td>A failure that none of the other codes describes.</td></tr>
+              <tr><th scope="row">2</th><td>Invalid arguments.</td></tr>
+              <tr><th scope="row">3</th><td>The Host could not be reached.</td></tr>
+              <tr><th scope="row">4</th><td>No such ID.</td></tr>
+              <tr><th scope="row">5</th><td>Refused for this caller.</td></tr>
+              <tr><th scope="row">6</th><td>Refused because of the current state, such as a Job that is already running.</td></tr>
+              <tr><th scope="row">7</th><td>A deadline passed, or the Host is running but not answering. A timed-out <code>runs wait</code> does not cancel the Run.</td></tr>
+              <tr><th scope="row">8</th><td>A wait stopped before the work ended: a question is open, the Run is paused, or every worker is waiting for a usage limit to reset.</td></tr>
+              <tr><th scope="row">9</th><td>The command is not in the running build, usually a CLI and Host from different versions.</td></tr>
+              <tr><th scope="row">10</th><td>A wait ended with the Job or Run in failure.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A script can start a Run and act on how the wait ends:</p>
+        <pre class="command-example"><code>astera runs wait --id "$RUN_ID" --timeout-ms 3600000
+case $? in
+  0) echo "Run finished" ;;
+  8) astera questions list --run "$RUN_ID" --status open --human ;;
+  10) astera runs checks --id "$RUN_ID" --human ;;
+  *) echo "Inspect the run before retrying" ;;
+esac</code></pre>
+        <p class="guide-small">An example for a POSIX shell. A command that changes work and exits with 7 may have lost its answer; follow its <code>error.nextSteps</code> before retrying. <a href="https://github.com/parsingk/Astera/blob/main/docs/cli.md" target="_blank" rel="noopener noreferrer">CLI reference</a></p>
+      </section>
+
+      <section class="guide-section" id="set-up">
+        <h2>Set up the command</h2>
+        <ol class="setup-steps">
+          <li><h3>Install Astera and add accounts</h3><p>Install Astera, add your accounts, and sign in. Install the Claude Code or Codex CLI you will use.</p></li>
+          <li><h3>Install the astera command</h3><p>Open <strong>Settings → CLI → Command line tool (astera)</strong> and click <strong>Install the astera command</strong>. On Windows, leave <strong>Add this folder to my user PATH</strong> checked. On macOS and Linux the command goes in <code>~/.local/bin</code>; if needed, run the PATH line the panel shows. Open a new terminal afterwards.</p></li>
+          <li><h3>Start the Host and check it</h3><p>In <code>host status</code>, <code>data.features</code> lists what this Host can do: <code>spawn</code> for workers, <code>worktrees</code>, <code>dispatch</code> for automatic Job execution and checks, and <code>rolling</code> for account switching.</p></li>
+        </ol>
+        <pre class="command-example"><code>astera version
+astera host start
+astera host status
+astera accounts list --human</code></pre>
+        <p class="guide-small">Use an ID from the account list for ACCOUNT_ID and your project’s absolute path for REPO_PATH. Take SESSION_ID, JOB_ID, and RUN_ID from <code>data.id</code> in the result that created them. <a href="/guide.html#headless-cli" data-theme-link>Headless CLI in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements and limits</h2>
+        <ul>
+          <li>You need the app once, to install the command, add accounts, and sign in. After that the commands work with the app closed.</li>
+          <li>The computer doing the work must stay awake. With Remote off, an idle Host exits after about a minute with no clients or active work, and a future scheduled Job alone does not keep it running. <code>host start</code> is safe to repeat.</li>
+          <li>After an update, <code>astera version</code> shows the CLI and Host versions. Exit 9 from <code>host start</code> means an older Host is still running: finish its work, then use <code>astera host start --replace</code>, which ends the sessions that Host holds.</li>
+          <li>Model usage counts against the accounts you choose, the same as in the app.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Can I call it from CI? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes, on a local runner you set up yourself: a computer with Astera installed, accounts signed in, and the Host able to start. Use <code>runs wait</code> and branch on its exit code.</p></details>
+          <details><summary>Does Ctrl+C stop the Run I am following? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Ctrl+C stops <code>runs follow</code> from watching; the work continues. Use <code>astera runs stop --id RUN_ID</code> to stop the Run.</p></details>
+          <details><summary>Can an agent use the command? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Sessions that Astera starts already have it, and <code>/astera-orchestration</code> uses it to plan Jobs. Some decisions stay with a person: an agent session cannot approve Chat permission prompts.</p></details>
+        </div>
+      </section>
+
+      <div class="guide-finish page-cta">
+        <div><h2>Try Astera on your own project.</h2><p>Astera is free and open source (Apache-2.0). It runs the Claude Code and Codex CLIs you already use, so model usage stays on your own Anthropic or OpenAI plan.</p><p class="page-platforms">Windows 10/11 · macOS 12+ · Ubuntu 22.04+ / Debian 12+</p></div>
+        <div class="page-cta-actions"><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download><svg class="icon"><use href="#i-download"/></svg> Download Astera</a><a class="text-button" href="/guide.html" data-theme-link>Read the guide <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <nav class="feature-map page-related" aria-labelledby="related-title">
+        <h2 id="related-title">Keep reading</h2>
+        <a href="/features/agent-orchestration/" data-theme-link><span>Agent orchestration</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/features/mcp/" data-theme-link><span>MCP</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/features/remote-runtime/" data-theme-link><span>Remote Runtime</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/features/github-ci/" data-theme-link><span>GitHub issue to pull request</span><span>Read <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div><a class="brand" href="/" data-theme-link><img src="/assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p>Build beyond the stars.</p></div>
+    <nav class="footer-groups" aria-label="Astera">
+      <div><p class="footer-group-title">Product</p><a href="/" data-theme-link>Home</a><a href="/guide.html" data-theme-link>Guide</a><a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download>Download</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer">Changelog</a></div>
+      <div><p class="footer-group-title">Providers</p><a href="/claude-code/" data-theme-link>Claude Code</a><a href="/codex/" data-theme-link>Codex</a></div>
+      <div><p class="footer-group-title">Features</p><a href="/features/agent-orchestration/" data-theme-link>Agent orchestration</a><a href="/features/smart-resume/" data-theme-link>Smart Resume</a><a href="/features/github-ci/" data-theme-link>GitHub issue to pull request</a><a href="/features/headless-cli/" data-theme-link>Headless CLI</a><a href="/features/mcp/" data-theme-link>MCP</a><a href="/features/remote-runtime/" data-theme-link>Remote Runtime</a><a href="/features/agent-security/" data-theme-link>Audit logs and sandbox</a><a href="/features/" data-theme-link>All features</a></div>
+      <div><p class="footer-group-title">Guides</p><a href="/guides/claude-code-usage-limit/" data-theme-link>Claude Code usage limits</a></div>
+      <div><p class="footer-group-title">Compare</p><a href="/alternatives/orca/" data-theme-link>Astera vs Orca</a><a href="/alternatives/paseo/" data-theme-link>Astera vs Paseo</a><a href="/alternatives/conductor/" data-theme-link>Astera vs Conductor</a><a href="/alternatives/paradev/" data-theme-link>Astera vs Paradev (Superset)</a><a href="/alternatives/" data-theme-link>All comparisons</a></div>
+      <div><p class="footer-group-title">Project</p><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera#documentation" target="_blank" rel="noopener noreferrer">Docs</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a></div>
+    </nav>
+    <p class="footer-note">Astera is an independent open-source project. It is not made by or affiliated with Anthropic or OpenAI. Made for people who build.</p>
+  </footer>
+</body>
+</html>

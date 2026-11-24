@@ -1,0 +1,64 @@
+      <section class="guide-section" id="what-it-does">
+        <h2>Agents on one computer, managed from another</h2>
+        <p>Remote Runtime splits the work between two computers. The <strong>Runtime</strong> runs Claude Code, Codex, worktrees, checks, and repairs. The <strong>controller</strong> is the computer you type on: you drive the work from the Astera app, the <code>astera</code> command, or an MCP client there. A Job does not depend on the controller. If the controller sleeps, shuts down, or loses its network, the Runtime keeps working, and the controller catches up when it reconnects.</p>
+      </section>
+
+      <section class="guide-section" id="uses">
+        <h2>When it helps</h2>
+        <h3>Leave long Jobs on a computer that stays on</h3>
+        <p>Start a Job from a laptop, close the lid, and check on it later. A disconnected controller shows the Runtime’s last known state, marked as out of date. Losing the connection does not mean the Job failed.</p>
+        <h3>Use the accounts and projects already on a workstation</h3>
+        <p>Work runs with the Runtime’s own accounts and paths. A new remote Job takes a folder on that computer, and sessions start in its registered projects. Astera copies no secret, login, or credential between computers.</p>
+        <h3>Open the same session from two places</h3>
+        <p>Closing a Terminal or Chat tab on the controller leaves the session running on the Runtime. A terminal shown on both computers fits the window of whoever typed last; the other view scales down to show it whole.</p>
+        <h3>Script it, or hand it to an agent</h3>
+        <p>Put <code>--runtime RUNTIME_ID</code> before any <code>astera</code> command, or pass <code>runtimeId</code> to a tool in an MCP client. If the Runtime is unavailable, the command returns an error instead of running on the controller. <a href="/features/headless-cli/">Headless CLI</a></p>
+      </section>
+
+      <section class="guide-section" id="security">
+        <h2>Built for a private network</h2>
+        <ul>
+          <li>The Runtime makes its own TLS key. The controller pins its fingerprint when pairing and refuses a different key from then on.</li>
+          <li>A pairing string has a name, works once, and expires after 10 minutes. Each controller gets its own token, and revoking it closes that controller’s connections at once.</li>
+          <li><strong>Read only</strong> allows inspection. <strong>Full control</strong> also starts and manages Jobs and sessions, which can run any command the Runtime’s user can. Give full control only to a controller you would trust with that user account.</li>
+          <li>A controller works with Jobs, Runs, Tasks, and sessions by their IDs. It has no command to read an arbitrary file, list a folder, or open a shell on the Runtime.</li>
+          <li>Unpairing a controller pauses the scheduled Jobs it created. Only a person on the Runtime can resume them.</li>
+        </ul>
+        <p class="guide-note">Use your LAN, a VPN, or Tailscale, and do not forward the Runtime’s port to the internet. Astera offers no relay and opens no port for you. Remote Runtime is separate from MCP over HTTP, which is plain HTTP and not a secure way to reach another computer.</p>
+      </section>
+
+      <section class="guide-section" id="set-up">
+        <h2>Set it up</h2>
+        <ol class="setup-steps">
+          <li><h3>Prepare the Runtime</h3><p>Install Astera on both computers. On the Runtime, install and sign in to Claude Code or Codex, and register your project folders. Connect the two computers over your LAN, VPN, or Tailscale.</p></li>
+          <li><h3>Turn Remote on</h3><p>On the Runtime, open <strong>Settings → Remote Runtimes → This computer</strong>, choose its LAN or Tailscale address, and click <strong>Turn on</strong>. The “this computer only” address cannot accept another computer.</p></li>
+          <li><h3>Create a pairing string</h3><p>Name it and choose Read only or Full control. Copy it straight to the controller: it contains a secret, works once, and expires after 10 minutes.</p></li>
+          <li><h3>Pair and start work</h3><p>On the controller, paste the string in <strong>Settings → Remote Runtimes</strong> and click <strong>Pair</strong>. In Jobs, select the Runtime and its project. In New session, choose where the session runs.</p></li>
+        </ol>
+        <p>To pair from a terminal on the controller instead:</p>
+        <pre class="command-example"><code>astera runtimes add --pair -
+astera runtimes list
+astera --runtime RUNTIME_ID jobs list --human
+astera --runtime RUNTIME_ID runs follow --id RUN_ID --human</code></pre>
+        <p class="guide-small">Paste the pairing string after the first command, then end the input with Ctrl+D, or Ctrl+Z then Enter on Windows. Replace RUNTIME_ID with an ID or name from the list, and RUN_ID with a Run on that Runtime. <a href="/guide.html#remote-runtime">Remote Runtime in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements, limits, and cost</h2>
+        <ul>
+          <li>The Runtime runs the Astera desktop app on Windows, macOS, or Linux (the <code>.deb</code> in a desktop session). Setup needs that desktop session; a Linux server with no desktop is not supported yet. Any of the three can be a controller.</li>
+          <li>The Runtime must stay awake. While Remote is on, its Host stays up, even when only a scheduled Job or an unanswered question is waiting. A scheduled time missed while the Host is down is skipped. The <a href="https://github.com/parsingk/Astera/blob/main/docs/remote-runtime.md" target="_blank" rel="noopener noreferrer">Remote Runtime reference</a> has the OS recipes that restart it after a crash or a reboot.</li>
+          <li>Update both computers. An older Runtime cannot report its setup, and an older <code>astera</code> command is treated as an agent.</li>
+          <li>Some things stay on the controller: How It Works records, GitHub writes, and agent browser and app control.</li>
+          <li>There is no Astera server fee and no relay subscription. You pay only for what you choose: the Runtime machine (a VPS or cloud machine, if you use one), a VPN service, and the agent plans or API use of the Runtime’s accounts.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Does the work stop if my laptop disconnects? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. A network loss, sleep, shutdown, or a closed app on the controller does not change a Job’s lifetime. The Runtime keeps working, and you read the current progress when you reconnect.</p></details>
+          <details><summary>Can the Runtime be a cloud machine? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes, if it runs the Astera desktop app: Windows, macOS, or Linux with a desktop session for setup. Reach it over a VPN or Tailscale rather than an open port.</p></details>
+          <details><summary>Does Astera copy my logins to the Runtime? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Each computer keeps its own accounts and credentials, signed in there. Astera copies no secret, login, or credential between computers in either direction.</p></details>
+        </div>
+      </section>

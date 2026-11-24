@@ -1,0 +1,68 @@
+      <section class="guide-section" id="what-it-does">
+        <h2>What agents did, and what they may do</h2>
+        <p>A coding agent runs with your user account. Astera gives you four controls for that, all under <strong>Settings → Security &amp; Access</strong> and agent profiles: <strong>Audit Logs</strong> record tool calls, <strong>Rules</strong> block the calls you deny, <strong>Credentials</strong> keep secrets out of new sessions, and the <strong>sandbox</strong> keeps a session’s writes inside its work folders. <strong>Findings</strong> point out access that goes beyond what the records show is used. Recording and the sandbox both start off.</p>
+      </section>
+
+      <section class="guide-section" id="observe">
+        <h2>Start by watching: Observe</h2>
+        <p>Set <strong>Record agent tool calls</strong> to <strong>Observe</strong> and start new sessions. Calls are recorded and nothing is blocked. Audit Logs lists them by day, and Policies shows which of your ordered Rules would allow or deny each one. A coverage table explains what each provider and session type can see.</p>
+        <p>A record keeps the action, a short target, whether it read or wrote, and the name of any login folder it touched. It never keeps full commands, output, or file contents. Records are kept for 30 days within size limits, and Run detail links to that Run’s Audit Logs.</p>
+      </section>
+
+      <section class="guide-section" id="enforce">
+        <h2>Then block: Enforce</h2>
+        <p><strong>Enforce</strong> stops the calls your Rules deny and records them as blocked. Before turning it on, review what the last seven days of calls would have hit. Enforce adds about 0.1 seconds per call and needs Claude Code 2.1.306+ or Codex 0.160.0+. A session that cannot be protected does not start. Enforce always protects Astera’s settings folder and the commands that change settings.</p>
+        <p class="guide-note">Rules inspect tool calls. An agent running as you can still change settings through a script, so use the sandbox to restrict the process itself. A running session keeps its enforcement until it restarts.</p>
+      </section>
+
+      <section class="guide-section" id="credentials">
+        <h2>Keep credentials out of sessions</h2>
+        <p>Under <strong>Credentials</strong>, shared MCP keys appear on their own. Add environment variable names or CLI login presets (gh, AWS, Google Cloud, npm, Docker, kubectl) for every project or for chosen ones. New sessions and completion checks do not receive the hidden credentials, and check results name the variables that were hidden. Astera’s own GitHub and Gateway credential uses appear in Audit Logs.</p>
+        <p class="guide-note">Hiding a variable does not stop a program running as you from reading login files or OS secret stores.</p>
+      </section>
+
+      <section class="guide-section" id="sandbox">
+        <h2>Keep work in its folder: the sandbox</h2>
+        <p>In an agent profile, turn on <strong>Run in the sandbox</strong> and start a new Terminal or Chat session. Sandboxes limit writes to the work and temporary folders and restrict access to login folders and OS secret stores. The network stays available. Every sandbox Astera starts also denies the agents’ own login files, Claude Code’s <code>.credentials.json</code> and Codex’s <code>auth.json</code>.</p>
+        <div class="page-table-wrap" role="region" aria-labelledby="sandbox-caption" tabindex="0">
+          <table class="page-table">
+            <caption id="sandbox-caption">Sandbox coverage in Astera 1.5.5. Settings → Security &amp; Access → What the sandbox blocks lists the details for each platform.</caption>
+            <thead><tr><th scope="col">Agent and platform</th><th scope="col">What runs the sandbox</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Codex on Windows, macOS, and Linux</th><td>Codex’s own sandbox. Needs Codex 0.160.0+. On Windows, each Codex account needs a one-time Set up with an administrator prompt. On Linux it blocks file-path session buses, not abstract sockets.</td></tr>
+              <tr><th scope="row">Claude Code on macOS and Linux</th><td>Claude Code’s own sandbox.</td></tr>
+              <tr><th scope="row">Claude Code on Windows</th><td>Claude Code has no sandbox of its own on Windows. With Git Bash and a Codex account whose Windows sandbox is set up, its shell commands run in Codex’s sandbox under the same rules, one to two seconds slower each. Without that, only its file tools are kept out of login folders, and the session says so.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A sandboxed session cannot hand work to sessions, Jobs, or Tasks outside the sandbox, call the Host directly, or write Astera’s profile or installed code. Sandboxed Tasks run their command checks and reviewers under sandbox protection where it is available; Docker checks cannot run inside it, so they ask you first. <a href="/guide.html#sandbox">Sandbox in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="findings">
+        <h2>Findings: access you do not use</h2>
+        <p><strong>Settings → Security &amp; Access → Findings</strong> lists unused or duplicate profiles, removed accounts or servers still referenced, repeated failures, unused tools or credentials, access broader than recorded use, partly covered Rules, Runtimes not reached for a long time, and unusually costly Runs. Each finding says where to act, and nothing changes on its own. Unused tools and over-broad profiles need 30 days of Observe history.</p>
+        <pre class="command-example"><code>astera policies show
+astera audit list --run RUN_ID
+astera credentials list
+astera credentials doctor
+astera agent-profiles audit</code></pre>
+        <p class="guide-small">These commands need a running Host. Leave out <code>--run RUN_ID</code> to list every call. Audit history is for a person: agents can read the policy and credential descriptions, but not audit history, and they cannot change their own protection. <a href="/guide.html#security-access">Security &amp; Access in the guide</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>Requirements and limits</h2>
+        <ul>
+          <li>Observe, Enforce, and the sandbox apply to sessions started after you change them.</li>
+          <li>Enforce needs Claude Code 2.1.306+ or Codex 0.160.0+. The Codex sandbox needs Codex 0.160.0+.</li>
+          <li>Each control covers a different layer, and none of them stops everything: Rules see tool calls, hidden credentials do not protect login files, and the sandbox leaves the network open.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details><summary>Can an agent turn off its own protection? <svg class="icon"><use href="#i-plus"/></svg></summary><p>Not through its tool calls: Enforce always protects Astera’s settings, and agents cannot change their own protection. A script run as you is outside what Rules see. A sandboxed session cannot write Astera’s profile or installed code.</p></details>
+          <details><summary>Does the sandbox block the network? <svg class="icon"><use href="#i-plus"/></svg></summary><p>No. The network stays available. The sandbox limits where the agent can write and keeps it away from login folders and OS secret stores.</p></details>
+          <details><summary>What do audit records contain? <svg class="icon"><use href="#i-plus"/></svg></summary><p>The action, a short target, read or write effects, and the name of any login folder touched. Never full commands, output, or file contents. They are kept for 30 days.</p></details>
+        </div>
+      </section>

@@ -145,6 +145,35 @@
       ]
     },
     {
+      "id": "features",
+      "kind": "hub",
+      "locale": "en",
+      "path": "/features/",
+      "status": "published",
+      "translationGroup": "features",
+      "navLabel": "Features",
+      "footerLabel": "All features",
+      "section": "Features",
+      "footerGroup": "features",
+      "title": "Astera Features for Claude Code and Codex",
+      "description": "Every Astera feature for running Claude Code and Codex: orchestration, GitHub CI, Smart Resume, headless CLI, MCP, Remote Runtime, and agent security.",
+      "h1": "What Astera adds to Claude Code and Codex",
+      "lead": "Astera is a desktop workspace for running Claude Code and Codex. Each page covers one part of it: what it does, how to set it up, and where its limits are.",
+      "body": "content/en/features.html",
+      "related": [],
+      "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html",
+          "claim": "Feature list matches the guide for Astera 1.5.5",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
       "id": "agent-orchestration",
       "kind": "feature",
       "locale": "en",
@@ -161,6 +190,7 @@
       "body": "content/en/agent-orchestration.html",
       "related": [
         "github-ci",
+        "headless-cli",
         "smart-resume",
         "claude-code",
         "codex"
@@ -278,6 +308,173 @@
       ]
     },
     {
+      "id": "headless-cli",
+      "kind": "feature",
+      "locale": "en",
+      "path": "/features/headless-cli/",
+      "status": "published",
+      "translationGroup": "headless-cli",
+      "navLabel": "Headless CLI",
+      "section": "Features",
+      "footerGroup": "features",
+      "title": "Headless CLI for Claude Code and Codex Agents – Astera",
+      "description": "Start Claude Code and Codex sessions and Jobs from any shell or script with the astera command: JSON output, one meaning per exit code, and work that continues with the app closed.",
+      "h1": "Run your agents from any shell.",
+      "lead": "The astera command starts sessions and Jobs, follows them, and answers their questions from a terminal, a script, or a local CI runner, with no window open.",
+      "body": "content/en/headless-cli.html",
+      "related": [
+        "agent-orchestration",
+        "mcp",
+        "remote-runtime",
+        "github-ci"
+      ],
+      "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#headless-cli",
+          "claim": "Setup, sessions, Chat approvals, Jobs, questions, output formats",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/docs/cli.md#exit-codes",
+          "claim": "Exit codes 0 to 10, JSON envelope",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/docs/cli.md",
+          "claim": "Commands and flags, also checked with astera 1.5.4 --help",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "mcp",
+      "kind": "feature",
+      "locale": "en",
+      "path": "/features/mcp/",
+      "status": "published",
+      "translationGroup": "mcp",
+      "navLabel": "MCP",
+      "section": "Features",
+      "footerGroup": "features",
+      "title": "Claude Code and Codex MCP Manager – Astera",
+      "description": "Share MCP servers, skills, and plugins with every Claude Code and Codex account, and let an MCP client create, run, and follow Astera Jobs.",
+      "h1": "One MCP setup for every account, and Astera as an MCP server.",
+      "lead": "Astera shares your MCP servers, skills, and plugins with every session it starts, and an agent can drive Astera Jobs through its MCP server.",
+      "body": "content/en/mcp.html",
+      "related": [
+        "headless-cli",
+        "agent-orchestration",
+        "agent-security",
+        "codex"
+      ],
+      "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#mcp-skills",
+          "claim": "Sharing MCP servers, skills and plugins; per-project and per-session servers; values hidden",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#mcp",
+          "claim": "Astera MCP server tools, access levels, sessions and GitHub settings, MCP over HTTP",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/docs/mcp.md",
+          "claim": "Client registration lines and .mcp.json example",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "remote-runtime",
+      "kind": "feature",
+      "locale": "en",
+      "path": "/features/remote-runtime/",
+      "status": "published",
+      "translationGroup": "remote-runtime",
+      "navLabel": "Remote Runtime",
+      "section": "Features",
+      "footerGroup": "features",
+      "title": "Run Claude Code and Codex on Another Computer – Astera",
+      "description": "Astera Remote Runtime runs coding agents and Jobs on a computer you pair over your LAN, VPN, or Tailscale, with pinned TLS, revocable access, and no relay or hosted service.",
+      "h1": "Run your agents on another computer.",
+      "lead": "Pair another computer as a Runtime. Agents and Jobs run there and keep going while the computer you manage them from sleeps.",
+      "body": "content/en/remote-runtime.html",
+      "related": [
+        "headless-cli",
+        "agent-orchestration",
+        "agent-security",
+        "paseo"
+      ],
+      "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#remote-runtime",
+          "claim": "Setup, pairing permissions, connection status, unpairing",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/docs/remote-runtime.md",
+          "claim": "Cost, where it runs, security model, what it does not do",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "agent-security",
+      "kind": "feature",
+      "locale": "en",
+      "path": "/features/agent-security/",
+      "status": "published",
+      "translationGroup": "agent-security",
+      "navLabel": "Audit logs and sandbox",
+      "section": "Features",
+      "footerGroup": "features",
+      "title": "Coding Agent Audit Logs, Rules, and Sandbox – Astera",
+      "description": "See what Claude Code and Codex agents do with audit logs, block calls with Rules, keep credentials out of sessions, and run agents in a sandbox, with each platform’s limits.",
+      "h1": "See and limit what your agents do.",
+      "lead": "Record agent tool calls, block the ones your Rules deny, hide credentials from new sessions, and keep agents inside their folders with a sandbox.",
+      "body": "content/en/agent-security.html",
+      "related": [
+        "mcp",
+        "remote-runtime",
+        "codex",
+        "claude-code"
+      ],
+      "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#security-access",
+          "claim": "Observe and Enforce, record contents and retention, credentials",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#sandbox",
+          "claim": "Sandbox platform coverage and limits",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#findings",
+          "claim": "Findings and their history requirements",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
       "id": "claude-code-usage-limit",
       "kind": "guide",
       "locale": "en",
@@ -340,6 +537,35 @@
       ]
     },
     {
+      "id": "alternatives",
+      "kind": "hub",
+      "locale": "en",
+      "path": "/alternatives/",
+      "status": "published",
+      "translationGroup": "alternatives",
+      "navLabel": "Compare",
+      "footerLabel": "All comparisons",
+      "section": "Compare",
+      "footerGroup": "compare",
+      "title": "Astera Alternatives: Coding Agent Workspaces Compared",
+      "description": "Compare Astera with Orca, Paseo, Conductor, and Paradev. Every fact about another product comes from its official sources, with the date and version checked.",
+      "h1": "Compare Astera with other agent workspaces",
+      "lead": "Side-by-side comparisons of Astera and other apps for running coding agents, from official sources only and labelled by how well each fact is documented.",
+      "body": "content/en/alternatives.html",
+      "related": [],
+      "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/alternatives/orca/",
+          "claim": "Method shared by every comparison page",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
       "id": "orca",
       "kind": "comparison",
       "locale": "en",
@@ -356,8 +582,9 @@
       "body": "content/en/orca.html",
       "related": [
         "paseo",
-        "agent-orchestration",
-        "github-ci"
+        "conductor",
+        "paradev",
+        "agent-orchestration"
       ],
       "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
       "lastContentModified": "2026-11-25",
@@ -418,8 +645,9 @@
       "body": "content/en/paseo.html",
       "related": [
         "orca",
-        "agent-orchestration",
-        "smart-resume"
+        "conductor",
+        "paradev",
+        "remote-runtime"
       ],
       "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
       "lastContentModified": "2026-11-25",
@@ -454,6 +682,147 @@
         {
           "url": "https://paseo.sh/docs/workspaces",
           "claim": "Worktrees",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "conductor",
+      "kind": "comparison",
+      "locale": "en",
+      "path": "/alternatives/conductor/",
+      "status": "published",
+      "translationGroup": "conductor",
+      "navLabel": "Astera vs Conductor",
+      "section": "Compare",
+      "footerGroup": "compare",
+      "title": "Astera vs Conductor: Apps for Parallel Coding Agents",
+      "description": "Compare Astera and Conductor for running Claude Code and Codex in parallel: platforms, license, agents, continuity, CI and review, remote use, and cost.",
+      "h1": "Astera vs Conductor",
+      "lead": "Both run Claude Code and Codex in parallel git worktrees. Conductor is a Mac app with optional cloud workspaces; Astera is an open-source app for Windows, macOS, and Linux.",
+      "body": "content/en/conductor.html",
+      "related": [
+        "paradev",
+        "orca",
+        "agent-orchestration",
+        "remote-runtime"
+      ],
+      "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://www.conductor.build/docs/installation",
+          "claim": "macOS only; not available for Windows or Linux yet",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/terms",
+          "claim": "Proprietary platform, Melty Labs, Inc.",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/reference/harnesses",
+          "claim": "Agents; free to use; no model billing",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/cloud/faq",
+          "claim": "Paid plans for cloud, local sessions end on quit, planned usage pricing",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/cloud/working-with-cloud-workspaces",
+          "claim": "Cloud sleep, SSH, port forwarding",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/reference/remote-control",
+          "claim": "Remote control is experimental",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/reference/checks",
+          "claim": "Checks tab",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/changelog",
+          "claim": "0.99.0 on 2026-11-23; joining Meta 2026-11-04; not shutting down 2026-11-13",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "paradev",
+      "kind": "comparison",
+      "locale": "en",
+      "path": "/alternatives/paradev/",
+      "status": "published",
+      "translationGroup": "paradev",
+      "navLabel": "Astera vs Paradev (Superset)",
+      "section": "Compare",
+      "footerGroup": "compare",
+      "title": "Astera vs Paradev (formerly Superset): Agent Workspaces",
+      "description": "Compare Astera and Paradev, the coding agent workspace formerly called Superset: platforms, license, agents, continuity, CI and review, remote use, and cost.",
+      "h1": "Astera vs Paradev (formerly Superset)",
+      "lead": "Both are open-source workspaces for running coding agents in parallel worktrees. Paradev adds phone apps, a relay, and hosted cloud workspaces on paid plans; Astera stays on your own computers.",
+      "body": "content/en/paradev.html",
+      "related": [
+        "conductor",
+        "orca",
+        "paseo",
+        "remote-runtime"
+      ],
+      "socialImageAlt": "Astera logo with the tagline “Build beyond the stars” on a starry background",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://github.com/ParadevAI/Paradev",
+          "claim": "MIT license, desktop-v2.0.11 on 2026-11-20",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://paradev.com/blog/a-new-name",
+          "claim": "Renamed from Superset on 2026-10-26",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://paradev.com/pricing",
+          "claim": "Plans and prices, GB-hour metering",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/install",
+          "claim": "macOS; Windows not available",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/faq",
+          "claim": "Experimental Linux AppImage, no web dashboard, other remotes local only",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/supported-agents",
+          "claim": "Any CLI agent, 22 built in, no model proxy",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/keep-agents-running",
+          "claim": "Daemon keeps agents running after quit or update",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/pull-requests",
+          "claim": "CI checks, merge queue, stacked PRs",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/remote-access",
+          "claim": "Relay remote access on paid plans",
           "checkedAt": "2026-11-25"
         }
       ]
@@ -749,8 +1118,9 @@
       "body": "content/ko/orca.html",
       "related": [
         "paseo",
-        "agent-orchestration",
-        "github-ci"
+        "conductor",
+        "paradev",
+        "agent-orchestration"
       ],
       "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
       "lastContentModified": "2026-11-25",
@@ -810,8 +1180,9 @@
       "body": "content/ko/paseo.html",
       "related": [
         "orca",
-        "agent-orchestration",
-        "smart-resume"
+        "conductor",
+        "paradev",
+        "remote-runtime"
       ],
       "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
       "lastContentModified": "2026-11-25",
