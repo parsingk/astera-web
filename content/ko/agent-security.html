@@ -1,0 +1,68 @@
+      <section class="guide-section" id="what-it-does">
+        <h2>에이전트가 한 일, 해도 되는 일</h2>
+        <p>코딩 에이전트는 사용자 계정의 권한으로 실행됩니다. Astera는 이를 다루는 도구 네 가지를 <strong>설정 → Security &amp; Access</strong>와 에이전트 프로필에 둡니다. <strong>Audit Logs</strong>는 도구 호출을 기록하고 <strong>Rules</strong>는 거부한 호출을 막습니다. <strong>Credentials</strong>는 새 세션에 비밀 값을 넘기지 않고 <strong>Sandbox</strong>는 세션이 작업 폴더 밖에 쓰지 못하게 합니다. <strong>Findings</strong>는 기록상 실제로 쓰는 것보다 넓은 권한을 알려 줍니다. 기록과 Sandbox는 둘 다 처음에 꺼져 있습니다.</p>
+      </section>
+
+      <section class="guide-section" id="observe">
+        <h2>먼저 Observe로 지켜보기</h2>
+        <p><strong>에이전트의 도구 호출 기록</strong>을 <strong>Observe</strong>로 바꾸고 새 세션을 시작하세요. 호출을 기록만 하고 아무것도 막지 않습니다. Audit Logs에는 날짜별로 호출이 나오고 Policies에서는 순서대로 적용되는 Rules가 각 호출을 허용할지 거부할지 보여 줍니다. 기록 범위 표에는 제공자와 세션 방식마다 무엇을 볼 수 있는지 나옵니다.</p>
+        <p>기록에는 동작, 짧은 대상, 읽기·쓰기 여부, 접근한 로그인 폴더의 이름이 남습니다. 전체 명령, 출력, 파일 내용은 남기지 않습니다. 기록은 용량 한도 안에서 30일 보관하며 Run 상세에서 그 Run의 Audit Logs로 바로 갈 수 있습니다.</p>
+      </section>
+
+      <section class="guide-section" id="enforce">
+        <h2>그다음 Enforce로 막기</h2>
+        <p><strong>Enforce</strong>는 Rules가 거부한 호출을 막고 차단으로 기록합니다. 켜기 전에 지난 7일 동안의 호출 중 무엇이 막혔을지 확인하세요. Enforce는 호출마다 약 0.1초가 더 걸리며 Claude Code 2.1.306 이상이나 Codex 0.160.0 이상이 필요합니다. 보호할 수 없는 세션은 시작하지 않습니다. Enforce는 Astera 설정 폴더와 설정을 바꾸는 명령을 항상 보호합니다.</p>
+        <p class="guide-note">Rules는 도구 호출을 검사합니다. 사용자 권한으로 실행되는 에이전트가 스크립트로 설정을 바꾸는 것까지는 막지 못하므로 프로세스 자체를 제한하려면 Sandbox를 쓰세요. 실행 중인 세션은 다시 시작할 때까지 원래 보호 설정을 유지합니다.</p>
+      </section>
+
+      <section class="guide-section" id="credentials">
+        <h2>자격 증명은 세션 밖에</h2>
+        <p><strong>Credentials</strong>에는 공유 MCP 키가 자동으로 나옵니다. 환경 변수 이름이나 CLI 로그인 프리셋(gh, AWS, Google Cloud, npm, Docker, kubectl)을 추가해 전체 프로젝트나 고른 프로젝트에 적용하세요. 새 세션과 완료 검사에는 숨긴 자격 증명을 넘기지 않으며 검사 결과에 숨긴 변수 이름이 표시됩니다. Astera가 직접 GitHub와 Gateway 자격 증명을 쓴 내역은 Audit Logs에 남습니다.</p>
+        <p class="guide-note">변수를 숨겨도 사용자 권한으로 실행되는 프로그램이 로그인 파일이나 OS 비밀 저장소를 읽는 것까지 막지는 못합니다.</p>
+      </section>
+
+      <section class="guide-section" id="sandbox">
+        <h2>Sandbox로 작업을 폴더 안에 두기</h2>
+        <p>에이전트 프로필에서 <strong>Sandbox에서 실행</strong>을 켜고 새 터미널이나 채팅 세션을 시작하세요. Sandbox는 쓰기를 작업 폴더와 임시 폴더로 제한하고 로그인 폴더와 OS 비밀 저장소에 접근하지 못하게 합니다. 네트워크는 그대로 쓸 수 있습니다. Astera가 시작하는 모든 Sandbox는 에이전트의 로그인 파일인 Claude Code의 <code>.credentials.json</code>과 Codex의 <code>auth.json</code>도 막습니다.</p>
+        <div class="page-table-wrap" role="region" aria-labelledby="sandbox-caption" tabindex="0">
+          <table class="page-table">
+            <caption id="sandbox-caption">Astera 1.5.5의 Sandbox 적용 범위. 플랫폼별 자세한 범위는 설정 → Security &amp; Access의 Sandbox가 막는 범위에 나옵니다.</caption>
+            <thead><tr><th scope="col">에이전트와 플랫폼</th><th scope="col">Sandbox를 실행하는 쪽</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Windows, macOS, Linux의 Codex</th><td>Codex 자체 Sandbox. Codex 0.160.0 이상이 필요합니다. Windows에서는 Codex 계정마다 관리자 권한 요청이 뜨는 설정하기를 한 번 실행해야 합니다. Linux에서는 파일 경로 기반 세션 버스만 막고 추상 소켓은 막지 않습니다.</td></tr>
+              <tr><th scope="row">macOS, Linux의 Claude Code</th><td>Claude Code 자체 Sandbox.</td></tr>
+              <tr><th scope="row">Windows의 Claude Code</th><td>Windows의 Claude Code에는 자체 Sandbox가 없습니다. Git Bash가 있고 Windows Sandbox를 설정한 Codex 계정이 있으면 셸 명령을 같은 규칙으로 Codex의 Sandbox 안에서 실행하며 명령마다 1~2초가 더 걸립니다. 그렇지 않으면 파일 도구만 로그인 폴더에서 막고 세션이 그 이유를 알려 줍니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Sandbox 세션은 Sandbox 밖의 세션, Jobs, Tasks로 일을 넘기거나, Host를 직접 호출하거나, Astera 프로필과 설치 코드에 쓸 수 없습니다. Sandbox Task의 명령 검사와 리뷰어는 가능한 환경에서 Sandbox 보호를 받습니다. Docker 검사는 Sandbox 안에서 실행할 수 없어서 먼저 사용자에게 묻습니다. <a href="/guide.ko.html#sandbox">가이드: Sandbox</a></p>
+      </section>
+
+      <section class="guide-section" id="findings">
+        <h2>Findings로 쓰지 않는 권한 찾기</h2>
+        <p><strong>설정 → Security &amp; Access → Findings</strong>에는 쓰지 않거나 중복된 프로필, 삭제됐는데 아직 참조되는 계정과 서버, 반복되는 실패, 쓰지 않는 도구와 자격 증명, 기록된 사용보다 넓은 권한, 일부만 적용되는 Rules, 오래 연결하지 않은 Runtime, 평소보다 토큰을 많이 쓴 Run이 나옵니다. 항목마다 어디서 조치할지 알려 주며 저절로 바뀌는 것은 없습니다. 쓰지 않는 도구와 과도한 프로필 권한을 판단하려면 30일간의 Observe 기록이 필요합니다.</p>
+        <pre class="command-example"><code>astera policies show
+astera audit list --run RUN_ID
+astera credentials list
+astera credentials doctor
+astera agent-profiles audit</code></pre>
+        <p class="guide-small">이 명령들은 실행 중인 Host가 필요합니다. 모든 호출을 보려면 <code>--run RUN_ID</code>를 빼세요. 감사 기록은 사람만 봅니다. 에이전트는 정책과 자격 증명 설명은 읽을 수 있지만 감사 기록은 읽지 못하고 자신의 보호 설정도 바꿀 수 없습니다. <a href="/guide.ko.html#security-access">가이드: Security &amp; Access</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>요구 사항과 한계</h2>
+        <ul>
+          <li>Observe, Enforce, Sandbox는 설정을 바꾼 뒤에 시작한 세션부터 적용됩니다.</li>
+          <li>Enforce에는 Claude Code 2.1.306 이상이나 Codex 0.160.0 이상이 필요합니다. Codex의 Sandbox에는 Codex 0.160.0 이상이 필요합니다.</li>
+          <li>도구마다 막는 층이 다르고 어느 하나로 모든 것을 막을 수는 없습니다. Rules는 도구 호출만 보고 숨긴 자격 증명은 로그인 파일을 지키지 못하며 Sandbox는 네트워크를 열어 둡니다.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details><summary>에이전트가 자기 보호 설정을 끌 수 있나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>도구 호출로는 안 됩니다. Enforce는 Astera 설정을 항상 보호하고 에이전트는 자신의 보호 설정을 바꿀 수 없습니다. 사용자 권한으로 실행한 스크립트는 Rules가 보지 못합니다. Sandbox 세션은 Astera 프로필과 설치 코드에 쓸 수 없습니다.</p></details>
+          <details><summary>Sandbox가 네트워크도 막나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>아닙니다. 네트워크는 그대로 쓸 수 있습니다. Sandbox는 에이전트가 쓸 수 있는 위치를 제한하고 로그인 폴더와 OS 비밀 저장소에서 떨어뜨려 놓습니다.</p></details>
+          <details><summary>감사 기록에는 무엇이 남나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>동작, 짧은 대상, 읽기·쓰기 여부, 접근한 로그인 폴더의 이름입니다. 전체 명령, 출력, 파일 내용은 남지 않습니다. 30일 동안 보관합니다.</p></details>
+        </div>
+      </section>

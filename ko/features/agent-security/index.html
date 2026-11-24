@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko" data-static-language="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Claude Code와 Codex 에이전트가 한 일을 감사 기록으로 보고 Rules로 호출을 막으세요. 자격 증명은 세션 밖에 두고 에이전트는 Sandbox에서 실행하세요. 플랫폼별 한계도 정리했습니다.">
+  <meta name="theme-color" content="#0b1020">
+  <title>코딩 에이전트 감사 기록, Rules, Sandbox – Astera</title>
+  <link rel="canonical" href="https://astera.run/ko/features/agent-security/">
+  <link rel="alternate" hreflang="en" href="https://astera.run/features/agent-security/">
+  <link rel="alternate" hreflang="ko" href="https://astera.run/ko/features/agent-security/">
+  <link rel="alternate" hreflang="x-default" href="https://astera.run/features/agent-security/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Astera">
+  <meta property="og:title" content="코딩 에이전트 감사 기록, Rules, Sandbox – Astera">
+  <meta property="og:description" content="Claude Code와 Codex 에이전트가 한 일을 감사 기록으로 보고 Rules로 호출을 막으세요. 자격 증명은 세션 밖에 두고 에이전트는 Sandbox에서 실행하세요. 플랫폼별 한계도 정리했습니다.">
+  <meta property="og:url" content="https://astera.run/ko/features/agent-security/">
+  <meta property="og:image" content="https://astera.run/assets/banner.jpg">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="625">
+  <meta property="og:image:alt" content="별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="코딩 에이전트 감사 기록, Rules, Sandbox – Astera">
+  <meta name="twitter:description" content="Claude Code와 Codex 에이전트가 한 일을 감사 기록으로 보고 Rules로 호출을 막으세요. 자격 증명은 세션 밖에 두고 에이전트는 Sandbox에서 실행하세요. 플랫폼별 한계도 정리했습니다.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://astera.run/ko/features/agent-security/#webpage","url":"https://astera.run/ko/features/agent-security/","name":"코딩 에이전트 감사 기록, Rules, Sandbox – Astera","description":"Claude Code와 Codex 에이전트가 한 일을 감사 기록으로 보고 Rules로 호출을 막으세요. 자격 증명은 세션 밖에 두고 에이전트는 Sandbox에서 실행하세요. 플랫폼별 한계도 정리했습니다.","inLanguage":"ko","isPartOf":{"@id":"https://astera.run/#website"},"about":{"@id":"https://astera.run/#app"},"dateModified":"2026-11-25","breadcrumb":{"@id":"https://astera.run/ko/features/agent-security/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://astera.run/ko/features/agent-security/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Astera","item":"https://astera.run/index.ko.html"},{"@type":"ListItem","position":2,"name":"기능","item":"https://astera.run/ko/features/"},{"@type":"ListItem","position":3,"name":"감사 기록과 Sandbox"}]}]}</script>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/guide.css">
+  <link rel="stylesheet" href="/pages.css?v=20261125-5">
+  <script src="/language.js?v=20261125-5" defer></script>
+  <script src="/main.js?v=20261125-5" defer></script>
+  <script src="/downloads.js" defer></script>
+</head>
+<body class="guide-page search-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.5c0-1 .1-1.7-.5-2.4 3-.3 6.2-1.5 6.2-6.7 0-1.5-.5-2.7-1.4-3.7.1-.4.6-1.8-.1-3.6 0 0-1.1-.4-3.8 1.4a13 13 0 0 0-7 0C5.8 1.7 4.7 2.1 4.7 2.1c-.7 1.8-.2 3.2-.1 3.6C3.7 6.7 3.2 8 3.2 9.4c0 5.2 3.2 6.4 6.2 6.7-.5.5-.7 1.3-.7 2.4V22"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4v17h17v-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/index.ko.html" data-theme-link aria-label="Astera home"><img src="/assets/astera-mark.png" width="34" height="34" alt=""><span>Astera</span></a>
+      <nav class="desktop-nav" aria-label="주 메뉴">
+        <a href="/index.ko.html#features" data-theme-link lang="en">Features</a><a href="/index.ko.html#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.ko.html" data-theme-link lang="en">Guide</a><a href="/index.ko.html#faq" data-theme-link lang="en">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="language-link" href="/features/agent-security/" data-theme-link hreflang="en" lang="en" title="View in English">English</a>
+        <a class="github-link" href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer" aria-label="GitHub에서 Astera 보기"><svg class="icon"><use href="#i-github"/></svg><span>GitHub</span></a>
+        <button class="icon-button theme-toggle theme-toggle-header" type="button" aria-label="라이트 테마로 전환" aria-pressed="true"><svg class="icon"><use href="#i-sun"/></svg><span class="sr-only">라이트 테마</span></button>
+        <a class="button button-small button-ink" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download lang="en">Download <svg class="icon small"><use href="#i-download"/></svg></a>
+        <button class="icon-button menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="모바일 메뉴" hidden><a href="/index.ko.html#features" data-theme-link lang="en">Features</a><a href="/index.ko.html#workflow" data-theme-link lang="en">Workflow</a><a href="/guide.ko.html" data-theme-link lang="en">Guide</a><a href="/index.ko.html#faq" data-theme-link lang="en">FAQ</a></nav>
+  </header>
+
+  <main id="main" class="container page-main">
+    <article class="page-article">
+      <header class="guide-intro guide-section page-intro">
+        <p class="guide-breadcrumb"><a href="/index.ko.html" data-theme-link>Astera</a><span>/</span><a href="/ko/features/" data-theme-link>기능</a></p>
+        <h1>에이전트가 하는 일을 보고 제한하세요.</h1>
+        <p class="guide-lead">에이전트의 도구 호출을 기록하고 Rules가 거부한 호출을 막으세요. 새 세션에서 자격 증명을 숨기고 Sandbox로 에이전트를 폴더 안에 두세요.</p>
+      </header>
+<section class="guide-section" id="what-it-does">
+        <h2>에이전트가 한 일, 해도 되는 일</h2>
+        <p>코딩 에이전트는 사용자 계정의 권한으로 실행됩니다. Astera는 이를 다루는 도구 네 가지를 <strong>설정 → Security &amp; Access</strong>와 에이전트 프로필에 둡니다. <strong>Audit Logs</strong>는 도구 호출을 기록하고 <strong>Rules</strong>는 거부한 호출을 막습니다. <strong>Credentials</strong>는 새 세션에 비밀 값을 넘기지 않고 <strong>Sandbox</strong>는 세션이 작업 폴더 밖에 쓰지 못하게 합니다. <strong>Findings</strong>는 기록상 실제로 쓰는 것보다 넓은 권한을 알려 줍니다. 기록과 Sandbox는 둘 다 처음에 꺼져 있습니다.</p>
+      </section>
+
+      <section class="guide-section" id="observe">
+        <h2>먼저 Observe로 지켜보기</h2>
+        <p><strong>에이전트의 도구 호출 기록</strong>을 <strong>Observe</strong>로 바꾸고 새 세션을 시작하세요. 호출을 기록만 하고 아무것도 막지 않습니다. Audit Logs에는 날짜별로 호출이 나오고 Policies에서는 순서대로 적용되는 Rules가 각 호출을 허용할지 거부할지 보여 줍니다. 기록 범위 표에는 제공자와 세션 방식마다 무엇을 볼 수 있는지 나옵니다.</p>
+        <p>기록에는 동작, 짧은 대상, 읽기·쓰기 여부, 접근한 로그인 폴더의 이름이 남습니다. 전체 명령, 출력, 파일 내용은 남기지 않습니다. 기록은 용량 한도 안에서 30일 보관하며 Run 상세에서 그 Run의 Audit Logs로 바로 갈 수 있습니다.</p>
+      </section>
+
+      <section class="guide-section" id="enforce">
+        <h2>그다음 Enforce로 막기</h2>
+        <p><strong>Enforce</strong>는 Rules가 거부한 호출을 막고 차단으로 기록합니다. 켜기 전에 지난 7일 동안의 호출 중 무엇이 막혔을지 확인하세요. Enforce는 호출마다 약 0.1초가 더 걸리며 Claude Code 2.1.306 이상이나 Codex 0.160.0 이상이 필요합니다. 보호할 수 없는 세션은 시작하지 않습니다. Enforce는 Astera 설정 폴더와 설정을 바꾸는 명령을 항상 보호합니다.</p>
+        <p class="guide-note">Rules는 도구 호출을 검사합니다. 사용자 권한으로 실행되는 에이전트가 스크립트로 설정을 바꾸는 것까지는 막지 못하므로 프로세스 자체를 제한하려면 Sandbox를 쓰세요. 실행 중인 세션은 다시 시작할 때까지 원래 보호 설정을 유지합니다.</p>
+      </section>
+
+      <section class="guide-section" id="credentials">
+        <h2>자격 증명은 세션 밖에</h2>
+        <p><strong>Credentials</strong>에는 공유 MCP 키가 자동으로 나옵니다. 환경 변수 이름이나 CLI 로그인 프리셋(gh, AWS, Google Cloud, npm, Docker, kubectl)을 추가해 전체 프로젝트나 고른 프로젝트에 적용하세요. 새 세션과 완료 검사에는 숨긴 자격 증명을 넘기지 않으며 검사 결과에 숨긴 변수 이름이 표시됩니다. Astera가 직접 GitHub와 Gateway 자격 증명을 쓴 내역은 Audit Logs에 남습니다.</p>
+        <p class="guide-note">변수를 숨겨도 사용자 권한으로 실행되는 프로그램이 로그인 파일이나 OS 비밀 저장소를 읽는 것까지 막지는 못합니다.</p>
+      </section>
+
+      <section class="guide-section" id="sandbox">
+        <h2>Sandbox로 작업을 폴더 안에 두기</h2>
+        <p>에이전트 프로필에서 <strong>Sandbox에서 실행</strong>을 켜고 새 터미널이나 채팅 세션을 시작하세요. Sandbox는 쓰기를 작업 폴더와 임시 폴더로 제한하고 로그인 폴더와 OS 비밀 저장소에 접근하지 못하게 합니다. 네트워크는 그대로 쓸 수 있습니다. Astera가 시작하는 모든 Sandbox는 에이전트의 로그인 파일인 Claude Code의 <code>.credentials.json</code>과 Codex의 <code>auth.json</code>도 막습니다.</p>
+        <div class="page-table-wrap" role="region" aria-labelledby="sandbox-caption" tabindex="0">
+          <table class="page-table">
+            <caption id="sandbox-caption">Astera 1.5.5의 Sandbox 적용 범위. 플랫폼별 자세한 범위는 설정 → Security &amp; Access의 Sandbox가 막는 범위에 나옵니다.</caption>
+            <thead><tr><th scope="col">에이전트와 플랫폼</th><th scope="col">Sandbox를 실행하는 쪽</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Windows, macOS, Linux의 Codex</th><td>Codex 자체 Sandbox. Codex 0.160.0 이상이 필요합니다. Windows에서는 Codex 계정마다 관리자 권한 요청이 뜨는 설정하기를 한 번 실행해야 합니다. Linux에서는 파일 경로 기반 세션 버스만 막고 추상 소켓은 막지 않습니다.</td></tr>
+              <tr><th scope="row">macOS, Linux의 Claude Code</th><td>Claude Code 자체 Sandbox.</td></tr>
+              <tr><th scope="row">Windows의 Claude Code</th><td>Windows의 Claude Code에는 자체 Sandbox가 없습니다. Git Bash가 있고 Windows Sandbox를 설정한 Codex 계정이 있으면 셸 명령을 같은 규칙으로 Codex의 Sandbox 안에서 실행하며 명령마다 1~2초가 더 걸립니다. 그렇지 않으면 파일 도구만 로그인 폴더에서 막고 세션이 그 이유를 알려 줍니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Sandbox 세션은 Sandbox 밖의 세션, Jobs, Tasks로 일을 넘기거나, Host를 직접 호출하거나, Astera 프로필과 설치 코드에 쓸 수 없습니다. Sandbox Task의 명령 검사와 리뷰어는 가능한 환경에서 Sandbox 보호를 받습니다. Docker 검사는 Sandbox 안에서 실행할 수 없어서 먼저 사용자에게 묻습니다. <a href="/guide.ko.html#sandbox" data-theme-link>가이드: Sandbox</a></p>
+      </section>
+
+      <section class="guide-section" id="findings">
+        <h2>Findings로 쓰지 않는 권한 찾기</h2>
+        <p><strong>설정 → Security &amp; Access → Findings</strong>에는 쓰지 않거나 중복된 프로필, 삭제됐는데 아직 참조되는 계정과 서버, 반복되는 실패, 쓰지 않는 도구와 자격 증명, 기록된 사용보다 넓은 권한, 일부만 적용되는 Rules, 오래 연결하지 않은 Runtime, 평소보다 토큰을 많이 쓴 Run이 나옵니다. 항목마다 어디서 조치할지 알려 주며 저절로 바뀌는 것은 없습니다. 쓰지 않는 도구와 과도한 프로필 권한을 판단하려면 30일간의 Observe 기록이 필요합니다.</p>
+        <pre class="command-example"><code>astera policies show
+astera audit list --run RUN_ID
+astera credentials list
+astera credentials doctor
+astera agent-profiles audit</code></pre>
+        <p class="guide-small">이 명령들은 실행 중인 Host가 필요합니다. 모든 호출을 보려면 <code>--run RUN_ID</code>를 빼세요. 감사 기록은 사람만 봅니다. 에이전트는 정책과 자격 증명 설명은 읽을 수 있지만 감사 기록은 읽지 못하고 자신의 보호 설정도 바꿀 수 없습니다. <a href="/guide.ko.html#security-access" data-theme-link>가이드: Security &amp; Access</a></p>
+      </section>
+
+      <section class="guide-section" id="requirements">
+        <h2>요구 사항과 한계</h2>
+        <ul>
+          <li>Observe, Enforce, Sandbox는 설정을 바꾼 뒤에 시작한 세션부터 적용됩니다.</li>
+          <li>Enforce에는 Claude Code 2.1.306 이상이나 Codex 0.160.0 이상이 필요합니다. Codex의 Sandbox에는 Codex 0.160.0 이상이 필요합니다.</li>
+          <li>도구마다 막는 층이 다르고 어느 하나로 모든 것을 막을 수는 없습니다. Rules는 도구 호출만 보고 숨긴 자격 증명은 로그인 파일을 지키지 못하며 Sandbox는 네트워크를 열어 둡니다.</li>
+        </ul>
+      </section>
+
+      <section class="guide-section" id="questions">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details><summary>에이전트가 자기 보호 설정을 끌 수 있나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>도구 호출로는 안 됩니다. Enforce는 Astera 설정을 항상 보호하고 에이전트는 자신의 보호 설정을 바꿀 수 없습니다. 사용자 권한으로 실행한 스크립트는 Rules가 보지 못합니다. Sandbox 세션은 Astera 프로필과 설치 코드에 쓸 수 없습니다.</p></details>
+          <details><summary>Sandbox가 네트워크도 막나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>아닙니다. 네트워크는 그대로 쓸 수 있습니다. Sandbox는 에이전트가 쓸 수 있는 위치를 제한하고 로그인 폴더와 OS 비밀 저장소에서 떨어뜨려 놓습니다.</p></details>
+          <details><summary>감사 기록에는 무엇이 남나요? <svg class="icon"><use href="#i-plus"/></svg></summary><p>동작, 짧은 대상, 읽기·쓰기 여부, 접근한 로그인 폴더의 이름입니다. 전체 명령, 출력, 파일 내용은 남지 않습니다. 30일 동안 보관합니다.</p></details>
+        </div>
+      </section>
+
+      <div class="guide-finish page-cta">
+        <div><h2>내 프로젝트에서 Astera를 써 보세요.</h2><p>Astera는 Apache-2.0 라이선스의 무료 오픈소스입니다. 지금 쓰는 Claude Code와 Codex CLI를 그대로 실행하므로 모델 사용량은 본인의 Anthropic 또는 OpenAI 요금제에서 차감됩니다.</p><p class="page-platforms">Windows 10/11 · macOS 12+ · Ubuntu 22.04+ / Debian 12+</p></div>
+        <div class="page-cta-actions"><a class="button button-primary" href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download><svg class="icon"><use href="#i-download"/></svg> Astera 다운로드</a><a class="text-button" href="/guide.ko.html" data-theme-link>가이드 읽기 <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <nav class="feature-map page-related" aria-labelledby="related-title">
+        <h2 id="related-title">함께 읽기</h2>
+        <a href="/ko/features/mcp/" data-theme-link><span>MCP</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/features/remote-runtime/" data-theme-link><span>Remote Runtime</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/codex/" data-theme-link><span>Codex</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+        <a href="/ko/claude-code/" data-theme-link><span>Claude Code</span><span>읽기 <svg class="icon small"><use href="#i-arrow"/></svg></span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div><a class="brand" href="/index.ko.html" data-theme-link><img src="/assets/astera-mark.png" width="28" height="28" alt=""><span>Astera</span></a><p>별 너머의 가능성을 만드세요.</p></div>
+    <nav class="footer-groups" aria-label="Astera">
+      <div><p class="footer-group-title">제품</p><a href="/index.ko.html" data-theme-link>홈</a><a href="/guide.ko.html" data-theme-link>사용 가이드</a><a href="https://github.com/parsingk/Astera/releases/latest" target="_blank" rel="noopener noreferrer" data-download>다운로드</a><a href="https://github.com/parsingk/Astera/releases" target="_blank" rel="noopener noreferrer">변경 내역</a></div>
+      <div><p class="footer-group-title">지원 에이전트</p><a href="/ko/claude-code/" data-theme-link>Claude Code</a><a href="/ko/codex/" data-theme-link>Codex</a></div>
+      <div><p class="footer-group-title">기능</p><a href="/ko/features/agent-orchestration/" data-theme-link>에이전트 오케스트레이션</a><a href="/ko/features/smart-resume/" data-theme-link>Smart Resume</a><a href="/ko/features/github-ci/" data-theme-link>GitHub 이슈에서 PR까지</a><a href="/ko/features/headless-cli/" data-theme-link>헤드리스 CLI</a><a href="/ko/features/mcp/" data-theme-link>MCP</a><a href="/ko/features/remote-runtime/" data-theme-link>Remote Runtime</a><a href="/ko/features/agent-security/" data-theme-link>감사 기록과 Sandbox</a><a href="/ko/features/" data-theme-link>기능 전체 보기</a></div>
+      <div><p class="footer-group-title">실전 가이드</p><a href="/ko/guides/claude-code-usage-limit/" data-theme-link>Claude Code 사용량 한도</a></div>
+      <div><p class="footer-group-title">비교</p><a href="/ko/alternatives/orca/" data-theme-link>Astera와 Orca 비교</a><a href="/ko/alternatives/paseo/" data-theme-link>Astera와 Paseo 비교</a><a href="/ko/alternatives/conductor/" data-theme-link>Astera와 Conductor 비교</a><a href="/ko/alternatives/paradev/" data-theme-link>Astera와 Paradev(Superset) 비교</a><a href="/ko/alternatives/" data-theme-link>비교 전체 보기</a></div>
+      <div><p class="footer-group-title">프로젝트</p><a href="https://github.com/parsingk/Astera" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/parsingk/Astera/blob/main/README.ko.md#문서" target="_blank" rel="noopener noreferrer">문서</a><a href="https://github.com/parsingk/Astera/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Apache-2.0</a></div>
+    </nav>
+    <p class="footer-note">Astera는 Anthropic이나 OpenAI가 만들거나 제휴한 제품이 아닌 독립 오픈소스 프로젝트입니다. 만드는 사람들을 위해.</p>
+  </footer>
+</body>
+</html>

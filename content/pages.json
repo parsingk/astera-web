@@ -912,6 +912,34 @@
       ]
     },
     {
+      "id": "features-ko",
+      "kind": "hub",
+      "locale": "ko",
+      "path": "/ko/features/",
+      "status": "published",
+      "translationGroup": "features",
+      "navLabel": "기능",
+      "footerLabel": "기능 전체 보기",
+      "section": "기능",
+      "title": "Claude Code와 Codex를 위한 Astera 기능",
+      "description": "Claude Code와 Codex를 실행하는 Astera의 기능을 모았습니다. 오케스트레이션, GitHub CI, Smart Resume, 헤드리스 CLI, MCP, Remote Runtime, 에이전트 보안.",
+      "h1": "Astera가 Claude Code와 Codex에 더하는 것",
+      "lead": "Astera는 Claude Code와 Codex를 실행하는 데스크톱 작업 공간입니다. 페이지마다 한 기능을 맡아 무엇을 하는지, 어떻게 설정하는지, 한계가 어디까지인지 설명합니다.",
+      "body": "content/ko/features.html",
+      "related": [],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html",
+          "claim": "Feature list matches the guide for Astera 1.5.5",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
       "id": "agent-orchestration-ko",
       "kind": "feature",
       "locale": "ko",
@@ -927,6 +955,7 @@
       "body": "content/ko/agent-orchestration.html",
       "related": [
         "github-ci",
+        "headless-cli",
         "smart-resume",
         "claude-code",
         "codex"
@@ -1042,6 +1071,169 @@
       ]
     },
     {
+      "id": "headless-cli-ko",
+      "kind": "feature",
+      "locale": "ko",
+      "path": "/ko/features/headless-cli/",
+      "status": "published",
+      "translationGroup": "headless-cli",
+      "navLabel": "헤드리스 CLI",
+      "section": "기능",
+      "title": "Claude Code·Codex 에이전트용 헤드리스 CLI – Astera",
+      "description": "astera 명령으로 어느 셸이나 스크립트에서든 Claude Code와 Codex 세션과 Job을 시작하세요. JSON 출력, 코드마다 뜻이 하나인 종료 코드, 앱을 닫아도 이어지는 작업.",
+      "h1": "어느 셸에서든 에이전트를 실행하세요.",
+      "lead": "astera 명령은 창을 열지 않고 터미널, 스크립트, 로컬 CI 실행 환경에서 세션과 Job을 시작하고 진행을 따라가며 질문에 답합니다.",
+      "body": "content/ko/headless-cli.html",
+      "related": [
+        "agent-orchestration",
+        "mcp",
+        "remote-runtime",
+        "github-ci"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#headless-cli",
+          "claim": "Setup, sessions, Chat approvals, Jobs, questions, output formats",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/docs/cli.md#exit-codes",
+          "claim": "Exit codes 0 to 10, JSON envelope",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/docs/cli.md",
+          "claim": "Commands and flags, also checked with astera 1.5.4 --help",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "mcp-ko",
+      "kind": "feature",
+      "locale": "ko",
+      "path": "/ko/features/mcp/",
+      "status": "published",
+      "translationGroup": "mcp",
+      "navLabel": "MCP",
+      "section": "기능",
+      "title": "Claude Code·Codex용 MCP 관리 – Astera",
+      "description": "MCP 서버, 스킬, 플러그인을 모든 Claude Code·Codex 계정에 공유하고 MCP 클라이언트가 Astera Job을 만들고 실행하고 따라가게 하세요.",
+      "h1": "MCP는 한 번 설정해 모든 계정에서 쓰세요.",
+      "lead": "Astera는 MCP 서버, 스킬, 플러그인을 자신이 시작하는 모든 세션에 나눠 주고 에이전트는 Astera의 MCP 서버로 Job을 다룰 수 있습니다.",
+      "body": "content/ko/mcp.html",
+      "related": [
+        "headless-cli",
+        "agent-orchestration",
+        "agent-security",
+        "codex"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#mcp-skills",
+          "claim": "Sharing MCP servers, skills and plugins; per-project and per-session servers; values hidden",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#mcp",
+          "claim": "Astera MCP server tools, access levels, sessions and GitHub settings, MCP over HTTP",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/docs/mcp.md",
+          "claim": "Client registration lines and .mcp.json example",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "remote-runtime-ko",
+      "kind": "feature",
+      "locale": "ko",
+      "path": "/ko/features/remote-runtime/",
+      "status": "published",
+      "translationGroup": "remote-runtime",
+      "navLabel": "Remote Runtime",
+      "section": "기능",
+      "title": "다른 컴퓨터에서 Claude Code와 Codex 실행하기 – Astera",
+      "description": "Astera Remote Runtime은 LAN, VPN, Tailscale로 페어링한 컴퓨터에서 코딩 에이전트와 Job을 실행합니다. 고정 TLS와 회수할 수 있는 권한을 쓰며 중계 서비스나 호스팅 서비스는 없습니다.",
+      "h1": "에이전트를 다른 컴퓨터에서 실행하세요.",
+      "lead": "다른 컴퓨터를 Runtime으로 페어링하세요. 에이전트와 Job은 그 컴퓨터에서 돌고, 관리하는 컴퓨터가 잠들어도 계속 진행됩니다.",
+      "body": "content/ko/remote-runtime.html",
+      "related": [
+        "headless-cli",
+        "agent-orchestration",
+        "agent-security",
+        "paseo"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#remote-runtime",
+          "claim": "Setup, pairing permissions, connection status, unpairing",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/parsingk/Astera/blob/main/docs/remote-runtime.md",
+          "claim": "Cost, where it runs, security model, what it does not do",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "agent-security-ko",
+      "kind": "feature",
+      "locale": "ko",
+      "path": "/ko/features/agent-security/",
+      "status": "published",
+      "translationGroup": "agent-security",
+      "navLabel": "감사 기록과 Sandbox",
+      "section": "기능",
+      "title": "코딩 에이전트 감사 기록, Rules, Sandbox – Astera",
+      "description": "Claude Code와 Codex 에이전트가 한 일을 감사 기록으로 보고 Rules로 호출을 막으세요. 자격 증명은 세션 밖에 두고 에이전트는 Sandbox에서 실행하세요. 플랫폼별 한계도 정리했습니다.",
+      "h1": "에이전트가 하는 일을 보고 제한하세요.",
+      "lead": "에이전트의 도구 호출을 기록하고 Rules가 거부한 호출을 막으세요. 새 세션에서 자격 증명을 숨기고 Sandbox로 에이전트를 폴더 안에 두세요.",
+      "body": "content/ko/agent-security.html",
+      "related": [
+        "mcp",
+        "remote-runtime",
+        "codex",
+        "claude-code"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/guide.html#security-access",
+          "claim": "Observe and Enforce, record contents and retention, credentials",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#sandbox",
+          "claim": "Sandbox platform coverage and limits",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://astera.run/guide.html#findings",
+          "claim": "Findings and their history requirements",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
       "id": "claude-code-usage-limit-ko",
       "kind": "guide",
       "locale": "ko",
@@ -1098,6 +1290,34 @@
         {
           "url": "https://code.claude.com/docs/en/legal-and-compliance",
           "claim": "Limits assume ordinary individual usage",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "alternatives-ko",
+      "kind": "hub",
+      "locale": "ko",
+      "path": "/ko/alternatives/",
+      "status": "published",
+      "translationGroup": "alternatives",
+      "navLabel": "비교",
+      "footerLabel": "비교 전체 보기",
+      "section": "비교",
+      "title": "Astera 대안 비교: 코딩 에이전트 작업 공간",
+      "description": "Astera를 Orca, Paseo, Conductor, Paradev와 비교합니다. 다른 제품에 관한 사실은 모두 공식 출처에서 가져오고 확인한 날짜와 버전을 적었습니다.",
+      "h1": "Astera와 다른 에이전트 작업 공간 비교",
+      "lead": "코딩 에이전트를 실행하는 다른 앱과 Astera를 나란히 비교합니다. 공식 출처만 쓰고 사실마다 문서에서 얼마나 확인되는지 표시했습니다.",
+      "body": "content/ko/alternatives.html",
+      "related": [],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://astera.run/alternatives/orca/",
+          "claim": "Method shared by every comparison page",
           "checkedAt": "2026-11-25"
         }
       ]
@@ -1217,6 +1437,145 @@
         {
           "url": "https://paseo.sh/docs/workspaces",
           "claim": "Worktrees",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "conductor-ko",
+      "kind": "comparison",
+      "locale": "ko",
+      "path": "/ko/alternatives/conductor/",
+      "status": "published",
+      "translationGroup": "conductor",
+      "navLabel": "Astera와 Conductor 비교",
+      "section": "비교",
+      "title": "Astera와 Conductor 비교: 병렬 코딩 에이전트 앱",
+      "description": "Claude Code와 Codex를 병렬로 실행하는 Astera와 Conductor를 플랫폼, 라이선스, 에이전트, 작업 지속, CI와 리뷰, 원격 사용, 비용으로 비교합니다.",
+      "h1": "Astera와 Conductor 비교",
+      "lead": "둘 다 Claude Code와 Codex를 병렬 git 워크트리에서 실행합니다. Conductor는 클라우드 작업 공간을 더할 수 있는 Mac 앱이고 Astera는 Windows, macOS, Linux용 오픈소스 앱입니다.",
+      "body": "content/ko/conductor.html",
+      "related": [
+        "paradev",
+        "orca",
+        "agent-orchestration",
+        "remote-runtime"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://www.conductor.build/docs/installation",
+          "claim": "macOS only; not available for Windows or Linux yet",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/terms",
+          "claim": "Proprietary platform, Melty Labs, Inc.",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/reference/harnesses",
+          "claim": "Agents; free to use; no model billing",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/cloud/faq",
+          "claim": "Paid plans for cloud, local sessions end on quit, planned usage pricing",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/cloud/working-with-cloud-workspaces",
+          "claim": "Cloud sleep, SSH, port forwarding",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/reference/remote-control",
+          "claim": "Remote control is experimental",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/docs/reference/checks",
+          "claim": "Checks tab",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://www.conductor.build/changelog",
+          "claim": "0.99.0 on 2026-11-23; joining Meta 2026-11-04; not shutting down 2026-11-13",
+          "checkedAt": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "paradev-ko",
+      "kind": "comparison",
+      "locale": "ko",
+      "path": "/ko/alternatives/paradev/",
+      "status": "published",
+      "translationGroup": "paradev",
+      "navLabel": "Astera와 Paradev(Superset) 비교",
+      "section": "비교",
+      "title": "Astera와 Paradev(옛 Superset) 비교: 에이전트 작업 공간",
+      "description": "Superset에서 이름을 바꾼 코딩 에이전트 작업 공간 Paradev와 Astera를 플랫폼, 라이선스, 에이전트, 작업 지속, CI와 리뷰, 원격 사용, 비용으로 비교합니다.",
+      "h1": "Astera와 Paradev(옛 Superset) 비교",
+      "lead": "둘 다 코딩 에이전트를 병렬 워크트리에서 실행하는 오픈소스 작업 공간입니다. Paradev는 유료 요금제에서 휴대폰 앱, 릴레이, 호스팅 클라우드 작업 공간을 더하고 Astera는 내 컴퓨터에서만 돌아갑니다.",
+      "body": "content/ko/paradev.html",
+      "related": [
+        "conductor",
+        "orca",
+        "paseo",
+        "remote-runtime"
+      ],
+      "socialImageAlt": "별이 빛나는 배경 위의 Astera 로고와 “Build beyond the stars” 문구",
+      "lastContentModified": "2026-11-25",
+      "lastVerified": "2026-11-25",
+      "verifiedVersion": "1.5.5",
+      "evidence": [
+        {
+          "url": "https://github.com/ParadevAI/Paradev",
+          "claim": "MIT license, desktop-v2.0.11 on 2026-11-20",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://paradev.com/blog/a-new-name",
+          "claim": "Renamed from Superset on 2026-10-26",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://paradev.com/pricing",
+          "claim": "Plans and prices, GB-hour metering",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/install",
+          "claim": "macOS; Windows not available",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/faq",
+          "claim": "Experimental Linux AppImage, no web dashboard, other remotes local only",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/supported-agents",
+          "claim": "Any CLI agent, 22 built in, no model proxy",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/keep-agents-running",
+          "claim": "Daemon keeps agents running after quit or update",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/pull-requests",
+          "claim": "CI checks, merge queue, stacked PRs",
+          "checkedAt": "2026-11-25"
+        },
+        {
+          "url": "https://docs.paradev.com/remote-access",
+          "claim": "Relay remote access on paid plans",
           "checkedAt": "2026-11-25"
         }
       ]
