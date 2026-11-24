@@ -16,6 +16,8 @@ astera.run 검색 페이지를 추가·갱신·배포하는 방법과, 소유자
 
 URL 규칙: 새 페이지는 `slug/index.html`로 두고 정본은 `https://astera.run/slug/`(끝 슬래시)다. 한국어는 `/ko/slug/`. 기존 `/`, `/guide.html`, `/index.ko.html`, `/guide.ko.html`과 가이드 앵커는 바꾸지 않는다.
 
+목록 페이지: `kind`가 `hub`인 항목(`/features/`, `/alternatives/`와 한국어판)은 같은 언어에서 자기 경로 아래에 있는 공개 페이지를 레지스트리 순서대로 자동으로 나열한다. 그 아래 페이지의 브레드크럼과 `BreadcrumbList`는 목록 페이지로 연결되고, 푸터는 각 묶음 끝에 목록 페이지를 `footerLabel`로 단다. 목록 페이지 본문 파일에는 목록 밖의 안내만 쓴다. `/guides/` 목록은 실전 가이드가 더 생길 때 만든다(지금은 1개뿐이라 빈약한 페이지가 된다).
+
 ## 2. 페이지 추가·수정
 
 1. 근거를 먼저 모은다. Astera 기능은 최신 릴리스의 README·`docs/`·앱 문구와 가이드로, 외부 제품·정책은 공식 페이지로만 확인한다.
@@ -38,7 +40,8 @@ node design/downloads.test.cjs
 
 ## 3. 비교 페이지 재검증
 
-- 주기: 30~60일. 다음 검토 예정일은 **2027-01-24**(Orca·Paseo, 2026-11-25 확인).
+- 주기: 30~60일. 다음 검토 예정일은 **2027-01-24**(Orca·Paseo·Paradev, 2026-11-25 확인). **Conductor는 2026-12-25**로 앞당긴다. 2026-11-04 변경 내역은 Meta에 합류한다고 했다가 11-13에 서비스를 종료하지 않는다고 밝혔고, 사이트 푸터는 “Conductor from Meta”, 약관은 Melty Labs, Inc.로 서로 다르다. 클라우드 작업 공간의 존속 여부도 공식 페이지에 명확히 나오지 않는다. 페이지는 두 공지를 날짜와 함께 적고 현재 상태는 Conductor 사이트에서 확인하라고 안내한다.
+- Superset은 2026-10-26에 Paradev로 이름을 바꿨다(superset.sh → paradev.com 308, GitHub `superset-sh/superset` → `ParadevAI/Paradev`). 지시서의 `/alternatives/superset` 대신 `/alternatives/paradev/`로 발행하고 제목·H1·본문에 “formerly Superset”과 Apache Superset과의 구분을 적었다. Paradev 저장소 README에는 Conductor가 신규 사용자를 받지 않는다는 문장이 있지만 Conductor 공식 페이지에서는 확인되지 않아 쓰지 않았다.
 - 경쟁 제품의 플랫폼·가격·주요 기능이 바뀌거나 새 릴리스가 크게 나오면 바로 확인한다.
 - 각 행은 공식 출처로만 판정한다. 찾지 못한 기능은 “Not documented”로 두고 “Not supported”는 명시적 근거가 있을 때만 쓴다.
 - 확인을 마치면 표 캡션의 날짜·버전, 출처 목록, 레지스트리의 `lastVerified`·`evidence.checkedAt`을 함께 바꾼다.
@@ -57,6 +60,9 @@ curl -sS -D - -o /dev/null https://astera.run/
 curl -sS -D - -o /dev/null https://astera.run/claude-code/
 curl -sS -D - -o /dev/null https://astera.run/claude-code          # 301 → /claude-code/ 기대
 curl -sS -D - -o /dev/null https://astera.run/ko/claude-code/
+curl -sS -D - -o /dev/null https://astera.run/features/
+curl -sS -D - -o /dev/null https://astera.run/alternatives            # 301 → /alternatives/ 기대
+curl -sS -D - -o /dev/null https://astera.run/ko/alternatives/paradev/
 curl -sS -D - https://astera.run/robots.txt
 curl -sS -D - https://astera.run/sitemap.xml
 curl -sS -D - -o /dev/null https://astera.run/nonexistent-seo-smoke-test   # 404, 사이트 404 페이지 기대
@@ -69,7 +75,7 @@ GitHub Pages 제약: `_redirects`·`_headers`를 지원하지 않는다. 임의 
 
 아래는 이 저장소 작업으로 할 수 없고 소유자 계정이 필요하다.
 
-1. **Google Search Console**: `astera.run` 도메인 속성이 있는지 먼저 확인한다. 없으면 도메인 속성을 추가하고 DNS TXT 레코드로 소유권을 확인한다. Sitemaps에 `https://astera.run/sitemap.xml`을 제출하고, 처리된 URL 수(배포 시점 20개)를 기록한다. URL 검사로 `/claude-code/`, `/codex/`, `/features/agent-orchestration/`, `/features/smart-resume/`, `/features/github-ci/`, `/guides/claude-code-usage-limit/`, `/alternatives/orca/`, `/alternatives/paseo/`의 크롤링, 렌더링, Google이 고른 canonical을 확인하고 색인 생성을 요청한다.
+1. **Google Search Console**: `astera.run` 도메인 속성이 있는지 먼저 확인한다. 없으면 도메인 속성을 추가하고 DNS TXT 레코드로 소유권을 확인한다. Sitemaps에 `https://astera.run/sitemap.xml`을 제출하고, 처리된 URL 수(Phase 4 1차 포함 시 36개)를 기록한다. URL 검사로 `/claude-code/`, `/codex/`, `/features/`와 그 아래 기능 페이지 7개, `/guides/claude-code-usage-limit/`, `/alternatives/`와 그 아래 비교 페이지 4개의 크롤링, 렌더링, Google이 고른 canonical을 확인하고 색인 생성을 요청한다.
 2. **Bing Webmaster Tools**: Search Console에서 가져오기로 등록하고 같은 sitemap을 제출한다.
 3. **네이버 서치어드바이저**(선택): 한국어 페이지 유입을 보려면 사이트를 등록한다. HTML 확인 파일이나 메타 태그가 필요하면 그 파일을 이 저장소에 추가하는 작업을 요청한다.
 4. **분석**: 사이트에는 분석 스크립트가 없다. 추가할지는 소유자가 정한다. 추가한다면 개인 정보(프롬프트, 경로, 이메일, 계정 ID, 쿼리 문자열)를 이벤트에 넣지 않는다.
@@ -92,7 +98,8 @@ GitHub Pages 제약: `_redirects`·`_headers`를 지원하지 않는다. 임의 
 | 1 공통 기반 | 완료 | `41f0e9a` | 생성기, 검증기, `_config.yml`, 404, 기존 페이지 메타 보강 |
 | 2 영어 P0 8개 | 완료 | `f1d96b5` | 홈·가이드 푸터 링크, 가이드의 Smart Resume 설정 경로 수정 |
 | 3 한국어 P0 8개 | 완료 | `1b123f0` | `/ko/...`, hreflang 상호 참조, humanize-korean 윤문 |
-| 4 P1 확장 | 시작 안 함 | — | 계정 전환·원격·MCP·CLI·보안 기능 페이지, 실전 가이드 4개, Conductor·Superset 비교 |
+| 4 P1 확장 (1차) | 완료 | `64c43d9`(영어), `ca37cb5`(한국어) | 기능 4개(헤드리스 CLI, MCP, Remote Runtime, 감사 기록과 Sandbox), 비교 2개(Conductor, Paradev), 목록 페이지 2개(`/features/`, `/alternatives/`) |
+| 4 P1 확장 (2차) | 대기 | — | 계정 전환 기능 페이지(문구 수위 결정 필요), 실전 가이드 5개(실제 재현 환경 필요), `/guides/` 목록 |
 | 5 배포·검색 등록 | 소유자 작업 대기 | — | 병합·push, 위 5절 |
 | 6 성과 기반 개선 | 데이터 대기 | — | Search Console 데이터가 쌓인 뒤 |
 
@@ -104,3 +111,15 @@ GitHub Pages 제약: `_redirects`·`_headers`를 지원하지 않는다. 임의 
 - 한국어 윤문: humanize-korean light 경로 3묶음, 구조 게이트 통과(변경률 0.2%·0.4%·0.2%). 쉼표를 지우면서 길어진 문장 3개는 직접 나눴고, 게이트가 서법 변화를 잡은 문장 1개는 원문으로 되돌렸다. 영어·한국어 본문의 태그 순서와 링크 대응을 비교해 8쌍 모두 일치했다.
 - 성능: 변경 전 운영 기준선은 [phase-0-audit.md](phase-0-audit.md) 7절. 새 페이지는 운영 배포 후 같은 방법(모바일 감속 랩 측정)으로 재야 한다. 로컬 서버 수치는 비교 대상이 아니라 기록하지 않았다.
 - 소유자 확인이 필요한 문구: 새 페이지 푸터와 제공사 페이지의 “Anthropic·OpenAI가 만들거나 제휴한 제품이 아닌 독립 오픈소스 프로젝트” 문장(지시서의 제휴 없음 명시 요구에 따라 넣음).
+
+## 9. Phase 4 1차 검증 기록 (2026-11-25)
+
+- 범위: 기능 페이지 4개(`/features/headless-cli/`, `/features/mcp/`, `/features/remote-runtime/`, `/features/agent-security/`), 비교 페이지 2개(`/alternatives/conductor/`, `/alternatives/paradev/`), 목록 페이지 2개(`/features/`, `/alternatives/`)와 각각의 한국어판. 공개 대상은 36개가 됐다.
+- 중복 의도 검사: 새 기능 페이지는 기존 페이지와 검색 의도가 겹치지 않는다. 에이전트 오케스트레이션 페이지는 Job 흐름을, 헤드리스 CLI 페이지는 셸·스크립트·종료 코드를 다룬다. Codex 페이지의 MCP와 Sandbox 소단락은 요약으로 두고 자세한 내용은 새 페이지가 맡는다. Remote Runtime 기능 페이지의 설정 절차는 4단계로 줄였다. 문제 해결까지 다루는 단계별 절차는 실전 가이드 `/guides/remote-coding-agent-setup`(2차)에서 다룬다. 계정 전환 기능 페이지는 사용량 한도 가이드와 목적이 겹치고 문구 결정이 필요해서 2차로 미뤘다.
+- 근거: Astera 기능은 v1.5.5 가이드와 `docs/remote-runtime.md`, `docs/cli.md`, `docs/mcp.md`(릴리스 태그 기준)로 확인했다. 페이지의 `astera` 명령과 옵션은 설치된 1.5.4의 `--help`로 이름이 있는지만 확인했고, Job을 만들거나 계정을 쓰는 명령은 실행하지 않았다. 비교 페이지는 각 제품의 공식 사이트·문서·변경 내역·저장소만 썼다. 핵심 사실(Paradev 라이선스·릴리스·리디렉션, Conductor 플랫폼·로컬 세션 종료·0.99.0)은 직접 다시 확인했다.
+- 이미지: 헤드리스 CLI 페이지에만 기존 Jobs 데모 캡처를 다시 썼다. MCP, Remote Runtime, 보안 화면은 저장소에 실제 캡처가 없어 넣지 않았다. 지시서 4.1의 “실제 제품 캡처 1개 이상”을 채우려면 소유자가 해당 설정 화면을 캡처해야 한다.
+- 실행한 검사: `validate_seo.py` 통과(38페이지, 공개 대상 36, 내부 링크·앵커 2,723개), `build_pages.py --check`, `build_locales.py --check`, 검색 테스트 7개, 다운로드 라우팅 테스트, JS 문법, 공백 검사. 새 페이지의 외부 링크 30개가 모두 200으로 응답했고, 한국어 페이지의 외부 링크도 같은 30개 안에 든다.
+- 브라우저(Playwright Chromium, 로컬 서버): sitemap의 모든 페이지와 404를 320·390·768·1440px로, 한국어 새 페이지는 라이트 테마로도 열었다(188회). 콘솔 오류, 가로 넘침, 설정 단계 번호와 제목이 겹치는 경우가 없었다. JS를 끈 상태에서도 새 페이지 16개 모두 H1, 본문, 목록 링크, 다운로드 링크가 보인다. 언어 링크, 브레드크럼, hreflang, 푸터가 각 언어의 페이지로 연결된다.
+- 함께 고친 것: Phase 2에서 넣은 `pages.css`의 본문 목록 규칙이 설정 단계(`.setup-steps`)의 여백을 덮어써서, 단계 번호가 제목 앞부분을 가렸다(Claude Code·Codex·GitHub 페이지, 모든 폭). 목록 규칙에서 `.setup-steps`를 빼서 가이드와 같은 모양으로 되돌렸다.
+- 한국어 윤문: humanize-korean light 경로 3묶음, 구조 게이트 통과(변경률 0.4%·0.6%·0.5%). 같은 표현 두 곳(“사용량 한도에서 …”)과 제목 하나는 손으로 맞췄다. 영어·한국어 본문의 태그 순서와 링크 대응을 18쌍 모두 비교해 일치했다.
+- 남은 일: 계정 전환 기능 페이지(문구 수위 결정), 실전 가이드 5개(테스트 저장소와 계정 사용량을 쓰는 실제 재현), `/guides/` 목록, 새 기능 페이지의 실제 화면 캡처, Conductor 재확인(2026-12-25).
