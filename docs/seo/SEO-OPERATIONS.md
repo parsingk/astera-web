@@ -100,7 +100,7 @@ GitHub Pages 제약: `_redirects`·`_headers`를 지원하지 않는다. 임의 
 | 3 한국어 P0 8개 | 완료 | `1b123f0` | `/ko/...`, hreflang 상호 참조, humanize-korean 윤문 |
 | 4 P1 확장 (1차) | 완료 | `64c43d9`(영어), `ca37cb5`(한국어) | 기능 4개(헤드리스 CLI, MCP, Remote Runtime, 감사 기록과 Sandbox), 비교 2개(Conductor, Paradev), 목록 페이지 2개(`/features/`, `/alternatives/`) |
 | 4 P1 확장 (2차) | 대기 | — | 계정 전환 기능 페이지(문구 수위 결정 필요), 실전 가이드 5개(실제 재현 환경 필요), `/guides/` 목록 |
-| 5 배포·검색 등록 | 배포 완료, 검색 등록 대기 | `66c919e` | 2026-11-25 `main`에 fast-forward 병합·push(아래 10절). 검색 등록은 위 5절(소유자 계정) |
+| 5 배포·검색 등록 | Google·Bing 완료, 네이버 미정 | `66c919e`, `d014442` | 2026-11-25 `main`에 fast-forward 병합·push, Search Console·Bing 제출(아래 10절). 네이버 서치어드바이저는 선택 |
 | 6 성과 기반 개선 | 데이터 대기 | — | Search Console 데이터가 쌓인 뒤 |
 
 ## 8. Phase 1~3 검증 기록 (2026-11-25)
@@ -146,4 +146,8 @@ GitHub Pages 제약: `_redirects`·`_headers`를 지원하지 않는다. 임의 
 
   데스크톱(1440px, 감속 없음)은 LCP 432~900 ms, CLS 0.019 이하. 랩 측정 한 번의 차이는 수백 ms까지 흔들리므로 기준선과의 차이를 개선으로 읽지 않는다.
 - `/guide.html` 모바일 측정 중 한 번 CLS 0.829가 나왔다. 같은 조건(새 브라우저, 홈을 먼저 연 브라우저, 영어·한국어 언어 설정)으로 23번 더 쟀을 때는 모두 0이어서 원인을 찾지 못했다. Search Console의 Core Web Vitals에 필드 데이터가 생기면 다시 본다.
-- `/claude-code/`(영어·한국어)는 첫 화면의 가장 큰 요소가 `hero.jpg`(432 KB)인데 `loading="lazy"`로 넣어서 다운로드가 늦게 시작됐다. `fetchpriority="high"`로 바꾸고 로컬에서 같은 조건으로 재니 3,808 → 3,352 ms(영어), 3,872 → 3,352 ms(한국어)였다. 이 수정은 `c76f9d3`으로 배포했다. 남은 시간 대부분이 이미지 다운로드여서, 소유자 승인을 받아 Pillow로 작은 사본 `assets/hero-640.jpg`(61 KB), `hero-960.jpg`(124 KB), `hero-1280.jpg`(192 KB)를 만들었다(LANCZOS 축소, JPEG 품질 78, progressive). 2배 확대 비교에서 원본 축소본과 구분되지 않았다. Claude Code 페이지의 이미지에 `srcset`과 `sizes="(max-width: 880px) 90vw, 820px"`를 달았다. 브라우저는 390px 3배 화면에서 1280, 390px 2배와 1440px 1배에서 960, 320px 2배에서 640, 768px 2배와 1440px 2배에서 원본을 고른다. 로컬 모바일 랩에서 LCP 3,352 → 2,196 ms(영어), 3,352 → 2,208 ms(한국어), 전송량 558 → 388 KB였다. 홈과 가이드의 같은 이미지는 스크립트가 원본 주소로 바꿔 끼우고, 첫 화면의 가장 큰 요소도 이미지가 아니라서 그대로 두었다. Codex·오케스트레이션·헤드리스 CLI 페이지는 첫 화면의 가장 큰 요소가 글이라 그대로 두었다.
+- `/claude-code/`(영어·한국어)는 첫 화면의 가장 큰 요소가 `hero.jpg`(432 KB)인데 `loading="lazy"`로 넣어서 다운로드가 늦게 시작됐다. `fetchpriority="high"`로 바꾸고 로컬에서 같은 조건으로 재니 3,808 → 3,352 ms(영어), 3,872 → 3,352 ms(한국어)였다. 이 수정은 `c76f9d3`으로 배포했다. 남은 시간 대부분이 이미지 다운로드여서, 소유자 승인을 받아 Pillow로 작은 사본 `assets/hero-640.jpg`(61 KB), `hero-960.jpg`(124 KB), `hero-1280.jpg`(192 KB)를 만들었다(LANCZOS 축소, JPEG 품질 78, progressive). 2배 확대 비교에서 원본 축소본과 구분되지 않았다. Claude Code 페이지의 이미지에 `srcset`과 `sizes="(max-width: 880px) 90vw, 820px"`를 달았다. 브라우저는 390px 3배 화면에서 1280, 390px 2배와 1440px 1배에서 960, 320px 2배에서 640, 768px 2배와 1440px 2배에서 원본을 고른다. 로컬 모바일 랩에서 LCP 3,352 → 2,196 ms(영어), 3,352 → 2,208 ms(한국어), 전송량 558 → 388 KB였다. 홈과 가이드의 같은 이미지는 스크립트가 원본 주소로 바꿔 끼우고, 첫 화면의 가장 큰 요소도 이미지가 아니라서 그대로 두었다. Codex·오케스트레이션·헤드리스 CLI 페이지는 첫 화면의 가장 큰 요소가 글이라 그대로 두었다. 운영 배포(`d014442`) 후 같은 조건에서 LCP 2,024 ms(영어), 2,052 ms(한국어), 전송량 328 KB였다.
+- 검색 등록(2026-11-25, 소유자가 로그인한 브라우저에서 진행):
+  - Google Search Console: 도메인 속성 `sc-domain:astera.run`은 이미 있었다(DNS TXT `google-site-verification` 확인). 2026-09-23에 제출한 `https://astera.run/sitemap.xml`은 11-19에 마지막으로 읽혀 발견 페이지가 4개였다. 다시 제출하자 바로 읽혀 상태 성공, 발견 페이지 36개가 됐다. URL 검사 결과 `guide.html`만 색인돼 있었고, 나머지는 “발견됨 - 현재 색인이 생성되지 않음” 또는 “Google에 아직 알려지지 않은 URL”이었다. 색인 생성 요청 10건(하루 한도)을 보냈다: `/claude-code/`, `/codex/`, `/guides/claude-code-usage-limit/`, `/features/`, `/features/agent-orchestration/`, `/alternatives/`, `/ko/claude-code/`, `/features/smart-resume/`, `/alternatives/conductor/`, `/guide.html`. 나머지는 sitemap으로 처리되기를 기다리고, 1~2주 뒤 색인 수를 보고 남은 주요 페이지(헤드리스 CLI, MCP, Remote Runtime, 보안, GitHub, 비교 페이지, 한국어판)를 요청한다.
+  - Bing Webmaster Tools: 사이트 `https://astera.run/`는 이미 있었고 sitemap은 없었다. sitemap을 제출했고(처리 중), URL 제출 도구(하루 100개)로 sitemap의 36개 URL을 모두 제출해 성공했다.
+  - 네이버 서치어드바이저: 아직 하지 않았다. 사이트 소유 확인 파일이나 메타 태그를 배포해야 한다.
